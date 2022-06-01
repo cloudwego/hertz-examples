@@ -1,0 +1,7 @@
+syntax = "proto2";
+package body;
+option go_package = "./body";
+
+message BodyStruct {
+   optional bytes body = 1;
+}

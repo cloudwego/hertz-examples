@@ -1,0 +1,10 @@
+# hertz client : send request
+You can learn about using hertz cient to send request：
+* Do():`Do()` sends the request and writes the response to the `resp`. This function does not support redirect jumps, if you want to use it, please use `DoRedirects` or `Get*` methods.
+* DoDeadline(): `DoDeadline()` sends the request and writes the response to the `resp`, and returns an error if there is no response after the given deadline. This method does not support redirect jumps, if you want to use it, please use `DoRedirects` or `Get*` methods.
+* DoRedirects(): `DoRedirects` support redirect, when the number of redirects exceeds maxRedirectsCount will return error.
+* DoTimeout(): `DoTimeout()` sends the request and writes the response to the `resp`. If there is no response after the given timeout, a timeout error is returned. This method does not support redirect jumps, if you want to use it, please use `DoRedirects` or `Get*` methods.
+* Get(): `Get()` will return the corresponding status code and response body according to the url; `dst` will be replaced with the response request body, if `dst` is too small a new slice will be assigned. This method supports redirect.
+* GetDeadline(): `GetDeadline()` will return the corresponding status code and response body according to the url; if no response after the given deadline will return a timeout error, `dst` will be replaced with the response request body, and if `dst` is too small a new slice will be assigned. This method supports redirect.
+* GetTimeout(): `GetTimeout()` will return the corresponding status code and response body according to the url; if there is no response after a given timeout, it will return an error, `dst` will be replaced with the response request body, and if `dst` is too small a new slice will be assigned. This method supports redirect.
+* Post(): `Post()` will send a post request based on the url and post parameters, `dst` will be replaced with a response request body, if `dst` is too small a new slice will be assigned. The method supports redirect jumps. And the content-type used is application/x-www-url-form
