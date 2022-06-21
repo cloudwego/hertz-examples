@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package hello;
+
+option go_package = "hertz/hello";
+
+import "api.proto";
+
+message HelloReq {
+  string Name = 1[(api.query)="name"];
+}
+
+message HelloResp {
+  string RespBody = 1;
+}
+
+service HelloService {
+  rpc Method1(HelloReq) returns(HelloResp) {
+    option (api.get) = "/hello";
+  }
+}
