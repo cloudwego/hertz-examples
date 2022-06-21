@@ -1,0 +1,10 @@
+{
+  "*": {
+    "GoModule": "github.com/hertz/hello",
+    "ServiceName": "hello",
+    "UseApacheThrift": true
+  },
+  "main.go": {
+    "MainData": "this is customized render data"
+  }
+}
