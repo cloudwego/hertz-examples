@@ -97,7 +97,7 @@ func RegisterParaRoute(h *server.Hertz) {
 
 	// However, this one will match "/hertz/v1/" and "/hertz/v2/send"
 	h.GET("/hertz/:version/*action", func(ctx context.Context, c *app.RequestContext) {
-		version := c.Param("name")
+		version := c.Param("version")
 		action := c.Param("action")
 		message := version + " is " + action
 		c.String(consts.StatusOK, message)
