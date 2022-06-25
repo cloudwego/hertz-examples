@@ -1,4 +1,5 @@
 # Hertz Examples
+English | [中文](README_CN.md)
 ## How to run
 You can enter the example for information about  "How to run"
 
