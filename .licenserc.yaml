@@ -1,0 +1,15 @@
+header:
+  license:
+    spdx-id: Apache-2.0
+    copyright-owner: CloudWeGo Authors
+
+  paths:
+    - '**/*.go'
+    - '**/*.s'
+
+  paths-ignore:
+    - hz/**
+    - render/protobuf/body/body.pb.go
+    - tracer/kitex/kitex_gen/**
+
+  comment: on-failure

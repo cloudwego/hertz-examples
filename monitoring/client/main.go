@@ -39,6 +39,9 @@ func main() {
 		req.Header.SetMethod(consts.MethodGet)
 		req.SetRequestURI("http://127.0.0.1:8080/metricGet")
 		err = client.Do(context.Background(), req, res)
+		if err != nil {
+			return
+		}
 		fmt.Println(string(res.Body()))
 
 		req.Reset()
@@ -46,6 +49,9 @@ func main() {
 		req.Header.SetMethod(consts.MethodPost)
 		req.SetRequestURI("http://127.0.0.1:8080/metricPost")
 		err = client.Do(context.Background(), req, res)
+		if err != nil {
+			return
+		}
 		fmt.Println(string(res.Body()))
 
 		time.Sleep(time.Second)
