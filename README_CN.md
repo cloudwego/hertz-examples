@@ -6,7 +6,7 @@
 - [hello:](hello) 启动对于 hertz 来说相当于 "hello world" 的示例
 - [config:](config) 配置 Hertz server 的示例
 - [protocol:](protocol) 使用 http1, TLS 以及其他协议的示例
- [middleware:](middleware) 使用 hertz 中间件的示例
+- [middleware:](middleware) 使用 hertz 中间件的示例
 - [binding:](binding) 绑定参数和验证参数的示例
 - [parameters:](parameter) 获取 query, form, cookie 等类型参数的示例
 - [file:](file) 关于如何上传，下载文件和搭建静态文件服务的示例
