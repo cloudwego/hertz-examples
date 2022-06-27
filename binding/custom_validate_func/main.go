@@ -52,8 +52,13 @@ func main() {
 	h.GET("customValidate", func(ctx context.Context, c *app.RequestContext) {
 		var req ValidateStruct
 		err := c.Bind(&req)
+		if err != nil {
+			fmt.Printf("error: %v\n", err)
+		}
 		err = c.Validate(&req)
-		fmt.Printf("error: %v\n", err)
+		if err != nil {
+			fmt.Printf("error: %v\n", err)
+		}
 	})
 
 	go h.Spin()

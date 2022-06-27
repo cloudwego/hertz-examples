@@ -47,7 +47,6 @@ func main() {
 		fmt.Println(err.Error())
 	}
 	cfg.Certificates = append(cfg.Certificates, cert)
-	cfg.BuildNameToCertificate()
 
 	h := server.Default(server.WithTLS(cfg), server.WithHostPorts(":8443"))
 

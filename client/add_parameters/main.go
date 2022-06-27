@@ -49,6 +49,9 @@ func main() {
 	req.Header.SetMethod(consts.MethodPost)
 	req.SetRequestURI(realURL("http://127.0.0.1:8080/v1/bind"))
 	err = client.Do(context.Background(), req, res)
+	if err != nil {
+		return
+	}
 
 	// Use SetQueryString to set query parameters
 	req.Reset()
@@ -56,6 +59,9 @@ func main() {
 	req.SetRequestURI("http://127.0.0.1:8080/v1/bind")
 	req.SetQueryString("query=query&q=q1&q=q2&vd=1")
 	err = client.Do(context.Background(), req, res)
+	if err != nil {
+		return
+	}
 
 	// Send "www-url-encoded" request
 	req.Reset()
@@ -65,6 +71,9 @@ func main() {
 		"form": "test form",
 	})
 	err = client.Do(context.Background(), req, res)
+	if err != nil {
+		return
+	}
 
 	// Send "multipart/form-data" request
 	req.Reset()
@@ -74,6 +83,9 @@ func main() {
 		"form": "test form",
 	})
 	err = client.Do(context.Background(), req, res)
+	if err != nil {
+		return
+	}
 
 	// Send "Json" request
 	req.Reset()
@@ -88,6 +100,7 @@ func main() {
 	jsonByte, _ := json.Marshal(data)
 	req.SetBody(jsonByte)
 	err = client.Do(context.Background(), req, res)
-
-	return
+	if err != nil {
+		return
+	}
 }
