@@ -37,11 +37,16 @@ func main() {
 	req.SetFile("file", "./client/upload_file/file1.txt")
 
 	err = client.Do(context.Background(), req, res)
+	if err != nil {
+		return
+	}
 	fmt.Println(err, string(res.Body()))
 
 	req.SetRequestURI("http://127.0.0.1:8080/multiFile")
 	req.SetFile("file", "./client/upload_file/file2.txt")
 	err = client.Do(context.Background(), req, res)
+	if err != nil {
+		return
+	}
 	fmt.Println(err, string(res.Body()))
-	return
 }

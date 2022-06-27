@@ -48,5 +48,7 @@ func main() {
 	res := &protocol.Response{}
 	req.SetRequestURI("http://127.0.0.1:8080/middleware")
 	err = client.Do(context.Background(), req, res)
-	return
+	if err != nil {
+		return
+	}
 }
