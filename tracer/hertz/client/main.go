@@ -24,7 +24,7 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app/client"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
-	"github.com/hertz-contrib/tracer/hertz"
+	hertztracer "github.com/hertz-contrib/tracer/hertz"
 	"github.com/opentracing/opentracing-go"
 	"github.com/uber/jaeger-client-go"
 	jaegercfg "github.com/uber/jaeger-client-go/config"
@@ -34,9 +34,13 @@ func main() {
 	closer := InitJaeger("hertz-client")
 	defer closer.Close()
 	c, _ := client.NewClient()
-	c.Use(hertz.ClientTraceMW, hertz.ClientCtx)
+
+	// Register and use client tracer middleware.
+	// This middleware is simple demo.
+	// You can refer to the example to implement a tracer middleware yourself to get the metrics you want.
+	c.Use(hertztracer.ClientTraceMW, hertztracer.ClientCtx)
 	for {
-		_, b, err := c.Get(context.Background(), nil, "http://localhost:8888/ping")
+		_, b, err := c.Get(context.Background(), nil, "http://localhost:8888/ping?name=hertz")
 		if err != nil {
 			hlog.Errorf(err.Error())
 		}
