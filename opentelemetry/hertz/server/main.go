@@ -1,0 +1,64 @@
+package main
+
+import (
+	"context"
+	"os"
+
+	"github.com/cloudwego/hertz-examples/opentelemetry/kitex/kitex_gen/api"
+	"github.com/cloudwego/hertz-examples/opentelemetry/kitex/kitex_gen/api/echo"
+	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz/pkg/app/server"
+	"github.com/cloudwego/hertz/pkg/common/hlog"
+	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	kclient "github.com/cloudwego/kitex/client"
+	"github.com/cloudwego/kitex/pkg/rpcinfo"
+	hertzlogrus "github.com/hertz-contrib/obs-opentelemetry/logging/logrus"
+	"github.com/hertz-contrib/obs-opentelemetry/provider"
+	hertztracing "github.com/hertz-contrib/obs-opentelemetry/tracing"
+	kitextracing "github.com/kitex-contrib/obs-opentelemetry/tracing"
+)
+
+func main() {
+	hlog.SetLogger(hertzlogrus.NewLogger())
+	hlog.SetLevel(hlog.LevelDebug)
+
+	serviceName := "demo-hertz-server"
+
+	p := provider.NewOpenTelemetryProvider(
+		provider.WithServiceName(serviceName),
+		// Support setting ExportEndpoint via environment variables: OTEL_EXPORTER_OTLP_ENDPOINT
+		provider.WithExportEndpoint("host.docker.internal:4317"),
+		provider.WithInsecure(),
+	)
+	defer p.Shutdown(context.Background())
+
+	tracer, cfg := hertztracing.NewServerTracer()
+	h := server.Default(tracer)
+	h.Use(hertztracing.ServerMiddleware(cfg))
+
+	demoKitexServerAddr, ok := os.LookupEnv("DEMO_KITEX_SERVER_ENDPOINT")
+	if !ok {
+		demoKitexServerAddr = "0.0.0.0:8181"
+	}
+	client, err := echo.NewClient(serviceName,
+		kclient.WithHostPorts(demoKitexServerAddr),
+		kclient.WithSuite(kitextracing.NewClientSuite()),
+		kclient.WithClientBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: serviceName}),
+	)
+	if err != nil {
+		hlog.Fatal(err)
+	}
+
+	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
+		req := &api.Request{Message: "my request"}
+		resp, err := client.Echo(c, req)
+		if err != nil {
+			hlog.Errorf(err.Error())
+		}
+		hlog.CtxDebugf(c, "message received successfully: %s", req.Message)
+		ctx.JSON(consts.StatusOK, resp)
+	})
+
+	h.Spin()
+
+}
