@@ -76,5 +76,4 @@ func main() {
 	})
 
 	h.Spin()
-
 }
