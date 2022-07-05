@@ -49,7 +49,6 @@ func main() {
 	for {
 		ctx, span := otel.Tracer("github.com/hertz-contrib/obs-opentelemetry").
 			Start(context.Background(), "loop")
-		defer span.End()
 
 		_, b, err := c.Get(ctx, nil, "http://0.0.0.0:8888/ping?foo=bar")
 		if err != nil {
@@ -61,5 +60,7 @@ func main() {
 		hlog.CtxInfof(ctx, "hertz client %s", string(b))
 
 		<-time.After(time.Second)
+
+		span.End()
 	}
 }
