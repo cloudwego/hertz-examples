@@ -49,7 +49,7 @@ func main() {
 
 	p := provider.NewOpenTelemetryProvider(
 		provider.WithServiceName(serviceName),
-		provider.WithExportEndpoint("host.docker.internal:4317"),
+		provider.WithExportEndpoint("localhost:4317"),
 		provider.WithInsecure(),
 	)
 	defer p.Shutdown(context.Background())
