@@ -5,9 +5,8 @@ go 1.16
 require (
 	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
 	github.com/apache/thrift v0.13.0
-	github.com/cloudwego/hertz v0.0.1
-	github.com/cloudwego/kitex v0.3.1
-	github.com/cloudwego/netpoll-http2 v0.0.6 // indirect
+	github.com/cloudwego/hertz v0.1.0
+	github.com/cloudwego/kitex v0.3.2
 	github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf
 	github.com/hertz-contrib/monitor-prometheus v0.0.0-20220601062737-825a4fc4595f
 	github.com/hertz-contrib/tracer v0.0.0-20220601062646-788b1565bdab
