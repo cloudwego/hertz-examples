@@ -16,9 +16,9 @@ require (
 	github.com/henrylee2cn/goutil v0.0.0-20220704075712-42f2ec55fe8d // indirect
 	github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf
 	github.com/hertz-contrib/monitor-prometheus v0.0.0-20220601062737-825a4fc4595f
-	github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.0 // indirect
-	github.com/hertz-contrib/obs-opentelemetry/provider v0.1.0 // indirect
-	github.com/hertz-contrib/obs-opentelemetry/tracing v0.1.0
+	github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1
+	github.com/hertz-contrib/obs-opentelemetry/provider v0.1.1
+	github.com/hertz-contrib/obs-opentelemetry/tracing v0.1.1
 	github.com/hertz-contrib/tracer v0.0.0-20220601062646-788b1565bdab
 	github.com/kitex-contrib/obs-opentelemetry v0.0.0-20220616115444-37518030dbb3
 	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20220616115444-37518030dbb3
