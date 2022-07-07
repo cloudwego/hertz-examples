@@ -58,9 +58,8 @@ func main() {
 		span.SetAttributes(attribute.String("msg", string(b)))
 
 		hlog.CtxInfof(ctx, "hertz client %s", string(b))
+		span.End()
 
 		<-time.After(time.Second)
-
-		span.End()
 	}
 }
