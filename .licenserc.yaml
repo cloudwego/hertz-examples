@@ -11,5 +11,6 @@ header:
     - hz/**
     - render/protobuf/body/body.pb.go
     - tracer/kitex/kitex_gen/**
+    - opentelemetry/kitex/kitex_gen/**
 
   comment: on-failure
