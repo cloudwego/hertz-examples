@@ -1,0 +1,33 @@
+// this is my custom handler.
+
+package {{.PackageName}}
+
+import (
+    "context"
+
+    "github.com/cloudwego/hertz/pkg/app"
+
+    {{- range $k, $v := .Imports}}
+        {{$k}} "{{$v.Package}}"
+    {{- end}}
+)
+
+{{range $_, $MethodInfo := .Methods}}
+{{$MethodInfo.Comment}}
+func {{$MethodInfo.Name}}(ctx context.Context, c *app.RequestContext) {
+     //  you can code something
+     var err error
+     {{if ne $MethodInfo.RequestTypeName "" -}}
+     var req {{$MethodInfo.RequestTypeName}}
+     err = c.BindAndValidate(&req)
+     if err != nil {
+          c.String(400, err.Error())
+          return
+     }
+     {{end}}
+     resp := new({{$MethodInfo.ReturnTypeName}})
+
+     c.{{.Serializer}}(200, resp)
+}
+{{end}}
+

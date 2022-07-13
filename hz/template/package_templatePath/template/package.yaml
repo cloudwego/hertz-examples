@@ -1,0 +1,18 @@
+layouts:
+  # path只表示handler.go的模板，具体的handler路径由默认路径和handler_dir决定
+  - path: handler.go
+    templatePath: template/package/handler.go.tmpl
+  # path只表示router.go的模板，其路径固定在：biz/router/namespace/
+  - path: router.go
+    templatePath: template/package/router.go.tmpl
+  # path只表示register.go的模板，register的路径固定为biz/router/register.go
+  - path: register.go
+    templatePath: template/package/register.go.tmpl
+  - path: model.go
+    templatePath: template/package/model.go.tmpl
+  # path只表示middleware.go的模板，middleware的路径和router.go一样为：biz/router/namespace/
+  - path: middleware.go
+    templatePath: template/package/middleware.go.tmpl
+  # path只表示client.go的模板，client代码的生成路径由用户指定"${client_dir}"
+  - path: client.go
+    templatePath: template/package/client.go.tmpl
