@@ -17,7 +17,7 @@
 - [unit_test:](unit_test) 使用 hertz 提供的没有网络传输的接口编写单元测试的示例
 - [tracer:](tracer) 使用 Jaeger 进行链接追踪的示例
 - [monitoring:](monitoring) 使用 Prometheus 进行服务监控的示例
-
+- [multiple_service:](multiple_service) 在多个服务示例上使用 hertz 的示例
 ## Client
 - [client/send_request:](client/send_request) 使用 hertz 客户端发送http请求的示例
 - [client/config:](client/config) 配置 hertz 客户端的示例
