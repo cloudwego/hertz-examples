@@ -18,7 +18,7 @@ You can enter the example for information about  "How to run"
 - [unit_test:](unit_test) Example of writing unit tests using the interface provided by hertz without network transmission
 - [tracer:](tracer) Example of using Jaeger for link tracing
 - [monitoring:](monitoring) Example of using Prometheus for metrics monitoring
-
+- [multiple_service:](multiple_service) Example of using hertz with multiple services
 
 ## Client
 - [client/send_request:](client/send_request) Example of sending http requests using hertz client
