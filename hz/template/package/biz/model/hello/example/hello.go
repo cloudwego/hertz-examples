@@ -284,6 +284,8 @@ func (p *HelloResp) String() string {
 
 type HelloService interface {
 	HelloMethod(ctx context.Context, request *HelloReq) (r *HelloResp, err error)
+
+	HelloMethod2(ctx context.Context, request *HelloReq) (r *HelloResp, err error)
 }
 
 type HelloServiceClient struct {
@@ -321,6 +323,15 @@ func (p *HelloServiceClient) HelloMethod(ctx context.Context, request *HelloReq)
 	}
 	return _result.GetSuccess(), nil
 }
+func (p *HelloServiceClient) HelloMethod2(ctx context.Context, request *HelloReq) (r *HelloResp, err error) {
+	var _args HelloServiceHelloMethod2Args
+	_args.Request = request
+	var _result HelloServiceHelloMethod2Result
+	if err = p.Client_().Call(ctx, "HelloMethod2", &_args, &_result); err != nil {
+		return
+	}
+	return _result.GetSuccess(), nil
+}
 
 type HelloServiceProcessor struct {
 	processorMap map[string]thrift.TProcessorFunction
@@ -343,6 +354,7 @@ func (p *HelloServiceProcessor) ProcessorMap() map[string]thrift.TProcessorFunct
 func NewHelloServiceProcessor(handler HelloService) *HelloServiceProcessor {
 	self := &HelloServiceProcessor{handler: handler, processorMap: make(map[string]thrift.TProcessorFunction)}
 	self.AddToProcessorMap("HelloMethod", &helloServiceProcessorHelloMethod{handler: handler})
+	self.AddToProcessorMap("HelloMethod2", &helloServiceProcessorHelloMethod2{handler: handler})
 	return self
 }
 func (p *HelloServiceProcessor) Process(ctx context.Context, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
@@ -394,6 +406,54 @@ func (p *helloServiceProcessorHelloMethod) Process(ctx context.Context, seqId in
 		result.Success = retval
 	}
 	if err2 = oprot.WriteMessageBegin("HelloMethod", thrift.REPLY, seqId); err2 != nil {
+		err = err2
+	}
+	if err2 = result.Write(oprot); err == nil && err2 != nil {
+		err = err2
+	}
+	if err2 = oprot.WriteMessageEnd(); err == nil && err2 != nil {
+		err = err2
+	}
+	if err2 = oprot.Flush(ctx); err == nil && err2 != nil {
+		err = err2
+	}
+	if err != nil {
+		return
+	}
+	return true, err
+}
+
+type helloServiceProcessorHelloMethod2 struct {
+	handler HelloService
+}
+
+func (p *helloServiceProcessorHelloMethod2) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+	args := HelloServiceHelloMethod2Args{}
+	if err = args.Read(iprot); err != nil {
+		iprot.ReadMessageEnd()
+		x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err.Error())
+		oprot.WriteMessageBegin("HelloMethod2", thrift.EXCEPTION, seqId)
+		x.Write(oprot)
+		oprot.WriteMessageEnd()
+		oprot.Flush(ctx)
+		return false, err
+	}
+
+	iprot.ReadMessageEnd()
+	var err2 error
+	result := HelloServiceHelloMethod2Result{}
+	var retval *HelloResp
+	if retval, err2 = p.handler.HelloMethod2(ctx, args.Request); err2 != nil {
+		x := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing HelloMethod2: "+err2.Error())
+		oprot.WriteMessageBegin("HelloMethod2", thrift.EXCEPTION, seqId)
+		x.Write(oprot)
+		oprot.WriteMessageEnd()
+		oprot.Flush(ctx)
+		return true, err2
+	} else {
+		result.Success = retval
+	}
+	if err2 = oprot.WriteMessageBegin("HelloMethod2", thrift.REPLY, seqId); err2 != nil {
 		err = err2
 	}
 	if err2 = result.Write(oprot); err == nil && err2 != nil {
@@ -557,7 +617,7 @@ func (p *HelloServiceHelloMethodArgs) String() string {
 }
 
 type HelloServiceHelloMethodResult struct {
-	Success *HelloResp `thrift:"success,0" json:"success,omitempty"`
+	Success *HelloResp `thrift:"success,0,optional" json:"success,omitempty"`
 }
 
 func NewHelloServiceHelloMethodResult() *HelloServiceHelloMethodResult {
@@ -701,4 +761,296 @@ func (p *HelloServiceHelloMethodResult) String() string {
 		return "<nil>"
 	}
 	return fmt.Sprintf("HelloServiceHelloMethodResult(%+v)", *p)
+}
+
+type HelloServiceHelloMethod2Args struct {
+	Request *HelloReq `thrift:"request,1" json:"request"`
+}
+
+func NewHelloServiceHelloMethod2Args() *HelloServiceHelloMethod2Args {
+	return &HelloServiceHelloMethod2Args{}
+}
+
+var HelloServiceHelloMethod2Args_Request_DEFAULT *HelloReq
+
+func (p *HelloServiceHelloMethod2Args) GetRequest() (v *HelloReq) {
+	if !p.IsSetRequest() {
+		return HelloServiceHelloMethod2Args_Request_DEFAULT
+	}
+	return p.Request
+}
+
+var fieldIDToName_HelloServiceHelloMethod2Args = map[int16]string{
+	1: "request",
+}
+
+func (p *HelloServiceHelloMethod2Args) IsSetRequest() bool {
+	return p.Request != nil
+}
+
+func (p *HelloServiceHelloMethod2Args) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 1:
+			if fieldTypeId == thrift.STRUCT {
+				if err = p.ReadField1(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				if err = iprot.Skip(fieldTypeId); err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_HelloServiceHelloMethod2Args[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+}
+
+func (p *HelloServiceHelloMethod2Args) ReadField1(iprot thrift.TProtocol) error {
+	p.Request = NewHelloReq()
+	if err := p.Request.Read(iprot); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *HelloServiceHelloMethod2Args) Write(oprot thrift.TProtocol) (err error) {
+	var fieldId int16
+	if err = oprot.WriteStructBegin("HelloMethod2_args"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField1(oprot); err != nil {
+			fieldId = 1
+			goto WriteFieldError
+		}
+
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *HelloServiceHelloMethod2Args) writeField1(oprot thrift.TProtocol) (err error) {
+	if err = oprot.WriteFieldBegin("request", thrift.STRUCT, 1); err != nil {
+		goto WriteFieldBeginError
+	}
+	if err := p.Request.Write(oprot); err != nil {
+		return err
+	}
+	if err = oprot.WriteFieldEnd(); err != nil {
+		goto WriteFieldEndError
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 1 end error: ", p), err)
+}
+
+func (p *HelloServiceHelloMethod2Args) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("HelloServiceHelloMethod2Args(%+v)", *p)
+}
+
+type HelloServiceHelloMethod2Result struct {
+	Success *HelloResp `thrift:"success,0,optional" json:"success,omitempty"`
+}
+
+func NewHelloServiceHelloMethod2Result() *HelloServiceHelloMethod2Result {
+	return &HelloServiceHelloMethod2Result{}
+}
+
+var HelloServiceHelloMethod2Result_Success_DEFAULT *HelloResp
+
+func (p *HelloServiceHelloMethod2Result) GetSuccess() (v *HelloResp) {
+	if !p.IsSetSuccess() {
+		return HelloServiceHelloMethod2Result_Success_DEFAULT
+	}
+	return p.Success
+}
+
+var fieldIDToName_HelloServiceHelloMethod2Result = map[int16]string{
+	0: "success",
+}
+
+func (p *HelloServiceHelloMethod2Result) IsSetSuccess() bool {
+	return p.Success != nil
+}
+
+func (p *HelloServiceHelloMethod2Result) Read(iprot thrift.TProtocol) (err error) {
+
+	var fieldTypeId thrift.TType
+	var fieldId int16
+
+	if _, err = iprot.ReadStructBegin(); err != nil {
+		goto ReadStructBeginError
+	}
+
+	for {
+		_, fieldTypeId, fieldId, err = iprot.ReadFieldBegin()
+		if err != nil {
+			goto ReadFieldBeginError
+		}
+		if fieldTypeId == thrift.STOP {
+			break
+		}
+
+		switch fieldId {
+		case 0:
+			if fieldTypeId == thrift.STRUCT {
+				if err = p.ReadField0(iprot); err != nil {
+					goto ReadFieldError
+				}
+			} else {
+				if err = iprot.Skip(fieldTypeId); err != nil {
+					goto SkipFieldError
+				}
+			}
+		default:
+			if err = iprot.Skip(fieldTypeId); err != nil {
+				goto SkipFieldError
+			}
+		}
+
+		if err = iprot.ReadFieldEnd(); err != nil {
+			goto ReadFieldEndError
+		}
+	}
+	if err = iprot.ReadStructEnd(); err != nil {
+		goto ReadStructEndError
+	}
+
+	return nil
+ReadStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct begin error: ", p), err)
+ReadFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d begin error: ", p, fieldId), err)
+ReadFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T read field %d '%s' error: ", p, fieldId, fieldIDToName_HelloServiceHelloMethod2Result[fieldId]), err)
+SkipFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T field %d skip type %d error: ", p, fieldId, fieldTypeId), err)
+
+ReadFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read field end error", p), err)
+ReadStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+}
+
+func (p *HelloServiceHelloMethod2Result) ReadField0(iprot thrift.TProtocol) error {
+	p.Success = NewHelloResp()
+	if err := p.Success.Read(iprot); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *HelloServiceHelloMethod2Result) Write(oprot thrift.TProtocol) (err error) {
+	var fieldId int16
+	if err = oprot.WriteStructBegin("HelloMethod2_result"); err != nil {
+		goto WriteStructBeginError
+	}
+	if p != nil {
+		if err = p.writeField0(oprot); err != nil {
+			fieldId = 0
+			goto WriteFieldError
+		}
+
+	}
+	if err = oprot.WriteFieldStop(); err != nil {
+		goto WriteFieldStopError
+	}
+	if err = oprot.WriteStructEnd(); err != nil {
+		goto WriteStructEndError
+	}
+	return nil
+WriteStructBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err)
+WriteFieldError:
+	return thrift.PrependError(fmt.Sprintf("%T write field %d error: ", p, fieldId), err)
+WriteFieldStopError:
+	return thrift.PrependError(fmt.Sprintf("%T write field stop error: ", p), err)
+WriteStructEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write struct end error: ", p), err)
+}
+
+func (p *HelloServiceHelloMethod2Result) writeField0(oprot thrift.TProtocol) (err error) {
+	if p.IsSetSuccess() {
+		if err = oprot.WriteFieldBegin("success", thrift.STRUCT, 0); err != nil {
+			goto WriteFieldBeginError
+		}
+		if err := p.Success.Write(oprot); err != nil {
+			return err
+		}
+		if err = oprot.WriteFieldEnd(); err != nil {
+			goto WriteFieldEndError
+		}
+	}
+	return nil
+WriteFieldBeginError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 0 begin error: ", p), err)
+WriteFieldEndError:
+	return thrift.PrependError(fmt.Sprintf("%T write field 0 end error: ", p), err)
+}
+
+func (p *HelloServiceHelloMethod2Result) String() string {
+	if p == nil {
+		return "<nil>"
+	}
+	return fmt.Sprintf("HelloServiceHelloMethod2Result(%+v)", *p)
 }
