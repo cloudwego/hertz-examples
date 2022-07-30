@@ -13,5 +13,7 @@ header:
     - tracer/kitex/kitex_gen/**
     - opentelemetry/kitex/kitex_gen/**
     - hz_kitex_demo/**
+    - tls/server.crt
+    - tls/server.key
 
   comment: on-failure
