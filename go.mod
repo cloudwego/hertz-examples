@@ -9,7 +9,7 @@ require (
 	github.com/bytedance/go-tagexpr/v2 v2.9.3 // indirect
 	github.com/bytedance/sonic v1.3.2 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20220526154910-8bf9453eb81a // indirect
-	github.com/cloudwego/hertz v0.1.0
+	github.com/cloudwego/hertz v0.2.0
 	github.com/cloudwego/kitex v0.3.1
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.3 // indirect
