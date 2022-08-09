@@ -19,6 +19,8 @@ You can enter the example for information about  "How to run"
 - [tracer:](tracer) Example of using Jaeger for link tracing
 - [monitoring:](monitoring) Example of using Prometheus for metrics monitoring
 - [multiple_service:](multiple_service) Example of using hertz with multiple services
+- [adaptor:](adaptor) Example of using adaptor to integrate hertz with packages built for `net/http`, including a demonstration on using [jade](https://github.com/Joker/jade)
+  as template engine. 
 
 ## Client
 - [client/send_request:](client/send_request) Example of sending http requests using hertz client

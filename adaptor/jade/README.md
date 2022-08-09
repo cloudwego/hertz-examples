@@ -41,7 +41,7 @@ func main() {
 }
 ```
 ## How to run
-1. install jade via `go install github.com/Joker/jade/cmd/jade@latest`. Please refer to [jade](https://github.com/Joker/jade) documentation should you require any help.
+1. install jade by running `go install github.com/Joker/jade/cmd/jade@latest`. Please refer to [jade](https://github.com/Joker/jade) documentation should you require any help.
 2. run `jade -writer -pkg=main adaptor/jade/hello.jade` to generate go code from template file.
 3. run `go run hello/main.go`. This will spin up hertz listening on 8080.
 4. run `curl --location --request GET '127.0.0.1:8080/hello'`
