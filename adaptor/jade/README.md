@@ -11,13 +11,13 @@ package main
 import (
 	"context"
 	"fmt"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/common/adaptor"
 )
 
 func main() {
-
 	h := server.Default()
 
 	h.GET("/hello", func(ctx context.Context, c *app.RequestContext) {
@@ -33,12 +33,11 @@ func main() {
 		rw := adaptor.GetCompatResponseWriter(&c.Response)
 
 		Jade_hello("Hertz", rw)
-
 	})
 
 	h.Spin()
-
 }
+
 ```
 ## How to run
 1. install jade by running `go install github.com/Joker/jade/cmd/jade@latest`. Please refer to [jade](https://github.com/Joker/jade) documentation should you require any help.

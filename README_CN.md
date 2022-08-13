@@ -18,7 +18,7 @@
 - [tracer:](tracer) 使用 Jaeger 进行链接追踪的示例
 - [monitoring:](monitoring) 使用 Prometheus 进行服务监控的示例
 - [multiple_service:](multiple_service) 使用 Hertz 启动多端口服务的示例
-
+- [adaptor:](adaptor) 使用 adaptor 集成基于`http.Handler`接口开发的工具, 包含使用 [jade](https://github.com/Joker/jade) 作为模版引擎的示例
 ## Client
 - [client/send_request:](client/send_request) 使用 hertz 客户端发送http请求的示例
 - [client/config:](client/config) 配置 hertz 客户端的示例

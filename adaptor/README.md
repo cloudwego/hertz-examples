@@ -3,15 +3,16 @@
 This example demonstrates how to use get standard `http.ResponseWriter` and `http.Request` from `app.RequestContext` . This is useful if you want to integrate packages build for `net/http` with Hertz, especially these use `Handler` to register handler. Be mindful that this compatibility comes at the cost performance loss. 
 
 ```
-package adaptor
+package main
 
 import (
 	"context"
 	"fmt"
+	"net/http"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/common/adaptor"
-	"net/http"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -40,7 +41,6 @@ func main() {
 		rw := adaptor.GetCompatResponseWriter(&c.Response)
 
 		handler(rw, req)
-
 	})
 
 	h.Spin()
