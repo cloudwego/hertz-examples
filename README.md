@@ -20,8 +20,8 @@ You can enter the example for information about  "How to run"
 - [monitoring:](monitoring) Example of using Prometheus for metrics monitoring
 - [multiple_service:](multiple_service) Example of using hertz with multiple services
 - [adaptor:](adaptor) Example of using adaptor to integrate hertz with package built for `http.Handler` interface , including a demonstration on using [jade](https://github.com/Joker/jade)
-  as template engine. 
-
+  as template engine.
+- [sentinel:](sentinel) Example of using sentinel-golang in hertz
 ## Client
 - [client/send_request:](client/send_request) Example of sending http requests using hertz client
 - [client/config:](client/config) Example of configuring hertz client
