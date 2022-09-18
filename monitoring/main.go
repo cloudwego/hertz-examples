@@ -26,7 +26,14 @@ import (
 )
 
 func main() {
-	h := server.Default(server.WithHostPorts("127.0.0.1:8080"), server.WithTracer(prometheus.NewServerTracer(":9091", "/hertz")))
+	h := server.Default(
+		server.WithHostPorts("127.0.0.1:8080"),
+		server.WithTracer(
+			prometheus.NewServerTracer(":9091", "/hertz",
+				prometheus.WithEnableGoCollector(true), // enable go runtime metric collector
+			),
+		),
+	)
 
 	h.GET("/metricGet", func(c context.Context, ctx *app.RequestContext) {
 		ctx.String(200, "hello get")
