@@ -19,7 +19,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.3 // indirect
 	github.com/henrylee2cn/ameda v1.5.0 // indirect
 	github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf
-	github.com/hertz-contrib/monitor-prometheus v0.0.0-20220601062737-825a4fc4595f
+	github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed
 	github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1
 	github.com/hertz-contrib/obs-opentelemetry/provider v0.1.1
 	github.com/hertz-contrib/obs-opentelemetry/tracing v0.1.1
@@ -34,6 +34,7 @@ require (
 	github.com/klauspost/cpuid/v2 v2.1.1 // indirect
 	github.com/nyaruka/phonenumbers v1.1.1 // indirect
 	github.com/opentracing/opentracing-go v1.2.0
+	github.com/prometheus/client_golang v1.13.0 // indirect
 	github.com/stretchr/testify v1.8.0
 	github.com/tidwall/gjson v1.14.3 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible
@@ -43,10 +44,10 @@ require (
 	go.opentelemetry.io/proto/otlp v0.18.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/zap v1.23.0 // indirect
-	golang.org/x/arch v0.0.0-20220823144127-ada1728cebaa // indirect
+	golang.org/x/arch v0.0.0-20220915211755-44deed04936c // indirect
 	golang.org/x/net v0.0.0-20220630215102-69896b714898 // indirect
 	golang.org/x/sync v0.0.0-20220907140024-f12130a52804 // indirect
-	golang.org/x/sys v0.0.0-20220907062415-87db552b00fd // indirect
+	golang.org/x/sys v0.0.0-20220915200043-7b5979e65e41 // indirect
 	google.golang.org/genproto v0.0.0-20220630174209-ad1d48641aa7 // indirect
 	google.golang.org/protobuf v1.28.1
 	gopkg.in/ini.v1 v1.67.0 // indirect

@@ -43,7 +43,7 @@ func main() {
    1. `Configuration`
    2. `Data Source`
    3. `Add data source`
-   4. Select `Prometheus` and fill the URL with `http://$inetIP:9090` 
+   4. Select `Prometheus` and fill the URL with `http://prometheus:9090` 
    5. click `Save & Test` after configuration to test if it works
 8. add dashboard `Create` -> `dashboard`, add monitoring metrics such as throughput and pct99 according to your needs, for example:  
    
