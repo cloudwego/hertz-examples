@@ -17,9 +17,7 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"net/http"
-	"time"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -37,11 +35,11 @@ func main() {
 	)
 	// This is before compression
 	h.GET("/api/book", func(ctx context.Context, c *app.RequestContext) {
-		c.String(http.StatusOK, "pong "+fmt.Sprint(time.Now().Unix()))
+		c.String(http.StatusOK, "This is a book!")
 	})
 	// This is the compressed
 	h.GET("/book", func(ctx context.Context, c *app.RequestContext) {
-		c.String(http.StatusOK, "pong "+fmt.Sprint(time.Now().Unix()))
+		c.String(http.StatusOK, "This is a book!")
 	})
 	h.Spin()
 }
