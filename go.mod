@@ -19,6 +19,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.3 // indirect
 	github.com/henrylee2cn/ameda v1.5.0 // indirect
 	github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf
+	github.com/hertz-contrib/gzip v0.0.1
 	github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed
 	github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1
 	github.com/hertz-contrib/obs-opentelemetry/provider v0.1.1

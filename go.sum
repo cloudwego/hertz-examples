@@ -318,6 +318,8 @@ github.com/henrylee2cn/ameda v1.5.0/go.mod h1:wnTERseg26LtcSrHOPlV3pBGnNwQiz3TNI
 github.com/henrylee2cn/goutil v0.0.0-20210127050712-89660552f6f8/go.mod h1:Nhe/DM3671a5udlv2AdV2ni/MZzgfv2qrPL5nIi3EGQ=
 github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf h1:ZAxm2v6m6uhdlRZkmfcdFJm9P3FG7VQIQxC5Hkx8Li0=
 github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf/go.mod h1:45j0uowS7Wuijes/UKkxrszUM7Hs6E49TY0M27Fu560=
+github.com/hertz-contrib/gzip v0.0.1 h1:fPCnSZIDT4Gd8ZTuoCCJXek0opUsN89T2djdEW7Awr4=
+github.com/hertz-contrib/gzip v0.0.1/go.mod h1:Fom/vnPMLA3UJ/P8fsZO8izjWG82m53BGO48lW1U1l8=
 github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed h1:5PArj/pcERlfOOTcvFOqD6E89hKSfiRV5mXTW+36yrY=
 github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed/go.mod h1:8fZtpOPFekHcW/axCJmNvDZqFJjhBTAsshocOaPraYY=
 github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1 h1:4KR/JoIc8PSbVucOzsLSJOtVgDowwNG6/C/GkrpPXHI=
