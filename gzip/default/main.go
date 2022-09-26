@@ -30,10 +30,6 @@ func main() {
 		// Do not add any restrictions, just use the default exclusion
 		gzip.Gzip(gzip.DefaultCompression),
 	)
-	// This is before compression
-	h.GET("/api/book", func(ctx context.Context, c *app.RequestContext) {
-		c.String(http.StatusOK, "This is a book!")
-	})
 	// This is the compressed
 	h.GET("/book", func(ctx context.Context, c *app.RequestContext) {
 		c.String(http.StatusOK, "This is a book!")

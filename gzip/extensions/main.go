@@ -26,10 +26,10 @@ func main() {
 		gzip.Gzip(
 			gzip.DefaultCompression,
 			// This WithExcludedExtensions takes arguments in the form of a suffix and the default value is ".png", ".gif", ".jpeg", ".jpg"
-			gzip.WithExcludedExtensions([]string{".pdf", ".mp4"}),
+			gzip.WithExcludedExtensions([]string{".md"}),
 		),
 	)
-	h.StaticFile("/picture.jpg", "./gzip/extensions/picture.jpg")
-	h.StaticFile("/image.png", "./gzip/extensions/image.png")
+	h.StaticFile("/README.md", "./gzip/extensions/README.md")
+	h.StaticFile("/README.txt", "./gzip/extensions/README.txt")
 	h.Spin()
 }
