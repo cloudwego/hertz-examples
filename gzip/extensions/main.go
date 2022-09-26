@@ -29,6 +29,7 @@ func main() {
 			gzip.WithExcludedExtensions([]string{".pdf", ".mp4"}),
 		),
 	)
+	h.StaticFile("/picture.jpg", "./gzip/extensions/picture.jpg")
 	h.StaticFile("/image.png", "./gzip/extensions/image.png")
 	h.Spin()
 }
