@@ -22,7 +22,8 @@ You can enter the example for information about  "How to run"
 - [adaptor:](adaptor) Example of using adaptor to integrate hertz with package built for `http.Handler` interface , including a demonstration on using [jade](https://github.com/Joker/jade)
   as template engine.
 - [sentinel:](sentinel) Example of using sentinel-golang in hertz
-- [reverseproxy](reverseproxy/standard) Example of using reverseproxy in hertz server
+- [reverseproxy:](reverseproxy/standard) Example of using reverseproxy in hertz server
+- [gzip:](gzip) Example of using gzip middleware in hertz server
 ## Client
 - [client/send_request:](client/send_request) Example of sending http requests using hertz client
 - [client/config:](client/config) Example of configuring hertz client

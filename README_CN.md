@@ -20,7 +20,8 @@
 - [multiple_service:](multiple_service) 使用 Hertz 启动多端口服务的示例
 - [adaptor:](adaptor) 使用 adaptor 集成基于`http.Handler`接口开发的工具, 包含使用 [jade](https://github.com/Joker/jade) 作为模版引擎的示例
 - [sentinel:](sentinel) sentinel-golang 结合 hertz 使用的示例
-- [reverseproxy](reverseproxy) 在 hertz server 中使用反向代理的示例
+- [reverseproxy:](reverseproxy) 在 hertz server 中使用反向代理的示例
+- [gzip:](gzip) 在 hertz server 中使用 gzip 中间件的示例
 
 ## Client
 - [client/send_request:](client/send_request) 使用 hertz 客户端发送http请求的示例
