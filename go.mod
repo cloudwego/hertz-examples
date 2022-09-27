@@ -11,7 +11,7 @@ require (
 	github.com/bytedance/gopkg v0.0.0-20220824043955-beb90005fda6 // indirect
 	github.com/bytedance/sonic v1.4.0 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20220526154910-8bf9453eb81a // indirect
-	github.com/cloudwego/hertz v0.3.0
+	github.com/cloudwego/hertz v0.3.1
 	github.com/cloudwego/kitex v0.3.1
 	github.com/cloudwego/netpoll v0.2.6 // indirect
 	github.com/go-errors/errors v1.4.2 // indirect
@@ -24,6 +24,7 @@ require (
 	github.com/hertz-contrib/obs-opentelemetry/provider v0.1.1
 	github.com/hertz-contrib/obs-opentelemetry/tracing v0.1.1
 	github.com/hertz-contrib/opensergo v0.0.0-20220810030115-33c172481119
+	github.com/hertz-contrib/pprof v0.0.1 // indirect
 	github.com/hertz-contrib/registry/nacos v0.0.0-20220901103531-b8810bf778fb
 	github.com/hertz-contrib/reverseproxy v0.0.0-20220907134658-6a05798e1cc5
 	github.com/hertz-contrib/tracer v0.0.0-20220601062646-788b1565bdab
@@ -47,7 +48,6 @@ require (
 	golang.org/x/arch v0.0.0-20220915211755-44deed04936c // indirect
 	golang.org/x/net v0.0.0-20220630215102-69896b714898 // indirect
 	golang.org/x/sync v0.0.0-20220907140024-f12130a52804 // indirect
-	golang.org/x/sys v0.0.0-20220915200043-7b5979e65e41 // indirect
 	google.golang.org/genproto v0.0.0-20220630174209-ad1d48641aa7 // indirect
 	google.golang.org/protobuf v1.28.1
 	gopkg.in/ini.v1 v1.67.0 // indirect
