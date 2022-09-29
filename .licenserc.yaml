@@ -13,5 +13,10 @@ header:
     - tracer/kitex/kitex_gen/**
     - opentelemetry/kitex/kitex_gen/**
     - hz_kitex_demo/**
+    - bizdemo/hertz_gorm/biz/hertz_gen/**
+    - bizdemo/hertz_gorm/biz/router/**
+    - bizdemo/hertz_gorm/router_gen.go
+    - bizdemo/hertz_jwt/biz/router/**
+    - bizdemo/hertz_jwt/router_gen.go
 
   comment: on-failure
