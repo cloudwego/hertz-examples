@@ -22,6 +22,7 @@
 - [sentinel:](sentinel) sentinel-golang 结合 hertz 使用的示例
 - [reverseproxy:](reverseproxy) 在 hertz server 中使用反向代理的示例
 - [gzip:](gzip) 在 hertz server 中使用 gzip 中间件的示例
+- [gorm:](bizdemo/hertz_gorm) 在 hertz server 中使用 gorm 的示例
 
 ## Client
 - [client/send_request:](client/send_request) 使用 hertz 客户端发送http请求的示例
