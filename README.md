@@ -25,6 +25,7 @@ You can enter the example for information about  "How to run"
 - [reverseproxy:](reverseproxy/standard) Example of using reverseproxy in hertz server
 - [gzip:](gzip) Example of using gzip middleware in hertz server
 - [gorm:](bizdemo/hertz_gorm) Example of using gorm in hertz server
+- [jwt:](bizdemo/hertz_jwt) Example of using jwt in hertz server
 
 ## Client
 - [client/send_request:](client/send_request) Example of sending http requests using hertz client

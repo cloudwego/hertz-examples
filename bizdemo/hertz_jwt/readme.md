@@ -1,17 +1,17 @@
-# hertz_gorm
+# hertz_jwt
 
 ## Introduce
 
-A demo with `Hertz` and `Gorm`
+A demo with `Hertz` and `JWT`
 
-- Use `thrift` IDL to define `HTTP` interface
 - Use `hz` to generate code
-- Use `Hertz` binding and validate
+- Use `JWT` to complete login and authentication
 - Use `Gorm` and `MySQL`
 
-## IDL
 
-This demo use `thrift` IDL to define `HTTP` interface. The specific interface define in [api.thrift](idl/api.thrift)
+## JWT
+
+Use Hertz's JWT extension, refer to [jwt](https://github.com/hertz-contrib/jwt)
 
 ## Code generation tool
 
@@ -34,7 +34,7 @@ This demo use `Gorm` to operate `MySQL` and refers to [Gorm](https://gorm.io/)
 ### Run mysql docker
 
 ```bash
-cd bizdemo/hertz_gorm && docker-compose up
+cd bizdemo/hertz_jwt && docker-compose up
 ```
 
 ### Generate MySQL table
@@ -44,5 +44,5 @@ Connect MySQL and execute [user.sql](biz/model/sql/user.sql)
 ### Run demo
 
 ```go
-cd bizdemo/hertz_gorm && go run main.go
+cd bizdemo/hertz_jwt && go run main.go
 ```
