@@ -21,11 +21,10 @@ package user_gorm
 import (
 	"context"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm/biz/pack"
-
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm/biz/dal/mysql"
-	user_gorm "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm/biz/hertz_gen/user_gorm"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm/biz/hertz_gen/user_gorm"
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm/biz/model"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm/biz/pack"
 	"github.com/cloudwego/hertz/pkg/app"
 )
 
@@ -36,7 +35,7 @@ func UpdateUser(ctx context.Context, c *app.RequestContext) {
 	var req user_gorm.UpdateUserRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		c.JSON(200, &user_gorm.CreateUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
+		c.JSON(200, &user_gorm.UpdateUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
 		return
 	}
 
@@ -48,11 +47,11 @@ func UpdateUser(ctx context.Context, c *app.RequestContext) {
 	u.Introduce = req.Introduce
 
 	if err = mysql.UpdateUser(u); err != nil {
-		c.JSON(200, &user_gorm.CreateUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
+		c.JSON(200, &user_gorm.UpdateUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
 		return
 	}
 
-	c.JSON(200, &user_gorm.DeleteUserResponse{Code: user_gorm.Code_Success})
+	c.JSON(200, &user_gorm.UpdateUserResponse{Code: user_gorm.Code_Success})
 }
 
 // DeleteUser .
@@ -62,11 +61,11 @@ func DeleteUser(ctx context.Context, c *app.RequestContext) {
 	var req user_gorm.DeleteUserRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		c.JSON(200, &user_gorm.CreateUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
+		c.JSON(200, &user_gorm.DeleteUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
 		return
 	}
 	if err = mysql.DeleteUser(req.UserID); err != nil {
-		c.JSON(200, &user_gorm.CreateUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
+		c.JSON(200, &user_gorm.DeleteUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
 		return
 	}
 
@@ -80,13 +79,13 @@ func QueryUser(ctx context.Context, c *app.RequestContext) {
 	var req user_gorm.QueryUserRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		c.JSON(200, &user_gorm.CreateUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
+		c.JSON(200, &user_gorm.QueryUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
 		return
 	}
 
 	users, total, err := mysql.QueryUser(req.Keyword, req.Page, req.PageSize)
 	if err != nil {
-		c.JSON(200, &user_gorm.CreateUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
+		c.JSON(200, &user_gorm.QueryUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
 		return
 	}
 	c.JSON(200, &user_gorm.QueryUserResponse{Code: user_gorm.Code_Success, Users: pack.Users(users), Totoal: total})
@@ -114,7 +113,7 @@ func CreateUser(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	resp := new(user_gorm.UpdateUserResponse)
+	resp := new(user_gorm.CreateUserResponse)
 	resp.Code = user_gorm.Code_Success
 	c.JSON(200, resp)
 }

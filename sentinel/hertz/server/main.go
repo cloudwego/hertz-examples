@@ -25,7 +25,7 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/common/utils"
-	hertzSentinel "github.com/hertz-contrib/opensergo/sentinel"
+	hertzSentinel "github.com/hertz-contrib/opensergo/sentinel/adapter"
 )
 
 func initSentinel() {
