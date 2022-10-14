@@ -29,6 +29,7 @@ require (
 	github.com/kitex-contrib/tracer-opentracing v0.0.3
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/prometheus/client_golang v1.13.0 // indirect
+	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/stretchr/testify v1.8.0
 	github.com/uber/jaeger-client-go v2.30.0+incompatible
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect
