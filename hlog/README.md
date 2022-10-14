@@ -23,4 +23,4 @@ type FullLogger interface {
 
 Extension provides the use of zap and logrus
 
-[See more](https://github.com/hertz-contrib/obs-opentelemetry/tree/main/logging)
+For details on log extension, [see](https://www.cloudwego.io/zh/docs/hertz/tutorials/framework-exten/log/)

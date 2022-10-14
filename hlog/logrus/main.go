@@ -30,7 +30,7 @@ import (
 func main() {
 	h := server.Default()
 
-	// For detailed settings, please refer to logrus
+	// For logrus detailed settings, please refer to https://github.com/hertz-contrib/obs-opentelemetry/tree/main/logging/logrus and https://github.com/sirupsen/logrus
 	logger := hertzlogrus.NewLogger(
 		hertzlogrus.WithTraceHookErrorSpanLevel(logrus.WarnLevel),
 		hertzlogrus.WithTraceHookLevels(logrus.AllLevels),

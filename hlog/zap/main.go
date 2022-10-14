@@ -30,7 +30,7 @@ import (
 func main() {
 	h := server.Default()
 
-	// For detailed settings, please refer to zap
+	// For zap detailed settings, please refer to https://github.com/hertz-contrib/obs-opentelemetry/tree/main/logging/zap and https://github.com/uber-go/zap
 	logger := hertzzap.NewLogger(
 		hertzzap.WithTraceErrorSpanLevel(zap.WarnLevel),
 		hertzzap.WithRecordStackTraceInSpan(true),
