@@ -23,13 +23,20 @@ import (
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	hertzlogrus "github.com/hertz-contrib/obs-opentelemetry/logging/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
 	h := server.Default()
 
-	// Take logrus as an example, inject user-defined logger implementation
-	logger := NewLogger()
+	// For detailed settings, please refer to logrus
+	logger := hertzlogrus.NewLogger(
+		hertzlogrus.WithTraceHookErrorSpanLevel(logrus.WarnLevel),
+		hertzlogrus.WithTraceHookLevels(logrus.AllLevels),
+		hertzlogrus.WithRecordStackTraceInSpan(true),
+	)
+
 	hlog.SetLogger(logger)
 
 	h.GET("/hello", func(ctx context.Context, c *app.RequestContext) {

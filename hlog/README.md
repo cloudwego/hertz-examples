@@ -18,3 +18,9 @@ type FullLogger interface {
    Control
 }
 ```
+
+## Log Extension
+
+Extension provides the use of zap and logrus
+
+[See more](https://github.com/hertz-contrib/obs-opentelemetry/tree/main/logging)

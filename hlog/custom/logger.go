@@ -32,8 +32,40 @@ type Logger struct {
 	l *logrus.Logger
 }
 
-func (l *Logger) Logger() *logrus.Logger {
-	return l.l
+func NewLogger() *Logger {
+	var logFilePath string
+	if dir, err := os.Getwd(); err == nil {
+		logFilePath = dir + "/logs/"
+	}
+	if err := os.MkdirAll(logFilePath, 0o777); err != nil {
+		fmt.Println(err.Error())
+	}
+	// Set filename to date
+	logFileName := time.Now().Format("2006-01-02") + ".log"
+	fileName := path.Join(logFilePath, logFileName)
+	if _, err := os.Stat(fileName); err != nil {
+		if _, err := os.Create(fileName); err != nil {
+			fmt.Println(err.Error())
+		}
+	}
+
+	// Write to file
+	src, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	// Instantiate
+	logger := logrus.New()
+	// Set output
+	logger.Out = src
+	// Set log level
+	logger.SetLevel(logrus.DebugLevel)
+	// Set log format
+	logger.SetFormatter(&logrus.TextFormatter{
+		TimestampFormat: "2006-01-02 15:04:05",
+	})
+	return &Logger{l: logger}
 }
 
 func (l *Logger) Trace(v ...interface{}) {
@@ -143,47 +175,4 @@ func (l *Logger) SetLevel(level hlog.Level) {
 
 func (l *Logger) SetOutput(writer io.Writer) {
 	l.l.SetOutput(writer)
-}
-
-func SetLogger() *logrus.Logger {
-	now := time.Now()
-	logFilePath := ""
-
-	if dir, err := os.Getwd(); err == nil {
-		logFilePath = dir + "/logs/"
-	}
-
-	if err := os.MkdirAll(logFilePath, 0777); err != nil {
-		fmt.Println(err.Error())
-	}
-
-	logFileName := now.Format("2006-01-02") + ".log"
-
-	fileName := path.Join(logFilePath, logFileName)
-	if _, err := os.Stat(fileName); err != nil {
-		if _, err := os.Create(fileName); err != nil {
-			fmt.Println(err.Error())
-		}
-	}
-
-	// Write to file
-	src, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-
-	// Instantiate
-	logger := logrus.New()
-
-	// Set output
-	logger.Out = src
-
-	// Set log level
-	logger.SetLevel(logrus.DebugLevel)
-
-	// Set log format
-	logger.SetFormatter(&logrus.TextFormatter{
-		TimestampFormat: "2006-01-02 15:04:05",
-	})
-	return logger
 }
