@@ -89,6 +89,7 @@ github.com/bytedance/gopkg v0.0.0-20220623074550-9d6d3df70991/go.mod h1:2ZlV9BaU
 github.com/bytedance/sonic v1.3.0/go.mod h1:V973WhNhGmvHxW6nQmsHEfHaoU9F3zTF+93rH03hcUQ=
 github.com/bytedance/sonic v1.3.5 h1:xfBNhsG3QCC+AMCmCHxNQg0StI5IM/B9Jtwjqi5WlI0=
 github.com/bytedance/sonic v1.3.5/go.mod h1:V973WhNhGmvHxW6nQmsHEfHaoU9F3zTF+93rH03hcUQ=
+github.com/bytedance/sonic v1.5.0/go.mod h1:ED5hyg4y6t3/9Ku1R6dU/4KyJ48DZ4jPhfY1O2AihPM=
 github.com/casbin/casbin/v2 v2.1.2/go.mod h1:YcPU1XXisHhLzuxH9coDNf2FbKpjGlbCg3n9yuLkIJQ=
 github.com/cenkalti/backoff v2.2.1+incompatible h1:tNowT99t7UNflLxfYYSlKYsBpXdEet03Pg2g16Swow4=
 github.com/cenkalti/backoff v2.2.1+incompatible/go.mod h1:90ReRw6GdpyfrHakVjL/QHaoyV4aDUVVkXQJJJ3NXXM=
@@ -117,6 +118,8 @@ github.com/cloudwego/hertz v0.2.2-0.20220819075506-6fff4a1e7a9c/go.mod h1:GWWYlA
 github.com/cloudwego/hertz v0.3.0/go.mod h1:GWWYlAVkq1gDu6vJd/XNciWsP6q0d4TrEKk5fpJYF04=
 github.com/cloudwego/hertz v0.3.2 h1:YwGmozomDPiJhKfKjKggMUmfNBNHR9iQGVLjY3wJpsY=
 github.com/cloudwego/hertz v0.3.2/go.mod h1:hnv3B7eZ6kMv7CKFHT2OC4LU0mA4s5XPyu/SbixLcrU=
+github.com/cloudwego/hertz v0.4.0 h1:qigNIzhOpydsEgenCCHoLObQgkumg7aPR7MvvkbeVuo=
+github.com/cloudwego/hertz v0.4.0/go.mod h1:QSD2254yaf43BIy4isrlfKR42R3uFAT+6G5CpeROOJs=
 github.com/cloudwego/kitex v0.0.4/go.mod h1:EIjPJ4Dom2ornk7xDCdKpUpOnf4Tulevimh4Tn05OGc=
 github.com/cloudwego/kitex v0.2.0/go.mod h1:1p4rtGIIiFZMOePYbSPgLkIhdhdfhEtVOJSti/k9vK4=
 github.com/cloudwego/kitex v0.3.1 h1:qX9nb1WCCziNp38iJnTOHKwqLykwEEpHRraPh1Wzgj4=
@@ -319,6 +322,10 @@ github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf h1:ZAxm2v6m6uhd
 github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf/go.mod h1:45j0uowS7Wuijes/UKkxrszUM7Hs6E49TY0M27Fu560=
 github.com/hertz-contrib/gzip v0.0.1 h1:fPCnSZIDT4Gd8ZTuoCCJXek0opUsN89T2djdEW7Awr4=
 github.com/hertz-contrib/gzip v0.0.1/go.mod h1:Fom/vnPMLA3UJ/P8fsZO8izjWG82m53BGO48lW1U1l8=
+github.com/hertz-contrib/logger v0.0.0-20221031025953-6627fc35899e h1:96hzc/S4wFI4+zio5ucTXzbglig+nHn5oynXYFglkwg=
+github.com/hertz-contrib/logger v0.0.0-20221031025953-6627fc35899e/go.mod h1:zYdjEKjg6YkkAMGwEBZuPmmUD0lKk0kczIUuzfJmDow=
+github.com/hertz-contrib/logger/logrus v0.0.0-20221031025953-6627fc35899e h1:0Sl+ViY93kK87s8J3gAvM+tMU+7M3FCAzfA47m6lKHE=
+github.com/hertz-contrib/logger/logrus v0.0.0-20221031025953-6627fc35899e/go.mod h1:SqDYLwVq5hTItYqimgZQbFCYPOIGNvBTq0Ip2OQwMcY=
 github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed h1:5PArj/pcERlfOOTcvFOqD6E89hKSfiRV5mXTW+36yrY=
 github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed/go.mod h1:8fZtpOPFekHcW/axCJmNvDZqFJjhBTAsshocOaPraYY=
 github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1 h1:4KR/JoIc8PSbVucOzsLSJOtVgDowwNG6/C/GkrpPXHI=

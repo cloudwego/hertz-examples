@@ -18,24 +18,52 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"os"
+	"path"
+	"time"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
-	hertzlogrus "github.com/hertz-contrib/obs-opentelemetry/logging/logrus"
-	"github.com/sirupsen/logrus"
+	hertzlogrus "github.com/hertz-contrib/logger/logrus"
+	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 func main() {
 	h := server.Default()
 
-	// For logrus detailed settings, please refer to https://github.com/hertz-contrib/obs-opentelemetry/tree/main/logging/logrus and https://github.com/sirupsen/logrus
-	logger := hertzlogrus.NewLogger(
-		hertzlogrus.WithTraceHookErrorSpanLevel(logrus.WarnLevel),
-		hertzlogrus.WithTraceHookLevels(logrus.AllLevels),
-		hertzlogrus.WithRecordStackTraceInSpan(true),
-	)
+	// Customizable output directory.
+	var logFilePath string
+	dir := "./hlog"
+	logFilePath = dir + "/logs/"
+	if err := os.MkdirAll(logFilePath, 0o777); err != nil {
+		fmt.Println(err.Error())
+	}
+
+	// Set filename to date
+	logFileName := time.Now().Format("2006-01-02") + ".log"
+	fileName := path.Join(logFilePath, logFileName)
+	if _, err := os.Stat(fileName); err != nil {
+		if _, err := os.Create(fileName); err != nil {
+			fmt.Println(err.Error())
+		}
+	}
+
+	// For logrus detailed settings, please refer to https://github.com/hertz-contrib/logger/tree/main/logrus and https://github.com/sirupsen/logrus
+	logger := hertzlogrus.NewLogger()
+	// Provides compression and deletion
+	lumberjackLogger := &lumberjack.Logger{
+		Filename:   fileName,
+		MaxSize:    20,   // A file can be up to 20M.
+		MaxBackups: 5,    // Save up to 5 files at the same time.
+		MaxAge:     10,   // A file can exist for a maximum of 10 days.
+		Compress:   true, // Compress with gzip.
+	}
+
+	logger.SetOutput(lumberjackLogger)
+	logger.SetLevel(hlog.LevelDebug)
 
 	hlog.SetLogger(logger)
 
