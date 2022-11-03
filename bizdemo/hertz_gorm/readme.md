@@ -44,5 +44,6 @@ Connect MySQL and execute [user.sql](biz/model/sql/user.sql)
 ### Run demo
 
 ```go
-cd bizdemo/hertz_gorm && go run main.go
+cd bizdemo/hertz_gorm
+go build -o hertz_gorm && ./hertz_gorm
 ```
