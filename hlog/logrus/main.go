@@ -18,7 +18,7 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"log"
 	"os"
 	"path"
 	"time"
@@ -39,7 +39,8 @@ func main() {
 	dir := "./hlog"
 	logFilePath = dir + "/logs/"
 	if err := os.MkdirAll(logFilePath, 0o777); err != nil {
-		fmt.Println(err.Error())
+		log.Println(err.Error())
+		return
 	}
 
 	// Set filename to date
@@ -47,7 +48,8 @@ func main() {
 	fileName := path.Join(logFilePath, logFileName)
 	if _, err := os.Stat(fileName); err != nil {
 		if _, err := os.Create(fileName); err != nil {
-			fmt.Println(err.Error())
+			log.Println(err.Error())
+			return
 		}
 	}
 
