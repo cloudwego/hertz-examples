@@ -7,13 +7,14 @@ require (
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.1764 // indirect
 	github.com/apache/thrift v0.13.0
-	github.com/cloudwego/hertz v0.3.2
+	github.com/cloudwego/hertz v0.4.0
 	github.com/cloudwego/kitex v0.3.1
 	github.com/go-errors/errors v1.4.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.3 // indirect
 	github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf
 	github.com/hertz-contrib/gzip v0.0.1
+	github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe // indirect
 	github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed
 	github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1
 	github.com/hertz-contrib/obs-opentelemetry/logging/zap v0.0.0-20221009062004-033aff1432a0 // indirect
@@ -22,6 +23,7 @@ require (
 	github.com/hertz-contrib/opensergo v0.0.1
 	github.com/hertz-contrib/pprof v0.1.0
 	github.com/hertz-contrib/registry/nacos v0.0.0-20220901103531-b8810bf778fb
+	github.com/hertz-contrib/requestid v1.0.0 // indirect
 	github.com/hertz-contrib/reverseproxy v0.0.0-20220907134658-6a05798e1cc5
 	github.com/hertz-contrib/tracer v0.0.0-20220601062646-788b1565bdab
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
