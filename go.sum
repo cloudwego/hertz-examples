@@ -113,6 +113,7 @@ github.com/clbanning/x2j v0.0.0-20191024224557-825249438eec/go.mod h1:jMjuTZXRI4
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cloudwego/hertz v0.0.1/go.mod h1:prTyExvsH/UmDkvfU3dp3EHsZFQISfT8R7BirvpTKdo=
 github.com/cloudwego/hertz v0.1.0/go.mod h1:prTyExvsH/UmDkvfU3dp3EHsZFQISfT8R7BirvpTKdo=
+github.com/cloudwego/hertz v0.2.0/go.mod h1:prTyExvsH/UmDkvfU3dp3EHsZFQISfT8R7BirvpTKdo=
 github.com/cloudwego/hertz v0.2.1/go.mod h1:prTyExvsH/UmDkvfU3dp3EHsZFQISfT8R7BirvpTKdo=
 github.com/cloudwego/hertz v0.2.2-0.20220819075506-6fff4a1e7a9c/go.mod h1:GWWYlAVkq1gDu6vJd/XNciWsP6q0d4TrEKk5fpJYF04=
 github.com/cloudwego/hertz v0.3.0/go.mod h1:GWWYlAVkq1gDu6vJd/XNciWsP6q0d4TrEKk5fpJYF04=
@@ -320,8 +321,8 @@ github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf h1:ZAxm2v6m6uhd
 github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf/go.mod h1:45j0uowS7Wuijes/UKkxrszUM7Hs6E49TY0M27Fu560=
 github.com/hertz-contrib/gzip v0.0.1 h1:fPCnSZIDT4Gd8ZTuoCCJXek0opUsN89T2djdEW7Awr4=
 github.com/hertz-contrib/gzip v0.0.1/go.mod h1:Fom/vnPMLA3UJ/P8fsZO8izjWG82m53BGO48lW1U1l8=
-github.com/hertz-contrib/logger/logrus v0.0.0-20221031025953-6627fc35899e h1:0Sl+ViY93kK87s8J3gAvM+tMU+7M3FCAzfA47m6lKHE=
-github.com/hertz-contrib/logger/logrus v0.0.0-20221031025953-6627fc35899e/go.mod h1:SqDYLwVq5hTItYqimgZQbFCYPOIGNvBTq0Ip2OQwMcY=
+github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe h1:zN6bQ8EVxZmnUfcU2zVU63AmDJFg1lcvRKL4T66MK7M=
+github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe/go.mod h1:SqDYLwVq5hTItYqimgZQbFCYPOIGNvBTq0Ip2OQwMcY=
 github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed h1:5PArj/pcERlfOOTcvFOqD6E89hKSfiRV5mXTW+36yrY=
 github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed/go.mod h1:8fZtpOPFekHcW/axCJmNvDZqFJjhBTAsshocOaPraYY=
 github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1 h1:4KR/JoIc8PSbVucOzsLSJOtVgDowwNG6/C/GkrpPXHI=
@@ -338,6 +339,8 @@ github.com/hertz-contrib/pprof v0.1.0 h1:yES6PQ5AJZRKiUQem1cpXU2gskO4cHdPMiXu9qS
 github.com/hertz-contrib/pprof v0.1.0/go.mod h1:4vgREcobBOExepQdEt/EMD/Nc1u01rpXXaQa2TNjA4A=
 github.com/hertz-contrib/registry/nacos v0.0.0-20220901103531-b8810bf778fb h1:ICP03JNf3XyJ++3eL/zp02PHqmk6Xeh2SFrFIQWf8ZQ=
 github.com/hertz-contrib/registry/nacos v0.0.0-20220901103531-b8810bf778fb/go.mod h1:hMq9ay3uMBpcCIbAuZpaeTrLMASE/ZTz8yElXMAcacw=
+github.com/hertz-contrib/requestid v1.0.0 h1:/ofErIl11yLJ7BOQDskShM1KAGQhovDIHI7khEQFGEM=
+github.com/hertz-contrib/requestid v1.0.0/go.mod h1:IM540DJ3pQDWkM8Nm6kKt07Vx3h8bx3D2TJUSlxZ8CA=
 github.com/hertz-contrib/reverseproxy v0.0.0-20220907134658-6a05798e1cc5 h1:kK7lkrXhoFvX7TIrd36V+OGpdEmcFzoiAYEkWiLX/5w=
 github.com/hertz-contrib/reverseproxy v0.0.0-20220907134658-6a05798e1cc5/go.mod h1:uq9j5/W/pFmkYZ4a5Lvn0xzVlO9mhZAtlcddRMGm7kc=
 github.com/hertz-contrib/tracer v0.0.0-20220601062646-788b1565bdab h1:Cp4ka30wJ+yOnBKNyGZSQp+G83NSOyE1jtTA3J7u0Ws=

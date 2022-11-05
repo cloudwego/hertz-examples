@@ -14,7 +14,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.3 // indirect
 	github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf
 	github.com/hertz-contrib/gzip v0.0.1
-	github.com/hertz-contrib/logger/logrus v0.0.0-20221031025953-6627fc35899e
+	github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe
 	github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed
 	github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1
 	github.com/hertz-contrib/obs-opentelemetry/logging/zap v0.0.0-20221009062004-033aff1432a0
@@ -23,6 +23,7 @@ require (
 	github.com/hertz-contrib/opensergo v0.0.1
 	github.com/hertz-contrib/pprof v0.1.0
 	github.com/hertz-contrib/registry/nacos v0.0.0-20220901103531-b8810bf778fb
+	github.com/hertz-contrib/requestid v1.0.0
 	github.com/hertz-contrib/reverseproxy v0.0.0-20220907134658-6a05798e1cc5
 	github.com/hertz-contrib/tracer v0.0.0-20220601062646-788b1565bdab
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
