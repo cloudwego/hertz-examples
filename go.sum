@@ -323,12 +323,12 @@ github.com/hertz-contrib/gzip v0.0.1 h1:fPCnSZIDT4Gd8ZTuoCCJXek0opUsN89T2djdEW7A
 github.com/hertz-contrib/gzip v0.0.1/go.mod h1:Fom/vnPMLA3UJ/P8fsZO8izjWG82m53BGO48lW1U1l8=
 github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe h1:zN6bQ8EVxZmnUfcU2zVU63AmDJFg1lcvRKL4T66MK7M=
 github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe/go.mod h1:SqDYLwVq5hTItYqimgZQbFCYPOIGNvBTq0Ip2OQwMcY=
+github.com/hertz-contrib/logger/zap v0.0.0-20221104075115-aecbfb39bbfe h1:cBAAFz/S7lriahBuC8OJTAMBp9oLOPnhX/LCVJ2TN/U=
+github.com/hertz-contrib/logger/zap v0.0.0-20221104075115-aecbfb39bbfe/go.mod h1:kL1oi/2n+55rdmaYqKrb+CckS+jUVMwxVDhomebsa6c=
 github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed h1:5PArj/pcERlfOOTcvFOqD6E89hKSfiRV5mXTW+36yrY=
 github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed/go.mod h1:8fZtpOPFekHcW/axCJmNvDZqFJjhBTAsshocOaPraYY=
 github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1 h1:4KR/JoIc8PSbVucOzsLSJOtVgDowwNG6/C/GkrpPXHI=
 github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1/go.mod h1:dLQsSFKUVF4pya7kLlF6l1T69+mOPObotXGJO8ptbho=
-github.com/hertz-contrib/obs-opentelemetry/logging/zap v0.0.0-20221009062004-033aff1432a0 h1:n1fJN63Xrmbref6IO0nq0eqo/mvUrHjZIEFlUggOixw=
-github.com/hertz-contrib/obs-opentelemetry/logging/zap v0.0.0-20221009062004-033aff1432a0/go.mod h1:AZaP9J+tviZFdSlc9doschs/2HHzQSmNWs0tswHj29g=
 github.com/hertz-contrib/obs-opentelemetry/provider v0.1.1 h1:4uGLsGMiE/o5o8LbAOY0QhLYFHMGUcPlJPS0D6LHA3U=
 github.com/hertz-contrib/obs-opentelemetry/provider v0.1.1/go.mod h1:ep9C+pJw3xQpEVaFE6PyH47udj2PS/ME0byJH42g7zc=
 github.com/hertz-contrib/obs-opentelemetry/tracing v0.1.1 h1:Ua/ImpcbYt8ohRolat3Ua7BEmeI7V4INRIbFKZJUndc=
