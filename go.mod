@@ -16,6 +16,7 @@ require (
 	github.com/hertz-contrib/gzip v0.0.1
 	github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe
 	github.com/hertz-contrib/logger/zap v0.0.0-20221104075115-aecbfb39bbfe
+	github.com/hertz-contrib/logger/zerolog v0.0.0-20221111024215-1ee59ae719d7
 	github.com/hertz-contrib/monitor-prometheus v0.0.0-20220908085834-f3fe5f5e72ed
 	github.com/hertz-contrib/obs-opentelemetry/logging/logrus v0.1.1
 	github.com/hertz-contrib/obs-opentelemetry/provider v0.1.1
