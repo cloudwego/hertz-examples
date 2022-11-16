@@ -23,6 +23,7 @@ import (
 	"time"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_jwt/biz/dal/mysql"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_jwt/biz/model"
 	utils2 "github.com/cloudwego/hertz-examples/bizdemo/hertz_jwt/biz/utils"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
@@ -30,7 +31,10 @@ import (
 	"github.com/hertz-contrib/jwt"
 )
 
-var JwtMiddleware *jwt.HertzJWTMiddleware
+var (
+	JwtMiddleware *jwt.HertzJWTMiddleware
+	IdentityKey   = "identity"
+)
 
 func InitJwt() {
 	var err error
@@ -65,13 +69,19 @@ func InitJwt() {
 				return nil, errors.New("user already exists or wrong password")
 			}
 
-			return users[0].ID, nil
+			return users[0], nil
 		},
-
+		IdentityKey: IdentityKey,
+		IdentityHandler: func(ctx context.Context, c *app.RequestContext) interface{} {
+			claims := jwt.ExtractClaims(ctx, c)
+			return &model.User{
+				UserName: claims[IdentityKey].(string),
+			}
+		},
 		PayloadFunc: func(data interface{}) jwt.MapClaims {
-			if v, ok := data.(uint); ok {
+			if v, ok := data.(*model.User); ok {
 				return jwt.MapClaims{
-					jwt.IdentityKey: v,
+					IdentityKey: v.UserName,
 				}
 			}
 			return jwt.MapClaims{}
