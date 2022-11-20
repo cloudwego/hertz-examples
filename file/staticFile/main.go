@@ -21,7 +21,7 @@ import (
 )
 
 func main() {
-	h := server.Default(server.WithHostPorts("127.0.0.1:808"))
+	h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
 
 	h.StaticFile("/main", "./main.go")
 
