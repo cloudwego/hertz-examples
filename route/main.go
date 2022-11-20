@@ -68,25 +68,25 @@ func RegisterRoute(h *server.Hertz) {
 
 func RegisterRouteWithHandle(h *server.Hertz) {
 	h.Handle(consts.MethodGet, "/hget", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "get")
+		c.String(consts.StatusOK, "hget")
 	})
 	h.Handle(consts.MethodPost, "/hpost", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "post")
+		c.String(consts.StatusOK, "hpost")
 	})
 	h.Handle(consts.MethodPut, "/hput", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "put")
+		c.String(consts.StatusOK, "hput")
 	})
 	h.Handle(consts.MethodDelete, "/hdelete", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "delete")
+		c.String(consts.StatusOK, "hdelete")
 	})
 	h.Handle(consts.MethodPatch, "/hpatch", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "patch")
+		c.String(consts.StatusOK, "hpatch")
 	})
 	h.Handle(consts.MethodHead, "/hhead", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "head")
+		c.String(consts.StatusOK, "hhead")
 	})
 	h.Handle(consts.MethodOptions, "/hoptions", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "options")
+		c.String(consts.StatusOK, "hoptions")
 	})
 }
 
