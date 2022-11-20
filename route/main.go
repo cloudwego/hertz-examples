@@ -30,6 +30,9 @@ func main() {
 	// register route
 	RegisterRoute(h)
 
+	// register route with handle
+	RegisterRouteWithHandle(h)
+
 	// register group route
 	RegisterGroupRoute(h)
 
@@ -59,6 +62,30 @@ func RegisterRoute(h *server.Hertz) {
 		c.String(consts.StatusOK, "head")
 	})
 	h.OPTIONS("/options", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "options")
+	})
+}
+
+func RegisterRouteWithHandle(h *server.Hertz) {
+	h.Handle(consts.MethodGet, "/hget", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "get")
+	})
+	h.Handle(consts.MethodPost, "/hpost", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "post")
+	})
+	h.Handle(consts.MethodPut, "/hput", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "put")
+	})
+	h.Handle(consts.MethodDelete, "/hdelete", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "delete")
+	})
+	h.Handle(consts.MethodPatch, "/hpatch", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "patch")
+	})
+	h.Handle(consts.MethodHead, "/hhead", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "head")
+	})
+	h.Handle(consts.MethodOptions, "/hoptions", func(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusOK, "options")
 	})
 }
