@@ -30,7 +30,7 @@ func main() {
 
 	prefix := "/public"
 	root := "./assets"
-	fs := &app.FS{Root: root, PathRewrite: getPathRewriter(prefix, root)}
+	fs := &app.FS{Root: root, PathRewrite: getPathRewriter(prefix)}
 	h.StaticFS(prefix, fs)
 
 	h.GET("/", func(c context.Context, ctx *app.RequestContext) {
@@ -39,11 +39,7 @@ func main() {
 	h.Spin()
 }
 
-func getPathRewriter(prefix, root string) app.PathRewriteFunc {
-	// For security, we want to restrict to the current work directory.
-	if root == "" {
-		root = "."
-	}
+func getPathRewriter(prefix string) app.PathRewriteFunc {
 	// Cannot have an empty prefix
 	if prefix == "" {
 		prefix = "/"
@@ -53,10 +49,6 @@ func getPathRewriter(prefix, root string) app.PathRewriteFunc {
 		prefix = "/" + prefix
 	}
 
-	// Strip trailing slashes from the root path
-	if len(root) > 0 && root[len(root)-1] == '/' {
-		root = root[:len(root)-1]
-	}
 	// Is prefix a direct wildcard?
 	isStar := prefix == "/*"
 	// Is prefix a partial wildcard?
