@@ -18,9 +18,10 @@ package main
 
 import (
 	"context"
+	"strings"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	"strings"
 )
 
 func main() {

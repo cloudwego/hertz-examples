@@ -18,6 +18,7 @@ package main
 
 import (
 	"context"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 )
