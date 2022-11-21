@@ -17,13 +17,20 @@
 package main
 
 import (
+	"context"
+
+	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 )
 
 func main() {
-	h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
+	h := server.Default(server.WithHostPorts("127.0.0.1:8081"))
+	h.LoadHTMLGlob("views/*")
 
-	h.StaticFile("/main", "./main.go")
+	h.Static("/", "./assets")
 
+	h.GET("/", func(c context.Context, ctx *app.RequestContext) {
+		ctx.HTML(200, "index.html", nil)
+	})
 	h.Spin()
 }
