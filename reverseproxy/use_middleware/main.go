@@ -59,5 +59,4 @@ func main() {
 
 	go r.Spin()
 	r2.Spin()
-
 }
