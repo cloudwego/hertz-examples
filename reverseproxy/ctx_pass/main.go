@@ -1,14 +1,3 @@
-package main
-
-import (
-	"context"
-
-	"github.com/cloudwego/hertz/pkg/app"
-	"github.com/cloudwego/hertz/pkg/app/server"
-	"github.com/cloudwego/hertz/pkg/protocol"
-	"github.com/hertz-contrib/reverseproxy"
-)
-
 /*
  * Copyright 2022 CloudWeGo Authors
  *
@@ -24,6 +13,18 @@ import (
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+package main
+
+import (
+	"context"
+
+	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz/pkg/app/server"
+	"github.com/cloudwego/hertz/pkg/protocol"
+	"github.com/hertz-contrib/reverseproxy"
+)
+
 func main() {
 	h := server.Default(server.WithHostPorts("127.0.0.1:9998"))
 	proxy, err := reverseproxy.NewSingleHostReverseProxy("http://127.0.0.1:9998/proxy")
