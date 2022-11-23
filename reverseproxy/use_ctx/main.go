@@ -30,7 +30,7 @@ func main() {
 
 	r2 := server.Default(server.WithHostPorts("127.0.0.1:9997"))
 
-	proxy, err := reverseproxy.NewSingleHostReverseProxy("http://127.0.0.1:9997/proxy")
+	proxy, err := reverseproxy.NewSingleHostReverseProxy("http://127.0.0.1:9997")
 	if err != nil {
 		panic(err)
 	}
@@ -51,12 +51,9 @@ func main() {
 		})
 	})
 
-	r2.GET("/proxy/backend", func(c context.Context, ctx *app.RequestContext) {
+	r2.GET("/backend", func(c context.Context, ctx *app.RequestContext) {
 		ctx.JSON(200, utils.H{
 			"message": "pong2",
 		})
 	})
-
-	go r.Spin()
-	go r2.Spin()
 }
