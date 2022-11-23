@@ -57,6 +57,7 @@ func main() {
 		})
 	})
 
-	r.Spin()
-	go r2.Spin()
+	go r.Spin()
+	r2.Spin()
+
 }
