@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"unsafe"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -47,8 +46,4 @@ func main() {
 	})
 	h.Spin()
 
-}
-
-func b2s(b []byte) string {
-	return *(*string)(unsafe.Pointer(&b))
 }
