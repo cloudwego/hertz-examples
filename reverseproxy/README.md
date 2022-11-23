@@ -7,5 +7,5 @@ You can learn about how to custom reverseproxy for hertz:
 * [modify_response](./modify_response): how to modify server response
 * [discovery](./discovery): use nacos as example and more information refer to [registry](https://github.com/hertz-contrib/registry)
 * [tls](./tls): how to config reverseproxy for tls protocol server
-* [use_ctx](./use_ctx): how to use ctx with reverseproxy 
+* [use_middleware](./use_middleware): how to use middware with reverseproxy 
 
