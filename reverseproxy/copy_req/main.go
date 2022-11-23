@@ -21,30 +21,42 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	"github.com/cloudwego/hertz/pkg/protocol"
+	"github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/hertz-contrib/reverseproxy"
 )
 
 func main() {
-	h := server.Default(server.WithHostPorts("127.0.0.1:9998"))
-	proxy, err := reverseproxy.NewSingleHostReverseProxy("http://127.0.0.1:9998/proxy")
+	r := server.Default(server.WithHostPorts("127.0.0.1:9998"))
+
+	r2 := server.Default(server.WithHostPorts("127.0.0.1:9997"))
+
+	proxy, err := reverseproxy.NewSingleHostReverseProxy("http://127.0.0.1:9997/proxy")
 	if err != nil {
 		panic(err)
 	}
-	headers := map[string]string{"Key1": "value1"}
 
-	proxy.SetModifyResponse(func(response *protocol.Response) error {
-		response.Header.Set("Key2", "value2")
-		return nil
+	r.Use(func(c context.Context, ctx *app.RequestContext) {
+		if ctx.Query("region") == "sg" {
+			proxy.ServeHTTP(c, ctx)
+			ctx.Response.Header.Set("key", "value")
+			ctx.Abort()
+		} else {
+			ctx.Next(c)
+		}
 	})
 
-	h.GET("/backend", func(c context.Context, ctx *app.RequestContext) {
-		// post ctx to reserveproxy
-		ctx.Request.SetHeaders(headers)
-		proxy.ServeHTTP(c, ctx)
-		// get ctx from reserveproxy
-		_ = ctx.Response.Header.Get("Key2")
+	r.GET("/backend", func(c context.Context, ctx *app.RequestContext) {
+		ctx.JSON(200, utils.H{
+			"message": "pong1",
+		})
 	})
-	h.Spin()
 
+	r2.GET("/proxy/backend", func(c context.Context, ctx *app.RequestContext) {
+		ctx.JSON(200, utils.H{
+			"message": "pong2",
+		})
+	})
+
+	go r.Spin()
+	go r2.Spin()
 }
