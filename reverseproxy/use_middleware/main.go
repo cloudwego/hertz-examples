@@ -36,7 +36,7 @@ func main() {
 	}
 
 	r.Use(func(c context.Context, ctx *app.RequestContext) {
-		if ctx.Query("region") == "sg" {
+		if ctx.Query("country") == "cn" {
 			proxy.ServeHTTP(c, ctx)
 			ctx.Response.Header.Set("key", "value")
 			ctx.Abort()
@@ -56,4 +56,7 @@ func main() {
 			"message": "pong2",
 		})
 	})
+
+	go r.Spin()
+	go r2.Spin()
 }
