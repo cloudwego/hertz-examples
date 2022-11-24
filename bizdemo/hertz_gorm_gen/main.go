@@ -21,7 +21,7 @@ package main
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
 	// init db
-	_ "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/dal"
+	_ "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/dal"
 )
 
 func main() {
