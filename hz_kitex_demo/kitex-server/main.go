@@ -1,8 +1,9 @@
 package main
 
 import (
-	management "hertz-examples/hz_demo/kitex-server/kitex_gen/student/management/studentmanagement"
 	"log"
+
+	management "hertz-examples/hz_demo/kitex-server/kitex_gen/student/management/studentmanagement"
 )
 
 func main() {
