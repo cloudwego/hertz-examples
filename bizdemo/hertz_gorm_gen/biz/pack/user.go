@@ -17,7 +17,7 @@
 package pack
 
 import (
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/api/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/hertz/user"
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
 )
 

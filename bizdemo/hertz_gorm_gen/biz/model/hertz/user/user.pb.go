@@ -904,6 +904,7 @@ var (
 		(*OtherResp)(nil),      // 11: user.OtherResp
 	}
 )
+
 var file_user_proto_depIdxs = []int32{
 	1,  // 0: user.User.Gender:type_name -> user.Gender
 	1,  // 1: user.CreateUserReq.Gender:type_name -> user.Gender

@@ -3,7 +3,7 @@ syntax = "proto3";
 package user;
 
 // biz/model
-option go_package = "api/user";
+option go_package = "hertz/user";
 
 import "api.proto";
 

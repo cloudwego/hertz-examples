@@ -17,12 +17,12 @@
 package main
 
 import (
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/dal/mysql"
 	genModel "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
 	"gorm.io/gen"
 	// reuse your gorm db
 	// init db
-	_ "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/dal"
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/dal/mysql"
+	_ "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/dal"
 )
 
 func main() {

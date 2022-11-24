@@ -33,7 +33,7 @@ This demo use `GORM/Gen` to operate `MySQL` and refers to [Gen](https://gorm.io/
 
 #### Quick Start
 
-- Update the Database DSN to your own in [Database init file](dal/mysql/init.go).
+- Update the Database DSN to your own in [Database init file](biz/dal/mysql/init.go).
 - Refer to the code comments, write the configuration in [Generate file](cmd/generate.go).
 - Using the following command for code generation, you can generate structs from databases or basic type-safe DAO API for struct.
 ```bash
