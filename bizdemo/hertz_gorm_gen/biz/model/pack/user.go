@@ -17,8 +17,8 @@
 package pack
 
 import (
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/api/user"
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/orm_gen"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/api/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
 )
 
 // Users Convert model.User list to api.User list

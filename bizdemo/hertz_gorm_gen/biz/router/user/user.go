@@ -5,7 +5,7 @@ package User
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
 
-	user "github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/handler/user"
+	user "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/handler/user"
 )
 
 /*
@@ -16,7 +16,6 @@ import (
 
 // Register register routes based on the IDL 'api.${HTTP Method}' annotation.
 func Register(r *server.Hertz) {
-
 	root := r.Group("/", rootMw()...)
 	{
 		_v1 := root.Group("/v1", _v1Mw()...)

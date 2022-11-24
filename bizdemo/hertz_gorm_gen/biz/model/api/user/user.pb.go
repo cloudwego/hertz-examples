@@ -4,17 +4,18 @@
 // 	protoc        v3.9.0
 // source: user.proto
 
-// hz new -I idl -idl idl/user/user.proto -module github.com/cloudwego/hertz-examples/bizdemo/hertz_gen
+// hz new -I idl -idl idl/user/user.proto -module github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen
 // hz update -I idl -idl idl/user/user.proto
 
 package user
 
 import (
-	_ "github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/api"
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
+
+	_ "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/api"
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -885,22 +886,24 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
-var file_user_proto_goTypes = []interface{}{
-	(Code)(0),              // 0: user.Code
-	(Gender)(0),            // 1: user.Gender
-	(*User)(nil),           // 2: user.User
-	(*CreateUserReq)(nil),  // 3: user.CreateUserReq
-	(*CreateUserResp)(nil), // 4: user.CreateUserResp
-	(*QueryUserReq)(nil),   // 5: user.QueryUserReq
-	(*QueryUserResp)(nil),  // 6: user.QueryUserResp
-	(*DeleteUserReq)(nil),  // 7: user.DeleteUserReq
-	(*DeleteUserResp)(nil), // 8: user.DeleteUserResp
-	(*UpdateUserReq)(nil),  // 9: user.UpdateUserReq
-	(*UpdateUserResp)(nil), // 10: user.UpdateUserResp
-	(*OtherResp)(nil),      // 11: user.OtherResp
-}
+var (
+	file_user_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
+	file_user_proto_msgTypes  = make([]protoimpl.MessageInfo, 10)
+	file_user_proto_goTypes   = []interface{}{
+		(Code)(0),              // 0: user.Code
+		(Gender)(0),            // 1: user.Gender
+		(*User)(nil),           // 2: user.User
+		(*CreateUserReq)(nil),  // 3: user.CreateUserReq
+		(*CreateUserResp)(nil), // 4: user.CreateUserResp
+		(*QueryUserReq)(nil),   // 5: user.QueryUserReq
+		(*QueryUserResp)(nil),  // 6: user.QueryUserResp
+		(*DeleteUserReq)(nil),  // 7: user.DeleteUserReq
+		(*DeleteUserResp)(nil), // 8: user.DeleteUserResp
+		(*UpdateUserReq)(nil),  // 9: user.UpdateUserReq
+		(*UpdateUserResp)(nil), // 10: user.UpdateUserResp
+		(*OtherResp)(nil),      // 11: user.OtherResp
+	}
+)
 var file_user_proto_depIdxs = []int32{
 	1,  // 0: user.User.Gender:type_name -> user.Gender
 	1,  // 1: user.CreateUserReq.Gender:type_name -> user.Gender

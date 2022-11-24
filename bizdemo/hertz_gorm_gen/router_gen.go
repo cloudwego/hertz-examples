@@ -3,13 +3,12 @@
 package main
 
 import (
-	router "github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/router"
+	router "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/router"
 	"github.com/cloudwego/hertz/pkg/app/server"
 )
 
 // register registers all routers.
 func register(r *server.Hertz) {
-
 	router.GeneratedRegister(r)
 
 	customizedRegister(r)

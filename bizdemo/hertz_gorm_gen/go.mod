@@ -1,4 +1,4 @@
-module github.com/cloudwego/hertz-examples/bizdemo/hertz_gen
+module github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen
 
 go 1.19
 

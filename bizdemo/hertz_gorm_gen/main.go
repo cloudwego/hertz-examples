@@ -19,13 +19,14 @@
 package main
 
 import (
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/handler"
 	"github.com/cloudwego/hertz/pkg/app/server"
+	// init db
+	_ "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/dal"
 )
 
-// customizeRegister registers customize routers.
-func customizedRegister(r *server.Hertz) {
-	r.GET("/ping", handler.Ping)
+func main() {
+	h := server.Default()
 
-	// your code ...
+	register(h)
+	h.Spin()
 }

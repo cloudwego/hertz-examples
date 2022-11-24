@@ -16,7 +16,7 @@ import (
 
 	"gorm.io/plugin/dbresolver"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/orm_gen"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
 )
 
 func newUser(db *gorm.DB, opts ...gen.DOOption) user {

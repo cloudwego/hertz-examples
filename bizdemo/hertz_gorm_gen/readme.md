@@ -1,4 +1,4 @@
-# hertz_gen
+# hertz_gorm_gen
 
 ## Introduce
 
@@ -36,7 +36,7 @@ This demo use `GORM/Gen` to operate `MySQL` and refers to [Gen](https://gorm.io/
 ### Run mysql docker
 
 ```bash
-cd bizdemo/hertz_gen && docker-compose up
+cd bizdemo/hertz_gorm_gen && docker-compose up
 ```
 
 ### Generate MySQL table
@@ -46,6 +46,6 @@ Connect MySQL and execute [user.sql](biz/model/sql/user.sql)
 ### Run demo
 
 ```go
-cd bizdemo/hertz_gen
-go build -o hertz_gen &&./hertz_gen
+cd bizdemo/hertz_gorm_gen
+go build -o hertz_gorm_gen &&./hertz_gorm_gen
 ```

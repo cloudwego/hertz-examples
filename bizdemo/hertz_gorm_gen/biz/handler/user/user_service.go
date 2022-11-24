@@ -21,10 +21,10 @@ package user
 import (
 	"context"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/api/user"
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/orm_gen"
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/pack"
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/query"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/api/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/pack"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/query"
 	"github.com/cloudwego/hertz/pkg/app"
 )
 
