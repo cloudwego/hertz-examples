@@ -20,6 +20,7 @@ package user
 
 import (
 	"context"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/orm_gen"
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/pack"
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/query"
