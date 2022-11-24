@@ -18,5 +18,10 @@ header:
     - bizdemo/hertz_gorm/router_gen.go
     - bizdemo/hertz_jwt/biz/router/**
     - bizdemo/hertz_jwt/router_gen.go
+    - bizdemo/hertz_gorm_gen/biz/model/api/**
+    - bizdemo/hertz_gorm_gen/biz/model/orm_gen/**
+    - bizdemo/hertz_gorm_gen/biz/model/query/**
+    - bizdemo/hertz_gorm_gen/biz/router/**
+    - bizdemo/hertz_gorm_gen/router_gen.go
 
   comment: on-failure
