@@ -54,7 +54,7 @@ func CreateUserResponse(ctx context.Context, c *app.RequestContext) {
 	}
 
 	resp.Code = user.Code_Success
-	resp.Msg = "创建记录成功"
+	resp.Msg = "Create data successfully"
 	c.JSON(200, resp)
 }
 
@@ -127,7 +127,7 @@ func UpdateUserResponse(ctx context.Context, c *app.RequestContext) {
 	}
 
 	resp.Code = user.Code_Success
-	resp.Msg = "更新记录成功"
+	resp.Msg = "Update data successfully"
 	c.JSON(200, resp)
 }
 
@@ -152,6 +152,6 @@ func DeleteUserResponse(ctx context.Context, c *app.RequestContext) {
 	}
 
 	resp.Code = user.Code_Success
-	resp.Msg = "删除记录成功"
+	resp.Msg = "Delete data successfully"
 	c.JSON(200, resp)
 }
