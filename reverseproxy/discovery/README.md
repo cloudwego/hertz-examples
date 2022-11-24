@@ -12,7 +12,7 @@ go run registry/main.go
 ```shell
 go run registry/main.go
 ```
-4. vist discovery server
+4. visit discovery server
 ```shell
 curl --location --request GET 'http://127.0.0.1:8741/backend'
 ```
