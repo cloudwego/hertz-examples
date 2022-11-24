@@ -20,7 +20,7 @@ header:
     - bizdemo/hertz_jwt/router_gen.go
     - bizdemo/hertz_gen/biz/model/api/**
     - bizdemo/hertz_gen/biz/model/orm_gen/**
-    - bizdemo/hertz_gen/biz/query/**
+    - bizdemo/hertz_gen/biz/model/query/**
     - bizdemo/hertz_gen/biz/router/**
     - bizdemo/hertz_gen/router_gen.go
 

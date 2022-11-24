@@ -17,7 +17,7 @@
 package dal
 
 import (
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/query"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/biz/model/query"
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gen/dal/mysql"
 )
 
