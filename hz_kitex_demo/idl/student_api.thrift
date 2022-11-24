@@ -1,7 +1,7 @@
 namespace go api
 
 struct QueryStudentRequest {
-    1: string Num (api.query="num", api.vd="$<100; msg:'num must less than 100'"); // 学号，通过query参数进行绑定
+    1: i32 Num (api.query="num", api.vd="$<100; msg:'num must less than 100'"); // 学号，通过query参数进行绑定
 }
 
 struct QueryStudentResponse {

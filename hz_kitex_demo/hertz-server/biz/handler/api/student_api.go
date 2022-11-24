@@ -35,7 +35,7 @@ func QueryStudent(ctx context.Context, c *app.RequestContext) {
 	}
 
 	reqRpc := &management.QueryStudentRequest{
-		Num: req.Num,
+		Num: fmt.Sprintf("%d", req.Num),
 	}
 
 	respRpc, err := client.QueryStudent(ctx, reqRpc)
@@ -47,7 +47,7 @@ func QueryStudent(ctx context.Context, c *app.RequestContext) {
 
 	if !respRpc.Exist {
 		resp := &api.QueryStudentResponse{
-			Msg: fmt.Sprintf("don't have the num: %s", req.Num),
+			Msg: fmt.Sprintf("don't have the num: %d", req.Num),
 		}
 		c.JSON(200, resp)
 		return

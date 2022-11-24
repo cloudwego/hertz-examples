@@ -4,7 +4,6 @@ package Api
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-
 	api "hertz-examples/hz_demo/hertz-server/biz/handler/api"
 )
 
