@@ -25,6 +25,7 @@
 - [gorm:](bizdemo/hertz_gorm) 在 hertz server 中使用 gorm 的示例
 - [gorm_gen:](bizdemo/hertz_gorm_gen) 在 hertz server 中使用 gorm/gen & proto IDL 的示例
 - [jwt:](bizdemo/hertz_jwt) 在 hertz server 中使用 jwt 的示例
+- [session:](bizdemo/hertz_session) 在 hertz server 中使用 session 的示例
 - [hlog:](hlog) 使用 hlog 以及其日志拓展的示例
 
 ## Client

@@ -27,6 +27,7 @@ You can enter the example for information about  "How to run"
 - [gorm:](bizdemo/hertz_gorm) Example of using gorm in hertz server
 - [gorm_gen:](bizdemo/hertz_gorm_gen) Example of using gorm/gen & proto IDL in hertz server
 - [jwt:](bizdemo/hertz_jwt) Example of using jwt in hertz server
+- [session:](bizdemo/hertz_session) Example of using session in hertz server
 - [hlog:](hlog) Example of using hlog and its log extension
 
 ## Client
