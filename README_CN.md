@@ -22,6 +22,7 @@
 - [sentinel:](sentinel) sentinel-golang 结合 hertz 使用的示例
 - [reverseproxy:](reverseproxy) 在 hertz server 中使用反向代理的示例
 - [gzip:](gzip) 在 hertz server 中使用 gzip 中间件的示例
+- [ent:](bizdemo/hertz_ent) 在 hertz server 中使用 ent & proto IDL 的示例
 - [gorm:](bizdemo/hertz_gorm) 在 hertz server 中使用 gorm 的示例
 - [gorm_gen:](bizdemo/hertz_gorm_gen) 在 hertz server 中使用 gorm/gen & proto IDL 的示例
 - [jwt:](bizdemo/hertz_jwt) 在 hertz server 中使用 jwt 的示例

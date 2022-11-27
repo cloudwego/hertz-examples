@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package user;
+
+// biz/model
+option go_package = "hertz/user";
+
+import "api.proto";
+
+enum Code {
+  Success = 0;
+  ParamInvalid = 1;
+  DBErr = 2;
+}
+
+enum Gender {
+  Unknown = 0;
+  Male = 1;
+  Female = 2;
+}
+
+message User{
+  int64 UserID = 1;
+  string Name = 2;
+  Gender Gender = 3;
+  int64  Age = 4;
+  string Introduce = 5;
+}
+
+message CreateUserReq{
+  string Name = 1 [(api.body) = "name", (api.form) = "name", (api.vd) = "(len($) > 0 && len($) < 100)"];
+  Gender Gender = 2 [(api.body) = "gender", (api.form) = "gender", (api.vd) = "($ == 1||$ == 2)"];
+  int64 Age = 3 [(api.body) = "age", (api.form) = "age", (api.vd) = "$>0"];
+  string Introduce = 4 [(api.body) = "introduce", (api.form) = "introduce", (api.vd) = "(len($) > 0 && len($) < 1000)"];
+}
+
+message CreateUserResp{
+  Code Code = 1;
+  string Msg = 2;
+}
+
+message QueryUserReq{
+  string Keyword = 1 [(api.body) = "keyword", (api.form) = "keyword"];
+  int64 Page = 2 [(api.body) = "page", (api.form) = "page", (api.vd) = "$>0"];
+  int64 PageSize = 3 [(api.body) = "page_size", (api.form) = "page_size", (api.vd) = "($ > 0 || $ <= 100)"];
+}
+
+message QueryUserResp{
+  Code Code = 1;
+  string Msg = 2;
+  repeated User User = 3;
+  int64 Total = 4;
+}
+
+message DeleteUserReq{
+  int64 UserID = 1 [(api.path) = "user_id", (api.vd) = "$>0"];
+}
+
+message DeleteUserResp{
+  Code Code = 1;
+  string Msg = 2;
+}
+
+message UpdateUserReq{
+  int64 UserID = 1 [(api.path) = "user_id", (api.vd) = "$>0"];
+  string Name = 2 [(api.body) = "name", (api.form) = "name", (api.vd) = "(len($) > 0 && len($) < 100)"];
+  Gender Gender = 3 [(api.body) = "gender", (api.form) = "gender", (api.vd) = "($ == 1||$ == 2)"];
+  int64 Age = 4 [(api.body) = "age", (api.form) = "age", (api.vd) = "$>0"];
+  string Introduce = 5 [(api.body) = "introduce", (api.form) = "introduce", (api.vd) = "(len($) > 0 && len($) < 1000)"];
+}
+
+message UpdateUserResp{
+  Code Code = 1;
+  string Msg = 2;
+}
+
+message OtherResp {
+  string Msg = 1;
+}
+
+service UserService {
+  rpc CreateUserResponse(CreateUserReq) returns(CreateUserResp) {
+    option (api.post) = "/v1/user/create";
+  }
+  rpc QueryUserResponse(QueryUserReq) returns(QueryUserResp){
+    option (api.post) = "/v1/user/query";
+  }
+  rpc UpdateUserResponse(UpdateUserReq) returns(UpdateUserResp){
+    option (api.post) = "/v1/user/update/:user_id";
+  }
+  rpc DeleteUserResponse(DeleteUserReq) returns(DeleteUserResp){
+    option (api.post) = "/v1/user/delete/:user_id";
+  }
+}
