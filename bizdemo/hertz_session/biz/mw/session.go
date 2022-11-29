@@ -14,32 +14,19 @@
  * limitations under the License.
  */
 
-package hertz_session
+package mw
 
 import (
-	"context"
-	"fmt"
-	"net/http"
-
-	"github.com/cloudwego/hertz/pkg/app"
-	hutils "github.com/cloudwego/hertz/pkg/common/utils"
+	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/hertz-contrib/sessions"
-	"hertz-examples/bizdemo/hertz_session/biz/consts"
+	"github.com/hertz-contrib/sessions/redis"
+	"hertz-examples/bizdemo/hertz_session/pkg/consts"
 )
 
-// Page user page handler
-func Page(_ context.Context, c *app.RequestContext) {
-	session := sessions.Default(c)
-	username := session.Get(consts.Username)
-	if username == nil {
-		c.JSON(http.StatusOK, hutils.H{
-			"code":    http.StatusBadRequest,
-			"message": consts.PageErr,
-		})
-		return
+func InitSession(h *server.Hertz) {
+	store, err := redis.NewStore(consts.MaxIdleNum, consts.TCP, consts.RedisAddr, consts.RedisPasswd, []byte(consts.SecretKey))
+	if err != nil {
+		panic(err)
 	}
-	c.JSON(http.StatusOK, hutils.H{
-		"code":    http.StatusOK,
-		"message": fmt.Sprintf("Welcome, %v!", username.(string)),
-	})
+	h.Use(sessions.Sessions(consts.HertzSession, store))
 }

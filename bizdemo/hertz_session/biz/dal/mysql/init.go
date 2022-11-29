@@ -20,8 +20,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"hertz-examples/bizdemo/hertz_session/biz/consts"
-	"hertz-examples/bizdemo/hertz_session/biz/model"
+	"hertz-examples/bizdemo/hertz_session/pkg/consts"
 )
 
 var DB *gorm.DB
@@ -37,10 +36,10 @@ func Init() {
 		panic(err)
 	}
 	m := DB.Migrator()
-	if m.HasTable(&model.User{}) {
+	if m.HasTable(&User{}) {
 		return
 	}
-	if err = m.CreateTable(&model.User{}); err != nil {
+	if err = m.CreateTable(&User{}); err != nil {
 		panic(err)
 	}
 }

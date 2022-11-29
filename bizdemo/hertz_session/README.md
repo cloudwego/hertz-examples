@@ -4,6 +4,7 @@
 
 A demo with `Hertz` and `Session`
 
+- Use `thrift` IDL to define `HTTP` interface
 - Use `hz` to generate code
 - Use `hertz-contrib/sessions` to store sessions
 - Use `Gorm` and `MySQL`
@@ -11,6 +12,10 @@ A demo with `Hertz` and `Session`
 ## hertz-contrib/sessions
 
 Use Hertz's sessions extension, refer to [hertz-contrib/sessions](https://github.com/hertz-contrib/sessions)
+
+## IDL
+
+This demo use `thrift` IDL to define `HTTP` interface. The specific interface define in [user.thrift](idl/user.thrift)
 
 ## Code generation tool
 

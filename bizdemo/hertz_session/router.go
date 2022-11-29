@@ -20,11 +20,7 @@ package main
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-	"github.com/hertz-contrib/sessions"
-	"github.com/hertz-contrib/sessions/redis"
-	"hertz-examples/bizdemo/hertz_session/biz/consts"
-	"hertz-examples/bizdemo/hertz_session/biz/handler"
-	"hertz-examples/bizdemo/hertz_session/biz/handler/hertz_session"
+	handler "hertz-examples/bizdemo/hertz_session/biz/handler"
 )
 
 // customizeRegister registers customize routers.
@@ -32,14 +28,4 @@ func customizedRegister(r *server.Hertz) {
 	r.GET("/ping", handler.Ping)
 
 	// your code ...
-	// store session in redis
-	store, err := redis.NewStore(consts.MaxIdleNum, consts.TCP, consts.RedisAddr, consts.RedisPasswd, []byte(consts.SecretKey))
-	if err != nil {
-		panic(err)
-	}
-	// use session middleware
-	r.Use(sessions.Sessions(consts.HertzSession, store))
-	r.POST("/register", hertz_session.Register)
-	r.POST("/login", hertz_session.Login)
-	r.GET("/page", hertz_session.Page)
 }
