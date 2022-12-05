@@ -3,6 +3,7 @@
 
 [files]
 extend-exclude = ["go.sum"]
+extend-exclude = ["*.js"]
 
 [default.extend-identifiers]
 # *sigh* this just isn't worth the cost of fixing
