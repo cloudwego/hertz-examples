@@ -8,6 +8,7 @@ A demo with `Hertz` and `Session`
 - Use `hz` to generate code
 - Use `hertz-contrib/sessions` to store sessions
 - Use `Gorm` and `MySQL`
+- Use `AdminLTE` as frontend page
 
 ## hertz-contrib/sessions
 
@@ -31,6 +32,10 @@ to [Binding and Validate](https://www.cloudwego.io/docs/hertz/tutorials/basic-fe
 ## Gorm
 
 This demo use `Gorm` to operate `MySQL` and refers to [Gorm](https://gorm.io/)
+
+## AdminLTE
+
+This demo captures the [AdminLTE](https://github.com/ColorlibHQ/AdminLTE) login and registration page as the front-end page.
 
 ## How to run
 
