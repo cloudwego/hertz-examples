@@ -24,5 +24,8 @@ header:
     - bizdemo/hertz_gorm_gen/biz/model/query/**
     - bizdemo/hertz_gorm_gen/biz/router/**
     - bizdemo/hertz_gorm_gen/router_gen.go
+    - bizdemo/hertz_session/biz/model/**
+    - bizdemo/hertz_session/biz/router/**
+    - bizdemo/hertz_session/router_gen.go
 
   comment: on-failure
