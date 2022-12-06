@@ -45,8 +45,12 @@ github.com/henrylee2cn/ameda v1.4.10 h1:JdvI2Ekq7tapdPsuhrc4CaFiqw6QXFvZIULWJgQy
 github.com/henrylee2cn/ameda v1.4.10/go.mod h1:liZulR8DgHxdK+MEwvZIylGnmcjzQ6N6f2PlWe7nEO4=
 github.com/henrylee2cn/goutil v0.0.0-20210127050712-89660552f6f8 h1:yE9ULgp02BhYIrO6sdV/FPe0xQM6fNHkVQW2IAymfM0=
 github.com/henrylee2cn/goutil v0.0.0-20210127050712-89660552f6f8/go.mod h1:Nhe/DM3671a5udlv2AdV2ni/MZzgfv2qrPL5nIi3EGQ=
+github.com/hertz-contrib/csrf v0.1.1 h1:53HxseVzpW4JEUJ7ONAaQCyNBWXl+rn42LVqgwEQzRg=
+github.com/hertz-contrib/csrf v0.1.1/go.mod h1:z6CW935kPp1qy1XHXL7memdWInXXTc3OiMLp/cEmZQY=
 github.com/hertz-contrib/sessions v1.0.0 h1:EJqbvSWGE2I9wBKXXNQqbWJ2/62NehJZJfrfuEnribU=
 github.com/hertz-contrib/sessions v1.0.0/go.mod h1:gyVq7zq5emvSTLpp4VrlLOXjnajorYZ1hH4ZSX9Afb0=
+github.com/hertz-contrib/sessions v1.0.1 h1:2puqvNqzyuPC3+5gzMRS+xhvGdNq3Ux7OVEewLSJbAk=
+github.com/hertz-contrib/sessions v1.0.1/go.mod h1:gyVq7zq5emvSTLpp4VrlLOXjnajorYZ1hH4ZSX9Afb0=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.4/go.mod h1:d3SSVoowX0Lcu0IBviAWJpolVfI5UJVZZ7cO71lE/z8=

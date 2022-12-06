@@ -17,9 +17,13 @@
 package utils
 
 import (
+	"context"
 	"crypto/md5"
 	"encoding/hex"
 	"fmt"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/consts"
+	"github.com/cloudwego/hertz/pkg/app"
 )
 
 // MD5 use md5 to encrypt strings
@@ -32,4 +36,12 @@ func MD5(str string) string {
 // BuildMsg render message for the html page
 func BuildMsg(msg string) string {
 	return fmt.Sprintf("%v", msg)
+}
+
+// IsLogout if user already login then return false
+func IsLogout(_ context.Context, c *app.RequestContext) bool {
+	if string(c.Cookie(consts.HertzSession)) == "" {
+		return true
+	}
+	return false
 }

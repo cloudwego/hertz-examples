@@ -24,9 +24,9 @@ import (
 )
 
 func InitSession(h *server.Hertz) {
-	store, err := redis.NewStore(consts.MaxIdleNum, consts.TCP, consts.RedisAddr, consts.RedisPasswd, []byte(consts.SecretKey))
+	store, err := redis.NewStore(consts.MaxIdleNum, consts.TCP, consts.RedisAddr, consts.RedisPasswd, []byte(consts.SessionSecretKey))
 	if err != nil {
 		panic(err)
 	}
-	h.Use(sessions.Sessions(consts.HertzSession, store))
+	h.Use(sessions.New(consts.HertzSession, store))
 }

@@ -36,10 +36,12 @@ import (
 func Register(_ context.Context, c *app.RequestContext) {
 	var err error
 	var req user.RegisterRequest
+	token := ""
 	err = c.BindAndValidate(&req)
 	if err != nil {
 		c.HTML(http.StatusOK, "register.html", hutils.H{
 			"message": utils.BuildMsg(err.Error()),
+			"token":   utils.BuildMsg(token),
 		})
 		return
 	}
@@ -47,12 +49,14 @@ func Register(_ context.Context, c *app.RequestContext) {
 	if err != nil {
 		c.HTML(http.StatusOK, "register.html", hutils.H{
 			"message": utils.BuildMsg(err.Error()),
+			"token":   utils.BuildMsg(token),
 		})
 		return
 	}
 	if len(users) != 0 {
 		c.HTML(http.StatusOK, "register.html", hutils.H{
 			"message": utils.BuildMsg(consts.RegisterErr),
+			"token":   utils.BuildMsg(token),
 		})
 		return
 	}
@@ -65,11 +69,13 @@ func Register(_ context.Context, c *app.RequestContext) {
 	}); err != nil {
 		c.HTML(http.StatusOK, "register.html", hutils.H{
 			"message": utils.BuildMsg(consts.RegisterErr),
+			"token":   utils.BuildMsg(token),
 		})
 		return
 	}
 	c.HTML(http.StatusOK, "register.html", hutils.H{
-		"message": consts.Success,
+		"message": utils.BuildMsg(consts.Success),
+		"token":   utils.BuildMsg(token),
 	})
 }
 
@@ -78,10 +84,12 @@ func Register(_ context.Context, c *app.RequestContext) {
 func Login(_ context.Context, c *app.RequestContext) {
 	var err error
 	var req user.LoginRequest
+	token := ""
 	err = c.BindAndValidate(&req)
 	if err != nil {
 		c.HTML(http.StatusOK, "login.html", hutils.H{
 			"message": utils.BuildMsg(err.Error()),
+			"token":   utils.BuildMsg(token),
 		})
 		return
 	}
@@ -89,19 +97,21 @@ func Login(_ context.Context, c *app.RequestContext) {
 	if err != nil {
 		c.HTML(http.StatusOK, "login.html", hutils.H{
 			"message": utils.BuildMsg(err.Error()),
+			"token":   utils.BuildMsg(token),
 		})
 		return
 	}
 	if len(users) == 0 {
 		c.HTML(http.StatusOK, "login.html", hutils.H{
 			"message": utils.BuildMsg(consts.LoginErr),
+			"token":   utils.BuildMsg(token),
 		})
 		return
 	}
 	session := sessions.Default(c)
 	session.Set(consts.Username, req.Username)
 	_ = session.Save()
-	c.Redirect(http.StatusMovedPermanently, []byte("/page"))
+	c.Redirect(http.StatusMovedPermanently, []byte("/index.html"))
 }
 
 // Logout .

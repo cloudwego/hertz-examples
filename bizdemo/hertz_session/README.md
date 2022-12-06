@@ -7,12 +7,17 @@ A demo with `Hertz` and `Session`
 - Use `thrift` IDL to define `HTTP` interface
 - Use `hz` to generate code
 - Use `hertz-contrib/sessions` to store sessions
+- Use `hertz-contrib/csrf` to prevent Cross-Site Request Forgery attacks
 - Use `Gorm` and `MySQL`
 - Use `AdminLTE` as frontend page
 
 ## hertz-contrib/sessions
 
 Use Hertz's sessions extension, refer to [hertz-contrib/sessions](https://github.com/hertz-contrib/sessions)
+
+## hertz-contrib/csrf
+
+Use Hertz's csrf extension, refer to [hertz-contrib/csrf](https://github.com/hertz-contrib/csrf)
 
 ## IDL
 

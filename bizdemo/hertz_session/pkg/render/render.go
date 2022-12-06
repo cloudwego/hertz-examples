@@ -21,6 +21,8 @@ import (
 	"html/template"
 	"net/http"
 
+	"github.com/hertz-contrib/csrf"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/consts"
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/utils"
 	"github.com/cloudwego/hertz/pkg/app"
@@ -36,21 +38,27 @@ func InitHTML(h *server.Hertz) {
 	})
 	h.LoadHTMLGlob("static/html/*")
 	h.Static("/", "./static")
-
+	token := ""
 	// register.html
 	h.GET("/register.html", func(ctx context.Context, c *app.RequestContext) {
+		if !utils.IsLogout(ctx, c) {
+			token = csrf.GetToken(c)
+		}
 		c.HTML(http.StatusOK, "register.html", hutils.H{
 			"message": utils.BuildMsg("Register a new membership"),
+			"token":   utils.BuildMsg(token),
 		})
 	})
-
 	// login.html
 	h.GET("/login.html", func(ctx context.Context, c *app.RequestContext) {
+		if !utils.IsLogout(ctx, c) {
+			token = csrf.GetToken(c)
+		}
 		c.HTML(http.StatusOK, "login.html", hutils.H{
 			"message": utils.BuildMsg("Sign in to start your session"),
+			"token":   utils.BuildMsg(token),
 		})
 	})
-
 	// index.html
 	h.GET("/index.html", func(ctx context.Context, c *app.RequestContext) {
 		session := sessions.Default(c)
