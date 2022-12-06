@@ -17,10 +17,10 @@
 package mysql
 
 import (
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/consts"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"hertz-examples/bizdemo/hertz_session/pkg/consts"
 )
 
 var DB *gorm.DB

@@ -1,4 +1,4 @@
-module hertz-examples/bizdemo/hertz_session
+module github.com/cloudwego/hertz-examples/bizdemo/hertz_session
 
 go 1.18
 

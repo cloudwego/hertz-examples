@@ -17,8 +17,8 @@
 package mysql
 
 import (
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/consts"
 	"gorm.io/gorm"
-	"hertz-examples/bizdemo/hertz_session/pkg/consts"
 )
 
 type User struct {

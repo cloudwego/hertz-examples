@@ -19,10 +19,10 @@
 package main
 
 import (
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/biz/dal"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/biz/mw"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/render"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	"hertz-examples/bizdemo/hertz_session/biz/dal"
-	"hertz-examples/bizdemo/hertz_session/biz/mw"
-	"hertz-examples/bizdemo/hertz_session/pkg/render"
 )
 
 func Init(h *server.Hertz) {

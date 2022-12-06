@@ -22,13 +22,13 @@ import (
 	"context"
 	"net/http"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/biz/dal/mysql"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/biz/model/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/consts"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/utils"
 	"github.com/cloudwego/hertz/pkg/app"
 	hutils "github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/hertz-contrib/sessions"
-	"hertz-examples/bizdemo/hertz_session/biz/dal/mysql"
-	"hertz-examples/bizdemo/hertz_session/biz/model/user"
-	"hertz-examples/bizdemo/hertz_session/pkg/consts"
-	"hertz-examples/bizdemo/hertz_session/pkg/utils"
 )
 
 // Register .

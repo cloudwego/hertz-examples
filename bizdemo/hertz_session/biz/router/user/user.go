@@ -3,8 +3,8 @@
 package User
 
 import (
+	user "github.com/cloudwego/hertz-examples/bizdemo/hertz_session/biz/handler/user"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	user "hertz-examples/bizdemo/hertz_session/biz/handler/user"
 )
 
 /*

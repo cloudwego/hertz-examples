@@ -17,10 +17,10 @@
 package mw
 
 import (
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/consts"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/hertz-contrib/sessions"
 	"github.com/hertz-contrib/sessions/redis"
-	"hertz-examples/bizdemo/hertz_session/pkg/consts"
 )
 
 func InitSession(h *server.Hertz) {

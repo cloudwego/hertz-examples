@@ -21,12 +21,12 @@ import (
 	"html/template"
 	"net/http"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/consts"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/utils"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	hutils "github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/hertz-contrib/sessions"
-	"hertz-examples/bizdemo/hertz_session/pkg/consts"
-	"hertz-examples/bizdemo/hertz_session/pkg/utils"
 )
 
 func InitHTML(h *server.Hertz) {
