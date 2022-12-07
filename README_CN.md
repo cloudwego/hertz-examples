@@ -1,12 +1,29 @@
 # Hertz Examples
+
 [English](README.md) | 中文
+
 ## 如何运行
+
 您可以进入相关示例以获取有关“如何运行”的信息
+
+## Bizdemo
+
+- [hertz_gorm:](bizdemo/hertz_gorm) 在 hertz server 中使用 gorm 的示例
+- [hertz_gorm_gen:](bizdemo/hertz_gorm_gen) 在 hertz server 中使用 gorm/gen & proto IDL 的示例
+- [hertz_jwt:](bizdemo/hertz_jwt) 在 hertz server 中使用 jwt 的示例
+- [hertz_session:](bizdemo/hertz_session) 在 hertz server 中使用分布式 session 和 csrf 的示例
+
 ## Server
+
 - [hello:](hello) 启动对于 hertz 来说相当于 "hello world" 的示例
 - [config:](config) 配置 Hertz server 的示例
 - [protocol:](protocol) 使用 http1, TLS 以及其他协议的示例
 - [middleware:](middleware) 使用 hertz 中间件的示例
+  - [basicauth:](middleware/basicauth) 使用 BasicAuth 中间件的示例
+  - [cors:](middleware/CORS) 使用 CORS 中间件的示例
+  - [custom:](middleware/custom) 自定义 middleware 的示例
+  - [pprof:](middleware/pprof) 使用 pprof 中间件的示例
+  - [requestid:](middleware/requestid) 使用 RequestID 中间件的示例
 - [binding:](binding) 绑定参数和验证参数的示例
 - [parameters:](parameter) 获取 query, form, cookie 等类型参数的示例
 - [file:](file) 关于如何上传，下载文件和搭建静态文件服务的示例
@@ -22,13 +39,10 @@
 - [sentinel:](sentinel) sentinel-golang 结合 hertz 使用的示例
 - [reverseproxy:](reverseproxy) 在 hertz server 中使用反向代理的示例
 - [gzip:](gzip) 在 hertz server 中使用 gzip 中间件的示例
-- [gorm:](bizdemo/hertz_gorm) 在 hertz server 中使用 gorm 的示例
-- [gorm_gen:](bizdemo/hertz_gorm_gen) 在 hertz server 中使用 gorm/gen & proto IDL 的示例
-- [jwt:](bizdemo/hertz_jwt) 在 hertz server 中使用 jwt 的示例
-- [session:](bizdemo/hertz_session) 在 hertz server 中使用 session 的示例
 - [hlog:](hlog) 使用 hlog 以及其日志拓展的示例
 
 ## Client
+
 - [client/send_request:](client/send_request) 使用 hertz 客户端发送http请求的示例
 - [client/config:](client/config) 配置 hertz 客户端的示例
 - [protocol/tls:](protocol/tls) 使用 hertz 客户端发送 TLS 请求的示例
@@ -39,4 +53,5 @@
 - [client/forward_proxy:](client/forward_proxy) 使用 hertz 客户端配置转发代理的示例
 
 ## Note
+
 执行示例的所有命令都应在 hertz-examples 下执行。
