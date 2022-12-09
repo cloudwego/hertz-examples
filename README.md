@@ -1,13 +1,29 @@
 # Hertz Examples
+
 English | [中文](README_CN.md)
+
 ## How to run
+
 You can enter the example for information about  "How to run"
 
+## Bizdemo
+
+- [hertz_gorm:](bizdemo/hertz_gorm) Example of using gorm in hertz server
+- [hertz_gorm_gen:](bizdemo/hertz_gorm_gen) Example of using gorm/gen & proto IDL in hertz server
+- [hertz_jwt:](bizdemo/hertz_jwt) Example of using jwt in hertz server
+- [hertz_session:](bizdemo/hertz_session) Example of using distributed session and csrf in hertz server
+
 ## Server
+
 - [hello:](hello) Example of launching a hertz "hello world" application
 - [config:](config) Example of configuring hertz server
 - [protocol:](protocol) Example of using http1, tls and other protocols of hertz
 - [middleware:](middleware) Example of using middleware of hertz
+  - [basicauth:](middleware/basicauth) Example of using BasicAuth middleware
+  - [cors:](middleware/CORS) Example of using CORS middleware
+  - [custom:](middleware/custom) Example of using custom middleware
+  - [pprof:](middleware/pprof) Example of using pprof middleware
+  - [requestid:](middleware/requestid) Example of using RequestID middleware
 - [binding:](binding) Example of parameter binding and validation
 - [parameters:](parameter) Example of getting query, form, cookie
 - [file:](file) Examples of file upload, file download, and static file services
@@ -24,12 +40,10 @@ You can enter the example for information about  "How to run"
 - [sentinel:](sentinel) Example of using sentinel-golang in hertz
 - [reverseproxy:](reverseproxy/standard) Example of using reverseproxy in hertz server
 - [gzip:](gzip) Example of using gzip middleware in hertz server
-- [gorm:](bizdemo/hertz_gorm) Example of using gorm in hertz server
-- [gorm_gen:](bizdemo/hertz_gorm_gen) Example of using gorm/gen & proto IDL in hertz server
-- [jwt:](bizdemo/hertz_jwt) Example of using jwt in hertz server
 - [hlog:](hlog) Example of using hlog and its log extension
 
 ## Client
+
 - [client/send_request:](client/send_request) Example of sending http requests using hertz client
 - [client/config:](client/config) Example of configuring hertz client
 - [protocol/tls:](protocol/tls) Example of sending a tls request using hertz client
@@ -40,4 +54,5 @@ You can enter the example for information about  "How to run"
 - [client/forward_proxy:](client/forward_proxy) Example of configuring a forward proxy using hertz client
 
 ## Note
+
 All commands to execute the example should be executed under "hertz-example".
