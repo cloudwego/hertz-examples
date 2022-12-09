@@ -31,11 +31,13 @@ import (
 	"github.com/hertz-contrib/sessions"
 )
 
+// InitHTML render HTML page
 func InitHTML(h *server.Hertz) {
 	h.Delims("{[{", "}]}")
 	h.SetFuncMap(template.FuncMap{
 		"BuildMsg": utils.BuildMsg,
 	})
+	// load templates
 	h.LoadHTMLGlob("static/html/*")
 	h.Static("/", "./static")
 	token := ""

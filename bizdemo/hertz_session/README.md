@@ -2,7 +2,10 @@
 
 ## Introduce
 
-A demo with `Hertz` and `Session`
+A demo with `Hertz` and `Session`, this demo aims to demonstrate a distributed session solution based on the `hertz-contrib/sessions`.
+
+The distributed session solution based on redis is to store the sessions of different servers in redis or redis cluster, 
+which aims to solve the problem that the sessions of multiple servers are not synchronized in the case of distributed system.
 
 - Use `thrift` IDL to define `HTTP` interface
 - Use `hz` to generate code
