@@ -3,8 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"net/http"
-
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/hertz-contrib/csrf"
@@ -14,9 +12,10 @@ import (
 
 func myErrFunc(_ context.Context, ctx *app.RequestContext) {
 	if ctx.Errors.Last() == nil {
-		fmt.Errorf("myErrFunc called when no error occurs")
+		err := fmt.Errorf("myErrFunc called when no error occurs")
+		ctx.String(400, err.Error())
+		ctx.Abort()
 	}
-	ctx.AbortWithMsg(ctx.Errors.Last().Error(), http.StatusBadRequest)
 }
 
 func main() {
