@@ -57,5 +57,19 @@ cd bizdemo/hertz_session && docker-compose up
 
 ```bash
 cd bizdemo/hertz_session
-go build -o hertz_session && ./hertz_session
+go run .
 ```
+
+### Web Page Presentation
+
+- Registration Page
+
+![register](images/register-page.png)
+
+- Login Page
+
+![login](images/login-page.png)
+
+- Index Page
+
+![index](images/index-page.png)
