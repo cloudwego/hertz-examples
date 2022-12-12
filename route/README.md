@@ -1,8 +1,11 @@
 # Route
 You can learn about how to use hertz route:
-* register route
+* static route
 * route group
+* use middleware with route group
 * parameter route
+* use anonymous function or decorator to register routes
+* route info
 
 ## parameter route:  
 Parameters such as ':name' are called `named parameters`, and named parameters only match a single path segment
