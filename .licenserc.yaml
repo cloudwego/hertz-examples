@@ -27,5 +27,6 @@ header:
     - bizdemo/hertz_session/biz/model/**
     - bizdemo/hertz_session/biz/router/**
     - bizdemo/hertz_session/router_gen.go
+    - hz_client/**
 
   comment: on-failure
