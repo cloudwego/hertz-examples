@@ -20,29 +20,41 @@ import (
 	"context"
 
 	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz/pkg/app/middlewares/server/basic_auth"
 	"github.com/cloudwego/hertz/pkg/app/server"
+	"github.com/cloudwego/hertz/pkg/common/hlog"
+	"github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 )
 
 func main() {
 	h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
 
-	// register route
+	// register static route
 	RegisterRoute(h)
 
-	// register route with handle
-	RegisterRouteWithHandle(h)
-
-	// register group route
+	// register route group
 	RegisterGroupRoute(h)
+
+	// register use middleware with route group
+	RegisterGroupRouteWithMiddleware(h)
 
 	// register parameter route
 	RegisterParaRoute(h)
 
+	// register use anonymous function or decorator to register routes
+	RegisterAnonFunOrDecRoute(h)
+
+	// register Get route info
+	RegisterGetRoutesInfo(h)
+
 	h.Spin()
 }
 
+// RegisterRoute static route
 func RegisterRoute(h *server.Hertz) {
+	h.StaticFS("/", &app.FS{Root: "./", GenerateIndexPages: true})
+
 	h.GET("/get", func(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusOK, "get")
 	})
@@ -64,57 +76,63 @@ func RegisterRoute(h *server.Hertz) {
 	h.OPTIONS("/options", func(ctx context.Context, c *app.RequestContext) {
 		c.String(consts.StatusOK, "options")
 	})
-}
-
-func RegisterRouteWithHandle(h *server.Hertz) {
-	h.Handle(consts.MethodGet, "/hget", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "hget")
+	h.Any("/ping_any", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "any")
 	})
-	h.Handle(consts.MethodPost, "/hpost", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "hpost")
-	})
-	h.Handle(consts.MethodPut, "/hput", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "hput")
-	})
-	h.Handle(consts.MethodDelete, "/hdelete", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "hdelete")
-	})
-	h.Handle(consts.MethodPatch, "/hpatch", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "hpatch")
-	})
-	h.Handle(consts.MethodHead, "/hhead", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "hhead")
-	})
-	h.Handle(consts.MethodOptions, "/hoptions", func(ctx context.Context, c *app.RequestContext) {
-		c.String(consts.StatusOK, "hoptions")
+	h.Handle("LOAD", "/load", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "load")
 	})
 }
 
-func loginEndpoint(ctx context.Context, c *app.RequestContext) {}
-
-func submitEndpoint(ctx context.Context, c *app.RequestContext) {}
-
-func readEndpoint(ctx context.Context, c *app.RequestContext) {}
-
+// RegisterGroupRoute group route
 func RegisterGroupRoute(h *server.Hertz) {
 	// Simple group: v1
 	v1 := h.Group("/v1")
 	{
 		// loginEndpoint is a handler func
-		v1.POST("/login", loginEndpoint)
-		v1.POST("/submit", submitEndpoint)
-		v1.POST("/streaming_read", readEndpoint)
+		v1.GET("/get", func(ctx context.Context, c *app.RequestContext) {
+			c.String(consts.StatusOK, "get")
+		})
+		v1.POST("/post", func(ctx context.Context, c *app.RequestContext) {
+			c.String(consts.StatusOK, "post")
+		})
 	}
 
 	// Simple group: v2
 	v2 := h.Group("/v2")
 	{
-		v2.POST("/login", loginEndpoint)
-		v2.POST("/submit", submitEndpoint)
-		v2.POST("/streaming_read", readEndpoint)
+		v2.PUT("/put", func(ctx context.Context, c *app.RequestContext) {
+			c.String(consts.StatusOK, "put")
+		})
+		v2.DELETE("/delete", func(ctx context.Context, c *app.RequestContext) {
+			c.String(consts.StatusOK, "delete")
+		})
 	}
 }
 
+// RegisterGroupRouteWithMiddleware route groups that incorporate middleware
+func RegisterGroupRouteWithMiddleware(h *server.Hertz) {
+	// The following example uses the BasicAuth middleware in a route group.
+
+	// Sample Code 1:
+	//
+	// Bind the middleware directly to the routing group
+	example1 := h.Group("/example1", basic_auth.BasicAuth(map[string]string{"test": "test"}))
+	example1.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
+		ctx.String(consts.StatusOK, "ping")
+	})
+
+	// Sample Code 2:
+	//
+	// use `Use` method
+	example2 := h.Group("/example2")
+	example2.Use(basic_auth.BasicAuth(map[string]string{"test": "test"}))
+	example2.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
+		ctx.String(consts.StatusOK, "ping")
+	})
+}
+
+// RegisterParaRoute parameter route
 func RegisterParaRoute(h *server.Hertz) {
 	// This handler will match: "/hertz/version", but will not match : "/hertz/" or "/hertz"
 	h.GET("/hertz/:version", func(ctx context.Context, c *app.RequestContext) {
@@ -135,4 +153,20 @@ func RegisterParaRoute(h *server.Hertz) {
 		// c.FullPath() == "/hertz/:version/*action" // true
 		c.String(consts.StatusOK, c.FullPath())
 	})
+}
+
+// RegisterAnonFunOrDecRoute Use anonymous function or decorator to register routes
+func RegisterAnonFunOrDecRoute(h *server.Hertz) {
+	h.AnyEX("/ping", func(c context.Context, ctx *app.RequestContext) {
+		ctx.String(consts.StatusOK, app.GetHandlerName(ctx.Handler()))
+	}, "ping_handler")
+}
+
+// RegisterGetRoutesInfo Get route info
+func RegisterGetRoutesInfo(h *server.Hertz) {
+	h.GET("/getRoutesInfo", func(c context.Context, ctx *app.RequestContext) {
+		ctx.JSON(consts.StatusOK, utils.H{"ping": "pong"})
+	})
+	routeInfo := h.Routes()
+	hlog.Info(routeInfo)
 }
