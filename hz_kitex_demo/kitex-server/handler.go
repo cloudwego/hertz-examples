@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-
 	"hertz-examples/hz_demo/kitex-server/kitex_gen/student/management"
 )
 
