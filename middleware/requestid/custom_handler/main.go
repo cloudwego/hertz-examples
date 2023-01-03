@@ -33,7 +33,7 @@ func main() {
 
 	h.Use(
 		requestid.New(
-			requestid.WithGenerator(func() string {
+			requestid.WithGenerator(func(ctx context.Context, c *app.RequestContext) string {
 				return "hello"
 			}),
 			// define your request id handler here

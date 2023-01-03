@@ -30,7 +30,7 @@ func main() {
 	h := server.Default()
 
 	h.Use(
-		requestid.New(requestid.WithGenerator(func() string {
+		requestid.New(requestid.WithGenerator(func(ctx context.Context, c *app.RequestContext) string {
 			return "cloudwego.io"
 		})),
 	)

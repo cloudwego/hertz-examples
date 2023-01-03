@@ -31,7 +31,7 @@ func main() {
 
 	h.Use(
 		// define your own request id generator here
-		requestid.New(requestid.WithGenerator(func() string {
+		requestid.New(requestid.WithGenerator(func(ctx context.Context, c *app.RequestContext) string {
 			return "cloudwego.io"
 		})),
 	)
