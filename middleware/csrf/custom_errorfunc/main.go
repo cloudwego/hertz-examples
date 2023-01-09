@@ -48,7 +48,7 @@ func myErrFunc(_ context.Context, ctx *app.RequestContext) {
 		fmt.Println(err.Error())
 		ctx.String(http.StatusInternalServerError, err.Error()) // get salt failed,which is unexpected
 	case errInvalidToken:
-		ctx.String(http.StatusBadRequest, err.Error()) //csrf-token is invalid
+		ctx.String(http.StatusBadRequest, err.Error()) // csrf-token is invalid
 	}
 	ctx.Abort()
 }
