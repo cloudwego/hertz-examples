@@ -21,6 +21,7 @@ You can enter the example for information about  "How to run"
 - [middleware:](middleware) Example of using middleware of hertz
   - [basicauth:](middleware/basicauth) Example of using BasicAuth middleware
   - [cors:](middleware/CORS) Example of using CORS middleware
+  - [csrf:](middleware/csrf) Example of using csrf middleware
   - [custom:](middleware/custom) Example of using custom middleware
   - [pprof:](middleware/pprof) Example of using pprof middleware
   - [requestid:](middleware/requestid) Example of using RequestID middleware

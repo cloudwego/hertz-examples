@@ -21,6 +21,7 @@
 - [middleware:](middleware) 使用 hertz 中间件的示例
   - [basicauth:](middleware/basicauth) 使用 BasicAuth 中间件的示例
   - [cors:](middleware/CORS) 使用 CORS 中间件的示例
+  - [csrf:](middleware/csrf) 使用 csrf 中间件示例
   - [custom:](middleware/custom) 自定义 middleware 的示例
   - [pprof:](middleware/pprof) 使用 pprof 中间件的示例
   - [requestid:](middleware/requestid) 使用 RequestID 中间件的示例
