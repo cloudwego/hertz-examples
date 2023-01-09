@@ -14,7 +14,7 @@ import (
 func myExtractor(_ context.Context, ctx *app.RequestContext) (string, error) {
 	token := ctx.FormValue("csrf-token")
 	if token == nil {
-		return "", errors.New("missing token in form-data")
+		return "", errors.New("missing token in form-data") // get csrf-token from form-data failed
 	}
 	return string(token), nil
 }
