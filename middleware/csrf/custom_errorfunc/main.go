@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"net/http"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -11,12 +13,28 @@ import (
 	"github.com/hertz-contrib/sessions/cookie"
 )
 
+var (
+	errMissingHeader = errors.New("[CSRF] missing csrf token in header")
+	errMissingQuery  = errors.New("[CSRF] missing csrf token in query")
+	errMissingParam  = errors.New("[CSRF] missing csrf token in param")
+	errMissingForm   = errors.New("[CSRF] missing csrf token in form")
+	errMissingSalt   = errors.New("[CSRF] missing salt")
+	errInvalidToken  = errors.New("[CSRF] invalid token")
+)
+
+// myErrFunc is executed when an error occurs in csrf middleware.
 func myErrFunc(_ context.Context, ctx *app.RequestContext) {
-	if ctx.Errors.Last() == nil {
-		err := fmt.Errorf("myErrFunc called when no error occurs")
-		ctx.String(400, err.Error())
-		ctx.Abort()
+	err := ctx.Errors.Last()
+	switch err {
+	case errMissingForm, errMissingParam, errMissingHeader, errMissingQuery:
+		ctx.String(http.StatusBadRequest, err.Error()) // extract csrf-token failed
+	case errMissingSalt:
+		fmt.Println(err.Error())
+		ctx.String(http.StatusInternalServerError, err.Error()) // get salt failed,which is unexpected
+	case errInvalidToken:
+		ctx.String(http.StatusBadRequest, err.Error()) //csrf-token is invalid
 	}
+	ctx.Abort()
 }
 
 func main() {
