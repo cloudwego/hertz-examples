@@ -31,12 +31,12 @@ func main() {
 	h.GET("/fileAttachment", func(ctx context.Context, c *app.RequestContext) {
 		// If you use Chinese, need to encode
 		fileName := url.QueryEscape("hertz")
-		c.FileAttachment("./download/file.txt", fileName)
+		c.FileAttachment("./file/download/file.txt", fileName)
 	})
 
 	// File() will return the contents of the file directly
 	h.GET("/file", func(ctx context.Context, c *app.RequestContext) {
-		c.File("./download/file.txt")
+		c.File("./file/download/file.txt")
 	})
 
 	h.Spin()
