@@ -25,7 +25,7 @@ import (
 )
 
 func main() {
-	h := server.Default(server.WithHostPorts("127.0.0.1:8081"))
+	h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
 
 	// FileAttachment() sets the "content-disposition" header and returns the file as an "attachment".
 	h.GET("/fileAttachment", func(ctx context.Context, c *app.RequestContext) {
