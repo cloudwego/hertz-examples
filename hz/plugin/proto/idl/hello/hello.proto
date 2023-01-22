@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package hello;
+
+option go_package = "middleware/hertz/biz/model/psm";
+
+import "api.proto";
+import "openapiv3/annotations.proto";
+import "google/api/annotations.proto";
+
+message HelloReq {
+  option (openapi.v3.schema) = {
+    title: "Hello - Request";
+    description: "Hello - Request";
+    required: [
+      "Name"
+    ];
+  };
+
+  string Name = 1[
+    (api.query) = "name",
+    (openapi.v3.property) = {
+      title: "Name";
+      description: "Name";
+      type: "string";
+      min_length: 1;
+      max_length: 50;
+    }
+  ];
+}
+
+message HelloResp {
+  string RespBody = 1[
+    (openapi.v3.property) = {
+      title: "response content";
+      description: "response content";
+      type: "string";
+      min_length: 1;
+      max_length: 80;
+    }
+  ];
+}
+
+service HelloService {
+  rpc Method1(HelloReq) returns(HelloResp) {
+    option (api.get) = "/hello";
+    option(google.api.http) = {
+      get: "/hello"
+    };
+    option(openapi.v3.operation) = {
+      summary: "Hello - Get";
+      description: "Hello - Get";
+    };
+  }
+}

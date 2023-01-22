@@ -25,6 +25,7 @@ You can enter the example for information about  "How to run"
   - [custom:](middleware/custom) Example of using custom middleware
   - [pprof:](middleware/pprof) Example of using pprof middleware
   - [requestid:](middleware/requestid) Example of using RequestID middleware
+  - [gzip:](middleware/gzip) Example of using Gzip middleware
 - [binding:](binding) Example of parameter binding and validation
 - [parameters:](parameter) Example of getting query, form, cookie
 - [file:](file) Examples of file upload, file download, and static file services
@@ -40,7 +41,7 @@ You can enter the example for information about  "How to run"
   as template engine.
 - [sentinel:](sentinel) Example of using sentinel-golang in hertz
 - [reverseproxy:](reverseproxy/standard) Example of using reverseproxy in hertz server
-- [gzip:](gzip) Example of using gzip middleware in hertz server
+- [gzip:](middleware/gzip) Example of using gzip middleware in hertz server
 - [hlog:](hlog) Example of using hlog and its log extension
 
 ## Client
@@ -53,6 +54,14 @@ You can enter the example for information about  "How to run"
 - [client/middleware:](client/middleware) Example of using hertz client middleware
 - [client/streaming_read:](client/streaming_read) Example of streaming read response using hertz client
 - [client/forward_proxy:](client/forward_proxy) Example of configuring a forward proxy using hertz client
+
+## Hz
+
+- [hz/thrift:](hz/thrift) Example of using hz with thrift to generate server code
+- [hz/protobuf:](hz/protobuf) Example of using hz with protobuf to generate server code
+- [hz/hz_client:](hz/hz_client) Example of using hz to generate client code
+- [hz/template:](hz/hz_client) Example of using hz custom templates to generate server code
+- [hz/plugin:](hz/plugin) Example of using hz to access third-party plugins
 
 ## Note
 
