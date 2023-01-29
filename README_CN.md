@@ -58,7 +58,7 @@
 - [hz/thrift:](hz/thrift) 使用 hz 与 thrift 生成服务端代码的示例
 - [hz/protobuf:](hz/protobuf) 使用 hz 与 protobuf 生成服务端代码的示例
 - [hz/hz_client:](hz/hz_client) 使用 hz 生成客户端代码的示例
-- [hz/template:](hz/hz_client) 使用 hz 自定义模版生成服务端代码的示例
+- [hz/template:](hz/template) 使用 hz 自定义模版生成服务端代码的示例
 - [hz/plugin:](hz/plugin) 使用 hz 接入第三方插件的示例
 
 ## Note

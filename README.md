@@ -60,7 +60,7 @@ You can enter the example for information about  "How to run"
 - [hz/thrift:](hz/thrift) Example of using hz with thrift to generate server code
 - [hz/protobuf:](hz/protobuf) Example of using hz with protobuf to generate server code
 - [hz/hz_client:](hz/hz_client) Example of using hz to generate client code
-- [hz/template:](hz/hz_client) Example of using hz custom templates to generate server code
+- [hz/template:](hz/template) Example of using hz custom templates to generate server code
 - [hz/plugin:](hz/plugin) Example of using hz to access third-party plugins
 
 ## Note
