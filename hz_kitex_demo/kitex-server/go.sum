@@ -11,7 +11,6 @@ github.com/bytedance/gopkg v0.0.0-20220531084716-665b4f21126f/go.mod h1:2ZlV9BaU
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/chenzhuoyu/iasm v0.0.0-20220407070608-915f5d279eca h1:zOX0dqt5KzAZfyt2tgxCZfZud+trZ5axOu8QcCkwxNY=
 github.com/chenzhuoyu/iasm v0.0.0-20220407070608-915f5d279eca/go.mod h1:wOQ0nsbeOLa2awv8bUYFW/EHXbjQMlZ10fAlXDB2sz8=
-github.com/choleraehyq/pid v0.0.13 h1:Tc/jYjHC50SDCxSX+DWHfMmFqtwGR8EiQ08qJ/EK8zs=
 github.com/choleraehyq/pid v0.0.13/go.mod h1:uhzeFgxJZWQsZulelVQZwdASxQ9TIPZYL4TPkQMtL/U=
 github.com/choleraehyq/pid v0.0.15 h1:PejhUZowqxxssjwyaw4OZURRFjnvftZfeEWK9UoWPXU=
 github.com/choleraehyq/pid v0.0.15/go.mod h1:uhzeFgxJZWQsZulelVQZwdASxQ9TIPZYL4TPkQMtL/U=
