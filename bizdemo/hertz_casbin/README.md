@@ -2,10 +2,9 @@
 
 ## Introduce
 
-A demo with `Hertz` and `Casbin`, this demo aims to demonstrate a distributed session solution based on the `hertz-contrib/sessions`.
+A demo with `Hertz` and `Casbin`, this demo aims to understand the application of rbac.
 
-The distributed session solution based on redis is to store the sessions of different servers in redis or redis cluster, 
-which aims to solve the problem that the sessions of multiple servers are not synchronized in the case of distributed system.
+Casbin is a powerful and efficient open-source access control library for Golang projects. It provides support for enforcing authorization based on various access control models.
 
 - Use `thrift` IDL to define `HTTP` interface
 - Use `hz` to generate code
@@ -33,8 +32,6 @@ Connect MySQL and execute [user.sql](biz/model/sql/user.sql)
 
 This is where the permissions are defined [policy.csv](conf/policy.csv),each http request is determined.
 
-
-
 ## Code generation tool
 
 This demo use `hz` to generate code. The use of `hz` refers to [hz](https://www.cloudwego.io/docs/hertz/tutorials/toolkit/toolkit/)
@@ -61,6 +58,11 @@ This demo captures the [AdminLTE](https://github.com/ColorlibHQ/AdminLTE) login 
 ```bash
 cd bizdemo/hertz_casbin && docker-compose up
 ```
+
+### Generate MySQL table
+
+Connect MySQL and execute [user.sql](biz/model/sql/user.sql)
+
 
 ### Run demo
 
