@@ -1,8 +1,8 @@
-# hertz_session
+# hertz_casbin
 
 ## Introduce
 
-A demo with `Hertz` and `Casbin`, this demo aims to understand the application of rbac.
+A demo with `Hertz` and `Casbin`, this demo aims to understand the application of permissions.
 
 Casbin is a powerful and efficient open-source access control library for Golang projects. It provides support for enforcing authorization based on various access control models.
 
@@ -73,7 +73,8 @@ go run .
 
 Which starts a server at `http://localhost:8888` with the following routes:
 
-* `POST /login` - accessible if not logged in
+* `POST /register` - accessible if not logged in as a anonymous
+* `POST /login` - accessible if not logged in as a anonymous
     * takes `username` as a form-data parameter - password is 123
     * Valid Users:
         * `admin` ID: `1`, Role: `admin`
