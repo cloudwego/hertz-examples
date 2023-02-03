@@ -16,9 +16,9 @@
 
 package dal
 
-import "github.com/cloudwego/hertz-examples/bizdemo/hertz_session/biz/dal/mysql"
+import "github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/dal/mysql"
 
-// Init init mysql
 func Init() {
 	mysql.Init()
+
 }

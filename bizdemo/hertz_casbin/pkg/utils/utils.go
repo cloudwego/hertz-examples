@@ -1,47 +1,127 @@
-/*
- * Copyright 2022 CloudWeGo Authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package utils
 
 import (
-	"context"
+	"bytes"
 	"crypto/md5"
-	"encoding/hex"
+	"encoding/json"
+	"errors"
 	"fmt"
-
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/consts"
-	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
+	"github.com/golang-jwt/jwt/v4"
+	"io/ioutil"
+	"net/http"
+	"strings"
+	"time"
 )
 
-// MD5 use md5 to encrypt strings
-func MD5(str string) string {
-	h := md5.New()
-	h.Write([]byte(str))
-	return hex.EncodeToString(h.Sum(nil))
+func Md5(s string) string {
+	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
 }
 
-// BuildMsg render message for the html page
-func BuildMsg(msg string) string {
-	return fmt.Sprintf("%v", msg)
-}
-
-// IsLogout if user already login then return false
-func IsLogout(_ context.Context, c *app.RequestContext) bool {
-	if string(c.Cookie(consts.HertzSession)) == "" {
-		return true
+func If(condition bool, trueValue, falseValue interface{}) interface{} {
+	if condition {
+		return trueValue
 	}
-	return false
+	return falseValue
+}
+
+// RFC3339ToNormalTime RFC3339 日期格式标准化
+func RFC3339ToNormalTime(rfc3339 string) string {
+	if len(rfc3339) < 19 || rfc3339 == "" || !strings.Contains(rfc3339, "T") {
+		return rfc3339
+	}
+	return strings.Split(rfc3339, "T")[0] + " " + strings.Split(rfc3339, "T")[1][:8]
+}
+
+func GenerateToken(id uint, roles []casbin.Role, username string, second int) (string, error) {
+
+	uc := consts.UserClaim{
+		Id:       id,
+		Username: username,
+		Roles:    roles,
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Second * time.Duration(second))),
+		},
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, uc)
+	tokenString, err := token.SignedString([]byte(consts.JwtKey))
+	if err != nil {
+		return "", err
+	}
+
+	return tokenString, nil
+}
+
+func AnalyzeToken(token string) (*consts.UserClaim, error) {
+	uc := new(consts.UserClaim)
+	claims, err := jwt.ParseWithClaims(token, uc, func(token *jwt.Token) (interface{}, error) {
+		return []byte(consts.JwtKey), nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+	if !claims.Valid {
+		return uc, errors.New("token is invalid")
+	}
+
+	return uc, err
+}
+
+// httpRequest .
+func httpRequest(url, method string, data, header []byte) ([]byte, error) {
+	var err error
+	reader := bytes.NewBuffer(data)
+	request, err := http.NewRequest(method, url, reader)
+	if err != nil {
+		return nil, err
+	}
+	request.Header.Set("Content-Type", "application/json;charset=UTF-8")
+	// 处理 header
+	if len(header) > 0 {
+		headerMap := new(map[string]interface{})
+		err = json.Unmarshal(header, headerMap)
+
+		if err != nil {
+			return nil, err
+		}
+		for k, v := range *headerMap {
+			if k == "" || v == "" {
+				continue
+			}
+			request.Header.Set(k, v.(string))
+		}
+	}
+	request.SetBasicAuth(consts.EmqxKey, consts.EmqxSecret)
+
+	client := http.Client{}
+	resp, err := client.Do(request)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	respBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	return respBytes, nil
+}
+
+func HttpDelete(url string, data []byte, header ...byte) ([]byte, error) {
+	return httpRequest(url, "DELETE", data, header)
+}
+
+func HttpPut(url string, data []byte, header ...byte) ([]byte, error) {
+	return httpRequest(url, "PUT", data, header)
+}
+
+func HttpPost(url string, data []byte, header ...byte) ([]byte, error) {
+	return httpRequest(url, "POST", data, header)
+}
+
+func HttpGet(url string, header ...byte) ([]byte, error) {
+	return httpRequest(url, "GET", []byte{}, header)
 }

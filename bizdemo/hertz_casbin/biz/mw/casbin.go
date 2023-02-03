@@ -2,21 +2,22 @@ package mw
 
 import (
 	"github.com/casbin/casbin"
-	"log"
+	xormadapter "github.com/casbin/xorm-adapter"
+	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
 )
 
-var authEnforcer *casbin.Enforcer
+var AuthEnforcer *casbin.Enforcer
 
 func InitCasbin() {
-	var err error
-	authEnforcer, err = casbin.NewEnforcerSafe("./conf/auth_model.conf", "./conf/policy.csv")
-	if err != nil {
-		log.Fatal(err)
-	}
+	adapter := xormadapter.NewAdapter("mysql", consts.MysqlDSN, true)
+
+	enforcer := casbin.NewEnforcer("conf/auth_model.conf", adapter)
+
+	AuthEnforcer = enforcer
 }
 
 func Authorize(rvals ...interface{}) (result bool, err error) {
 	// casbin enforce
-	res, err1 := authEnforcer.EnforceSafe(rvals[0], rvals[1], rvals[2])
+	res, err1 := AuthEnforcer.EnforceSafe(rvals[0], rvals[1], rvals[2])
 	return res, err1
 }

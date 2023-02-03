@@ -16,28 +16,26 @@
 
 package consts
 
-// constants
-const (
-	TCP              = "tcp"
-	UserTableName    = "users"
-	RedisAddr        = "127.0.0.1:6379"
-	MaxIdleNum       = 10
-	RedisPasswd      = ""
-	SessionSecretKey = "session-secret"
-	CSRFSecretKey    = "csrf-secret"
-	CSRFKeyLookUp    = "form:csrf"
-	Username         = "username"
-	Role             = "role"
-	HertzSession     = "HERTZ-SESSION"
-	MySQLDefaultDSN  = "gorm:gorm@tcp(localhost:9911)/gorm?charset=utf8&parseTime=True&loc=Local"
+import (
+	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+	"github.com/golang-jwt/jwt/v4"
 )
 
-// error msg
-const (
-	StatusOK    = "ok"
-	Success     = "success"
-	RegisterErr = "user already exists"
-	LoginErr    = "wrong username or password"
-	PageErr     = "please login first"
-	CSRFErr     = "csrf exception"
+var (
+	MysqlDSN   = "root:casbin@tcp(localhost:9912)/casbin?charset=utf8&parseTime=True&loc=Local"
+	EmqxKey    = "1f9c5b734fe27865"
+	EmqxSecret = "lV9C2iefOp9Cr9BeiB5rr3N9CBolJjKk3HruhqEpHQxsuVD"
+)
+
+type M map[string]interface{}
+
+type UserClaim struct {
+	Id       uint          `json:"id"`
+	Username string        `json:"username"`
+	Roles    []casbin.Role `json:"rids"`
+	jwt.RegisteredClaims
+}
+
+var (
+	JwtKey = "darren"
 )

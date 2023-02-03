@@ -16,55 +16,27 @@
 
 package mysql
 
-import (
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/consts"
-	"gorm.io/gorm"
-)
+import "github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
 
-type User struct {
-	gorm.Model
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Email    string `json:"email"`
-	Role     string `json:"role"`
+func CreateUser(user *casbin.User) error {
+	return DB.Create(user).Error
+
 }
 
-func (u *User) TableName() string {
-	return consts.UserTableName
+func QueryUser(username, password string) (*casbin.User, error) {
+	var user casbin.User
+	DB.Where("username=? AND password =? ", username, password).First(&user)
+	return &user, nil
 }
 
-func CreateUsers(users []*User) error {
-	return DB.Create(users).Error
+func QueryUserByUsername(username string) (*casbin.User, error) {
+	var user casbin.User
+	DB.Where("username = ?", username).First(&user)
+	return &user, nil
 }
 
-func FindUserByNameOrEmail(username, email string) ([]*User, error) {
-	res := make([]*User, 0)
-	if err := DB.Where("username = ?", username).Or("email = ?", email).Find(&res).Error; err != nil {
-		return nil, err
-	}
-	return res, nil
-}
-
-func CheckUser(username, password string) ([]*User, error) {
-	res := make([]*User, 0)
-	if err := DB.Where("username = ? AND password = ?", username, password).Find(&res).Error; err != nil {
-		return nil, err
-	}
-	return res, nil
-}
-
-func CheckUserExists(username string) ([]*User, error) {
-	res := make([]*User, 0)
-	if err := DB.Where("username = ?   ", username).Limit(1).Find(&res).Error; err != nil {
-		return nil, err
-	}
-	return res, nil
-}
-
-func RoleList(role string) ([]*User, error) {
-	res := make([]*User, 0)
-	if err := DB.Where("role = ?   ", role).Find(&res).Error; err != nil {
-		return nil, err
-	}
-	return res, nil
+func QueryUserById(id int) (*casbin.User, error) {
+	var user casbin.User
+	DB.First(&user, id)
+	return &user, nil
 }

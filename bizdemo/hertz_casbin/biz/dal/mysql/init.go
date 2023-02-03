@@ -17,7 +17,8 @@
 package mysql
 
 import (
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_session/pkg/consts"
+	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -27,7 +28,7 @@ var DB *gorm.DB
 
 func Init() {
 	var err error
-	DB, err = gorm.Open(mysql.Open(consts.MySQLDefaultDSN), &gorm.Config{
+	DB, err = gorm.Open(mysql.Open(consts.MysqlDSN), &gorm.Config{
 		SkipDefaultTransaction: true,
 		PrepareStmt:            true,
 		Logger:                 logger.Default.LogMode(logger.Info),
@@ -36,10 +37,10 @@ func Init() {
 		panic(err)
 	}
 	m := DB.Migrator()
-	if m.HasTable(&User{}) {
+	if m.HasTable(&casbin.User{}) {
 		return
 	}
-	if err = m.CreateTable(&User{}); err != nil {
+	if err = m.CreateTable(&casbin.User{}, &casbin.Role{}, &casbin.Permission{}, &casbin.UserRole{}, &casbin.PermissionRole{}); err != nil {
 		panic(err)
 	}
 }

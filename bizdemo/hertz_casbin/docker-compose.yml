@@ -4,13 +4,8 @@ services:
   mysql:
     image: 'mysql:latest'
     ports:
-      - 9911:3306
+      - 9912:3306
     environment:
-      - MYSQL_DATABASE=gorm
-      - MYSQL_USER=gorm
-      - MYSQL_PASSWORD=gorm
-      - MYSQL_RANDOM_ROOT_PASSWORD="yes"
-  redis:
-    image: 'redis:latest'
-    ports:
-      - 6379:6379
+      - MYSQL_DATABASE=casbin
+      - MYSQL_ROOT_PASSWORD=casbin
+
