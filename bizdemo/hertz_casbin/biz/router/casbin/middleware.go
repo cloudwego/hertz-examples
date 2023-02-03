@@ -21,10 +21,11 @@ package Casbin
 import (
 	"context"
 	"fmt"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/mw"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 	"github.com/cloudwego/hertz/pkg/app"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/mw"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 
 	"net/http"
 )

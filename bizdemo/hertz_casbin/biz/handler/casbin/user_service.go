@@ -20,12 +20,12 @@ package casbin
 
 import (
 	"context"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/dal/mysql"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/dal/mysql"
+	casbin "github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
-	casbin "github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
 )
 
 // Login .

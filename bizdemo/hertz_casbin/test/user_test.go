@@ -19,11 +19,13 @@ package test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 	"testing"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 )
 
+// Test the login of the admin user to get the token
 func TestUserLogin(t *testing.T) {
 	m := consts.M{
 		"username": "admin",
@@ -39,6 +41,7 @@ func TestUserLogin(t *testing.T) {
 	fmt.Println(string(rep))
 }
 
+// Test the login of the role user to get the token
 func TestRoleUserLogin(t *testing.T) {
 	m := consts.M{
 		"username": "role_user",
@@ -54,6 +57,7 @@ func TestRoleUserLogin(t *testing.T) {
 	fmt.Println(string(rep))
 }
 
+// Test the login of the permission user to get the token
 func TestPermissionUserLogin(t *testing.T) {
 	m := consts.M{
 		"username": "permission_user",

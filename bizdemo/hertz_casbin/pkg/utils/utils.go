@@ -22,15 +22,16 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
-	"github.com/golang-jwt/jwt/v4"
 	"io/ioutil"
 	"net/http"
-	"strings"
 	"time"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
+	"github.com/golang-jwt/jwt/v4"
 )
 
+// MD5 use md5 to encrypt strings
 func Md5(s string) string {
 	return fmt.Sprintf("%x", md5.Sum([]byte(s)))
 }
@@ -42,14 +43,7 @@ func If(condition bool, trueValue, falseValue interface{}) interface{} {
 	return falseValue
 }
 
-// RFC3339ToNormalTime
-func RFC3339ToNormalTime(rfc3339 string) string {
-	if len(rfc3339) < 19 || rfc3339 == "" || !strings.Contains(rfc3339, "T") {
-		return rfc3339
-	}
-	return strings.Split(rfc3339, "T")[0] + " " + strings.Split(rfc3339, "T")[1][:8]
-}
-
+// generate token if username and password is correct
 func GenerateToken(id uint, roles []casbin.Role, username string, second int) (string, error) {
 
 	uc := consts.UserClaim{
@@ -69,6 +63,7 @@ func GenerateToken(id uint, roles []casbin.Role, username string, second int) (s
 	return tokenString, nil
 }
 
+// Verify the token
 func AnalyzeToken(token string) (*consts.UserClaim, error) {
 	uc := new(consts.UserClaim)
 	claims, err := jwt.ParseWithClaims(token, uc, func(token *jwt.Token) (interface{}, error) {
@@ -85,7 +80,7 @@ func AnalyzeToken(token string) (*consts.UserClaim, error) {
 	return uc, err
 }
 
-// httpRequest .
+// call httpRequest
 func httpRequest(url, method string, data, header []byte) ([]byte, error) {
 	var err error
 	reader := bytes.NewBuffer(data)
@@ -126,18 +121,22 @@ func httpRequest(url, method string, data, header []byte) ([]byte, error) {
 	return respBytes, nil
 }
 
+// Request in "delete" mode
 func HttpDelete(url string, data []byte, header ...byte) ([]byte, error) {
 	return httpRequest(url, "DELETE", data, header)
 }
 
+// Request in "put" mode
 func HttpPut(url string, data []byte, header ...byte) ([]byte, error) {
 	return httpRequest(url, "PUT", data, header)
 }
 
+// Request in "post" mode
 func HttpPost(url string, data []byte, header ...byte) ([]byte, error) {
 	return httpRequest(url, "POST", data, header)
 }
 
+// Request in "get" mode
 func HttpGet(url string, header ...byte) ([]byte, error) {
 	return httpRequest(url, "GET", []byte{}, header)
 }

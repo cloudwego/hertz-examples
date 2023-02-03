@@ -18,14 +18,16 @@ package mysql
 
 import (
 	"fmt"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
 	"testing"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
 )
 
 func init() {
 	Init()
 }
 
+// craete role data
 func TestCreateRole(t *testing.T) {
 
 	role := casbin.Role{
@@ -48,6 +50,7 @@ func TestCreateRole(t *testing.T) {
 
 }
 
+// query role by the name of  the role
 func TestQueryRole(t *testing.T) {
 	qRole, err := QueryRoleByName("admin")
 	if err != nil {
@@ -58,12 +61,15 @@ func TestQueryRole(t *testing.T) {
 
 }
 
+// query roles by the id of  the user
 func TestQueryRolesByUid(t *testing.T) {
 	qRoles := QueryRolesByUid(int(5))
 
 	fmt.Println(qRoles)
 
 }
+
+// bind role by the id of  the role and id of the user
 func TestBindUserRole(t *testing.T) {
 
 	userRole := casbin.UserRole{

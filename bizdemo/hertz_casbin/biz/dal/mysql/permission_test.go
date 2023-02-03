@@ -18,14 +18,16 @@ package mysql
 
 import (
 	"fmt"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
 	"testing"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
 )
 
 func init() {
 	Init()
 }
 
+// create permission data
 func TestCreatePermission(t *testing.T) {
 
 	permission := casbin.Permission{
@@ -49,6 +51,7 @@ func TestCreatePermission(t *testing.T) {
 
 }
 
+// query permission data
 func TestQueryPermission(t *testing.T) {
 	qRole, err := QueryPermissionByV("/v1/role/create", "POST")
 	if err != nil {
@@ -59,6 +62,7 @@ func TestQueryPermission(t *testing.T) {
 
 }
 
+// bind permission and role
 func TestBindPermission(t *testing.T) {
 
 	permissionRole := casbin.PermissionRole{

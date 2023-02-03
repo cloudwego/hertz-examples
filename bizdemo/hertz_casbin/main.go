@@ -19,9 +19,9 @@
 package main
 
 import (
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/dal"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/mw"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/dal"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/mw"
 )
 
 func Init(h *server.Hertz) {

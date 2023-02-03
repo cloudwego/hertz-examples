@@ -19,8 +19,8 @@
 package main
 
 import (
+	handler "github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/handler"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	handler "github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/handler"
 )
 
 // customizeRegister registers customize routers.

@@ -18,15 +18,17 @@ package mysql
 
 import (
 	"fmt"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 	"testing"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 )
 
 func init() {
 	Init()
 }
 
+// create the user data
 func TestCreateUser(t *testing.T) {
 
 	user := casbin.User{
@@ -56,6 +58,7 @@ func TestCreateUser(t *testing.T) {
 
 }
 
+// query user by the username of user
 func TestQueryUser(t *testing.T) {
 	qUser, err := QueryUserByUsername("admin")
 	if err != nil {

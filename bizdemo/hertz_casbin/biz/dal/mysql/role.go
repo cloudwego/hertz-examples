@@ -17,7 +17,7 @@
 package mysql
 
 import (
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
 )
 
 func CreateRole(role *casbin.Role) error {

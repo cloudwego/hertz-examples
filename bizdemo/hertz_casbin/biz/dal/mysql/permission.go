@@ -16,7 +16,7 @@
 
 package mysql
 
-import "github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+import "github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
 
 func CreatePermisson(permission *casbin.Permission) error {
 	return DB.Create(permission).Error

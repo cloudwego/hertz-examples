@@ -19,11 +19,13 @@ package test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 	"testing"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 )
 
+// Test add role
 func TestRoleAdd(t *testing.T) {
 
 	header, _ = json.Marshal(rolem1)

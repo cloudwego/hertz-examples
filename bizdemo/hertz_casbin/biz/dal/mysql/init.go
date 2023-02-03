@@ -17,8 +17,8 @@
 package mysql
 
 import (
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

@@ -20,7 +20,7 @@ package main
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-	router "github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/router"
+	router "github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/router"
 )
 
 // register registers all routers.

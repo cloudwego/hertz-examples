@@ -19,11 +19,13 @@ package test
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 	"testing"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/consts"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/pkg/utils"
 )
 
+// Test add permission
 func TestPermissionAdd(t *testing.T) {
 
 	header, _ = json.Marshal(rolem1)
@@ -41,6 +43,7 @@ func TestPermissionAdd(t *testing.T) {
 	fmt.Println(string(rep))
 }
 
+// Test bind permission
 func TestPermissionBind(t *testing.T) {
 	m := consts.M{
 		"pid": "1",

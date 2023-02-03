@@ -1,4 +1,4 @@
-module github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin
+module github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin
 
 go 1.19
 

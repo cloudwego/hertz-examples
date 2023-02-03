@@ -17,7 +17,7 @@
 package consts
 
 import (
-	"github.com/darrenli6/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
 	"github.com/golang-jwt/jwt/v4"
 )
 
