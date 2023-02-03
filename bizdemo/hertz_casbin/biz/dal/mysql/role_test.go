@@ -27,7 +27,7 @@ func init() {
 	Init()
 }
 
-// craete role data
+// create role data
 func TestCreateRole(t *testing.T) {
 
 	role := casbin.Role{

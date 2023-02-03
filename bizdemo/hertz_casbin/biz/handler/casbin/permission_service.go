@@ -63,7 +63,7 @@ func CreatePermission(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	err = mysql.CreatePermisson(&rpermission)
+	err = mysql.CreatePermission(&rpermission)
 	if err != nil {
 		resp.Code = 4
 		resp.Msg = "create failed"

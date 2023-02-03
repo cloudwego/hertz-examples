@@ -44,7 +44,7 @@ func TestCreatePermission(t *testing.T) {
 		fmt.Println("Permission already exists")
 		return
 	}
-	err = CreatePermisson(&permission)
+	err = CreatePermission(&permission)
 	if err != nil {
 		t.Fatal(err)
 	}

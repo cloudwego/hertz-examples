@@ -18,7 +18,7 @@ package mysql
 
 import "github.com/cloudwego/hertz-examples/bizdemo/hertz_casbin/biz/model/casbin"
 
-func CreatePermisson(permission *casbin.Permission) error {
+func CreatePermission(permission *casbin.Permission) error {
 	return DB.Create(permission).Error
 }
 
