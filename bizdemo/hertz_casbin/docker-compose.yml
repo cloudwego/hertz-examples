@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  mysql:
+    image: 'mysql:latest'
+    ports:
+      - 9912:3306
+    environment:
+      - MYSQL_DATABASE=casbin
+      - MYSQL_ROOT_PASSWORD=casbin
+
