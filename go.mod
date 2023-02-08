@@ -7,7 +7,7 @@ require (
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.1764 // indirect
 	github.com/apache/thrift v0.13.0
-	github.com/cloudwego/hertz v0.4.2
+	github.com/cloudwego/hertz v0.5.3-0.20230208034101-28c304eb7082
 	github.com/cloudwego/kitex v0.3.1
 	github.com/go-errors/errors v1.4.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect

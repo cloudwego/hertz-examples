@@ -43,6 +43,7 @@ You can enter the example for information about  "How to run"
 - [reverseproxy:](reverseproxy/standard) Example of using reverseproxy in hertz server
 - [gzip:](middleware/gzip) Example of using gzip middleware in hertz server
 - [hlog:](hlog) Example of using hlog and its log extension
+- [trailer:](trailer) Example of read/write trailers for hertz server
 
 ## Client
 
@@ -54,6 +55,7 @@ You can enter the example for information about  "How to run"
 - [client/middleware:](client/middleware) Example of using hertz client middleware
 - [client/streaming_read:](client/streaming_read) Example of streaming read response using hertz client
 - [client/forward_proxy:](client/forward_proxy) Example of configuring a forward proxy using hertz client
+- [trailer:](trailer) Example of sending a request with trailer using hertz client
 
 ## Hz
 
