@@ -18,7 +18,6 @@ package main
 
 import (
 	"context"
-	"log"
 	"time"
 
 	"github.com/cloudwego/hertz/pkg/app/client"
@@ -32,8 +31,7 @@ import (
 func main() {
 	cli, err := client.NewClient()
 	if err != nil {
-		log.Fatal(err)
-		return
+		hlog.Fatal(err)
 	}
 	lb := loadbalanceEx.NewRoundRobinBalancer()
 	opt := loadbalance.Options{
@@ -42,8 +40,7 @@ func main() {
 	}
 	r, err := nacos.NewDefaultNacosResolver()
 	if err != nil {
-		log.Fatal(err)
-		return
+		hlog.Fatal(err)
 	}
 	cli.Use(sd.Discovery(r, sd.WithLoadBalanceOptions(lb, opt)))
 	for i := 0; i < 10; i++ {

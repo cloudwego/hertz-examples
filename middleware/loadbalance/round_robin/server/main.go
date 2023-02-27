@@ -19,12 +19,12 @@ package main
 import (
 	"context"
 	"fmt"
-	"log"
 	"sync"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/app/server/registry"
+	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/hertz-contrib/registry/nacos"
@@ -39,8 +39,7 @@ func main() {
 			addr := fmt.Sprintf("127.0.0.1:800%d", num)
 			r, err := nacos.NewDefaultNacosRegistry()
 			if err != nil {
-				log.Fatal(err)
-				return
+				hlog.Fatal(err)
 			}
 			h := server.Default(
 				server.WithHostPorts(addr),
