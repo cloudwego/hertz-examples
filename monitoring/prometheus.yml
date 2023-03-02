@@ -27,4 +27,4 @@ scrape_configs:
     scrape_interval: 1s
     metrics_path: /hertz
     static_configs:
-      - targets: ['$inetIP:9091']
+      - targets: ['host.docker.internal:9091']
