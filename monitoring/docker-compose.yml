@@ -2,6 +2,8 @@ version: '2'
 services:
   prometheus:
     image: prom/prometheus:latest
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - ./alert.rules:/etc/prometheus/alert.rules
@@ -12,6 +14,8 @@ services:
       - '9090:9090'
   grafana:
     image: grafana/grafana:latest
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - grafana_data:/var/lib/grafana
     environment:
