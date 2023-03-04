@@ -26,6 +26,7 @@ You can enter the example for information about  "How to run"
   - [pprof:](middleware/pprof) Example of using pprof middleware
   - [requestid:](middleware/requestid) Example of using RequestID middleware
   - [gzip:](middleware/gzip) Example of using Gzip middleware
+  - [loadbalance:](middleware/loadbalance) Example of using Loadbalance middleware
 - [binding:](binding) Example of parameter binding and validation
 - [parameters:](parameter) Example of getting query, form, cookie
 - [file:](file) Examples of file upload, file download, and static file services

@@ -356,6 +356,8 @@ github.com/hertz-contrib/csrf v0.1.1 h1:53HxseVzpW4JEUJ7ONAaQCyNBWXl+rn42LVqgwEQ
 github.com/hertz-contrib/csrf v0.1.1/go.mod h1:z6CW935kPp1qy1XHXL7memdWInXXTc3OiMLp/cEmZQY=
 github.com/hertz-contrib/gzip v0.0.1 h1:fPCnSZIDT4Gd8ZTuoCCJXek0opUsN89T2djdEW7Awr4=
 github.com/hertz-contrib/gzip v0.0.1/go.mod h1:Fom/vnPMLA3UJ/P8fsZO8izjWG82m53BGO48lW1U1l8=
+github.com/hertz-contrib/loadbalance v0.0.0-20221116114142-dd518c836084 h1:NTW/BXWZGyZ5H4RzDkrtVIp903GHcKSbkUCmOyL3Fws=
+github.com/hertz-contrib/loadbalance v0.0.0-20221116114142-dd518c836084/go.mod h1:/XTcchniFK8i1avFOVCJJjrczhyVbwMWuApMqp3k8m8=
 github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe h1:zN6bQ8EVxZmnUfcU2zVU63AmDJFg1lcvRKL4T66MK7M=
 github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe/go.mod h1:SqDYLwVq5hTItYqimgZQbFCYPOIGNvBTq0Ip2OQwMcY=
 github.com/hertz-contrib/logger/zap v0.0.0-20221104075115-aecbfb39bbfe h1:cBAAFz/S7lriahBuC8OJTAMBp9oLOPnhX/LCVJ2TN/U=
@@ -374,8 +376,8 @@ github.com/hertz-contrib/opensergo v0.0.1 h1:13E0Jnod1IUIdLNPtuf/gGf+j5Pyw3QKcVT
 github.com/hertz-contrib/opensergo v0.0.1/go.mod h1:QN8DCmp8gzNy0LvvyIjqLhALg26009haLX5KsMfi+CI=
 github.com/hertz-contrib/pprof v0.1.0 h1:yES6PQ5AJZRKiUQem1cpXU2gskO4cHdPMiXu9qSGS7E=
 github.com/hertz-contrib/pprof v0.1.0/go.mod h1:4vgREcobBOExepQdEt/EMD/Nc1u01rpXXaQa2TNjA4A=
-github.com/hertz-contrib/registry/nacos v0.0.0-20220901103531-b8810bf778fb h1:ICP03JNf3XyJ++3eL/zp02PHqmk6Xeh2SFrFIQWf8ZQ=
-github.com/hertz-contrib/registry/nacos v0.0.0-20220901103531-b8810bf778fb/go.mod h1:hMq9ay3uMBpcCIbAuZpaeTrLMASE/ZTz8yElXMAcacw=
+github.com/hertz-contrib/registry/nacos v0.0.0-20221111034347-1885e5d5c1c9 h1:xUG+PDRxSR/wDsA3UKt0wBn2UHI3GcF997gaRkh+pcU=
+github.com/hertz-contrib/registry/nacos v0.0.0-20221111034347-1885e5d5c1c9/go.mod h1:hMq9ay3uMBpcCIbAuZpaeTrLMASE/ZTz8yElXMAcacw=
 github.com/hertz-contrib/requestid v1.1.0 h1:+y1cuNlNX2KUoEC1SnBJ6M55/TlMTx3M9yxkqi0oTkk=
 github.com/hertz-contrib/requestid v1.1.0/go.mod h1:+l5CbZl//cSUoos421fnDFKQ6YYlVHcYc3Ri7AS8DUA=
 github.com/hertz-contrib/reverseproxy v0.0.0-20220907134658-6a05798e1cc5 h1:kK7lkrXhoFvX7TIrd36V+OGpdEmcFzoiAYEkWiLX/5w=
@@ -831,8 +833,8 @@ golang.org/x/sync v0.0.0-20201207232520-09787c993a3a/go.mod h1:RxMgew5VJxzue5/jJ
 golang.org/x/sync v0.0.0-20210220032951-036812b2e83c/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
 golang.org/x/sync v0.0.0-20220601150217-0de741cfad7f/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
 golang.org/x/sync v0.0.0-20220722155255-886fb9371eb4/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
-golang.org/x/sync v0.0.0-20220907140024-f12130a52804 h1:0SH2R3f1b1VmIMG7BXbEZCBUu2dKmHschSmjqGUrW8A=
-golang.org/x/sync v0.0.0-20220907140024-f12130a52804/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
+golang.org/x/sync v0.1.0 h1:wsuoTGHzEhffawBOhz5CYhcrV4IdKZbEyZjBMuTp12o=
+golang.org/x/sync v0.1.0/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
 golang.org/x/sys v0.0.0-20180823144017-11551d06cbcc/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20180830151530-49385e6e1522/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=
 golang.org/x/sys v0.0.0-20180905080454-ebe1bf3edb33/go.mod h1:STP8DvDyc/dI5b8T5hshtkjS+E42TnysNCUPdjciGhY=

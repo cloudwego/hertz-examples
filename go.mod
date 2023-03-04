@@ -15,6 +15,7 @@ require (
 	github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf
 	github.com/hertz-contrib/csrf v0.1.1
 	github.com/hertz-contrib/gzip v0.0.1
+	github.com/hertz-contrib/loadbalance v0.0.0-20221116114142-dd518c836084
 	github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe
 	github.com/hertz-contrib/logger/zap v0.0.0-20221104075115-aecbfb39bbfe
 	github.com/hertz-contrib/logger/zerolog v0.0.0-20221111024215-1ee59ae719d7
@@ -24,7 +25,7 @@ require (
 	github.com/hertz-contrib/obs-opentelemetry/tracing v0.1.1
 	github.com/hertz-contrib/opensergo v0.0.1
 	github.com/hertz-contrib/pprof v0.1.0
-	github.com/hertz-contrib/registry/nacos v0.0.0-20220901103531-b8810bf778fb
+	github.com/hertz-contrib/registry/nacos v0.0.0-20221111034347-1885e5d5c1c9
 	github.com/hertz-contrib/requestid v1.1.0
 	github.com/hertz-contrib/reverseproxy v0.0.0-20220907134658-6a05798e1cc5
 	github.com/hertz-contrib/sessions v1.0.1
@@ -45,7 +46,6 @@ require (
 	go.opentelemetry.io/proto/otlp v0.18.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	golang.org/x/net v0.7.0 // indirect
-	golang.org/x/sync v0.0.0-20220907140024-f12130a52804 // indirect
 	google.golang.org/genproto v0.0.0-20220630174209-ad1d48641aa7 // indirect
 	google.golang.org/protobuf v1.28.1
 	gopkg.in/ini.v1 v1.67.0 // indirect

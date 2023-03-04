@@ -26,6 +26,7 @@
   - [pprof:](middleware/pprof) 使用 pprof 中间件的示例
   - [requestid:](middleware/requestid) 使用 RequestID 中间件的示例
   - [gzip:](middleware/gzip) 使用 Gzip 中间件的示例
+  - [loadbalance:](middleware/loadbalance) 使用 Loadbalance 中间件的示例
 - [binding:](binding) 绑定参数和验证参数的示例
 - [parameters:](parameter) 获取 query, form, cookie 等类型参数的示例
 - [file:](file) 关于如何上传，下载文件和搭建静态文件服务的示例
