@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package message;
+
+import "api.proto";
+
+option go_package = "social/message";
+
+message DouyinMessageChatRequest {
+  string token = 1; // 用户鉴权token
+  int64 to_user_id = 2; // 对方用户id
+  int64 pre_msg_time = 3;
+}
+
+message DouyinMessageChatResponse {
+  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  string status_msg = 2; // 返回状态描述
+  repeated Message message_list = 3; // 消息列表
+}
+
+message Message {
+  int64 id = 1; // 消息id
+  int64 to_user_id = 2; // 该消息接收者的id
+  int64 from_user_id =3; // 该消息发送者的id
+  string content = 4; // 消息内容
+  int64 create_time = 5; // 消息创建时间
+}
+
+message DouyinMessageActionRequest {
+  string token = 1; // 用户鉴权token
+  int64 to_user_id = 2; // 对方用户id
+  int32 action_type = 3; // 1-发送消息
+  string content = 4; // 消息内容
+}
+
+message DouyinMessageActionResponse {
+  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  string status_msg = 2; // 返回状态描述
+}
+
+service MessageHandler {
+  rpc MessageChat(DouyinMessageChatRequest) returns(DouyinMessageChatResponse) {
+      option (api.get) = "/douyin/message/chat/";
+  }
+
+  rpc MessageAction(DouyinMessageActionRequest) returns(DouyinMessageActionResponse) {
+      option (api.post) = "/douyin/message/action/";
+  }
+}

@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package user;
+
+import "api.proto";
+
+option go_package = "basic/user";
+
+message DouyinUserRegisterRequest {
+  string username = 1; // 注册用户名，最长32个字符
+  string password = 2; // 密码，最长32个字符
+}
+
+message DouyinUserRegisterResponse {
+  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  string status_msg = 2; // 返回状态描述
+  int64 user_id = 3; // 用户id
+  string token = 4; // 用户鉴权token
+}
+
+message DouyinUserLoginRequest {
+  string username = 1; // 登录用户名
+  string password = 2; // 登录密码
+}
+
+message DouyinUserLoginResponse {
+  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  string status_msg = 2; // 返回状态描述
+  int64 user_id = 3; // 用户id
+  string token = 4; // 用户鉴权token
+}
+
+message DouyinUserRequest {
+  int64 user_id = 1; // 用户id
+  string token = 2; // 用户鉴权token
+}
+
+message DouyinUserResponse {
+  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  string status_msg = 2; // 返回状态描述
+  User user = 3; // 用户信息
+}
+
+message User {
+  int64 id = 1; // 用户id
+  string name = 2; // 用户名称
+  int64 follow_count = 3; // 关注总数
+  int64 follower_count = 4; // 粉丝总数
+  bool is_follow = 5; // true-已关注，false-未关注
+}
+
+service UserHandler {
+  rpc user(DouyinUserRequest) returns(DouyinUserResponse) {
+    option (api.get) = "/douyin/user/";
+  }
+
+  rpc UserRegister(DouyinUserRegisterRequest) returns(DouyinUserRegisterResponse) {
+    option (api.post) = "/douyin/user/register/";
+  }
+
+  rpc UserLogin(DouyinUserLoginRequest) returns(DouyinUserLoginResponse) {
+    option (api.post) = "/douyin/user/login/";
+  }
+}
+

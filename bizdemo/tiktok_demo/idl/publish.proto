@@ -1,0 +1,62 @@
+syntax = "proto2";
+
+package publish;
+
+import "api.proto";
+
+option go_package = "basic/publish";
+
+message DouyinPublishActionRequest {
+  required string token = 1; // 用户鉴权token
+  required bytes data = 2; // 视频数据
+  required string title = 3; // 视频标题
+}
+
+message DouyinPublishActionResponse {
+  required int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  optional string status_msg = 2; // 返回状态描述
+}
+
+message DouyinPublishListRequest {
+  required int64 user_id = 1; // 用户id
+  required string token = 2; // 用户鉴权token
+}
+
+message DouyinPublishListResponse {
+  required int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  optional string status_msg = 2; // 返回状态描述
+  repeated Video video_list = 3; // 用户发布的视频列表
+}
+
+message Video {
+  required int64 id = 1; // 视频唯一标识
+  required User author = 2; // 视频作者信息
+  required string play_url = 3; // 视频播放地址
+  required string cover_url = 4; // 视频封面地址
+  required int64 favorite_count = 5; // 视频的点赞总数
+  required int64 comment_count = 6; // 视频的评论总数
+  required bool is_favorite = 7; // true-已点赞，false-未点赞
+  required string title = 8; // 视频标题
+}
+
+message User {
+  required int64 id = 1; // 用户id
+  required string name = 2; // 用户名称
+  optional int64 follow_count = 3; // 关注总数
+  optional int64 follower_count = 4; // 粉丝总数
+  required bool is_follow = 5; // true-已关注，false-未关注
+}
+
+
+
+service PublishHandler {
+  rpc PublishAction(DouyinPublishActionRequest) returns(DouyinPublishActionResponse) {
+    option (api.post) = "/douyin/publish/action/";
+  }
+
+  rpc PublishList(DouyinPublishListRequest) returns(DouyinPublishListResponse) {
+    option (api.get) = "/douyin/publish/list/";
+  }
+
+}
+

@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package comment;
+
+import "api.proto";
+
+option go_package = "interact/comment";
+
+message DouyinCommentActionRequest {
+  string token = 1; // 用户鉴权token
+  int64 video_id = 2; // 视频id
+  int32 action_type = 3; // 1-发布评论，2-删除评论
+  string comment_text = 4; // 用户填写的评论内容，在action_type=1的时候使用
+  int64 comment_id = 5; // 要删除的评论id，在action_type=2的时候使用
+}
+
+message DouyinCommentActionResponse {
+  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  string status_msg = 2; // 返回状态描述
+  Comment comment = 3; // 评论成功返回评论内容，不需要重新拉取整个列表
+}
+
+message Comment {
+  int64 id = 1; // 视频评论id
+  User user =2; // 评论用户信息
+  string content = 3; // 评论内容
+  string create_date = 4; // 评论发布日期，格式 mm-dd
+}
+
+
+message DouyinCommentListRequest {
+  string token = 1; // 用户鉴权token
+  int64 video_id = 2; // 视频id
+}
+
+message DouyinCommentListResponse {
+  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  string status_msg = 2; // 返回状态描述
+  repeated Comment comment_list = 3; // 评论列表
+}
+
+message User {
+  int64 id = 1; // 用户id
+  string name = 2; // 用户名称
+  int64 follow_count = 3; // 关注总数
+  int64 follower_count = 4; // 粉丝总数
+  bool is_follow = 5; // true-已关注，false-未关注
+}
+
+service CommentHandler {
+  rpc CommentAction(DouyinCommentActionRequest) returns(DouyinCommentActionResponse) {
+      option (api.post) = "/douyin/comment/action/";
+  }
+
+  rpc CommentList(DouyinCommentListRequest) returns(DouyinCommentListResponse) {
+      option (api.get) = "/douyin/comment/list/";
+  }
+}
+
