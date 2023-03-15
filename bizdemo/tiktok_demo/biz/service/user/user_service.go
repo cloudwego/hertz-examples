@@ -18,12 +18,13 @@ package service
 
 import (
 	"context"
-	"offer_tiktok/biz/dal/db"
-	"offer_tiktok/pkg/constants"
-	"offer_tiktok/pkg/errno"
-	"offer_tiktok/pkg/utils"
 
-	user "offer_tiktok/biz/model/basic/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
+
+	user "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/user"
 
 	"github.com/cloudwego/hertz/pkg/app"
 )
@@ -33,12 +34,11 @@ type UserService struct {
 	c   *app.RequestContext
 }
 
-// NewCreateUserService new CreateUserService
 func NewUserService(ctx context.Context, c *app.RequestContext) *UserService {
 	return &UserService{ctx: ctx, c: c}
 }
 
-// CreateUser create user info.
+// UserRegister CreateUser create user info.
 func (s *UserService) UserRegister(req *user.DouyinUserRegisterRequest) (user_id int64, err error) {
 	user, err := db.QueryUser(req.Username)
 	if err != nil {
@@ -60,7 +60,6 @@ func (s *UserService) UserRegister(req *user.DouyinUserRegisterRequest) (user_id
 }
 
 func (s *UserService) UserInfo(req *user.DouyinUserRequest) (*user.User, error) {
-	// resp := &user.User{}
 	query_user_id := req.UserId
 	current_user_id, exists := s.c.Get("current_user_id")
 	if !exists {
@@ -69,12 +68,14 @@ func (s *UserService) UserInfo(req *user.DouyinUserRequest) (*user.User, error) 
 	return s.GetUserInfo(query_user_id, current_user_id.(int64))
 }
 
-/**
- * @description: 根据当前用户 user_id 查询 query_user_id 的信息
- * @param {int64} query_user_id
- * @param {int64} userId 当前登陆用户 id，可能为 0
- * @return {user.User}
- */
+// GetUserInfo
+//
+//	@Description: 根据当前用户 user_id 查询 query_user_id 的信息
+//	@receiver *UserService
+//	@param query_user_id int64
+//	@param user_id int64 当前登陆用户 id，可能为 0
+//	@return *user.User
+//	@return error
 func (s *UserService) GetUserInfo(query_user_id, user_id int64) (*user.User, error) {
 	u := &user.User{}
 

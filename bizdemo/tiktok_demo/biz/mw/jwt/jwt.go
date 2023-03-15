@@ -18,20 +18,18 @@ package jwt
 
 import (
 	"context"
-	"offer_tiktok/biz/model/basic/user"
-	"offer_tiktok/biz/pack"
-	"offer_tiktok/pkg/errno"
-	"offer_tiktok/pkg/utils"
 	"time"
-
-	db "offer_tiktok/biz/dal/db"
-
-	_ "offer_tiktok/pkg/errno"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/hertz-contrib/jwt"
+
+	db "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
+	_ "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
 var (
@@ -89,7 +87,7 @@ func Init() {
 			})
 		},
 		HTTPStatusMessageFunc: func(e error, ctx context.Context, c *app.RequestContext) string {
-			resp := pack.BuildBaseResp(e)
+			resp := utils.BuildBaseResp(e)
 			return resp.StatusMsg
 		},
 	})

@@ -1,4 +1,4 @@
-module offer_tiktok
+module github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo
 
 go 1.18
 

@@ -20,17 +20,18 @@ package main
 
 import (
 	"context"
-	"offer_tiktok/biz/dal"
-	"offer_tiktok/biz/mw/jwt"
-	"offer_tiktok/biz/mw/minio"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"github.com/hertz-contrib/reverseproxy"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/jwt"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/minio"
 )
 
-// 将hertz server中路由符合/src/*name的通配路由进行转发
+// Set up /src/*name route forwarding to access minio from external network
 func minioReverseProxy(c context.Context, ctx *app.RequestContext) {
 	proxy, _ := reverseproxy.NewSingleHostReverseProxy("http://localhost:18001")
 	ctx.URI().SetPath(ctx.Param("name"))

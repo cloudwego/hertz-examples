@@ -23,11 +23,13 @@
 package user
 
 import (
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "offer_tiktok/biz/model/api"
 	reflect "reflect"
 	sync "sync"
+
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+
+	_ "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/api"
 )
 
 const (

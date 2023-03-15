@@ -20,15 +20,14 @@ package comment
 
 import (
 	"context"
-	"offer_tiktok/biz/pack"
-	"offer_tiktok/pkg/errno"
-
-	comment "offer_tiktok/biz/model/interact/comment"
-
-	comment_service "offer_tiktok/biz/service/comment"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+
+	comment "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/interact/comment"
+	comment_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/comment"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
 // CommentAction .
@@ -38,7 +37,7 @@ func CommentAction(ctx context.Context, c *app.RequestContext) {
 	var req comment.DouyinCommentActionRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		resp := pack.BuildBaseResp(err)
+		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, comment.DouyinCommentActionResponse{
 			StatusCode: resp.StatusCode,
 			StatusMsg:  resp.StatusMsg,
@@ -48,7 +47,7 @@ func CommentAction(ctx context.Context, c *app.RequestContext) {
 
 	comment_, err := comment_service.NewCommentService(ctx, c).AddNewComment(&req)
 	if err != nil {
-		resp := pack.BuildBaseResp(err)
+		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, comment.DouyinCommentActionResponse{
 			StatusCode: resp.StatusCode,
 			StatusMsg:  resp.StatusMsg,
@@ -76,7 +75,7 @@ func CommentList(ctx context.Context, c *app.RequestContext) {
 
 	resp, err := comment_service.NewCommentService(ctx, c).CommentList(&req)
 	if err != nil {
-		resp := pack.BuildBaseResp(err)
+		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, comment.DouyinCommentActionResponse{
 			StatusCode: resp.StatusCode,
 			StatusMsg:  resp.StatusMsg,

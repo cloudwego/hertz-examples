@@ -14,17 +14,11 @@
  * limitations under the License.
  */
 
-/*
- * @Description:
- * @Author: kpole
- * @Date: 2023-02-20 21:03:18
- * @LastEditors: kpole
- */
 package db
 
 import (
-	"offer_tiktok/pkg/constants"
-	"offer_tiktok/pkg/errno"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 )
 
 type User struct {

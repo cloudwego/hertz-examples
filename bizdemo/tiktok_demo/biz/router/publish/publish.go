@@ -20,7 +20,8 @@ package Publish
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-	publish "offer_tiktok/biz/handler/publish"
+
+	publish "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler/publish"
 )
 
 /*

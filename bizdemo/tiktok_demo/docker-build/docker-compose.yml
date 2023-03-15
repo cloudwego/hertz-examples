@@ -5,7 +5,7 @@ services:
     image: 'mysql:latest'
     container_name: tiktok_mysql
     volumes:
-      - ../pkg/configs/sql:/docker-entrypoint-initdb.d
+      - ./pkg/configs/sql:/docker-entrypoint-initdb.d
     ports:
       - 18000:3306
     environment:
@@ -19,15 +19,15 @@ services:
     image: minio/minio
     container_name: tiktok_minio
     ports:
-      - 18001:9000 # api 端口
-      - 18002:9001 # 控制台端口
+      - 18001:9000
+      - 18002:9001
     environment:
-      MINIO_ACCESS_KEY: douyin    #管理后台用户名
-      MINIO_SECRET_KEY: douyin123 #管理后台密码，最小8个字符
+      MINIO_ACCESS_KEY: douyin
+      MINIO_SECRET_KEY: douyin123
     volumes:
-      - ../pkg/data/minio/:/data               #映射当前目录下的data目录至容器内/data目录
-      - ../pkg/configs/minio/:/root/.minio     #映射配置目录
-    command: server --console-address ':9001' /data  #指定容器中的目录 /data
+      - ./pkg/data/minio/:/data
+      - ./pkg/configs/minio/:/root/.minio
+    command: server --console-address ':9001' /data
     privileged: true
     restart: always
 
@@ -37,9 +37,7 @@ services:
     ports:
       - 18003:6379
     volumes:
-      - ../pkg/data/redis/:/data
-      - ../pkg/configs/redis/redis.conf:/usr/local/etc/redis/redis.conf
-      - ../pkg/logs/redis/:/logs
+      - ./pkg/data/redis/:/data
     command: redis-server /usr/local/etc/redis/redis.conf
     restart: always
 

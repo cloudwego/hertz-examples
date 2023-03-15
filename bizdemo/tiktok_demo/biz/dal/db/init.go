@@ -17,7 +17,7 @@
 package db
 
 import (
-	"offer_tiktok/pkg/constants"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

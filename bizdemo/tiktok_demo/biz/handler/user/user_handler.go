@@ -20,16 +20,15 @@ package user
 
 import (
 	"context"
-	"offer_tiktok/biz/mw/jwt"
-	"offer_tiktok/biz/pack"
-	"offer_tiktok/pkg/errno"
-
-	user "offer_tiktok/biz/model/basic/user"
-
-	service "offer_tiktok/biz/service/user"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+
+	user "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/jwt"
+	service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
 // UserRegister .
@@ -39,7 +38,7 @@ func UserRegister(ctx context.Context, c *app.RequestContext) {
 	var req user.DouyinUserRegisterRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		resp := pack.BuildBaseResp(err)
+		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, user.DouyinUserRegisterResponse{
 			StatusCode: resp.StatusCode,
 			StatusMsg:  resp.StatusMsg,
@@ -49,7 +48,7 @@ func UserRegister(ctx context.Context, c *app.RequestContext) {
 
 	_, err = service.NewUserService(ctx, c).UserRegister(&req)
 	if err != nil {
-		resp := pack.BuildBaseResp(err)
+		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, user.DouyinUserRegisterResponse{
 			StatusCode: resp.StatusCode,
 			StatusMsg:  resp.StatusMsg,
@@ -89,7 +88,7 @@ func User(ctx context.Context, c *app.RequestContext) {
 	var req user.DouyinUserRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		resp := pack.BuildBaseResp(err)
+		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, user.DouyinUserResponse{
 			StatusCode: resp.StatusCode,
 			StatusMsg:  resp.StatusMsg,
@@ -99,7 +98,7 @@ func User(ctx context.Context, c *app.RequestContext) {
 
 	u, err := service.NewUserService(ctx, c).UserInfo(&req)
 
-	resp := pack.BuildBaseResp(err)
+	resp := utils.BuildBaseResp(err)
 	c.JSON(consts.StatusOK, user.DouyinUserResponse{
 		StatusCode: resp.StatusCode,
 		StatusMsg:  resp.StatusMsg,

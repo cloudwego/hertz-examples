@@ -17,8 +17,8 @@
 package dal
 
 import (
-	"offer_tiktok/biz/dal/db"
-	"offer_tiktok/biz/mw/redis"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/redis"
 )
 
 // Init init dal

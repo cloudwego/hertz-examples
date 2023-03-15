@@ -17,11 +17,12 @@
 package db
 
 import (
-	"offer_tiktok/pkg/constants"
-	"offer_tiktok/pkg/errno"
 	"time"
 
 	"gorm.io/gorm"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 )
 
 type Favorites struct {

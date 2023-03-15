@@ -17,8 +17,9 @@
 package redis
 
 import (
-	"offer_tiktok/pkg/constants"
 	"time"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 
 	"github.com/go-redis/redis/v7"
 )
@@ -29,7 +30,6 @@ var (
 )
 
 func InitRedis() {
-	// 后续可能需要接入config
 	RdbFollowing = redis.NewClient(&redis.Options{
 		Addr:     constants.RedisAddr,
 		Password: constants.RedisPassword,

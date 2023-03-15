@@ -23,10 +23,12 @@
 package favorite
 
 import (
+	sync "sync"
+
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "offer_tiktok/biz/model/api"
-	sync "sync"
+
+	_ "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/api"
 )
 
 const (

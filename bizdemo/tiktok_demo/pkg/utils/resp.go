@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package pack
+package utils
 
 import (
 	"errors"
-	"offer_tiktok/pkg/errno"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 )
 
 type BaseResp struct {

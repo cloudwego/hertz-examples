@@ -19,8 +19,9 @@ package minio
 import (
 	"context"
 	"fmt"
-	"offer_tiktok/pkg/constants"
 	"testing"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 
 	"github.com/minio/minio-go/v7"
 )

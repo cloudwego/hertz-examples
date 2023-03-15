@@ -18,10 +18,11 @@ package service
 
 import (
 	"context"
-	"offer_tiktok/biz/dal/db"
-	"offer_tiktok/biz/model/social/message"
-	"offer_tiktok/pkg/errno"
-	"offer_tiktok/pkg/utils"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/social/message"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 
 	"github.com/cloudwego/hertz/pkg/app"
 )

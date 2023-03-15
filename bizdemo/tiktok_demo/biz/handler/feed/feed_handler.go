@@ -20,15 +20,14 @@ package feed
 
 import (
 	"context"
-	"offer_tiktok/biz/pack"
-	"offer_tiktok/pkg/errno"
-
-	feed "offer_tiktok/biz/model/basic/feed"
-
-	feed_service "offer_tiktok/biz/service/feed"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+
+	feed "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/feed"
+	feed_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/feed"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
 // Feed .
@@ -38,7 +37,7 @@ func Feed(ctx context.Context, c *app.RequestContext) {
 	var req feed.DouyinFeedRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		resp := pack.BuildBaseResp(err)
+		resp := utils.BuildBaseResp(err)
 		// c.String(consts.StatusBadRequest, err.Error())
 		c.JSON(consts.StatusOK, feed.DouyinFeedResponse{
 			StatusCode: resp.StatusCode,
@@ -49,7 +48,7 @@ func Feed(ctx context.Context, c *app.RequestContext) {
 
 	resp, err := feed_service.NewFeedService(ctx, c).Feed(&req)
 	if err != nil {
-		bresp := pack.BuildBaseResp(err)
+		bresp := utils.BuildBaseResp(err)
 		resp.StatusCode = bresp.StatusCode
 		resp.StatusMsg = bresp.StatusMsg
 		c.JSON(consts.StatusOK, resp)

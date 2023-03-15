@@ -19,13 +19,14 @@ package service
 import (
 	"context"
 	"log"
-	"offer_tiktok/biz/dal/db"
 
-	user_service "offer_tiktok/biz/service/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+
+	user_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/user"
 
 	"github.com/cloudwego/hertz/pkg/app"
 
-	relation "offer_tiktok/biz/model/social/relation"
+	relation "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/social/relation"
 )
 
 type FollowerListService struct {

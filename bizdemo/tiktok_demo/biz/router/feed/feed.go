@@ -20,7 +20,8 @@ package Feed
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-	feed "offer_tiktok/biz/handler/feed"
+
+	feed "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler/feed"
 )
 
 /*

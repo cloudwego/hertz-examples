@@ -39,4 +39,4 @@ offer_tiktok
 /pkg/data/minio/.minio.sys/
 /pkg/data/minio/imagebucket/
 /pkg/data/minio/videobucket/
-# /pkg/data/redis/
+/pkg/data/redis/

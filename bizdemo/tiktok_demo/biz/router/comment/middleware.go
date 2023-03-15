@@ -19,7 +19,7 @@
 package Comment
 
 import (
-	"offer_tiktok/biz/mw/jwt"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/jwt"
 
 	"github.com/cloudwego/hertz/pkg/app"
 )

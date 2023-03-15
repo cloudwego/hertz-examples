@@ -20,15 +20,14 @@ package favorite
 
 import (
 	"context"
-	"offer_tiktok/biz/pack"
-	"offer_tiktok/pkg/errno"
-
-	favorite "offer_tiktok/biz/model/interact/favorite"
-
-	favorite_service "offer_tiktok/biz/service/favorite"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+
+	favorite "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/interact/favorite"
+	favorite_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/favorite"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
 // FavoriteAction .
@@ -39,7 +38,7 @@ func FavoriteAction(ctx context.Context, c *app.RequestContext) {
 	err = c.BindAndValidate(&req)
 
 	if err != nil {
-		resp := pack.BuildBaseResp(err)
+		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, favorite.DouyinFavoriteActionResponse{
 			StatusCode: resp.StatusCode,
 			StatusMsg:  resp.StatusMsg,
@@ -49,7 +48,7 @@ func FavoriteAction(ctx context.Context, c *app.RequestContext) {
 
 	ok, err := favorite_service.NewFavoriteService(ctx, c).FavoriteAction(&req)
 	if err != nil {
-		resp := pack.BuildBaseResp(err)
+		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, favorite.DouyinFavoriteActionResponse{
 			StatusCode: resp.StatusCode,
 			StatusMsg:  resp.StatusMsg,
@@ -58,7 +57,7 @@ func FavoriteAction(ctx context.Context, c *app.RequestContext) {
 	}
 
 	if !ok {
-		resp := pack.BuildBaseResp(errno.FavoriteActionErr)
+		resp := utils.BuildBaseResp(errno.FavoriteActionErr)
 		c.JSON(consts.StatusOK, favorite.DouyinFavoriteActionResponse{
 			StatusCode: resp.StatusCode,
 			StatusMsg:  resp.StatusMsg,

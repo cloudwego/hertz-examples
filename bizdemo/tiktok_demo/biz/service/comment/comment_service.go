@@ -19,13 +19,13 @@ package service
 import (
 	"context"
 	"log"
-	"offer_tiktok/biz/dal/db"
-	"offer_tiktok/biz/model/interact/comment"
-	"offer_tiktok/pkg/errno"
-
-	user_service "offer_tiktok/biz/service/user"
 
 	"github.com/cloudwego/hertz/pkg/app"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/interact/comment"
+	user_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 )
 
 type CommentService struct {
@@ -124,12 +124,6 @@ func (c *CommentService) copyComment(result *[]*comment.Comment, data *[]*db.Com
 	return nil
 }
 
-/**
- * @description: 将 db.Comment 拼接成 comment.Comment
- * @param {*db.comment} data
- * @param {int64} userId
- * @return {*}
- */
 func (c *CommentService) createComment(data *db.Comment, userId int64) *comment.Comment {
 	comment := &comment.Comment{
 		Id:         data.ID,

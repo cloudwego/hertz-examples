@@ -20,7 +20,8 @@ package main
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-	router "offer_tiktok/biz/router"
+
+	router "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/router"
 )
 
 // register registers all routers.

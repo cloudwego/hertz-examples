@@ -23,11 +23,12 @@ import (
 	"log"
 	"mime/multipart"
 	"net/url"
-	"offer_tiktok/pkg/constants"
 	"time"
 
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 )
 
 var (

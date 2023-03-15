@@ -17,8 +17,9 @@
 package db
 
 import (
-	"offer_tiktok/pkg/constants"
 	"time"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 )
 
 type Video struct {

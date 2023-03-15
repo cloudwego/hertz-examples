@@ -20,14 +20,15 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"offer_tiktok/biz/dal/db"
-	"offer_tiktok/pkg/constants"
-	"offer_tiktok/pkg/utils"
 	"sync"
 	"time"
 
-	feed "offer_tiktok/biz/model/basic/feed"
-	user_service "offer_tiktok/biz/service/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
+
+	feed "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/feed"
+	user_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/user"
 
 	"github.com/cloudwego/hertz/pkg/app"
 )
@@ -73,6 +74,14 @@ func (s *FeedService) Feed(req *feed.DouyinFeedRequest) (*feed.DouyinFeedRespons
 	return resp, nil
 }
 
+// CopyVideos
+//
+//	@Description: use db.Video make feed.Video
+//	@receiver *FeedService
+//	@param result *[]*feed.Video
+//	@param data *[]*db.Video
+//	@param userId int64
+//	@return error
 func (s *FeedService) CopyVideos(result *[]*feed.Video, data *[]*db.Video, userId int64) error {
 	for _, item := range *data {
 		video := s.createVideo(item, userId)
@@ -81,12 +90,6 @@ func (s *FeedService) CopyVideos(result *[]*feed.Video, data *[]*db.Video, userI
 	return nil
 }
 
-/**
- * @description: 将 db.Video 拼接成 feed.Video
- * @param {*db.Video} data
- * @param {int64} userId
- * @return {*}
- */
 func (s *FeedService) createVideo(data *db.Video, userId int64) *feed.Video {
 	video := &feed.Video{
 		Id:       data.ID,

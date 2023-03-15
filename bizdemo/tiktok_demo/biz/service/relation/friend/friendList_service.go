@@ -19,14 +19,15 @@ package service
 import (
 	"context"
 	"log"
-	"offer_tiktok/biz/dal/db"
-	"offer_tiktok/pkg/errno"
 
-	user_service "offer_tiktok/biz/service/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
+
+	user_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/user"
 
 	"github.com/cloudwego/hertz/pkg/app"
 
-	relation "offer_tiktok/biz/model/social/relation"
+	relation "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/social/relation"
 )
 
 type FriendListService struct {
@@ -38,27 +39,22 @@ func NewFriendListService(ctx context.Context, c *app.RequestContext) *FriendLis
 	return &FriendListService{ctx: ctx, c: c}
 }
 
-// 相互关注的两个人互为好友
 func (s *FriendListService) GetFriendList(req *relation.DouyinRelationFriendListRequest) ([]*relation.FriendUser, error) {
 	user_id := req.UserId
-	// token := req.Token
 	current_user_id, _ := s.c.Get("current_user_id")
 
-	// 只有本人才可以看本人的好友列表
 	if current_user_id.(int64) != user_id {
 		return nil, errno.FriendListNoPermissionErr
 	}
 
 	var friendList []*relation.FriendUser
 
-	// 首先获得 user_id 所有粉丝
 	followerIdList, err := db.GetFollowerIdList(user_id)
 	if err != nil {
 		return friendList, err
 	}
 
 	for _, id := range followerIdList {
-		// 查看 user_id 是否也关注了 他的粉丝
 		isFriend, err := db.QueryFollowExist(&db.Follows{UserId: user_id, FollowerId: id})
 		if err != nil {
 			return friendList, err
@@ -73,7 +69,7 @@ func (s *FriendListService) GetFriendList(req *relation.DouyinRelationFriendList
 				log.Printf("func error: GetFriendList -> GetLatestMessageByIdPair")
 			}
 			var msgType int64
-			if message == nil { // 自定义2表示双方无聊天记录
+			if message == nil { // No chat history
 				msgType = 2
 				message = &db.Messages{}
 			} else if user_id == message.FromUserId {

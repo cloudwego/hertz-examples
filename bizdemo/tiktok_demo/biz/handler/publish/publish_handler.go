@@ -20,15 +20,14 @@ package publish
 
 import (
 	"context"
-	"offer_tiktok/biz/pack"
-	"offer_tiktok/pkg/errno"
-
-	publish "offer_tiktok/biz/model/basic/publish"
-
-	service "offer_tiktok/biz/service/publish"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+
+	publish "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/publish"
+	service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/publish"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
 // PublishAction .
@@ -39,7 +38,7 @@ func PublishAction(ctx context.Context, c *app.RequestContext) {
 	var req publish.DouyinPublishActionRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		resp := pack.BuildBaseResp(errno.ParamErr)
+		resp := utils.BuildBaseResp(errno.ParamErr)
 		c.JSON(consts.StatusBadRequest, publish.DouyinPublishActionResponse{
 			StatusCode: resp.StatusCode,
 			StatusMsg:  resp.StatusMsg,
@@ -48,7 +47,7 @@ func PublishAction(ctx context.Context, c *app.RequestContext) {
 	}
 	err = service.NewPublishService(ctx, c).PublishAction(&req)
 
-	resp := pack.BuildBaseResp(err)
+	resp := utils.BuildBaseResp(err)
 	c.JSON(consts.StatusOK, publish.DouyinPublishActionResponse{
 		StatusMsg:  resp.StatusMsg,
 		StatusCode: resp.StatusCode,
@@ -68,7 +67,7 @@ func PublishList(ctx context.Context, c *app.RequestContext) {
 
 	resp, err := service.NewPublishService(ctx, c).PublishList(&req)
 	if err != nil {
-		bresp := pack.BuildBaseResp(err)
+		bresp := utils.BuildBaseResp(err)
 		resp.StatusCode = bresp.StatusCode
 		resp.StatusMsg = bresp.StatusMsg
 		c.JSON(consts.StatusOK, resp)

@@ -19,9 +19,9 @@
 package main
 
 import (
-	handler "offer_tiktok/biz/handler"
-
 	"github.com/cloudwego/hertz/pkg/app/server"
+
+	handler "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler"
 )
 
 // customizeRegister registers customize routers.

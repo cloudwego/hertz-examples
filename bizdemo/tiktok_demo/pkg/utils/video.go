@@ -19,11 +19,12 @@ package utils
 import (
 	"context"
 	"fmt"
-	"offer_tiktok/biz/mw/minio"
 	"strings"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/minio"
 )
 
 func NewFileName(user_id, time int64) string {
@@ -31,13 +32,12 @@ func NewFileName(user_id, time int64) string {
 }
 
 // URLconvert
-/**
- * @description: 将数据库中存放的url转换为前端可访问的完整url
- * @param {context.Context} ctx
- * @param {*app.RequestContext} c
- * @param {string} path
- * @return {string} fullURL
- */
+//
+//	@Description: 将数据库中存放的url转换为前端可访问的完整url
+//	@param ctx context.Context
+//	@param c *app.RequestContext
+//	@param path string "数据库中存放的path"
+//	@return fullURL
 func URLconvert(ctx context.Context, c *app.RequestContext, path string) (fullURL string) {
 	if len(path) == 0 {
 		return ""

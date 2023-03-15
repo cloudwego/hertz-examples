@@ -20,7 +20,8 @@ package User
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-	user "offer_tiktok/biz/handler/user"
+
+	user "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler/user"
 )
 
 /*

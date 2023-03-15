@@ -18,18 +18,19 @@ package service
 
 import (
 	"context"
-	"offer_tiktok/biz/dal/db"
-	"offer_tiktok/biz/model/basic/feed"
-	"offer_tiktok/biz/model/basic/publish"
-	"offer_tiktok/biz/mw/ffmpeg"
-	"offer_tiktok/biz/mw/minio"
-	"offer_tiktok/pkg/constants"
-	"offer_tiktok/pkg/utils"
 	"path"
 	"strconv"
 	"time"
 
-	feed_service "offer_tiktok/biz/service/feed"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/feed"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/publish"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/ffmpeg"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/minio"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
+
+	feed_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/feed"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
@@ -40,7 +41,6 @@ type PublishService struct {
 	c   *app.RequestContext
 }
 
-// NewPublishService NewCreatePublishService new CreatePublishService
 func NewPublishService(ctx context.Context, c *app.RequestContext) *PublishService {
 	return &PublishService{ctx: ctx, c: c}
 }

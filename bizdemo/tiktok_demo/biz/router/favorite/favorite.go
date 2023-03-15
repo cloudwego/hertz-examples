@@ -20,7 +20,8 @@ package Favorite
 
 import (
 	"github.com/cloudwego/hertz/pkg/app/server"
-	favorite "offer_tiktok/biz/handler/favorite"
+
+	favorite "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler/favorite"
 )
 
 /*

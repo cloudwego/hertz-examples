@@ -17,16 +17,16 @@
 package db
 
 import (
-	"offer_tiktok/pkg/constants"
 	"strconv"
 	"time"
 
-	redis "offer_tiktok/biz/mw/redis"
-
 	"gorm.io/gorm"
+
+	redis "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/redis"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 )
 
-// user_id 关注了 follower_id
+// Follows user_id 关注了 follower_id
 type Follows struct {
 	ID         int64          `json:"id"`
 	UserId     int64          `json:"user_id"`
@@ -40,15 +40,6 @@ func (Follows) TableName() string {
 }
 
 func AddNewFollow(follow *Follows) (bool, error) {
-	// version1.0
-	// err := DB.Create(follow).Error
-	// if err != nil {
-	// 	return false, err
-	// }
-	// return true, nil
-
-	// version 2.0
-	// 先写数据库，然后删除缓存
 	err := DB.Create(follow).Error
 	if err != nil {
 		return false, err
@@ -66,14 +57,6 @@ func AddNewFollow(follow *Follows) (bool, error) {
 }
 
 func DeleteFollow(follow *Follows) (bool, error) {
-	// VERSION1.0
-	// err := DB.Where("user_id = ? AND follower_id = ?", follow.UserId, follow.FollowerId).Delete(follow).Error
-	// if err != nil {
-	// 	return false, err
-	// }
-	// return true, nil
-
-	// VERSION2.0
 	err := DB.Where("user_id = ? AND follower_id = ?", follow.UserId, follow.FollowerId).Delete(follow).Error
 	if err != nil {
 		return false, err
@@ -91,23 +74,11 @@ func DeleteFollow(follow *Follows) (bool, error) {
 }
 
 func QueryFollowExist(follow *Follows) (bool, error) {
-	// err := DB.Where("user_id = ? AND follower_id = ?", follow.UserId, follow.FollowerId).Find(&follow).Error
-
-	// if err != nil {
-	// 	return false, err
-	// }
-	// if follow.ID == 0 {
-	// 	return false, nil
-	// }
-	// return true, nil
-
-	// version2.0 add redis
 	if exist, err := redis.RdbFollowing.SIsMember(strconv.Itoa(int(follow.UserId)), follow.FollowerId).Result(); exist {
 		// fmt.Printf("在redis中获取到user_id:%d关注了user:%d的关系\n", follow.UserId, follow.FollowerId)
 		redis.RdbFollowing.Expire(strconv.Itoa(int(follow.UserId)), redis.ExpireTime)
 		return true, err
 	}
-	// 查数据库
 	err := DB.Where("user_id = ? AND follower_id = ?", follow.UserId, follow.FollowerId).Find(&follow).Error
 	if err != nil {
 		return false, err
@@ -120,17 +91,8 @@ func QueryFollowExist(follow *Follows) (bool, error) {
 	return true, nil
 }
 
-// 查询用户的关注数量
+// GetFollowCount 查询用户的关注数量
 func GetFollowCount(user_id int64) (int64, error) {
-	// version 1.0
-	// var count int64
-	// err := DB.Model(&Follows{}).Where("user_id = ?", user_id).Count(&count).Error
-	// if err != nil {
-	// 	return 0, err
-	// }
-	// return count, nil
-
-	// version2.0 add redis
 	if count, err := redis.RdbFollowing.SCard(strconv.Itoa(int(user_id))).Result(); count > 0 {
 		// 更新过期时间。
 		redis.RdbFollowing.Expire(strconv.Itoa(int(user_id)), redis.ExpireTime)
@@ -147,8 +109,8 @@ func GetFollowCount(user_id int64) (int64, error) {
 	return int64(len(followings)), nil
 }
 
-// 更新redis.RdbFollowing
-// 每次都添加一个-1是为了保证redis中总有这个值
+// AddNewFollowRelationToRedis 更新redis.RdbFollowing
+
 func AddNewFollowRelationToRedis(user_id int64, followings []int64) {
 	for _, following := range followings {
 		// redis.RdbFollowing.SAdd(strconv.Itoa(int(user_id)), -1)
@@ -158,18 +120,8 @@ func AddNewFollowRelationToRedis(user_id int64, followings []int64) {
 	redis.RdbFollowing.Expire(strconv.Itoa(int(user_id)), redis.ExpireTime)
 }
 
-// 查询用户的粉丝数量
-// 前提是 follower_id 存在
+// GetFolloweeCount 查询用户的粉丝数量
 func GetFolloweeCount(follower_id int64) (int64, error) {
-	// version1.0
-	// var count int64
-	// err := DB.Model(&Follows{}).Where("follower_id = ?", follower_id).Count(&count).Error
-	// if err != nil {
-	// 	return 0, err
-	// }
-	// return count, nil
-
-	// version2.0 add redis
 	if count, err := redis.RdbFollower.SCard(strconv.Itoa(int(follower_id))).Result(); count > 0 {
 		// 更新过期时间。
 		redis.RdbFollower.Expire(strconv.Itoa(int(follower_id)), redis.ExpireTime)
@@ -186,7 +138,7 @@ func GetFolloweeCount(follower_id int64) (int64, error) {
 	return int64(len(followers)), nil
 }
 
-// 更新redis.RdbFollower
+// AddNewFollowerRelationToRedis 更新redis.RdbFollower
 func AddNewFollowerRelationToRedis(user_id int64, followers []int64) {
 	for _, follower := range followers {
 		redis.RdbFollower.SAdd(strconv.Itoa(int(user_id)), follower)
@@ -195,7 +147,7 @@ func AddNewFollowerRelationToRedis(user_id int64, followers []int64) {
 	redis.RdbFollower.Expire(strconv.Itoa(int(user_id)), redis.ExpireTime)
 }
 
-// 获得 user_id 关注的人的 id
+// GetFollowIdList 获得 user_id 关注的人的 id
 func GetFollowIdList(user_id int64) ([]int64, error) {
 	var follow_actions []Follows
 	err := DB.Where("user_id = ?", user_id).Find(&follow_actions).Error
@@ -209,7 +161,7 @@ func GetFollowIdList(user_id int64) ([]int64, error) {
 	return result, nil
 }
 
-// 获得 follower_id 所有粉丝的 id
+// GetFollowerIdList 获得 follower_id 所有粉丝的 id
 func GetFollowerIdList(follower_id int64) ([]int64, error) {
 	var follow_actions []Follows
 	err := DB.Where("follower_id = ?", follower_id).Find(&follow_actions).Error
@@ -223,27 +175,12 @@ func GetFollowerIdList(follower_id int64) ([]int64, error) {
 	return result, nil
 }
 
-//-----------------------Add By BourneHUST----------------------------//
-
 func CheckFollowRelationExist(follow *Follows) (bool, error) {
-	// version 1.0
-	// err := DB.Where("user_id = ? AND follower_id = ?", follow.UserId, follow.FollowerId).Find(&follow).Error
-	// if err != nil {
-	// 	return false, err
-	// }
-	// // find未找到符合条件的数据会返回空结构体，ID = 0
-	// if follow.ID == 0 {
-	// 	return false, nil
-	// }
-	// return true, nil
-
-	// version2.0 add redis
 	if exist, err := redis.RdbFollowing.SIsMember(strconv.Itoa(int(follow.UserId)), follow.FollowerId).Result(); exist {
 		// fmt.Printf("在redis中获取到user_id:%d关注了user:%d的关系\n", follow.UserId, follow.FollowerId)
 		redis.RdbFollowing.Expire(strconv.Itoa(int(follow.UserId)), redis.ExpireTime)
 		return true, err
 	}
-	// 查数据库
 	err := DB.Where("user_id = ? AND follower_id = ?", follow.UserId, follow.FollowerId).Find(&follow).Error
 	if err != nil {
 		return false, err
