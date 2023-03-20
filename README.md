@@ -12,6 +12,7 @@ You can enter the example for information about  "How to run"
 - [bizdemo/hertz_gorm_gen:](bizdemo/hertz_gorm_gen) Example of using gorm/gen & proto IDL in hertz server
 - [bizdemo/hertz_jwt:](bizdemo/hertz_jwt) Example of using jwt in hertz server
 - [bizdemo/hertz_session:](bizdemo/hertz_session) Example of using distributed session and csrf in hertz server
+- [bizdemo/tiktok_demo:](bizdemo/tiktok_demo) Example of simple tiktok in hertz server
 
 ## Server
 
