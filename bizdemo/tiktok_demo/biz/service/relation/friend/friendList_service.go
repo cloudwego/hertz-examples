@@ -20,6 +20,8 @@ import (
 	"context"
 	"log"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 
@@ -78,19 +80,21 @@ func (s *FriendListService) GetFriendList(req *relation.DouyinRelationFriendList
 				msgType = 0
 			}
 			friendList = append(friendList, &relation.FriendUser{
-				Id:              user_info.Id,
-				Name:            user_info.Name,
-				FollowCount:     user_info.FollowCount,
-				FollowerCount:   user_info.FollowerCount,
-				IsFollow:        user_info.IsFollow,
-				Avatar:          user_info.Avatar,
-				BackgroundImage: user_info.BackgroundImage,
-				Signature:       user_info.Signature,
-				TotalFavorited:  user_info.TotalFavorited,
-				WorkCount:       user_info.WorkCount,
-				FavoriteCount:   user_info.FavoriteCount,
-				Message:         message.Content,
-				MsgType:         msgType,
+				User: common.User{
+					Id:              user_info.Id,
+					Name:            user_info.Name,
+					FollowCount:     user_info.FollowCount,
+					FollowerCount:   user_info.FollowerCount,
+					IsFollow:        user_info.IsFollow,
+					Avatar:          user_info.Avatar,
+					BackgroundImage: user_info.BackgroundImage,
+					Signature:       user_info.Signature,
+					TotalFavorited:  user_info.TotalFavorited,
+					WorkCount:       user_info.WorkCount,
+					FavoriteCount:   user_info.FavoriteCount,
+				},
+				Message: message.Content,
+				MsgType: msgType,
 			})
 		}
 	}

@@ -19,6 +19,8 @@ package service
 import (
 	"context"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/feed"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
@@ -68,7 +70,7 @@ func (r *FavoriteService) FavoriteAction(req *favorite.DouyinFavoriteActionReque
 	return flag, err
 }
 
-func (r *FavoriteService) GetFavoriteList(req *favorite.DouyinFavoriteListRequest) (favoritelist []*favorite.Video, err error) {
+func (r *FavoriteService) GetFavoriteList(req *favorite.DouyinFavoriteListRequest) (favoritelist []*common.Video, err error) {
 	query_user_id := req.UserId
 	_, err = db.CheckUserExistById(query_user_id)
 
@@ -84,9 +86,9 @@ func (r *FavoriteService) GetFavoriteList(req *favorite.DouyinFavoriteListReques
 	f := feed_service.NewFeedService(r.ctx, r.c)
 	err = f.CopyVideos(&videos, &dbVideos, current_user_id.(int64))
 	for _, item := range videos {
-		video := &favorite.Video{
+		video := &common.Video{
 			Id: item.Id,
-			Author: favorite.User{
+			Author: &common.User{
 				Id:              item.Author.Id,
 				Name:            item.Author.Name,
 				FollowCount:     item.Author.FollowCount,

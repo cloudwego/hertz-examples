@@ -23,6 +23,7 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/interact/comment"
 	user_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/user"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
@@ -72,13 +73,13 @@ func (c *CommentService) AddNewComment(req *comment.DouyinCommentActionRequest) 
 	}
 }
 
-func (c *CommentService) getUserInfoById(current_user_id, user_id int64) (*comment.User, error) {
+func (c *CommentService) getUserInfoById(current_user_id, user_id int64) (*common.User, error) {
 	u, err := user_service.NewUserService(c.ctx, c.c).GetUserInfo(user_id, current_user_id)
-	var comment_user *comment.User
+	var comment_user *common.User
 	if err != nil {
 		return comment_user, err
 	}
-	comment_user = &comment.User{
+	comment_user = &common.User{
 		Id:              u.Id,
 		Name:            u.Name,
 		FollowCount:     u.FollowCount,

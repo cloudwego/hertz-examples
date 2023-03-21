@@ -20,6 +20,8 @@ import (
 	"context"
 	"log"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 
 	user_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/user"
@@ -38,10 +40,10 @@ func NewFollowerListService(ctx context.Context, c *app.RequestContext) *Followe
 	return &FollowerListService{ctx: ctx, c: c}
 }
 
-func (s *FollowerListService) GetFollowerList(req *relation.DouyinRelationFollowerListRequest) ([]*relation.User, error) {
+func (s *FollowerListService) GetFollowerList(req *relation.DouyinRelationFollowerListRequest) ([]*common.User, error) {
 	user_id := req.UserId
 	// token := req.Token
-	var followerList []*relation.User
+	var followerList []*common.User
 	current_user_id, exists := s.c.Get("current_user_id")
 	if !exists {
 		current_user_id = int64(0)
@@ -58,7 +60,7 @@ func (s *FollowerListService) GetFollowerList(req *relation.DouyinRelationFollow
 			log.Printf("func error: GetFollowerList -> GetUserInfo")
 		}
 
-		user := &relation.User{
+		user := &common.User{
 			Id:              user_info.Id,
 			Name:            user_info.Name,
 			FollowCount:     user_info.FollowCount,

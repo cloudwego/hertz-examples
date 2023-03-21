@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mysql:
-    image: 'mysql:latest'
+    image: mysql:latest
     container_name: tiktok_mysql
     volumes:
       - ./pkg/configs/sql:/docker-entrypoint-initdb.d
@@ -32,11 +32,12 @@ services:
     restart: always
 
   redis:
-    image: redis
+    image: redis:7
     container_name: tiktok_redis
     ports:
       - 18003:6379
     volumes:
+      - ./pkg/configs/redis/redis.conf:/usr/local/etc/redis/redis.conf
       - ./pkg/data/redis/:/data
     command: redis-server /usr/local/etc/redis/redis.conf
     restart: always

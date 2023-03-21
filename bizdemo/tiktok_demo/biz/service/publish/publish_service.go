@@ -22,6 +22,8 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/feed"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/publish"
@@ -90,9 +92,9 @@ func (s *PublishService) PublishList(req *publish.DouyinPublishListRequest) (res
 		return resp, err
 	}
 	for _, item := range videos {
-		video := publish.Video{
+		video := common.Video{
 			Id: item.Id,
-			Author: publish.User{
+			Author: &common.User{
 				Id:              item.Author.Id,
 				Name:            item.Author.Name,
 				FollowCount:     item.Author.FollowCount,

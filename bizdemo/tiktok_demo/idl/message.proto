@@ -13,7 +13,7 @@ message DouyinMessageChatRequest {
 }
 
 message DouyinMessageChatResponse {
-  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
   string status_msg = 2; // 返回状态描述
   repeated Message message_list = 3; // 消息列表
 }
@@ -34,7 +34,7 @@ message DouyinMessageActionRequest {
 }
 
 message DouyinMessageActionResponse {
-  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
   string status_msg = 2; // 返回状态描述
 }
 

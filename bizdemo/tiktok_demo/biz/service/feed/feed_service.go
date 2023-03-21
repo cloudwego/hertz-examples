@@ -23,6 +23,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
@@ -107,7 +109,7 @@ func (s *FeedService) createVideo(data *db.Video, userId int64) *feed.Video {
 		if err != nil {
 			log.Printf("GetUserInfo func error:" + err.Error())
 		}
-		video.Author = &feed.User{
+		video.Author = &common.User{
 			Id:              author.Id,
 			Name:            author.Name,
 			FollowCount:     author.FollowCount,

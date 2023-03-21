@@ -3,6 +3,7 @@ syntax = "proto3";
 package favorite;
 
 import 'api.proto';
+import "common.proto";
 
 option go_package = "interact/favorite";
 
@@ -13,7 +14,7 @@ message DouyinFavoriteActionRequest {
 }
 
 message DouyinFavoriteActionResponse {
-  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
   string status_msg = 2; // 返回状态描述
 }
 
@@ -23,34 +24,13 @@ message DouyinFavoriteListRequest {
 }
 
 message DouyinFavoriteListResponse {
-  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
   string status_msg = 2; // 返回状态描述
   repeated Video video_list = 3; // 用户点赞视频列表
 }
 
-message Video {
-  int64 id = 1; // 视频唯一标识
-  User author = 2; // 视频作者信息
-  string play_url = 3; // 视频播放地址
-  string cover_url = 4; // 视频封面地址
-  int64 favorite_count = 5; // 视频的点赞总数
-  int64 comment_count = 6; // 视频的评论总数
-  bool is_favorite = 7; // true-已点赞，false-未点赞
-  string title = 8; // 视频标题
-}
-
-message User {
-  int64 id = 1; // 用户id
-  string name = 2; // 用户名称
-  int64 follow_count = 3; // 关注总数
-  int64 follower_count = 4; // 粉丝总数
-  bool is_follow = 5; // true-已关注，false-未关注
-}
-
-
-
 service FavoriteHandler {
-  rpc favorite_action(DouyinFavoriteActionRequest) returns(DouyinFavoriteActionResponse) {
+  rpc FavoriteAction(DouyinFavoriteActionRequest) returns(DouyinFavoriteActionResponse) {
       option (api.post) = "/douyin/favorite/action/";
   }
 

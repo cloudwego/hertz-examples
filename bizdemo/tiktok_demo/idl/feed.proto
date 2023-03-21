@@ -3,6 +3,7 @@ syntax = "proto3";
 package feed;
 
 import "api.proto";
+import "common.proto";
 
 option go_package = "basic/feed";
 
@@ -12,7 +13,7 @@ message DouyinFeedRequest {
 }
 
 message DouyinFeedResponse {
-  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
   string status_msg = 2; // 返回状态描述
   repeated Video video_list = 3; // 视频列表
   int64 next_time = 4; // 本次返回的视频中，发布最早的时间，作为下次请求时的latest_time
@@ -27,14 +28,6 @@ message Video {
   int64 comment_count = 6; // 视频的评论总数
   bool is_favorite = 7; // true-已点赞，false-未点赞
   string title = 8; // 视频标题
-}
-
-message User {
-  int64 id = 1; // 用户id
-  string name = 2; // 用户名称
-  int64 follow_count = 3; // 关注总数
-  int64 follower_count = 4; // 粉丝总数
-  bool is_follow = 5; // true-已关注，false-未关注
 }
 
 service FeedHandler {

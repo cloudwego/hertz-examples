@@ -19,6 +19,8 @@ package service
 import (
 	"context"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 
@@ -76,13 +78,13 @@ func (r *RelationService) FollowAction(req *relation.DouyinRelationActionRequest
 	return flag, err
 }
 
-func (r *RelationService) GetFollowList(req *relation.DouyinRelationFollowListRequest) (followerlist []relation.User, err error) {
+func (r *RelationService) GetFollowList(req *relation.DouyinRelationFollowListRequest) (followerlist []*common.User, err error) {
 	_, err = db.CheckUserExistById(req.UserId)
 	if err != nil {
 		return nil, err
 	}
 
-	var followList []relation.User
+	var followList []*common.User
 	// 获取current_user_id
 	current_user_id, exists := r.c.Get("current_user_id")
 	if !exists {
@@ -98,7 +100,7 @@ func (r *RelationService) GetFollowList(req *relation.DouyinRelationFollowListRe
 		if err != nil {
 			continue
 		}
-		user := relation.User{
+		user := common.User{
 			Id:              user_info.Id,
 			Name:            user_info.Name,
 			FollowCount:     user_info.FollowCount,
@@ -111,7 +113,7 @@ func (r *RelationService) GetFollowList(req *relation.DouyinRelationFollowListRe
 			WorkCount:       user_info.WorkCount,
 			FavoriteCount:   user_info.FavoriteCount,
 		}
-		followList = append(followList, user)
+		followList = append(followList, &user)
 	}
 	return followList, nil
 }

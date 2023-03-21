@@ -3,6 +3,7 @@ syntax = "proto3";
 package user;
 
 import "api.proto";
+import "common.proto";
 
 option go_package = "basic/user";
 
@@ -12,7 +13,7 @@ message DouyinUserRegisterRequest {
 }
 
 message DouyinUserRegisterResponse {
-  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
   string status_msg = 2; // 返回状态描述
   int64 user_id = 3; // 用户id
   string token = 4; // 用户鉴权token
@@ -24,7 +25,7 @@ message DouyinUserLoginRequest {
 }
 
 message DouyinUserLoginResponse {
-  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
   string status_msg = 2; // 返回状态描述
   int64 user_id = 3; // 用户id
   string token = 4; // 用户鉴权token
@@ -36,21 +37,13 @@ message DouyinUserRequest {
 }
 
 message DouyinUserResponse {
-  int32 status_code = 1; // 状态码，0-成功，其他值-失败
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
   string status_msg = 2; // 返回状态描述
   User user = 3; // 用户信息
 }
 
-message User {
-  int64 id = 1; // 用户id
-  string name = 2; // 用户名称
-  int64 follow_count = 3; // 关注总数
-  int64 follower_count = 4; // 粉丝总数
-  bool is_follow = 5; // true-已关注，false-未关注
-}
-
 service UserHandler {
-  rpc user(DouyinUserRequest) returns(DouyinUserResponse) {
+  rpc User(DouyinUserRequest) returns(DouyinUserResponse) {
     option (api.get) = "/douyin/user/";
   }
 

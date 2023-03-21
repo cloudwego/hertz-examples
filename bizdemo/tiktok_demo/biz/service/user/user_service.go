@@ -19,6 +19,8 @@ package service
 import (
 	"context"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
@@ -59,7 +61,7 @@ func (s *UserService) UserRegister(req *user.DouyinUserRegisterRequest) (user_id
 	return user_id, nil
 }
 
-func (s *UserService) UserInfo(req *user.DouyinUserRequest) (*user.User, error) {
+func (s *UserService) UserInfo(req *user.DouyinUserRequest) (*common.User, error) {
 	query_user_id := req.UserId
 	current_user_id, exists := s.c.Get("current_user_id")
 	if !exists {
@@ -76,8 +78,8 @@ func (s *UserService) UserInfo(req *user.DouyinUserRequest) (*user.User, error) 
 //	@param user_id int64 当前登陆用户 id，可能为 0
 //	@return *user.User
 //	@return error
-func (s *UserService) GetUserInfo(query_user_id, user_id int64) (*user.User, error) {
-	u := &user.User{}
+func (s *UserService) GetUserInfo(query_user_id, user_id int64) (*common.User, error) {
+	u := &common.User{}
 
 	dbUser, err := db.QueryUserById(query_user_id)
 	if err != nil {
@@ -111,7 +113,7 @@ func (s *UserService) GetUserInfo(query_user_id, user_id int64) (*user.User, err
 		return u, err
 	}
 
-	u = &user.User{
+	u = &common.User{
 		Id:              query_user_id,
 		Name:            dbUser.UserName,
 		FollowCount:     FollowCount,
