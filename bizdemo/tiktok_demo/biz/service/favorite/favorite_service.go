@@ -19,17 +19,15 @@ package service
 import (
 	"context"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
+	"github.com/cloudwego/hertz/pkg/app"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/feed"
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
-
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
 	favorite "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/interact/favorite"
 	feed_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/feed"
-
-	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 )
 
 type FavoriteService struct {
@@ -37,10 +35,12 @@ type FavoriteService struct {
 	c   *app.RequestContext
 }
 
+// NewFavoriteService create favorite service
 func NewFavoriteService(ctx context.Context, c *app.RequestContext) *FavoriteService {
 	return &FavoriteService{ctx: ctx, c: c}
 }
 
+// FavoriteAction like a video and return result
 func (r *FavoriteService) FavoriteAction(req *favorite.DouyinFavoriteActionRequest) (flag bool, err error) {
 	_, err = db.CheckVideoExistById(req.VideoId)
 	if err != nil {
@@ -70,6 +70,7 @@ func (r *FavoriteService) FavoriteAction(req *favorite.DouyinFavoriteActionReque
 	return flag, err
 }
 
+// GetFavoriteList query favorite list by the user id in the request
 func (r *FavoriteService) GetFavoriteList(req *favorite.DouyinFavoriteListRequest) (favoritelist []*common.Video, err error) {
 	query_user_id := req.UserId
 	_, err = db.CheckUserExistById(query_user_id)

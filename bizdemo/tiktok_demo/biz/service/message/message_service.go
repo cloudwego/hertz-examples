@@ -32,10 +32,12 @@ type MessageService struct {
 	c   *app.RequestContext
 }
 
+// NewMessageService create message service
 func NewMessageService(ctx context.Context, c *app.RequestContext) *MessageService {
 	return &MessageService{ctx: ctx, c: c}
 }
 
+// GetMessageChat get chat records
 func (m *MessageService) GetMessageChat(req *message.DouyinMessageChatRequest) ([]*message.Message, error) {
 	messages := make([]*message.Message, 0)
 	from_user_id, _ := m.c.Get("current_user_id")
@@ -57,10 +59,10 @@ func (m *MessageService) GetMessageChat(req *message.DouyinMessageChatRequest) (
 	return messages, nil
 }
 
+// MessageAction add a message
 func (m *MessageService) MessageAction(req *message.DouyinMessageActionRequest) error {
 	from_user_id, _ := m.c.Get("current_user_id")
 	to_user_id := req.ToUserId
-	// action_type := req.ActionType
 	content := req.Content
 
 	ok, err := db.AddNewMessage(&db.Messages{

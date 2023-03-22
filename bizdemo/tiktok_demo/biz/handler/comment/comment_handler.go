@@ -30,7 +30,8 @@ import (
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
-// CommentAction .
+// CommentAction user send comment of video.
+//
 // @router /douyin/comment/action/ [POST]
 func CommentAction(ctx context.Context, c *app.RequestContext) {
 	var err error
@@ -62,7 +63,8 @@ func CommentAction(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// CommentList .
+// CommentList get all comments on a video in reverse chronological order.
+//
 // @router /douyin/comment/list/ [GET]
 func CommentList(ctx context.Context, c *app.RequestContext) {
 	var err error

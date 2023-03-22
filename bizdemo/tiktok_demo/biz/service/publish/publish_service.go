@@ -43,10 +43,12 @@ type PublishService struct {
 	c   *app.RequestContext
 }
 
+// NewPublishService create publish service
 func NewPublishService(ctx context.Context, c *app.RequestContext) *PublishService {
 	return &PublishService{ctx: ctx, c: c}
 }
 
+// PublishAction put file to MinIO by the FileHeader in the req and store the bucket name and file name
 func (s *PublishService) PublishAction(req *publish.DouyinPublishActionRequest) (err error) {
 	v, _ := s.c.Get("current_user_id")
 	title := s.c.PostForm("title")
@@ -73,6 +75,7 @@ func (s *PublishService) PublishAction(req *publish.DouyinPublishActionRequest) 
 	return err
 }
 
+// PublishList get the video list of user
 func (s *PublishService) PublishList(req *publish.DouyinPublishListRequest) (resp *publish.DouyinPublishListResponse, err error) {
 	resp = &publish.DouyinPublishListResponse{}
 	query_user_id := req.UserId

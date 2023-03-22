@@ -30,7 +30,8 @@ import (
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
-// Feed .
+// Feed get a list of recommended videos
+//
 // @router /douyin/feed/ [GET]
 func Feed(ctx context.Context, c *app.RequestContext) {
 	var err error

@@ -27,17 +27,12 @@ import (
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/minio"
 )
 
+// NewFileName Splicing user_id and time to make unique filename
 func NewFileName(user_id, time int64) string {
 	return fmt.Sprintf("%d.%d", user_id, time)
 }
 
-// URLconvert
-//
-//	@Description: 将数据库中存放的url转换为前端可访问的完整url
-//	@param ctx context.Context
-//	@param c *app.RequestContext
-//	@param path string "数据库中存放的path"
-//	@return fullURL
+// URLconvert Convert the path in the database into a complete url accessible by the front end
 func URLconvert(ctx context.Context, c *app.RequestContext, path string) (fullURL string) {
 	if len(path) == 0 {
 		return ""

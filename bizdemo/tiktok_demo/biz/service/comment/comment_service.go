@@ -34,10 +34,12 @@ type CommentService struct {
 	c   *app.RequestContext
 }
 
+// NewCommentService create comment service
 func NewCommentService(ctx context.Context, c *app.RequestContext) *CommentService {
 	return &CommentService{ctx: ctx, c: c}
 }
 
+// AddNewComment add a comment and return comment if success
 func (c *CommentService) AddNewComment(req *comment.DouyinCommentActionRequest) (*comment.Comment, error) {
 	current_user_id, _ := c.c.Get("current_user_id")
 	video_id := req.VideoId
@@ -73,6 +75,7 @@ func (c *CommentService) AddNewComment(req *comment.DouyinCommentActionRequest) 
 	}
 }
 
+// getUserInfoById get common.User by user id via user service
 func (c *CommentService) getUserInfoById(current_user_id, user_id int64) (*common.User, error) {
 	u, err := user_service.NewUserService(c.ctx, c.c).GetUserInfo(user_id, current_user_id)
 	var comment_user *common.User
@@ -99,7 +102,7 @@ func (c *CommentService) CommentList(req *comment.DouyinCommentListRequest) (*co
 	resp := &comment.DouyinCommentListResponse{}
 	video_id := req.VideoId
 
-	// 获取current_user_id
+	// get current_user_id
 	current_user_id, _ := c.c.Get("current_user_id")
 
 	dbcomments, err := db.GetCommentListByVideoID(video_id)
@@ -117,6 +120,7 @@ func (c *CommentService) CommentList(req *comment.DouyinCommentListRequest) (*co
 	return resp, nil
 }
 
+// copyComment convert comment list from db to model
 func (c *CommentService) copyComment(result *[]*comment.Comment, data *[]*db.Comment, current_user_id int64) error {
 	for _, item := range *data {
 		comment := c.createComment(item, current_user_id)
@@ -125,6 +129,7 @@ func (c *CommentService) copyComment(result *[]*comment.Comment, data *[]*db.Com
 	return nil
 }
 
+// createComment convert single comment from db to model
 func (c *CommentService) createComment(data *db.Comment, userId int64) *comment.Comment {
 	comment := &comment.Comment{
 		Id:         data.ID,

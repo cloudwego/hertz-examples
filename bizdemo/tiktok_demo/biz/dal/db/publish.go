@@ -76,6 +76,7 @@ func GetVideoListByVideoIDList(video_id_list []int64) ([]*Video, error) {
 	return video_list, err
 }
 
+// GetWorkCount get the num of video published by the user
 func GetWorkCount(user_id int64) (int64, error) {
 	var count int64
 	err := DB.Model(&Video{}).Where("author_id = ?", user_id).Count(&count).Error
@@ -85,6 +86,7 @@ func GetWorkCount(user_id int64) (int64, error) {
 	return count, nil
 }
 
+// CheckVideoExistById query if video exist
 func CheckVideoExistById(video_id int64) (bool, error) {
 	var video Video
 	if err := DB.Where("id = ?", video_id).Find(&video).Error; err != nil {

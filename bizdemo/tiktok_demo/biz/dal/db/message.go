@@ -35,6 +35,7 @@ func (Messages) TableName() string {
 	return constants.MessageTableName
 }
 
+// AddNewMessage add a message and check if the id exists
 func AddNewMessage(message *Messages) (bool, error) {
 	exist, err := QueryUserById(message.FromUserId)
 	if exist == nil || err != nil {
@@ -51,6 +52,7 @@ func AddNewMessage(message *Messages) (bool, error) {
 	return true, nil
 }
 
+// GetMessageByIdPair get the chat history after a certain time
 func GetMessageByIdPair(user_id1, user_id2 int64, pre_msg_time time.Time) ([]Messages, error) {
 	exist, err := QueryUserById(user_id1)
 	if exist == nil || err != nil {
@@ -70,6 +72,7 @@ func GetMessageByIdPair(user_id1, user_id2 int64, pre_msg_time time.Time) ([]Mes
 	return messages, nil
 }
 
+// GetLatestMessageByIdPair query the last message user1 and user2 in the database
 func GetLatestMessageByIdPair(user_id1, user_id2 int64) (*Messages, error) {
 	exist, err := QueryUserById(user_id1)
 	if exist == nil || err != nil {

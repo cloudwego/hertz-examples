@@ -30,7 +30,8 @@ import (
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
-// FavoriteAction .
+// FavoriteAction like and unlike operations of the logged-in user on the video.
+//
 // @router /douyin/favortie/action/ [POST]
 func FavoriteAction(ctx context.Context, c *app.RequestContext) {
 	var err error
@@ -71,7 +72,8 @@ func FavoriteAction(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// FavoriteList .
+// FavoriteList get all liked videos of the logged-in user.
+//
 // @router /douyin/favorite/list/ [GET]
 func FavoriteList(ctx context.Context, c *app.RequestContext) {
 	var err error

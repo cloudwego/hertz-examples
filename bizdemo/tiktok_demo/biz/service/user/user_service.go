@@ -19,15 +19,12 @@ package service
 import (
 	"context"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
-
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	user "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
-
-	user "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/user"
-
 	"github.com/cloudwego/hertz/pkg/app"
 )
 
@@ -36,11 +33,12 @@ type UserService struct {
 	c   *app.RequestContext
 }
 
+// NewUserService create user service
 func NewUserService(ctx context.Context, c *app.RequestContext) *UserService {
 	return &UserService{ctx: ctx, c: c}
 }
 
-// UserRegister CreateUser create user info.
+// UserRegister register user return user id.
 func (s *UserService) UserRegister(req *user.DouyinUserRegisterRequest) (user_id int64, err error) {
 	user, err := db.QueryUser(req.Username)
 	if err != nil {
@@ -61,6 +59,7 @@ func (s *UserService) UserRegister(req *user.DouyinUserRegisterRequest) (user_id
 	return user_id, nil
 }
 
+// UserInfo the function of user api
 func (s *UserService) UserInfo(req *user.DouyinUserRequest) (*common.User, error) {
 	query_user_id := req.UserId
 	current_user_id, exists := s.c.Get("current_user_id")
@@ -97,7 +96,7 @@ func (s *UserService) GetUserInfo(query_user_id, user_id int64) (*common.User, e
 
 	var IsFollow bool
 	if user_id != 0 {
-		IsFollow, err = db.QueryFollowExist(&db.Follows{UserId: user_id, FollowerId: query_user_id})
+		IsFollow, err = db.QueryFollowExist(user_id, query_user_id)
 		if err != nil {
 			return u, err
 		}

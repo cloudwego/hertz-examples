@@ -4,5 +4,6 @@ init_api:
 update_api:
 	sh hz_gen.sh
 
-# 由于publish中接收文件使用*multipart.FileHeader，修改需手动修改model中的publish
-# 由于relation中在FriendUser中嵌入匿名结构体common.User，修改需手动修改model中的relation
+# Since use *multipart.FileHeader in the model of publish \
+# and use the anonymous structure common.User is embedded in FriendUser in the model of relation,
+# the modification needs to manually modify the model of publish and relation

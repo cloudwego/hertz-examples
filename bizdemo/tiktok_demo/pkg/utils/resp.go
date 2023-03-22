@@ -27,7 +27,7 @@ type BaseResp struct {
 	StatusMsg  string
 }
 
-// BuildBaseResp build baseResp from error
+// BuildBaseResp convert error and build BaseResp
 func BuildBaseResp(err error) *BaseResp {
 	if err == nil {
 		return baseResp(errno.Success)
@@ -42,6 +42,7 @@ func BuildBaseResp(err error) *BaseResp {
 	return baseResp(s)
 }
 
+// baseResp build BaseResp from error
 func baseResp(err errno.ErrNo) *BaseResp {
 	return &BaseResp{
 		StatusCode: err.ErrCode,

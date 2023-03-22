@@ -34,10 +34,12 @@ type Comment struct {
 	DeletedAt   gorm.DeletedAt `gorm:"index" json:"deleted_at"`
 }
 
+// TableName set table name to make gorm can correctly identify
 func (Comment) TableName() string {
 	return constants.CommentTableName
 }
 
+// AddNewComment add a comment
 func AddNewComment(comment *Comment) error {
 	if ok, _ := CheckUserExistById(comment.UserId); !ok {
 		return errno.UserIsNotExistErr
@@ -52,6 +54,7 @@ func AddNewComment(comment *Comment) error {
 	return nil
 }
 
+// DeleteCommentById delete comment by comment id
 func DeleteCommentById(comment_id int64) error {
 	if ok, _ := CheckCommentExist(comment_id); !ok {
 		return errno.CommentIsNotExistErr

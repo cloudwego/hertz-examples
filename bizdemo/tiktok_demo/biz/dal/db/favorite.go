@@ -33,10 +33,12 @@ type Favorites struct {
 	DeletedAt gorm.DeletedAt `gorm:"index" json:"delete_at"`
 }
 
+// TableName set table name to make gorm can correctly identify
 func (Favorites) TableName() string {
 	return constants.FavoritesTableName
 }
 
+// AddNewFavorite add favorite relation
 func AddNewFavorite(favorite *Favorites) (bool, error) {
 	err := DB.Create(favorite).Error
 	if err != nil {
@@ -45,6 +47,7 @@ func AddNewFavorite(favorite *Favorites) (bool, error) {
 	return true, nil
 }
 
+// DeleteFavorite delete favorite relation
 func DeleteFavorite(favorite *Favorites) (bool, error) {
 	err := DB.Where("video_id = ? AND user_id = ?", favorite.VideoId, favorite.UserId).Delete(favorite).Error
 	if err != nil {
@@ -53,6 +56,7 @@ func DeleteFavorite(favorite *Favorites) (bool, error) {
 	return true, nil
 }
 
+// QueryFavoriteExist query the publishing record by video_id and user_id
 func QueryFavoriteExist(video_id, user_id int64) (bool, error) {
 	var sum int64
 	err := DB.Model(&Favorites{}).Where("video_id = ? AND user_id = ?", video_id, user_id).Count(&sum).Error
@@ -65,6 +69,7 @@ func QueryFavoriteExist(video_id, user_id int64) (bool, error) {
 	return true, nil
 }
 
+// QueryTotalFavoritedByAuthorID query the like num of all the video published by  the user
 func QueryTotalFavoritedByAuthorID(author_id int64) (int64, error) {
 	var sum int64
 	err := DB.Table(constants.FavoritesTableName).Joins("JOIN videos ON likes.video_id = videos.id").
@@ -75,7 +80,7 @@ func QueryTotalFavoritedByAuthorID(author_id int64) (int64, error) {
 	return sum, nil
 }
 
-// 查询视频的点赞数量
+// GetFavoriteCount count the favorite of video
 func GetFavoriteCount(video_id int64) (int64, error) {
 	var count int64
 	err := DB.Model(&Favorites{}).Where("video_id = ?", video_id).Count(&count).Error
@@ -85,7 +90,7 @@ func GetFavoriteCount(video_id int64) (int64, error) {
 	return count, nil
 }
 
-// 获得 user_id 点赞的视频的 video_id
+// GetFavoriteIdList get the id list of video liked by the user
 func GetFavoriteIdList(user_id int64) ([]int64, error) {
 	var favorite_actions []Favorites
 	err := DB.Where("user_id = ?", user_id).Find(&favorite_actions).Error
@@ -99,7 +104,7 @@ func GetFavoriteIdList(user_id int64) ([]int64, error) {
 	return result, nil
 }
 
-// 获得 user点赞的视频视频数量
+// GetFavoriteCountByUserID get the num of the video liked by user
 func GetFavoriteCountByUserID(user_id int64) (int64, error) {
 	var count int64
 	err := DB.Model(&Favorites{}).Where("user_id = ?", user_id).Count(&count).Error
@@ -109,7 +114,7 @@ func GetFavoriteCountByUserID(user_id int64) (int64, error) {
 	return count, nil
 }
 
-// 获得 video_id 所有点赞的人的 id
+// GetFavoriterIdList get the id list of liker of  video
 func GetFavoriterIdList(video_id int64) ([]int64, error) {
 	var favorite_actions []Favorites
 	err := DB.Where("video_id = ?", video_id).Find(&favorite_actions).Error
@@ -123,12 +128,13 @@ func GetFavoriterIdList(video_id int64) ([]int64, error) {
 	return result, nil
 }
 
+// CheckFavoriteRelationExist check the favorite relation if exist
 func CheckFavoriteRelationExist(favorite *Favorites) (bool, error) {
 	err := DB.Where("video_id = ? AND user_id = ?", favorite.VideoId, favorite.UserId).Find(&favorite).Error
 	if err != nil {
 		return false, err
 	}
-	// find未找到符合条件的数据会返回空结构体，ID = 0
+	// If no matching data is found, an empty structure will be returned
 	if favorite.ID == 0 {
 		err := errno.FavoriteRelationNotExistErr
 		return false, err

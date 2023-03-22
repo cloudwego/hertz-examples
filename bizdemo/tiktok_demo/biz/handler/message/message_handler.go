@@ -30,7 +30,8 @@ import (
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
-// MessageChat .
+// MessageChat get the chat message records of the currently logged-in user and other specified users
+//
 // @router /douyin/message/chat/ [GET]
 func MessageChat(ctx context.Context, c *app.RequestContext) {
 	var err error
@@ -64,7 +65,8 @@ func MessageChat(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// MessageAction .
+// MessageAction Logged-in user to send message
+//
 // @router /douyin/message/action/ [POST]
 func MessageAction(ctx context.Context, c *app.RequestContext) {
 	var err error

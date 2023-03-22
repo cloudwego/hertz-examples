@@ -30,7 +30,8 @@ import (
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
-// PublishAction .
+// PublishAction publish a video
+//
 // @router /douyin/publish/action/ [POST]
 func PublishAction(ctx context.Context, c *app.RequestContext) {
 	var err error
@@ -54,7 +55,8 @@ func PublishAction(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// PublishList .
+// PublishList get the video list of user
+//
 // @router /douyin/publish/list/ [GET]
 func PublishList(ctx context.Context, c *app.RequestContext) {
 	var err error

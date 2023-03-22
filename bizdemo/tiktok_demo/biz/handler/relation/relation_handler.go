@@ -21,24 +21,23 @@ package relation
 import (
 	"context"
 
+	service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/relation"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 
 	relation "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/social/relation"
-	follow_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/relation/follow"
-	followerList_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/relation/follower"
-	friendList_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/relation/friend"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
-// RelationAction .
+// RelationAction users follow or unfollow other users.
+//
 // @router /douyin/relation/action/ [POST]
 func RelationAction(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req relation.DouyinRelationActionRequest
 	err = c.BindAndValidate(&req)
-	// hlog.CtxInfof(ctx, "RelationAction: usr_token: %s follower_id: %d action_type: %d", req.Token, req.ToUserId, req.ActionType)
 	if err != nil {
 		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, relation.DouyinRelationActionResponse{
@@ -48,7 +47,7 @@ func RelationAction(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	_, err = follow_service.NewRelationService(ctx, c).FollowAction(&req)
+	_, err = service.NewRelationService(ctx, c).FollowAction(&req)
 	if err != nil {
 		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, relation.DouyinRelationActionResponse{
@@ -64,14 +63,14 @@ func RelationAction(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// RelationFollowList .
+// RelationFollowList get list of all users followed by the logged_in user.
+//
 // @router /douyin/relation/follow/list/ [GET]
 func RelationFollowList(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req relation.DouyinRelationFollowListRequest
 	err = c.BindAndValidate(&req)
 
-	// hlog.CtxInfof(ctx, "RelationGetFollowList: usr_id: %d user_token: %s", req.UserId, req.Token)
 	if err != nil {
 		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, relation.DouyinRelationFollowListResponse{
@@ -82,7 +81,7 @@ func RelationFollowList(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	FollowInfo, err := follow_service.NewRelationService(ctx, c).GetFollowList(&req)
+	FollowInfo, err := service.NewRelationService(ctx, c).GetFollowList(&req)
 	if err != nil {
 		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, relation.DouyinRelationFollowListResponse{
@@ -100,7 +99,8 @@ func RelationFollowList(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// RelationFollowerList .
+// RelationFollowerList get the list of all followers following the logged-in user.
+//
 // @router /douyin/relation/follower/list/ [GET]
 func RelationFollowerList(ctx context.Context, c *app.RequestContext) {
 	var err error
@@ -117,7 +117,7 @@ func RelationFollowerList(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	followerList, err := followerList_service.NewFollowerListService(ctx, c).GetFollowerList(&req)
+	followerList, err := service.NewRelationService(ctx, c).GetFollowerList(&req)
 	if err != nil {
 		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, relation.DouyinRelationFollowerListResponse{
@@ -134,7 +134,8 @@ func RelationFollowerList(ctx context.Context, c *app.RequestContext) {
 	}
 }
 
-// RelationFriendList .
+// RelationFriendList get A list of all friends who follow the logged_in user.
+//
 // @router /douyin/relation/friend/list/ [GET]
 func RelationFriendList(ctx context.Context, c *app.RequestContext) {
 	var err error
@@ -151,7 +152,7 @@ func RelationFriendList(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	friendList, err := friendList_service.NewFriendListService(ctx, c).GetFriendList(&req)
+	friendList, err := service.NewRelationService(ctx, c).GetFriendList(&req)
 	if err != nil {
 		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, relation.DouyinRelationFriendListResponse{

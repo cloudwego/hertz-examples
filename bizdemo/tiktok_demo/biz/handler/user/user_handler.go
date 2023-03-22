@@ -31,7 +31,8 @@ import (
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
-// UserRegister .
+// UserRegister user registration api
+//
 // @router /douyin/user/register/  [POST]
 func UserRegister(ctx context.Context, c *app.RequestContext) {
 	var err error
@@ -67,7 +68,8 @@ func UserRegister(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// UserLogin .
+// UserLogin user login api
+//
 // @router /douyin/user/login/  [POST]
 func UserLogin(ctx context.Context, c *app.RequestContext) {
 	v, _ := c.Get("user_id")
@@ -81,7 +83,8 @@ func UserLogin(ctx context.Context, c *app.RequestContext) {
 	})
 }
 
-// User .
+// User get user info
+//
 // @router /douyin/user/ [GET]
 func User(ctx context.Context, c *app.RequestContext) {
 	var err error
