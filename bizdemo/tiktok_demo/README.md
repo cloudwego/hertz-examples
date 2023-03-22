@@ -1,5 +1,5 @@
 # tiktok_demo
- A hertz server that provides user, video, interactive, and social backend services
+ A simple hertz server that provides user, video, interactive, and social backend services for tiktok app.
 ## How to run
 
 #### 1. Local environment
