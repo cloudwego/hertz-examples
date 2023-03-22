@@ -68,3 +68,4 @@ docker-compose up -d
 | comment  | Comment on a video                                         |
 | message  | Send message with friends / Get message list with friends  |
 
+maintained by: [leeeezp](https://github.com/leeeezp) [Kpole](https://github.com/Kpole) [zztaki](https://github.com/zztaki) [BourneHUST](https://github.com/BourneHUST) [meyoung512](https://github.com/meyoung512)
