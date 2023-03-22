@@ -1,0 +1,70 @@
+# tiktok_demo
+ A simple hertz server that provides user, video, interactive, and social backend services for tiktok app.
+## How to run
+
+#### 1. Local environment
+
+[Download ffmpeg package](https://ffmpeg.org/download.html) && **add ffmpeg to system path or user path**
+```shell
+# Install other services
+docker-compose up
+
+go build -o offer_tiktok && ./offer_tiktok
+```
+
+#### 2 Docker environment
+```shell
+# Compile in docker image && Packaged with ffmpeg
+docker build -t tiktok:latest -f ./docker-build/Dockerfile .
+
+# Start all service
+cd docker-build 
+docker-compose up -d
+```
+
+## Description
+### Technology Architecture
+
+![arch image](static/architecture.png)
+
+### Catalog Introduce
+```shell
+.
+├── biz              #  Business logic
+│   ├── dal          #  Interaction with the database                             
+│   ├── handler      #  Handle request and response
+│   ├── model        #  Model definition
+│   ├── mw           #  Middleware
+│   ├── router       
+│   └── service      #  Service implementation
+├── docker-build     #  dockerfile 
+├── idl              #  Interface definition file
+├── pkg 
+│   ├── configs      #  Component config
+│   ├── constants    #  Common constant
+│   ├── data         #  Data Persistence Directory
+│   ├── errno        
+│   └── utils        
+├── docker-compose.yml 
+├── Makefile         #  Command to generate code by IDL 
+├── hz_gen.sh
+├── go.mod
+├── go.sum
+├── README.md
+├── main.go
+├── router_gen.go
+└── router.go
+```
+
+### Service Introduce
+
+| Service  | Function                                                   |
+|----------|------------------------------------------------------------|
+| user     | User register / Get user information                       |
+| relation | Follow / Get follow list / Get friend (mutual follow) list |
+| publish  | Publish video                                              |
+| feed     | Get the last few of all videos as a feed stream            |
+| favorite | Like the video                                             |
+| comment  | Comment on a video                                         |
+| message  | Send message with friends / Get message list with friends  |
+

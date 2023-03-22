@@ -12,6 +12,7 @@
 - [hertz_gorm_gen:](bizdemo/hertz_gorm_gen) 在 hertz server 中使用 gorm/gen & proto IDL 的示例
 - [hertz_jwt:](bizdemo/hertz_jwt) 在 hertz server 中使用 jwt 的示例
 - [hertz_session:](bizdemo/hertz_session) 在 hertz server 中使用分布式 session 和 csrf 的示例
+- [tiktok_demo:](bizdemo/tiktok_demo) 在 hertz server 中实现极简版抖音服务端的示例
 
 ## Server
 
