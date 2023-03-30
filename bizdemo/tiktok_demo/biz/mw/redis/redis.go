@@ -25,8 +25,8 @@ import (
 )
 
 var (
-	ExpireTime                = time.Hour * 24
-	RdbFollowing, RdbFollower *redis.Client
+	ExpireTime                     = time.Hour * 24
+	RdbFollowing, RdbFollower, Rdb *redis.Client
 )
 
 func InitRedis() {

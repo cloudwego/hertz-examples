@@ -48,7 +48,7 @@ func AddNewFollow(follow *Follows) (bool, error) {
 	// if redis hit update
 	if cnt, _ := redis.RdbFollowing.SCard(strconv.Itoa(int(follow.UserId))).Result(); cnt > 0 {
 		redis.RdbFollowing.SAdd(strconv.Itoa(int(follow.UserId)), follow.FollowerId)
-		redis.RdbFollower.Expire(strconv.Itoa(int(follow.UserId)), redis.ExpireTime)
+		redis.RdbFollowing.Expire(strconv.Itoa(int(follow.UserId)), redis.ExpireTime)
 	}
 	if cnt, _ := redis.RdbFollower.SCard(strconv.Itoa(int(follow.FollowerId))).Result(); cnt > 0 {
 		redis.RdbFollower.SAdd(strconv.Itoa(int(follow.FollowerId)), follow.UserId)
@@ -66,7 +66,7 @@ func DeleteFollow(follow *Follows) (bool, error) {
 	// if redis hit update
 	if cnt, _ := redis.RdbFollowing.SCard(strconv.Itoa(int(follow.UserId))).Result(); cnt > 0 {
 		redis.RdbFollowing.SRem(strconv.Itoa(int(follow.UserId)), follow.FollowerId)
-		redis.RdbFollower.Expire(strconv.Itoa(int(follow.UserId)), redis.ExpireTime)
+		redis.RdbFollowing.Expire(strconv.Itoa(int(follow.UserId)), redis.ExpireTime)
 	}
 	if cnt, _ := redis.RdbFollower.SCard(strconv.Itoa(int(follow.FollowerId))).Result(); cnt > 0 {
 		redis.RdbFollower.SRem(strconv.Itoa(int(follow.FollowerId)), follow.UserId)

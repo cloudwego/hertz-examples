@@ -7,7 +7,7 @@ services:
     volumes:
       - ./pkg/configs/sql:/docker-entrypoint-initdb.d
     ports:
-      - 18000:3306
+      - "18000:3306"
     environment:
       - MYSQL_DATABASE=douyin
       - MYSQL_USER=douyin
@@ -19,8 +19,8 @@ services:
     image: minio/minio
     container_name: tiktok_minio
     ports:
-      - 18001:9000
-      - 18002:9001
+      - "18001:9000"
+      - "18002:9001"
     environment:
       MINIO_ACCESS_KEY: douyin
       MINIO_SECRET_KEY: douyin123
@@ -35,7 +35,7 @@ services:
     image: redis:7
     container_name: tiktok_redis
     ports:
-      - 18003:6379
+      - "18003:6379"
     volumes:
       - ./pkg/configs/redis/redis.conf:/usr/local/etc/redis/redis.conf
       - ./pkg/data/redis/:/data
