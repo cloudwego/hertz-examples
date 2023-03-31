@@ -144,7 +144,7 @@ func (s *FeedService) createVideo(data *db.Video, userId int64) *feed.Video {
 	// Get favorite exist
 	go func() {
 		err := *new(error)
-		video.IsFavorite, err = db.QueryFavoriteExist(data.ID, userId)
+		video.IsFavorite, err = db.QueryFavoriteExist(userId, data.ID)
 		if err != nil {
 			log.Printf("QueryFavoriteExist func error:" + err.Error())
 		}

@@ -35,9 +35,7 @@ type Follows struct {
 }
 
 // register redis operate strategy
-var (
-	rdFollows redis.Follows
-)
+var rdFollows redis.Follows
 
 // TableName set table name to make gorm can correctly identify
 func (Follows) TableName() string {
@@ -50,7 +48,7 @@ func AddNewFollow(follow *Follows) (bool, error) {
 		return false, err
 	}
 	// add data to redis
-	if rdFollows.CheckFollow(follow.UserId) {
+	if rdFollows.CheckFollow(follow.FollowerId) {
 		rdFollows.AddFollow(follow.UserId, follow.FollowerId)
 	}
 	if rdFollows.CheckFollower(follow.UserId) {
@@ -67,7 +65,7 @@ func DeleteFollow(follow *Follows) (bool, error) {
 		return false, err
 	}
 	// if redis hit del
-	if rdFollows.CheckFollow(follow.UserId) {
+	if rdFollows.CheckFollow(follow.FollowerId) {
 		rdFollows.DelFollow(follow.UserId, follow.FollowerId)
 	}
 	if rdFollows.CheckFollower(follow.UserId) {
@@ -110,12 +108,12 @@ func GetFollowCount(follower_id int64) (int64, error) {
 		return 0, err
 	}
 	// update redis asynchronously
-	go addNewFollowRelationToRedis(follower_id, followings)
+	go addFollowRelationToRedis(follower_id, followings)
 	return int64(len(followings)), nil
 }
 
-// addNewFollowRelationToRedis update redis.RdbFollowing
-func addNewFollowRelationToRedis(follower_id int64, followings []int64) {
+// addFollowRelationToRedis update redis.RdbFollowing
+func addFollowRelationToRedis(follower_id int64, followings []int64) {
 	for _, following := range followings {
 		rdFollows.AddFollow(following, follower_id)
 	}
@@ -132,12 +130,12 @@ func GetFollowerCount(user_id int64) (int64, error) {
 		return 0, err
 	}
 	// update redis asynchronously
-	go addNewFollowerRelationToRedis(user_id, followers)
+	go addFollowerRelationToRedis(user_id, followers)
 	return int64(len(followers)), nil
 }
 
-// addNewFollowerRelationToRedis update redis.RdbFollower
-func addNewFollowerRelationToRedis(user_id int64, followers []int64) {
+// addFollowerRelationToRedis update redis.RdbFollower
+func addFollowerRelationToRedis(user_id int64, followers []int64) {
 	for _, follower := range followers {
 		rdFollows.AddFollower(user_id, follower)
 	}
@@ -193,14 +191,14 @@ func GetFriendIdList(user_id int64) ([]int64, error) {
 		if err != nil {
 			return *new([]int64), err
 		}
-		addNewFollowRelationToRedis(user_id, following)
+		addFollowRelationToRedis(user_id, following)
 	}
 	if !rdFollows.CheckFollower(user_id) {
 		followers, err := getFollowerIdList(user_id)
 		if err != nil {
 			return *new([]int64), err
 		}
-		addNewFollowerRelationToRedis(user_id, followers)
+		addFollowerRelationToRedis(user_id, followers)
 	}
 	return rdFollows.GetFriend(user_id), nil
 }

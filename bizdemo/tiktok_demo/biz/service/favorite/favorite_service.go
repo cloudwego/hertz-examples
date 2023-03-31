@@ -55,7 +55,7 @@ func (r *FavoriteService) FavoriteAction(req *favorite.DouyinFavoriteActionReque
 		UserId:  current_user_id.(int64),
 		VideoId: req.VideoId,
 	}
-	favorite_exist, _ := db.CheckFavoriteRelationExist(new_favorite_relation)
+	favorite_exist, _ := db.QueryFavoriteExist(new_favorite_relation.UserId, new_favorite_relation.VideoId)
 	if req.ActionType == constants.FavoriteActionType {
 		if favorite_exist {
 			return false, errno.FavoriteRelationAlreadyExistErr
