@@ -25,17 +25,18 @@ import (
 )
 
 var (
-	ExpireTime                     = time.Hour * 24
-	RdbFollowing, RdbFollower, Rdb *redis.Client
+	expireTime  = time.Hour * 1
+	rdbFollows  *redis.Client
+	rdbFavorite *redis.Client
 )
 
 func InitRedis() {
-	RdbFollowing = redis.NewClient(&redis.Options{
+	rdbFollows = redis.NewClient(&redis.Options{
 		Addr:     constants.RedisAddr,
 		Password: constants.RedisPassword,
 		DB:       0,
 	})
-	RdbFollower = redis.NewClient(&redis.Options{
+	rdbFavorite = redis.NewClient(&redis.Options{
 		Addr:     constants.RedisAddr,
 		Password: constants.RedisPassword,
 		DB:       1,
