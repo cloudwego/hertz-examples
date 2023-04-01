@@ -3,4 +3,7 @@
 `cd file/staticFile`
 * start staticFile server  
 `go run main.go`
-* use your browser to access "http://127.0.0.1:8080/main" or other
+* use your browser to access "http://127.0.0.1:8080/main"
+* use your browser to access "http://127.0.0.1:8080/static/1.txt" , you will get `./static/1.txt`
+* use your browser to access "http://127.0.0.1:8080/static1/txt/2.txt" , you will get `./static/2.txt`
+* use your browser to access "http://127.0.0.1:8080/static1/hertz", there is no resource,so you will receive a reminder
