@@ -18,6 +18,7 @@ package service
 
 import (
 	"context"
+	"sync"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	user "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/user"
@@ -71,59 +72,102 @@ func (s *UserService) UserInfo(req *user.DouyinUserRequest) (*common.User, error
 
 // GetUserInfo
 //
-//	@Description: 根据当前用户 user_id 查询 query_user_id 的信息
+//	@Description: Query the information of query_user_id according to the current user user_id
 //	@receiver *UserService
 //	@param query_user_id int64
-//	@param user_id int64 当前登陆用户 id，可能为 0
+//	@param user_id int64  "Currently logged-in user id, may be 0"
 //	@return *user.User
 //	@return error
 func (s *UserService) GetUserInfo(query_user_id, user_id int64) (*common.User, error) {
 	u := &common.User{}
-
-	dbUser, err := db.QueryUserById(query_user_id)
-	if err != nil {
-		return u, err
-	}
-	WorkCount, err := db.GetWorkCount(query_user_id)
-	if err != nil {
-		return u, err
-	}
-	FollowCount, err := db.GetFollowCount(query_user_id)
-	if err != nil {
-		return u, err
-	}
-	FollowerCount, err := db.GetFollowerCount(query_user_id)
-
-	var IsFollow bool
-	if user_id != 0 {
-		IsFollow, err = db.QueryFollowExist(user_id, query_user_id)
+	errChan := make(chan error, 7)
+	defer close(errChan)
+	var wg sync.WaitGroup
+	wg.Add(7)
+	go func() {
+		dbUser, err := db.QueryUserById(query_user_id)
 		if err != nil {
-			return u, err
+			errChan <- err
+		} else {
+			u.Name = dbUser.UserName
+			u.Avatar = utils.URLconvert(s.ctx, s.c, dbUser.Avatar)
+			u.BackgroundImage = utils.URLconvert(s.ctx, s.c, dbUser.BackgroundImage)
+			u.Signature = dbUser.Signature
 		}
-	} else {
-		IsFollow = false
-	}
-	FavoriteCount, err := db.GetFavoriteCountByUserID(query_user_id)
-	if err != nil {
-		return u, err
-	}
-	TotalFavorited, err := db.QueryTotalFavoritedByAuthorID(query_user_id)
-	if err != nil {
-		return u, err
-	}
+		wg.Done()
+	}()
 
-	u = &common.User{
-		Id:              query_user_id,
-		Name:            dbUser.UserName,
-		FollowCount:     FollowCount,
-		FollowerCount:   FollowerCount,
-		IsFollow:        IsFollow,
-		Avatar:          utils.URLconvert(s.ctx, s.c, dbUser.Avatar),
-		BackgroundImage: utils.URLconvert(s.ctx, s.c, dbUser.BackgroundImage),
-		Signature:       dbUser.Signature,
-		TotalFavorited:  TotalFavorited,
-		WorkCount:       WorkCount,
-		FavoriteCount:   FavoriteCount,
+	go func() {
+		WorkCount, err := db.GetWorkCount(query_user_id)
+		if err != nil {
+			errChan <- err
+		} else {
+			u.WorkCount = WorkCount
+		}
+		wg.Done()
+	}()
+
+	go func() {
+		FollowCount, err := db.GetFollowCount(query_user_id)
+		if err != nil {
+			errChan <- err
+			return
+		} else {
+			u.FollowCount = FollowCount
+		}
+		wg.Done()
+	}()
+
+	go func() {
+		FollowerCount, err := db.GetFollowerCount(query_user_id)
+		if err != nil {
+			errChan <- err
+		} else {
+			u.FollowerCount = FollowerCount
+		}
+		wg.Done()
+	}()
+
+	go func() {
+		if user_id != 0 {
+			IsFollow, err := db.QueryFollowExist(user_id, query_user_id)
+			if err != nil {
+				errChan <- err
+			} else {
+				u.IsFollow = IsFollow
+			}
+		} else {
+			u.IsFollow = false
+		}
+		wg.Done()
+	}()
+
+	go func() {
+		FavoriteCount, err := db.GetFavoriteCountByUserID(query_user_id)
+		if err != nil {
+			errChan <- err
+		} else {
+			u.FavoriteCount = FavoriteCount
+		}
+		wg.Done()
+	}()
+
+	go func() {
+		TotalFavorited, err := db.QueryTotalFavoritedByAuthorID(query_user_id)
+		if err != nil {
+			errChan <- err
+		} else {
+			u.TotalFavorited = TotalFavorited
+		}
+		wg.Done()
+	}()
+
+	wg.Wait()
+	select {
+	case result := <-errChan:
+		return &common.User{}, result
+	default:
 	}
+	u.Id = query_user_id
 	return u, nil
 }
