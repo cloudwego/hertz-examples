@@ -92,7 +92,7 @@ func (s *UserService) GetUserInfo(query_user_id, user_id int64) (*common.User, e
 	if err != nil {
 		return u, err
 	}
-	FolloweeCount, err := db.GetFolloweeCount(query_user_id)
+	FollowerCount, err := db.GetFollowerCount(query_user_id)
 
 	var IsFollow bool
 	if user_id != 0 {
@@ -116,7 +116,7 @@ func (s *UserService) GetUserInfo(query_user_id, user_id int64) (*common.User, e
 		Id:              query_user_id,
 		Name:            dbUser.UserName,
 		FollowCount:     FollowCount,
-		FollowerCount:   FolloweeCount,
+		FollowerCount:   FollowerCount,
 		IsFollow:        IsFollow,
 		Avatar:          utils.URLconvert(s.ctx, s.c, dbUser.Avatar),
 		BackgroundImage: utils.URLconvert(s.ctx, s.c, dbUser.BackgroundImage),
