@@ -18,6 +18,7 @@ package main
 
 import (
 	"context"
+	"time"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -31,11 +32,23 @@ func main() {
 
 	h.StaticFile("/main", "./main.go")
 
+	var indexNames = []string{"1.txt", "2.txt"}
 	h.StaticFS("/static1", &app.FS{
+		Root:        "./",
 		PathRewrite: app.NewPathSlashesStripper(1),
 		PathNotFound: func(_ context.Context, ctx *app.RequestContext) {
 			ctx.JSON(consts.StatusNotFound, "The requested resource does not exist")
 		},
+		CacheDuration:        time.Second * 5,
+		IndexNames:           indexNames,
+		Compress:             true,
+		CompressedFileSuffix: "hertz",
+		AcceptByteRange:      true,
+	})
+
+	h.StaticFS("/static2", &app.FS{
+		PathRewrite:        app.NewPathSlashesStripper(1),
+		GenerateIndexPages: true,
 	})
 
 	h.Spin()
