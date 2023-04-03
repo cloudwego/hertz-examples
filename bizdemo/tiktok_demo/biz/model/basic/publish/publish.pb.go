@@ -23,8 +23,9 @@
 package publish
 
 import (
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
 	"mime/multipart"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
 
 	_ "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/api"
 )

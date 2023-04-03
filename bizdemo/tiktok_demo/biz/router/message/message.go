@@ -19,8 +19,9 @@
 package message
 
 import (
-	message "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler/message"
 	"github.com/cloudwego/hertz/pkg/app/server"
+
+	message "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler/message"
 )
 
 /*

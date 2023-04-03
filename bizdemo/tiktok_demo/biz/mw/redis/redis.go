@@ -19,9 +19,9 @@ package redis
 import (
 	"time"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
-
 	"github.com/go-redis/redis/v7"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 )
 
 var (

@@ -20,13 +20,14 @@ import (
 	"context"
 	"sync"
 
+	"github.com/cloudwego/hertz/pkg/app"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	user "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/user"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
-	"github.com/cloudwego/hertz/pkg/app"
 )
 
 type UserService struct {

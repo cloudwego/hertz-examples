@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
-
 	"github.com/minio/minio-go/v7"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 )
 
 func TestBucketExist(t *testing.T) {

@@ -22,20 +22,18 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
+	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz/pkg/common/hlog"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/feed"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/publish"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/ffmpeg"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/minio"
+	feed_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/feed"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
-
-	feed_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/feed"
-
-	"github.com/cloudwego/hertz/pkg/app"
-	"github.com/cloudwego/hertz/pkg/common/hlog"
 )
 
 type PublishService struct {

@@ -19,10 +19,9 @@ package db
 import (
 	"time"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/redis"
-
 	"gorm.io/gorm"
 
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/redis"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 )
 

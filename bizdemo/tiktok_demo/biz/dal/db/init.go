@@ -17,11 +17,11 @@
 package db
 
 import (
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
-
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	gormopentracing "gorm.io/plugin/opentracing"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 )
 
 var DB *gorm.DB
