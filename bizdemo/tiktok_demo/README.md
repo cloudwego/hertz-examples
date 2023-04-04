@@ -6,7 +6,7 @@
 [Download ffmpeg package](https://ffmpeg.org/download.html) && **add ffmpeg to system path or user path**
 ```shell
 # Install other services
-docker-compose up -d
+docker compose --profile dev up -d 
 
 go build -o tiktok_demo && ./tiktok_demo
 ```
@@ -17,8 +17,7 @@ go build -o tiktok_demo && ./tiktok_demo
 docker build -t tiktok:latest -f ./docker-build/Dockerfile .
 
 # Start all service
-cd docker-build 
-docker-compose up -d
+docker compose --profile release up -d
 ```
 
 ## Description
