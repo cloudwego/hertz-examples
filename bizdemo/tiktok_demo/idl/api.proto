@@ -1,4 +1,4 @@
-// idl/api.proto; 注解拓展
+// idl/api.proto; // proto extension
 syntax = "proto2";
 
 package api;

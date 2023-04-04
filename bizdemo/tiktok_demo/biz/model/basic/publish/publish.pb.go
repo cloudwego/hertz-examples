@@ -25,9 +25,8 @@ package publish
 import (
 	"mime/multipart"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
-
 	_ "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/api"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
 )
 
 type DouyinPublishActionRequest struct {

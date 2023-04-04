@@ -42,17 +42,17 @@ type User struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id              int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" form:"id" query:"id"`                                                                             // 用户id
-	Name            string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" form:"name" query:"name"`                                                                      // 用户名称
-	FollowCount     int64  `protobuf:"varint,3,opt,name=follow_count,json=followCount,proto3" json:"follow_count,omitempty" form:"follow_count" query:"follow_count"`                    // 关注总数
-	FollowerCount   int64  `protobuf:"varint,4,opt,name=follower_count,json=followerCount,proto3" json:"follower_count,omitempty" form:"follower_count" query:"follower_count"`          // 粉丝总数
-	IsFollow        bool   `protobuf:"varint,5,opt,name=is_follow,json=isFollow,proto3" json:"is_follow,omitempty" form:"is_follow" query:"is_follow"`                                   // true-已关注，false-未关注
-	Avatar          string `protobuf:"bytes,6,opt,name=avatar,proto3" json:"avatar,omitempty" form:"avatar" query:"avatar"`                                                              //用户头像
-	BackgroundImage string `protobuf:"bytes,7,opt,name=background_image,json=backgroundImage,proto3" json:"background_image,omitempty" form:"background_image" query:"background_image"` //用户个人页顶部大图
-	Signature       string `protobuf:"bytes,8,opt,name=signature,proto3" json:"signature,omitempty" form:"signature" query:"signature"`                                                  //个人简介
-	TotalFavorited  int64  `protobuf:"varint,9,opt,name=total_favorited,json=totalFavorited,proto3" json:"total_favorited,omitempty" form:"total_favorited" query:"total_favorited"`     //获赞数量
-	WorkCount       int64  `protobuf:"varint,10,opt,name=work_count,json=workCount,proto3" json:"work_count,omitempty" form:"work_count" query:"work_count"`                             //作品数量
-	FavoriteCount   int64  `protobuf:"varint,11,opt,name=favorite_count,json=favoriteCount,proto3" json:"favorite_count,omitempty" form:"favorite_count" query:"favorite_count"`         //点赞数量
+	Id              int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" form:"id" query:"id"`                                                                             // user id
+	Name            string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" form:"name" query:"name"`                                                                      // user name
+	FollowCount     int64  `protobuf:"varint,3,opt,name=follow_count,json=followCount,proto3" json:"follow_count,omitempty" form:"follow_count" query:"follow_count"`                    // total number of people the user follows
+	FollowerCount   int64  `protobuf:"varint,4,opt,name=follower_count,json=followerCount,proto3" json:"follower_count,omitempty" form:"follower_count" query:"follower_count"`          // total number of fans
+	IsFollow        bool   `protobuf:"varint,5,opt,name=is_follow,json=isFollow,proto3" json:"is_follow,omitempty" form:"is_follow" query:"is_follow"`                                   // whether the currently logged-in user follows this user
+	Avatar          string `protobuf:"bytes,6,opt,name=avatar,proto3" json:"avatar,omitempty" form:"avatar" query:"avatar"`                                                              // user avatar URL
+	BackgroundImage string `protobuf:"bytes,7,opt,name=background_image,json=backgroundImage,proto3" json:"background_image,omitempty" form:"background_image" query:"background_image"` // image at the top of the user's personal page
+	Signature       string `protobuf:"bytes,8,opt,name=signature,proto3" json:"signature,omitempty" form:"signature" query:"signature"`                                                  // user profile
+	TotalFavorited  int64  `protobuf:"varint,9,opt,name=total_favorited,json=totalFavorited,proto3" json:"total_favorited,omitempty" form:"total_favorited" query:"total_favorited"`     // number of likes for videos published by user
+	WorkCount       int64  `protobuf:"varint,10,opt,name=work_count,json=workCount,proto3" json:"work_count,omitempty" form:"work_count" query:"work_count"`                             // number of videos published by user
+	FavoriteCount   int64  `protobuf:"varint,11,opt,name=favorite_count,json=favoriteCount,proto3" json:"favorite_count,omitempty" form:"favorite_count" query:"favorite_count"`         // number of likes by this user
 }
 
 func (x *User) Reset() {
@@ -169,14 +169,14 @@ type Video struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id            int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" form:"id" query:"id"`                                                                    // 视频唯一标识
-	Author        *User  `protobuf:"bytes,2,opt,name=author,proto3" json:"author,omitempty" form:"author" query:"author"`                                                     // 视频作者信息
-	PlayUrl       string `protobuf:"bytes,3,opt,name=play_url,json=playUrl,proto3" json:"play_url,omitempty" form:"play_url" query:"play_url"`                                // 视频播放地址
-	CoverUrl      string `protobuf:"bytes,4,opt,name=cover_url,json=coverUrl,proto3" json:"cover_url,omitempty" form:"cover_url" query:"cover_url"`                           // 视频封面地址
-	FavoriteCount int64  `protobuf:"varint,5,opt,name=favorite_count,json=favoriteCount,proto3" json:"favorite_count,omitempty" form:"favorite_count" query:"favorite_count"` // 视频的点赞总数
-	CommentCount  int64  `protobuf:"varint,6,opt,name=comment_count,json=commentCount,proto3" json:"comment_count,omitempty" form:"comment_count" query:"comment_count"`      // 视频的评论总数
-	IsFavorite    bool   `protobuf:"varint,7,opt,name=is_favorite,json=isFavorite,proto3" json:"is_favorite,omitempty" form:"is_favorite" query:"is_favorite"`                // true-已点赞，false-未点赞
-	Title         string `protobuf:"bytes,8,opt,name=title,proto3" json:"title,omitempty" form:"title" query:"title"`                                                         // 视频标题
+	Id            int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" form:"id" query:"id"`                                                                    // video id
+	Author        *User  `protobuf:"bytes,2,opt,name=author,proto3" json:"author,omitempty" form:"author" query:"author"`                                                     // author information
+	PlayUrl       string `protobuf:"bytes,3,opt,name=play_url,json=playUrl,proto3" json:"play_url,omitempty" form:"play_url" query:"play_url"`                                // video playback URL
+	CoverUrl      string `protobuf:"bytes,4,opt,name=cover_url,json=coverUrl,proto3" json:"cover_url,omitempty" form:"cover_url" query:"cover_url"`                           // video cover URL
+	FavoriteCount int64  `protobuf:"varint,5,opt,name=favorite_count,json=favoriteCount,proto3" json:"favorite_count,omitempty" form:"favorite_count" query:"favorite_count"` // total number of likes for the video
+	CommentCount  int64  `protobuf:"varint,6,opt,name=comment_count,json=commentCount,proto3" json:"comment_count,omitempty" form:"comment_count" query:"comment_count"`      // total number of comments on the video
+	IsFavorite    bool   `protobuf:"varint,7,opt,name=is_favorite,json=isFavorite,proto3" json:"is_favorite,omitempty" form:"is_favorite" query:"is_favorite"`                // true-Liked，false-did not like
+	Title         string `protobuf:"bytes,8,opt,name=title,proto3" json:"title,omitempty" form:"title" query:"title"`                                                         // video title
 }
 
 func (x *Video) Reset() {

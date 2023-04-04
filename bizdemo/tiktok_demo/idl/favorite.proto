@@ -8,34 +8,36 @@ import "common.proto";
 option go_package = "interact/favorite";
 
 message DouyinFavoriteActionRequest {
-  string token = 1; // 用户鉴权token
-  int64 video_id = 2; // 视频id
-  int32 action_type = 3; // 1-点赞，2-取消点赞
+  string token = 1;
+  int64 video_id = 2; // video id
+  int32 action_type = 3; // 1-like, 2-unlike
 }
 
 message DouyinFavoriteActionResponse {
-  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
-  string status_msg = 2; // 返回状态描述
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 0 - success, other values - failure
+  string status_msg = 2; // status description
 }
 
 message DouyinFavoriteListRequest {
-  int64 user_id = 1; // 用户id
-  string token = 2; // 用户鉴权token
+  int64 user_id = 1;
+  string token = 2; // authentication token
 }
 
 message DouyinFavoriteListResponse {
-  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
-  string status_msg = 2; // 返回状态描述
-  repeated Video video_list = 3; // 用户点赞视频列表
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 0 - success, other values - failure
+  string status_msg = 2; // status description
+  repeated Video video_list = 3; // list of videos liked by users
 }
 
 service FavoriteHandler {
   rpc FavoriteAction(DouyinFavoriteActionRequest) returns(DouyinFavoriteActionResponse) {
       option (api.post) = "/douyin/favorite/action/";
+      // Like and unlike operations of the logged-in user on the video.
   }
 
   rpc FavoriteList(DouyinFavoriteListRequest) returns(DouyinFavoriteListResponse) {
       option (api.get) = "/douyin/favorite/list/";
+      // Get all liked videos of the logged in user.
   }
 }
 
