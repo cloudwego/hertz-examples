@@ -32,7 +32,7 @@ func main() {
 
 	h.StaticFile("/main", "./main.go")
 
-	var indexNames = []string{"1.txt", "2.txt"}
+	indexNames := []string{"1.txt", "2.txt"}
 	h.StaticFS("/static1", &app.FS{
 		Root:        "./",
 		PathRewrite: app.NewPathSlashesStripper(1),
