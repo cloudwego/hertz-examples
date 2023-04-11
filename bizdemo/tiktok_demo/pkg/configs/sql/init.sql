@@ -1,3 +1,19 @@
+/*
+ * Copyright 2023 CloudWeGo Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -23,7 +39,7 @@ DROP TABLE IF EXISTS `follows`;
 CREATE TABLE `follows` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `user_id` bigint NOT NULL COMMENT '用户id',
-  `follower_id` bigint NOT NULL COMMENT '关注的用户',
+  `follower_id` bigint NOT NULL COMMENT '粉丝id',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '关注关系创建时间',
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT '关注关系删除时间',
   PRIMARY KEY (`id`),
@@ -62,22 +78,6 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   KEY `user_name_password_idx` (`user_name`,`password`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8 COMMENT='用户表';
-
-/*
- * Copyright 2023 CloudWeGo Authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 -- ----------------------------
 -- Table structure for videos

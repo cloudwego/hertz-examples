@@ -48,6 +48,7 @@ func Init() {
 func main() {
 	Init()
 	h := server.Default(
+		server.WithStreamBody(true),
 		server.WithHostPorts("0.0.0.0:18005"),
 	)
 

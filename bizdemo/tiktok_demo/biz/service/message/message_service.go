@@ -19,12 +19,12 @@ package service
 import (
 	"context"
 
+	"github.com/cloudwego/hertz/pkg/app"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/social/message"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
-
-	"github.com/cloudwego/hertz/pkg/app"
 )
 
 type MessageService struct {

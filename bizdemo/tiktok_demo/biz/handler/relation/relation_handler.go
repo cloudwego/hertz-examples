@@ -21,12 +21,11 @@ package relation
 import (
 	"context"
 
-	service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/relation"
-
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 
 	relation "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/social/relation"
+	service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/relation"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/errno"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )

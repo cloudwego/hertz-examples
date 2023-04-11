@@ -19,8 +19,9 @@
 package relation
 
 import (
-	relation "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler/relation"
 	"github.com/cloudwego/hertz/pkg/app/server"
+
+	relation "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler/relation"
 )
 
 /*

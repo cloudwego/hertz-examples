@@ -19,8 +19,9 @@
 package comment
 
 import (
-	comment "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler/comment"
 	"github.com/cloudwego/hertz/pkg/app/server"
+
+	comment "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/handler/comment"
 )
 
 /*

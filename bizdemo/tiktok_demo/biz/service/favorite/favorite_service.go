@@ -22,7 +22,6 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/feed"
 	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
 	favorite "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/interact/favorite"
 	feed_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/feed"
@@ -55,7 +54,7 @@ func (r *FavoriteService) FavoriteAction(req *favorite.DouyinFavoriteActionReque
 		UserId:  current_user_id.(int64),
 		VideoId: req.VideoId,
 	}
-	favorite_exist, _ := db.CheckFavoriteRelationExist(new_favorite_relation)
+	favorite_exist, _ := db.QueryFavoriteExist(new_favorite_relation.UserId, new_favorite_relation.VideoId)
 	if req.ActionType == constants.FavoriteActionType {
 		if favorite_exist {
 			return false, errno.FavoriteRelationAlreadyExistErr
@@ -83,7 +82,7 @@ func (r *FavoriteService) GetFavoriteList(req *favorite.DouyinFavoriteListReques
 	video_id_list, err := db.GetFavoriteIdList(query_user_id)
 
 	dbVideos, err := db.GetVideoListByVideoIDList(video_id_list)
-	var videos []*feed.Video
+	var videos []*common.Video
 	f := feed_service.NewFeedService(r.ctx, r.c)
 	err = f.CopyVideos(&videos, &dbVideos, current_user_id.(int64))
 	for _, item := range videos {

@@ -64,7 +64,7 @@ func (s *FeedService) Feed(req *feed.DouyinFeedRequest) (*feed.DouyinFeedRespons
 		return resp, err
 	}
 
-	videos := make([]*feed.Video, 0, constants.VideoFeedCount)
+	videos := make([]*common.Video, 0, constants.VideoFeedCount)
 	err = s.CopyVideos(&videos, &dbVideos, current_user_id.(int64))
 	if err != nil {
 		return resp, nil
@@ -77,7 +77,7 @@ func (s *FeedService) Feed(req *feed.DouyinFeedRequest) (*feed.DouyinFeedRespons
 }
 
 // CopyVideos use db.Video make feed.Video
-func (s *FeedService) CopyVideos(result *[]*feed.Video, data *[]*db.Video, userId int64) error {
+func (s *FeedService) CopyVideos(result *[]*common.Video, data *[]*db.Video, userId int64) error {
 	for _, item := range *data {
 		video := s.createVideo(item, userId)
 		*result = append(*result, video)
@@ -86,8 +86,8 @@ func (s *FeedService) CopyVideos(result *[]*feed.Video, data *[]*db.Video, userI
 }
 
 // createVideo get video info by concurrent query
-func (s *FeedService) createVideo(data *db.Video, userId int64) *feed.Video {
-	video := &feed.Video{
+func (s *FeedService) createVideo(data *db.Video, userId int64) *common.Video {
+	video := &common.Video{
 		Id: data.ID,
 		// convert path in the db into a complete url accessible by the front end
 		PlayUrl:  utils.URLconvert(s.ctx, s.c, data.PlayURL),
@@ -144,7 +144,7 @@ func (s *FeedService) createVideo(data *db.Video, userId int64) *feed.Video {
 	// Get favorite exist
 	go func() {
 		err := *new(error)
-		video.IsFavorite, err = db.QueryFavoriteExist(data.ID, userId)
+		video.IsFavorite, err = db.QueryFavoriteExist(userId, data.ID)
 		if err != nil {
 			log.Printf("QueryFavoriteExist func error:" + err.Error())
 		}

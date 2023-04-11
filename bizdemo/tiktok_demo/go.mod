@@ -5,7 +5,6 @@ go 1.18
 require (
 	github.com/cloudwego/hertz v0.6.0
 	github.com/go-redis/redis/v7 v7.4.1
-	github.com/golang/protobuf v1.5.3
 	github.com/hertz-contrib/jwt v1.0.2
 	github.com/hertz-contrib/reverseproxy v1.0.0
 	github.com/minio/minio-go/v7 v7.0.49
@@ -28,6 +27,7 @@ require (
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/golang-jwt/jwt/v4 v4.4.1 // indirect
+	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/henrylee2cn/ameda v1.4.10 // indirect
 	github.com/henrylee2cn/goutil v0.0.0-20210127050712-89660552f6f8 // indirect

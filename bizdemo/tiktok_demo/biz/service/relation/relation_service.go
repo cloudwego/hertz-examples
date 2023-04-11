@@ -59,22 +59,20 @@ func (r *RelationService) FollowAction(req *relation.DouyinRelationActionRequest
 		return false, errno.ParamErr
 	}
 	new_follow_relation := &db.Follows{
-		UserId:     current_user_id.(int64),
-		FollowerId: req.ToUserId,
+		UserId:     req.ToUserId,
+		FollowerId: current_user_id.(int64),
 	}
-	follow_exist, _ := db.CheckFollowRelationExist(new_follow_relation)
+	follow_exist, _ := db.QueryFollowExist(new_follow_relation.UserId, new_follow_relation.FollowerId)
 	if req.ActionType == FOLLOW {
 		if follow_exist {
 			return false, errno.FollowRelationAlreadyExistErr
 		}
 		flag, err = db.AddNewFollow(new_follow_relation)
-		// 增加redis缓存功能
 	} else {
 		if !follow_exist {
 			return false, errno.FollowRelationNotExistErr
 		}
 		flag, err = db.DeleteFollow(new_follow_relation)
-		// 增加redis缓存功能
 	}
 	return flag, err
 }
@@ -90,12 +88,12 @@ func (r *RelationService) GetFollowList(req *relation.DouyinRelationFollowListRe
 	if !exists {
 		current_user_id = int64(0)
 	}
-	dbfollows, err := db.GetFollowIdList(req.UserId)
+	followIdList, err := db.GetFollowIdList(req.UserId)
 	if err != nil {
 		return followList, err
 	}
 
-	for _, follow := range dbfollows {
+	for _, follow := range followIdList {
 		user_info, err := user_service.NewUserService(r.ctx, r.c).GetUserInfo(follow, current_user_id.(int64))
 		if err != nil {
 			continue
@@ -121,19 +119,18 @@ func (r *RelationService) GetFollowList(req *relation.DouyinRelationFollowListRe
 // GetFollowerList get follower list by the user id in req
 func (r *RelationService) GetFollowerList(req *relation.DouyinRelationFollowerListRequest) ([]*common.User, error) {
 	user_id := req.UserId
-	// token := req.Token
 	var followerList []*common.User
 	current_user_id, exists := r.c.Get("current_user_id")
 	if !exists {
 		current_user_id = int64(0)
 	}
 
-	dbfollowers, err := db.GetFollowerIdList(user_id)
+	followerIdList, err := db.GetFollowerIdList(user_id)
 	if err != nil {
 		return followerList, err
 	}
 
-	for _, follower := range dbfollowers {
+	for _, follower := range followerIdList {
 		user_info, err := user_service.NewUserService(r.ctx, r.c).GetUserInfo(follower, current_user_id.(int64))
 		if err != nil {
 			hlog.Error("func error: GetFollowerList -> GetUserInfo")
@@ -168,52 +165,46 @@ func (r *RelationService) GetFriendList(req *relation.DouyinRelationFriendListRe
 
 	var friendList []*relation.FriendUser
 
-	followerIdList, err := db.GetFollowerIdList(user_id)
+	friendIdList, err := db.GetFriendIdList(user_id)
 	if err != nil {
 		return friendList, err
 	}
 
-	for _, id := range followerIdList {
-		isFriend, err := db.QueryFollowExist(user_id, id)
+	for _, id := range friendIdList {
+		user_info, err := user_service.NewUserService(r.ctx, r.c).GetUserInfo(id, user_id)
 		if err != nil {
-			return friendList, err
+			log.Printf("func error: GetFriendList -> GetUserInfo")
 		}
-		if isFriend {
-			user_info, err := user_service.NewUserService(r.ctx, r.c).GetUserInfo(id, user_id)
-			if err != nil {
-				log.Printf("func error: GetFriendList -> GetUserInfo")
-			}
-			message, err := db.GetLatestMessageByIdPair(user_id, id)
-			if err != nil {
-				log.Printf("func error: GetFriendList -> GetLatestMessageByIdPair")
-			}
-			var msgType int64
-			if message == nil { // No chat history
-				msgType = 2
-				message = &db.Messages{}
-			} else if user_id == message.FromUserId {
-				msgType = 1
-			} else {
-				msgType = 0
-			}
-			friendList = append(friendList, &relation.FriendUser{
-				User: common.User{
-					Id:              user_info.Id,
-					Name:            user_info.Name,
-					FollowCount:     user_info.FollowCount,
-					FollowerCount:   user_info.FollowerCount,
-					IsFollow:        user_info.IsFollow,
-					Avatar:          user_info.Avatar,
-					BackgroundImage: user_info.BackgroundImage,
-					Signature:       user_info.Signature,
-					TotalFavorited:  user_info.TotalFavorited,
-					WorkCount:       user_info.WorkCount,
-					FavoriteCount:   user_info.FavoriteCount,
-				},
-				Message: message.Content,
-				MsgType: msgType,
-			})
+		message, err := db.GetLatestMessageByIdPair(user_id, id)
+		if err != nil {
+			log.Printf("func error: GetFriendList -> GetLatestMessageByIdPair")
 		}
+		var msgType int64
+		if message == nil { // No chat history
+			msgType = 2
+			message = &db.Messages{}
+		} else if user_id == message.FromUserId {
+			msgType = 1
+		} else {
+			msgType = 0
+		}
+		friendList = append(friendList, &relation.FriendUser{
+			User: common.User{
+				Id:              user_info.Id,
+				Name:            user_info.Name,
+				FollowCount:     user_info.FollowCount,
+				FollowerCount:   user_info.FollowerCount,
+				IsFollow:        user_info.IsFollow,
+				Avatar:          user_info.Avatar,
+				BackgroundImage: user_info.BackgroundImage,
+				Signature:       user_info.Signature,
+				TotalFavorited:  user_info.TotalFavorited,
+				WorkCount:       user_info.WorkCount,
+				FavoriteCount:   user_info.FavoriteCount,
+			},
+			Message: message.Content,
+			MsgType: msgType,
+		})
 	}
 
 	return friendList, nil
