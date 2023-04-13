@@ -69,9 +69,9 @@ func TestGetFollowCount(t *testing.T) {
 	fmt.Println(cnt)
 }
 
-func TestGetFolloweeCount(t *testing.T) {
+func TestGetFollowerCount(t *testing.T) {
 	Init()
-	cnt, err := GetFolloweeCount(1001)
+	cnt, err := GetFollowerCount(1001)
 	if err != nil {
 		fmt.Println("false")
 		return

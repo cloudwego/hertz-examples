@@ -19,23 +19,24 @@ package redis
 import (
 	"time"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
-
 	"github.com/go-redis/redis/v7"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
 )
 
 var (
-	ExpireTime                = time.Hour * 24
-	RdbFollowing, RdbFollower *redis.Client
+	expireTime  = time.Hour * 1
+	rdbFollows  *redis.Client
+	rdbFavorite *redis.Client
 )
 
 func InitRedis() {
-	RdbFollowing = redis.NewClient(&redis.Options{
+	rdbFollows = redis.NewClient(&redis.Options{
 		Addr:     constants.RedisAddr,
 		Password: constants.RedisPassword,
 		DB:       0,
 	})
-	RdbFollower = redis.NewClient(&redis.Options{
+	rdbFavorite = redis.NewClient(&redis.Options{
 		Addr:     constants.RedisAddr,
 		Password: constants.RedisPassword,
 		DB:       1,

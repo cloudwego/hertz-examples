@@ -8,34 +8,36 @@ import "common.proto";
 option go_package = "basic/publish";
 
 message DouyinPublishActionRequest {
-  string token = 1; // 用户鉴权token
-  bytes data = 2; // 视频数据
-  string title = 3; // 视频标题
+  string token = 1;
+  bytes data = 2; // video data
+  string title = 3; // video title
 }
 
 message DouyinPublishActionResponse {
-  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
-  string status_msg = 2; // 返回状态描述
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
 }
 
 message DouyinPublishListRequest {
-  int64 user_id = 1; // 用户id
-  string token = 2; // 用户鉴权token
+  int64 user_id = 1;
+  string token = 2;
 }
 
 message DouyinPublishListResponse {
-  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 状态码，0-成功，其他值-失败
-  string status_msg = 2; // 返回状态描述
-  repeated Video video_list = 3; // 用户发布的视频列表
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+  repeated Video video_list = 3; // list of videos posted by users
 }
 
 service PublishHandler {
   rpc PublishAction(DouyinPublishActionRequest) returns(DouyinPublishActionResponse) {
     option (api.post) = "/douyin/publish/action/";
+    // Logged in user selects video to upload.
   }
 
   rpc PublishList(DouyinPublishListRequest) returns(DouyinPublishListResponse) {
     option (api.get) = "/douyin/publish/list/";
+    // Get logged-in to the user's video publishing list, and directly list all the videos that the user has contributed.
   }
 
 }

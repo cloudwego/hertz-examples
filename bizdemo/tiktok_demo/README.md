@@ -1,25 +1,23 @@
 # tiktok_demo
  A simple hertz server that provides user, video, interactive, and social backend services for tiktok app.
 ## How to run
-
-#### 1. Local environment
+#### 1. tiktok_demo in the local environment
 
 [Download ffmpeg package](https://ffmpeg.org/download.html) && **add ffmpeg to system path or user path**
 ```shell
 # Install other services
-docker-compose up
+docker compose --profile dev up -d 
 
-go build -o offer_tiktok && ./offer_tiktok
+go build -o tiktok_demo && ./tiktok_demo
 ```
 
-#### 2 Docker environment
+#### 2. tiktok_demo in the docker environment
 ```shell
 # Compile in docker image && Packaged with ffmpeg
 docker build -t tiktok:latest -f ./docker-build/Dockerfile .
 
 # Start all service
-cd docker-build 
-docker-compose up -d
+docker compose --profile release up -d
 ```
 
 ## Description

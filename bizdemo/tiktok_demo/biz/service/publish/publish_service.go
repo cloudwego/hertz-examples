@@ -22,20 +22,17 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
-
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/feed"
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/publish"
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/ffmpeg"
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/minio"
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
-	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
-
-	feed_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/feed"
-
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
+
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/dal/db"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/basic/publish"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/model/common"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/ffmpeg"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/mw/minio"
+	feed_service "github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/biz/service/feed"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/constants"
+	"github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo/pkg/utils"
 )
 
 type PublishService struct {
@@ -87,7 +84,7 @@ func (s *PublishService) PublishList(req *publish.DouyinPublishListRequest) (res
 	if err != nil {
 		return resp, err
 	}
-	var videos []*feed.Video
+	var videos []*common.Video
 
 	f := feed_service.NewFeedService(s.ctx, s.c)
 	err = f.CopyVideos(&videos, &dbVideos, current_user_id.(int64))
