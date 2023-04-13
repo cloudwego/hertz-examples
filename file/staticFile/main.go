@@ -32,22 +32,33 @@ func main() {
 
 	h.StaticFile("/main", "./main.go")
 
-	var indexNames = []string{"1.txt", "2.txt"}
+	indexNames := []string{"1.txt", "2.txt"}
 	h.StaticFS("/static1", &app.FS{
 		Root:        "./",
 		PathRewrite: app.NewPathSlashesStripper(1),
 		PathNotFound: func(_ context.Context, ctx *app.RequestContext) {
 			ctx.JSON(consts.StatusNotFound, "The requested resource does not exist")
 		},
-		CacheDuration:        time.Second * 5,
-		IndexNames:           indexNames,
+
+		// set the time interval for automatically closing inactive file handlers
+		CacheDuration: time.Second * 5,
+
+		// set indexNames, when you access the directory, you will get one of the file in the slice
+		IndexNames: indexNames,
+
+		// set the compress true, server adds a `CompressedFileSuffix` suffix to the original file name
+		// server attempts to save the resulting compressed file under the new file name
 		Compress:             true,
 		CompressedFileSuffix: "hertz",
-		AcceptByteRange:      true,
+
+		// enables clients to request a specific range of bytes from a file on the server
+		AcceptByteRange: true,
 	})
 
 	h.StaticFS("/static2", &app.FS{
-		PathRewrite:        app.NewPathSlashesStripper(1),
+		PathRewrite: app.NewPathSlashesStripper(1),
+
+		// set GenerateIndexPages true, when you access the directory, you will get the index(without `IndexNames`)
 		GenerateIndexPages: true,
 	})
 
