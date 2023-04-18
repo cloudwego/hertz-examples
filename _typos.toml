@@ -2,7 +2,7 @@
 # Typo check: https://github.com/crate-ci/typos
 
 [files]
-extend-exclude = ["go.sum", "*.js", "*.css", "*.html", "*.map"]
+extend-exclude = ["go.mod", "go.sum", "*.js", "*.css", "*.html", "*.map"]
 
 [default.extend-identifiers]
 # *sigh* this just isn't worth the cost of fixing
