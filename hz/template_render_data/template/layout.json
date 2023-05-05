@@ -1,0 +1,11 @@
+{
+  "*": {
+    "GoModule": "github.com/hz/template_render_data",
+    "ServiceName": "hello",
+    "UseApacheThrift": true,
+    "MainTestData": "this is customized test render data"
+  },
+  "main.go": {
+    "MainData": "this is customized render data"
+  }
+}
