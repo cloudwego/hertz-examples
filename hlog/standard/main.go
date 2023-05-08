@@ -40,7 +40,10 @@ func main() {
 
 	// SetOutput sets the output of default logger. By default, it is stderr.
 	hlog.SetOutput(f)
+	// if you want to output the log to the file and the stdout at the same time, you can use the following codes
 
+	// fileWriter := io.MultiWriter(f, os.Stdout)
+	// hlog.SetOutput(fileWriter)
 	h.GET("/hello", func(ctx context.Context, c *app.RequestContext) {
 		// it will be output
 		hlog.Info("Hello, hertz")

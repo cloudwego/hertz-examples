@@ -66,7 +66,10 @@ func main() {
 
 	logger.SetOutput(lumberjackLogger)
 	logger.SetLevel(hlog.LevelDebug)
+	// if you want to output the log to the file and the stdout at the same time, you can use the following codes
 
+	// fileWriter := io.MultiWriter(lumberjackLogger, os.Stdout)
+	// logger.SetOutput(fileWriter)
 	hlog.SetLogger(logger)
 
 	h.GET("/hello", func(ctx context.Context, c *app.RequestContext) {
