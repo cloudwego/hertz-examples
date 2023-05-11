@@ -13,6 +13,9 @@
 - [hertz_jwt:](bizdemo/hertz_jwt) 在 hertz server 中使用 jwt 的示例
 - [hertz_session:](bizdemo/hertz_session) 在 hertz server 中使用分布式 session 和 csrf 的示例
 - [tiktok_demo:](bizdemo/tiktok_demo) 在 hertz server 中实现极简版抖音服务端的示例
+- [tiktok_demo:](bizdemo/tiktok_demo) 在 hertz server 中实现极简版抖音服务端的示例
+- [formulago:](https://github.com/chenghonour/formulago) 使用 hertz 与 ent 实现的生产级别后台管理系统框架
+- [gpress:](https://github.com/springrain/gpress) 使用 hertz 与 zorm 实现的生产级别云原生高性能内容平台
 
 ## Server
 
