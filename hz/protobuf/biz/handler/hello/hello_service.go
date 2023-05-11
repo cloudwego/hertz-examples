@@ -6,6 +6,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	hello "hertz-examples/hz/protobuf/biz/model/hertz/hello"
 )
 
@@ -16,11 +17,11 @@ func Method1(ctx context.Context, c *app.RequestContext) {
 	var req hello.HelloReq
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		c.String(400, err.Error())
+		c.String(consts.StatusBadRequest, err.Error())
 		return
 	}
 
 	resp := new(hello.HelloResp)
 
-	c.JSON(200, resp)
+	c.JSON(consts.StatusOK, resp)
 }

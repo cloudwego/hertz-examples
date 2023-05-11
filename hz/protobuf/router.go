@@ -3,9 +3,8 @@
 package main
 
 import (
-	handler "hertz-examples/hz/protobuf/biz/handler"
-
 	"github.com/cloudwego/hertz/pkg/app/server"
+	handler "hertz-examples/hz/protobuf/biz/handler"
 )
 
 // customizeRegister registers customize routers.
