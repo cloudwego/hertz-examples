@@ -61,6 +61,7 @@ require (
 	golang.org/x/net v0.9.0 // indirect
 	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
