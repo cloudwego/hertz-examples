@@ -20,62 +20,62 @@ enum Gender {
 }
 
 message User{
-  int64 UserID = 1;
-  string Name = 2;
-  Gender Gender = 3;
-  int64  Age = 4;
-  string Introduce = 5;
+  int64 user_id = 1;
+  string name = 2;
+  Gender gender = 3;
+  int64  age = 4;
+  string introduce = 5;
 }
 
 message CreateUserReq{
-  string Name = 1 [(api.body) = "name", (api.form) = "name", (api.vd) = "(len($) > 0 && len($) < 100)"];
-  Gender Gender = 2 [(api.body) = "gender", (api.form) = "gender", (api.vd) = "($ == 1||$ == 2)"];
-  int64 Age = 3 [(api.body) = "age", (api.form) = "age", (api.vd) = "$>0"];
-  string Introduce = 4 [(api.body) = "introduce", (api.form) = "introduce", (api.vd) = "(len($) > 0 && len($) < 1000)"];
+  string name = 1 [(api.body) = "name", (api.form) = "name", (api.vd) = "(len($) > 0 && len($) < 100)"];
+  Gender gender = 2 [(api.body) = "gender", (api.form) = "gender", (api.vd) = "($ == 1||$ == 2)"];
+  int64 age = 3 [(api.body) = "age", (api.form) = "age", (api.vd) = "$>0"];
+  string introduce = 4 [(api.body) = "introduce", (api.form) = "introduce", (api.vd) = "(len($) > 0 && len($) < 1000)"];
 }
 
 message CreateUserResp{
-  Code Code = 1;
-  string Msg = 2;
+  Code code = 1;
+  string msg = 2;
 }
 
 message QueryUserReq{
-  string Keyword = 1 [(api.body) = "keyword", (api.form) = "keyword"];
-  int64 Page = 2 [(api.body) = "page", (api.form) = "page", (api.vd) = "$>0"];
-  int64 PageSize = 3 [(api.body) = "page_size", (api.form) = "page_size", (api.vd) = "($ > 0 || $ <= 100)"];
+  string keyword = 1 [(api.body) = "keyword", (api.form) = "keyword"];
+  int64 page = 2 [(api.body) = "page", (api.form) = "page", (api.vd) = "$>0"];
+  int64 page_size = 3 [(api.body) = "page_size", (api.form) = "page_size", (api.vd) = "($ > 0 || $ <= 100)"];
 }
 
 message QueryUserResp{
-  Code Code = 1;
-  string Msg = 2;
-  repeated User User = 3;
-  int64 Total = 4;
+  Code code = 1;
+  string msg = 2;
+  repeated User user = 3;
+  int64 total = 4;
 }
 
 message DeleteUserReq{
-  int64 UserID = 1 [(api.path) = "user_id", (api.vd) = "$>0"];
+  int64 user_id = 1 [(api.path) = "user_id", (api.vd) = "$>0"];
 }
 
 message DeleteUserResp{
-  Code Code = 1;
-  string Msg = 2;
+  Code code = 1;
+  string msg = 2;
 }
 
 message UpdateUserReq{
-  int64 UserID = 1 [(api.path) = "user_id", (api.vd) = "$>0"];
-  string Name = 2 [(api.body) = "name", (api.form) = "name", (api.vd) = "(len($) > 0 && len($) < 100)"];
-  Gender Gender = 3 [(api.body) = "gender", (api.form) = "gender", (api.vd) = "($ == 1||$ == 2)"];
-  int64 Age = 4 [(api.body) = "age", (api.form) = "age", (api.vd) = "$>0"];
-  string Introduce = 5 [(api.body) = "introduce", (api.form) = "introduce", (api.vd) = "(len($) > 0 && len($) < 1000)"];
+  int64 user_id = 1 [(api.path) = "user_id", (api.vd) = "$>0"];
+  string name = 2 [(api.body) = "name", (api.form) = "name", (api.vd) = "(len($) > 0 && len($) < 100)"];
+  Gender gender = 3 [(api.body) = "gender", (api.form) = "gender", (api.vd) = "($ == 1||$ == 2)"];
+  int64 age = 4 [(api.body) = "age", (api.form) = "age", (api.vd) = "$>0"];
+  string introduce = 5 [(api.body) = "introduce", (api.form) = "introduce", (api.vd) = "(len($) > 0 && len($) < 1000)"];
 }
 
 message UpdateUserResp{
-  Code Code = 1;
-  string Msg = 2;
+  Code code = 1;
+  string msg = 2;
 }
 
 message OtherResp {
-  string Msg = 1;
+  string msg = 1;
 }
 
 service UserService {
