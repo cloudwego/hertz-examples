@@ -38,7 +38,7 @@ func User(model *orm_gen.User) *user.User {
 		return nil
 	}
 	return &user.User{
-		UserID:    model.ID,
+		UserId:    model.ID,
 		Name:      model.Name,
 		Gender:    user.Gender(model.Gender),
 		Age:       int64(model.Age),
