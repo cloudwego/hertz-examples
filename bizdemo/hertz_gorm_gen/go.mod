@@ -3,7 +3,7 @@ module github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen
 go 1.19
 
 require (
-	github.com/cloudwego/hertz v0.6.0
+	github.com/cloudwego/hertz v0.6.6
 	google.golang.org/protobuf v1.28.1
 	gorm.io/driver/mysql v1.4.4
 	gorm.io/gen v0.3.21
