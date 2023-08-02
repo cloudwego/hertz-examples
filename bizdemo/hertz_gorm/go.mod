@@ -5,8 +5,8 @@ go 1.16
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
-	github.com/apache/thrift v0.0.0-00010101000000-000000000000
-	github.com/cloudwego/hertz v0.6.0
+	github.com/apache/thrift v0.13.0
+	github.com/cloudwego/hertz v0.6.6
 	github.com/hertz-contrib/gzip v0.0.1
 	gorm.io/driver/mysql v1.4.4
 	gorm.io/gorm v1.24.6
