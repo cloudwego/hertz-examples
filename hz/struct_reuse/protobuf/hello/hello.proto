@@ -1,0 +1,22 @@
+// idl/hello/hello.proto
+syntax = "proto3"; // proto2/3 语法均可，推荐 proto3
+
+package hello;
+
+option go_package = "a/b/c/kitex_gen/hello";
+
+import "api.proto";
+
+message HelloReq {
+  string Name = 1;
+}
+
+message HelloResp {
+  string RespBody = 1;
+}
+
+service HelloService {
+  rpc Method1(HelloReq) returns(HelloResp) {
+    option (api.get) = "/api/v1";
+  }
+}
