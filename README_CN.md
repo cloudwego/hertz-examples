@@ -21,6 +21,12 @@
 - [hello:](hello) 启动对于 hertz 来说相当于 "hello world" 的示例
 - [config:](config) 配置 Hertz server 的示例
 - [protocol:](protocol) 使用 http1, TLS 以及其他协议的示例
+  - [HTTP1](https://github.com/cloudwego/hertz-examples/tree/main/protocol/http1) hertz 使用 HTTP1 协议的示例
+  - [TLS](https://github.com/cloudwego/hertz-examples/tree/main/protocol/tls) hertz 使用 TLS 协议的示例
+  - [HTTP2](https://github.com/hertz-contrib/http2/tree/main/examples) hertz 使用 HTTP2 协议的示例
+  - [HTTP3](https://github.com/hertz-contrib/http3/tree/main/examples/quic-go) hertz 使用 HTTP3 协议的示例
+  - [Websocket](https://github.com/hertz-contrib/websocket/tree/main/examples) hertz 使用 Websocket 协议的示例
+  - [SSE](https://github.com/hertz-contrib/sse/tree/main/examples) hertz 使用 SSE 协议的示例
 - [middleware:](middleware) 使用 hertz 中间件的示例
   - [basicauth:](middleware/basicauth) 使用 BasicAuth 中间件的示例
   - [cors:](middleware/CORS) 使用 CORS 中间件的示例
@@ -30,6 +36,19 @@
   - [requestid:](middleware/requestid) 使用 RequestID 中间件的示例
   - [gzip:](middleware/gzip) 使用 Gzip 中间件的示例
   - [loadbalance:](middleware/loadbalance) 使用 Loadbalance 中间件的示例
+  - [Recovery](https://www.cloudwego.io/zh/docs/hertz/tutorials/basic-feature/middleware/recovery/) 使用 Recovery 中间件的示例
+  - [jwt](https://github.com/hertz-contrib/jwt/tree/main/example/basic) 使用 jwt 中间件的示例
+  - [i18n](https://github.com/hertz-contrib/i18n/tree/main/example) 使用 i18n 中间件的示例
+  - [session](https://github.com/hertz-contrib/sessions/tree/main/_example) 使用 session 中间件的示例
+  - [KeyAuth](https://github.com/hertz-contrib/keyauth/tree/main/example) 使用 KeyAuth 中间件的示例
+  - [Swagger](https://github.com/swaggo/gin-swagger/tree/master/example) 使用 Swagger 中间件的示例
+  - [access log](https://github.com/hertz-contrib/logger/tree/main/accesslog/example) 使用 access log 中间件的示例
+  - [Secure](https://github.com/hertz-contrib/secure/tree/main/example/custom) 使用 Secure 中间件的示例
+  - [Sentry](https://github.com/hertz-contrib/hertzsentry) 使用 Sentry 中间件的示例
+  - [Casbin](https://github.com/hertz-contrib/casbin/tree/main/example) 使用 Casbin 中间件的示例
+  - [ETag](https://github.com/hertz-contrib/etag/tree/main/example) 使用 ETag 中间件的示例
+  - [Cache](https://github.com/hertz-contrib/cache/tree/main/example) 使用 Cache 中间件的示例
+  - [Paseto](https://github.com/hertz-contrib/paseto/tree/main/example) 使用 Paseto 中间件的示例
 - [binding:](binding) 绑定参数和验证参数的示例
 - [parameters:](parameter) 获取 query, form, cookie 等类型参数的示例
 - [file:](file) 关于如何上传，下载文件和搭建静态文件服务的示例
