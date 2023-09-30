@@ -1,4 +1,4 @@
-module github.com/hertz-contrib/hertz-examples/graphql
+module github.com/cloudwego/hertz-examples/graphql
 
 go 1.18
 

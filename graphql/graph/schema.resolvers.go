@@ -7,7 +7,7 @@ package graph
 import (
 	"context"
 
-	"github.com/hertz-contrib/hertz-examples/graphql/graph/model"
+	"github.com/cloudwego/hertz-examples/graphql/graph/model"
 )
 
 // CreateOrder is the resolver for the createOrder field.

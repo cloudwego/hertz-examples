@@ -8,10 +8,10 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/cloudwego/hertz-examples/graphql/graph"
+	"github.com/cloudwego/hertz-examples/graphql/graph/model"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	"github.com/hertz-contrib/hertz-examples/graphql/graph"
-	"github.com/hertz-contrib/hertz-examples/graphql/graph/model"
 	"github.com/hertz-contrib/pprof/adaptor"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
