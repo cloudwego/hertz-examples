@@ -1016,8 +1016,6 @@ github.com/henrylee2cn/ameda v1.4.8/go.mod h1:liZulR8DgHxdK+MEwvZIylGnmcjzQ6N6f2
 github.com/henrylee2cn/ameda v1.4.10/go.mod h1:liZulR8DgHxdK+MEwvZIylGnmcjzQ6N6f2PlWe7nEO4=
 github.com/henrylee2cn/ameda v1.5.1/go.mod h1:wnTERseg26LtcSrHOPlV3pBGnNwQiz3TNIeMEgNoNlg=
 github.com/henrylee2cn/goutil v0.0.0-20210127050712-89660552f6f8/go.mod h1:Nhe/DM3671a5udlv2AdV2ni/MZzgfv2qrPL5nIi3EGQ=
-github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf h1:ZAxm2v6m6uhdlRZkmfcdFJm9P3FG7VQIQxC5Hkx8Li0=
-github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf/go.mod h1:45j0uowS7Wuijes/UKkxrszUM7Hs6E49TY0M27Fu560=
 github.com/hertz-contrib/cors v0.0.0-20230423034624-2bc83a8400f0 h1:l5i0uvP7OQ//vjA4qR3U160NxQex+BiqaRM+u6CpoIM=
 github.com/hertz-contrib/cors v0.0.0-20230423034624-2bc83a8400f0/go.mod h1:VPReoq+Rvu/lZOfpp5CcX3x4mpZUc3EpSXBcVDcbvOc=
 github.com/hertz-contrib/csrf v0.1.1 h1:53HxseVzpW4JEUJ7ONAaQCyNBWXl+rn42LVqgwEQzRg=
