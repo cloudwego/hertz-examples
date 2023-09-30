@@ -157,6 +157,8 @@ export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
 export OTEL_EXPORTER_OTLP_PROTOCOL=grpc
 ```
 
-### Run Exeample App and View Jaeger
+### Run Example App and View Jaeger
 
 ![img.png](static/jaeger-otlp.png)
+
+

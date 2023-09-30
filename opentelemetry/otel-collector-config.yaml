@@ -9,8 +9,8 @@ exporters:
 
   logging:
 
-  jaeger:
-    endpoint: jaeger-all-in-one:14250
+  otlp:
+    endpoint: jaeger-all-in-one:4317
     tls:
       insecure: true
 
@@ -34,4 +34,4 @@ service:
     metrics:
       receivers: [ otlp ]
       processors: [ batch ]
-      exporters: [ logging, prometheusremotewrite ]
+      exporters: [ logging, otlp ]
