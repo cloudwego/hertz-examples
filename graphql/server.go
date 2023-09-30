@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/cloudwego/hertz/pkg/common/hlog"
+
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/cloudwego/hertz/pkg/app"
@@ -48,6 +50,7 @@ func main() {
 
 	h.POST("/query", graphHandler())
 	h.GET("/", playgroundHandler())
+	hlog.Info("connect to http://localhost:%s for GraphQL playground", port)
 	h.Spin()
 }
 
