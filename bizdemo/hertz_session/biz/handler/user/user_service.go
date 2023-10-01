@@ -115,7 +115,7 @@ func Login(_ context.Context, c *app.RequestContext) {
 }
 
 // Logout .
-// @router /logout [GET]
+// @router /logout [POST]
 func Logout(_ context.Context, c *app.RequestContext) {
 	session := sessions.Default(c)
 	session.Delete(consts.Username)

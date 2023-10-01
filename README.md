@@ -13,12 +13,20 @@ You can enter the example for information about  "How to run"
 - [bizdemo/hertz_jwt:](bizdemo/hertz_jwt) Example of using jwt in hertz server
 - [bizdemo/hertz_session:](bizdemo/hertz_session) Example of using distributed session and csrf in hertz server
 - [bizdemo/tiktok_demo:](bizdemo/tiktok_demo) Example of simple tiktok in hertz server
+- [formulago:](https://github.com/chenghonour/formulago) Production-level backend management system framework implemented using hertz and ent
+- [gpress:](https://github.com/springrain/gpress) Production-grade cloud-native high-performance content platform using hertz and zorm
 
 ## Server
 
 - [hello:](hello) Example of launching a hertz "hello world" application
 - [config:](config) Example of configuring hertz server
 - [protocol:](protocol) Example of using http1, tls and other protocols of hertz
+  - [HTTP1](https://github.com/cloudwego/hertz-examples/tree/main/protocol/http1) Example of hertz using HTTP1 protocol
+  - [TLS](https://github.com/cloudwego/hertz-examples/tree/main/protocol/tls) Example of hertz using TLS protocol
+  - [HTTP2](https://github.com/hertz-contrib/http2/tree/main/examples) Example of hertz using HTTP2 protocol
+  - [HTTP3](https://github.com/hertz-contrib/http3/tree/main/examples/quic-go) Example of hertz using HTTP3 protocol
+  - [Websocket](https://github.com/hertz-contrib/websocket/tree/main/examples) Example of hertz using Websocket protocol
+  - [SSE](https://github.com/hertz-contrib/sse/tree/main/examples) Example of hertz using SSE protocol
 - [middleware:](middleware) Example of using middleware of hertz
   - [basicauth:](middleware/basicauth) Example of using BasicAuth middleware
   - [cors:](middleware/CORS) Example of using CORS middleware
@@ -28,6 +36,19 @@ You can enter the example for information about  "How to run"
   - [requestid:](middleware/requestid) Example of using RequestID middleware
   - [gzip:](middleware/gzip) Example of using Gzip middleware
   - [loadbalance:](middleware/loadbalance) Example of using Loadbalance middleware
+  - [Recovery](https://www.cloudwego.io/docs/hertz/tutorials/basic-feature/middleware/recovery/) Example of using Recovery middleware
+  - [jwt](https://github.com/hertz-contrib/jwt/tree/main/example/basic) Example of using jwt middleware
+  - [i18n](https://github.com/hertz-contrib/i18n/tree/main/example) Example of using i18n middleware
+  - [session](https://github.com/hertz-contrib/sessions/tree/main/_example) Example of using session middleware
+  - [KeyAuth](https://github.com/hertz-contrib/keyauth/tree/main/example) Example of using KeyAuth middleware
+  - [Swagger](https://github.com/swaggo/gin-swagger/tree/master/example) Example of using Swagger middleware
+  - [access log](https://github.com/hertz-contrib/logger/tree/main/accesslog/example) Example of using access log middleware
+  - [Secure](https://github.com/hertz-contrib/secure/tree/main/example/custom) Example of using Secure middleware
+  - [Sentry](https://github.com/hertz-contrib/hertzsentry) Example of using Sentry middleware
+  - [Casbin](https://github.com/hertz-contrib/casbin/tree/main/example) Example of using Casbin middleware
+  - [ETag](https://github.com/hertz-contrib/etag/tree/main/example) Example of using ETag middleware
+  - [Cache](https://github.com/hertz-contrib/cache/tree/main/example) Example of using Cache middleware
+  - [Paseto](https://github.com/hertz-contrib/paseto/tree/main/example) Example of using Paseto middleware
 - [binding:](binding) Example of parameter binding and validation
 - [parameters:](parameter) Example of getting query, form, cookie
 - [file:](file) Examples of file upload, file download, and static file services

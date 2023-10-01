@@ -50,10 +50,6 @@ go run generate.go
 cd bizdemo/hertz_gorm_gen && docker-compose up
 ```
 
-### Generate MySQL table
-
-Connect MySQL and execute [user.sql](biz/model/sql/user.sql).
-
 ### Run demo
 
 ```go

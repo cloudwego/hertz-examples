@@ -7,3 +7,4 @@ extend-exclude = ["go.mod", "go.sum", "*.js", "*.css", "*.html", "*.map"]
 [default.extend-identifiers]
 # *sigh* this just isn't worth the cost of fixing
 Collison = "Collison"
+O_WRONLY = "O_WRONLY"
