@@ -5,7 +5,7 @@ go 1.16
 require (
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/apache/thrift v0.16.0
-	github.com/cloudwego/hertz v0.6.6
+	github.com/cloudwego/hertz v0.6.8
 	github.com/cloudwego/kitex v0.6.1
 	github.com/hertz-contrib/cors v0.0.0-20230423034624-2bc83a8400f0
 	github.com/hertz-contrib/csrf v0.1.1
@@ -43,6 +43,7 @@ require (
 	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/bytedance/go-tagexpr/v2 v2.9.7 // indirect
 	github.com/go-errors/errors v1.4.2 // indirect
+	github.com/hertz-contrib/logger/slog v1.0.0
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/prometheus/client_golang v1.13.0 // indirect
 	github.com/uber/jaeger-lib v2.4.1+incompatible // indirect

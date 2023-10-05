@@ -735,8 +735,8 @@ github.com/cloudwego/hertz v0.4.2/go.mod h1:K1U0RlU07CDeBINfHNbafH/3j9uSgIW8otbj
 github.com/cloudwego/hertz v0.5.2/go.mod h1:K1U0RlU07CDeBINfHNbafH/3j9uSgIW8otbjUys3OPY=
 github.com/cloudwego/hertz v0.6.2/go.mod h1:2em2hGREvCBawsTQcQxyWBGVlCeo+N1pp2q0HkkbwR0=
 github.com/cloudwego/hertz v0.6.4/go.mod h1:KhztQcZtMQ46gOjZcmCy557AKD29cbumGEV0BzwevwA=
-github.com/cloudwego/hertz v0.6.6 h1:FShiLl/jB/65aH6/RlwDXuBM/yTuHEz2mb8Cx1niAPU=
-github.com/cloudwego/hertz v0.6.6/go.mod h1:KhztQcZtMQ46gOjZcmCy557AKD29cbumGEV0BzwevwA=
+github.com/cloudwego/hertz v0.6.8 h1:nuUp2YuD3DJ4jjL9gP2IJRb84aSigbEUumuwQt0mjfc=
+github.com/cloudwego/hertz v0.6.8/go.mod h1:KhztQcZtMQ46gOjZcmCy557AKD29cbumGEV0BzwevwA=
 github.com/cloudwego/kitex v0.0.4/go.mod h1:EIjPJ4Dom2ornk7xDCdKpUpOnf4Tulevimh4Tn05OGc=
 github.com/cloudwego/kitex v0.3.2/go.mod h1:/XD07VpUD9VQWmmoepASgZ6iw//vgWikVA9MpzLC5i0=
 github.com/cloudwego/kitex v0.4.4/go.mod h1:3FcH5h9Qw+dhRljSzuGSpWuThttA8DvK0BsL7HUYydo=
@@ -1016,8 +1016,6 @@ github.com/henrylee2cn/ameda v1.4.8/go.mod h1:liZulR8DgHxdK+MEwvZIylGnmcjzQ6N6f2
 github.com/henrylee2cn/ameda v1.4.10/go.mod h1:liZulR8DgHxdK+MEwvZIylGnmcjzQ6N6f2PlWe7nEO4=
 github.com/henrylee2cn/ameda v1.5.1/go.mod h1:wnTERseg26LtcSrHOPlV3pBGnNwQiz3TNIeMEgNoNlg=
 github.com/henrylee2cn/goutil v0.0.0-20210127050712-89660552f6f8/go.mod h1:Nhe/DM3671a5udlv2AdV2ni/MZzgfv2qrPL5nIi3EGQ=
-github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf h1:ZAxm2v6m6uhdlRZkmfcdFJm9P3FG7VQIQxC5Hkx8Li0=
-github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf/go.mod h1:45j0uowS7Wuijes/UKkxrszUM7Hs6E49TY0M27Fu560=
 github.com/hertz-contrib/cors v0.0.0-20230423034624-2bc83a8400f0 h1:l5i0uvP7OQ//vjA4qR3U160NxQex+BiqaRM+u6CpoIM=
 github.com/hertz-contrib/cors v0.0.0-20230423034624-2bc83a8400f0/go.mod h1:VPReoq+Rvu/lZOfpp5CcX3x4mpZUc3EpSXBcVDcbvOc=
 github.com/hertz-contrib/csrf v0.1.1 h1:53HxseVzpW4JEUJ7ONAaQCyNBWXl+rn42LVqgwEQzRg=
@@ -1028,6 +1026,8 @@ github.com/hertz-contrib/loadbalance v0.1.0 h1:KI7lRh8ddEMYw0W4mAOoJoXiW5s7gLdGJ
 github.com/hertz-contrib/loadbalance v0.1.0/go.mod h1:TXjQ87qylOhKEz0vYACI2UjENqxW40+LQBmSWycoAGE=
 github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe h1:zN6bQ8EVxZmnUfcU2zVU63AmDJFg1lcvRKL4T66MK7M=
 github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe/go.mod h1:SqDYLwVq5hTItYqimgZQbFCYPOIGNvBTq0Ip2OQwMcY=
+github.com/hertz-contrib/logger/slog v1.0.0 h1:nZVnsoLpSGzOyiXdfhAtFrLlsJc24yW/Hnu5oRhZPls=
+github.com/hertz-contrib/logger/slog v1.0.0/go.mod h1:npMO4ORv4v1puT/8Y5q4FcR94Ui+f6gO49YDYnqlQ+0=
 github.com/hertz-contrib/logger/zap v0.0.0-20221104075115-aecbfb39bbfe h1:cBAAFz/S7lriahBuC8OJTAMBp9oLOPnhX/LCVJ2TN/U=
 github.com/hertz-contrib/logger/zap v0.0.0-20221104075115-aecbfb39bbfe/go.mod h1:kL1oi/2n+55rdmaYqKrb+CckS+jUVMwxVDhomebsa6c=
 github.com/hertz-contrib/logger/zerolog v0.0.0-20221111024215-1ee59ae719d7 h1:p9I5jHfGFXV4Z5gSXyJ14nggeqcLj+QhGdD1tobCKEc=
