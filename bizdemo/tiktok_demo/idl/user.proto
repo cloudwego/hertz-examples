@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package user;
+
+import "api.proto";
+import "common.proto";
+
+option go_package = "basic/user";
+
+message DouyinUserRegisterRequest {
+  string username = 1; // registered user name
+  string password = 2;
+}
+
+message DouyinUserRegisterResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+  int64 user_id = 3; // user id
+  string token = 4; // user authentication token
+}
+
+message DouyinUserLoginRequest {
+  string username = 1; // Login Username
+  string password = 2; // login password
+}
+
+message DouyinUserLoginResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+  int64 user_id = 3;
+  string token = 4;
+}
+
+message DouyinUserRequest {
+  int64 user_id = 1;
+  string token = 2;
+}
+
+message DouyinUserResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+  User user = 3; // User Info
+}
+
+service UserHandler {
+  rpc User(DouyinUserRequest) returns(DouyinUserResponse) {
+    option (api.get) = "/douyin/user/";
+  }
+
+  rpc UserRegister(DouyinUserRegisterRequest) returns(DouyinUserRegisterResponse) {
+    option (api.post) = "/douyin/user/register/";
+    // When a new user registers, just provide a user name, password, and nickname, and the user name needs to be unique.
+    // After successful creation, return the user id and permission token.
+  }
+
+  rpc UserLogin(DouyinUserLoginRequest) returns(DouyinUserLoginResponse) {
+    option (api.post) = "/douyin/user/login/";
+    // Log in with username and password, and return user id and permission token after successful login.
+  }
+}
+

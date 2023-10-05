@@ -115,7 +115,7 @@ func UpdateUserResponse(ctx context.Context, c *app.RequestContext) {
 
 	resp := new(user.UpdateUserResp)
 	u := &orm_gen.User{}
-	u.ID = req.UserID
+	u.ID = req.UserId
 	u.Name = req.Name
 	u.Gender = int32(req.Gender)
 	u.Age = int32(req.Age)
@@ -145,7 +145,7 @@ func DeleteUserResponse(ctx context.Context, c *app.RequestContext) {
 	}
 
 	resp := new(user.DeleteUserResp)
-	_, err = query.User.WithContext(ctx).Where(query.User.ID.Eq(req.UserID)).Delete()
+	_, err = query.User.WithContext(ctx).Where(query.User.ID.Eq(req.UserId)).Delete()
 	if err != nil {
 		resp.Code = user.Code_DBErr
 		resp.Msg = err.Error()

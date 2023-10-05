@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package relation;
+
+import "api.proto";
+import "common.proto";
+
+option go_package = "social/relation";
+
+message DouyinRelationActionRequest {
+  string token = 1;
+  int64 to_user_id = 2;
+  int32 action_type = 3; // 1-Follow, 2-Unfollow
+}
+
+message DouyinRelationActionResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+}
+
+message DouyinRelationFollowListRequest { //follow list
+  int64 user_id = 1;
+  string token = 2;
+}
+
+message DouyinRelationFollowListResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+  repeated User user_list = 3; // User information list
+}
+
+message DouyinRelationFollowerListRequest { //fan list
+  int64 user_id = 1;
+  string token = 2;
+}
+
+message DouyinRelationFollowerListResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+  repeated User user_list = 3;
+}
+
+message DouyinRelationFriendListRequest {
+  int64 user_id = 1;
+  string token = 2;
+}
+
+message DouyinRelationFriendListResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+  repeated FriendUser user_list = 3;
+}
+
+
+message FriendUser {
+  message User {
+    User user = 1;
+  }
+  string message = 2; // latest chat messages with this friend
+  int64 msgType = 3; // message type，0 - Messages currently requested by the user，1 - Messages sent by the current requesting user
+}
+
+service RelationHandler {
+  rpc RelationAction(DouyinRelationActionRequest) returns(DouyinRelationActionResponse) {
+    option (api.post) = "/douyin/relation/action/";
+    // Logged-in users follow or unfollow other users.
+  }
+
+  rpc RelationFollowList(DouyinRelationFollowListRequest) returns(DouyinRelationFollowListResponse) {
+    option (api.get) = "/douyin/relation/follow/list/"; // follow list
+    // Get a list of all users followed by the logged in user.
+  }
+
+  rpc RelationFollowerList(DouyinRelationFollowListRequest) returns(DouyinRelationFollowListResponse) {
+    option (api.get) = "/douyin/relation/follower/list/"; // fan list
+    // Get a list of all fans following the logged in user.
+  }
+
+  rpc RelationFriendList(DouyinRelationFriendListRequest) returns(DouyinRelationFriendListResponse) {
+    option (api.get) = "/douyin/relation/friend/list/";
+    // Get a list of all friends following the logged in user.(friend refers to follow each other)
+  }
+
+}
+

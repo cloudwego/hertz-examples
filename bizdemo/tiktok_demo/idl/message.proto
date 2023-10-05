@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package message;
+
+import "api.proto";
+
+option go_package = "social/message";
+
+message DouyinMessageChatRequest {
+  string token = 1;
+  int64 to_user_id = 2; // recipient's user id
+  int64 pre_msg_time = 3;//
+}
+
+message DouyinMessageChatResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+  repeated Message message_list = 3; // message list
+}
+
+message Message {
+  int64 id = 1; // message id
+  int64 to_user_id = 2; // The id of the recipient of the message
+  int64 from_user_id =3; // The id of the sender of the message
+  string content = 4; // Message content
+  int64 create_time = 5; // message creation time
+}
+
+message DouyinMessageActionRequest {
+  string token = 1; // User authentication token
+  int64 to_user_id = 2; // user id of the recipient
+  int32 action_type = 3; // 1-Send a message
+  string content = 4; // Message content
+}
+
+message DouyinMessageActionResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+}
+
+service MessageHandler {
+  rpc MessageChat(DouyinMessageChatRequest) returns(DouyinMessageChatResponse) {
+      option (api.get) = "/douyin/message/chat/";
+      // Get the chat message records of the currently logged in user and other specified users
+  }
+
+  rpc MessageAction(DouyinMessageActionRequest) returns(DouyinMessageActionResponse) {
+      option (api.post) = "/douyin/message/action/";
+      // Logged-in user's related operations on messages, currently only supports message sending
+  }
+}

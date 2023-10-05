@@ -37,10 +37,6 @@ This demo use `Gorm` to operate `MySQL` and refers to [Gorm](https://gorm.io/)
 cd bizdemo/hertz_jwt && docker-compose up
 ```
 
-### Generate MySQL table
-
-Connect MySQL and execute [user.sql](biz/model/sql/user.sql)
-
 ### Run demo
 
 ```go

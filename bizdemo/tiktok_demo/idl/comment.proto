@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package comment;
+
+import "api.proto";
+import "common.proto";
+
+
+option go_package = "interact/comment";
+
+message DouyinCommentActionRequest {
+  string token = 1; // user authentication token
+  int64 video_id = 2;
+  int32 action_type = 3; // 1- Post a comment, 2- Delete a comment
+  string comment_text = 4; // Comment content filled in by users，when action type=1
+  int64 comment_id = 5; // The id of the comment to delete，when action type=1
+}
+
+message DouyinCommentActionResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // status code, 0-success, other values-failure
+  string status_msg = 2; // status description
+  Comment comment = 3; // return the comment content, no need to re-pull the entire list
+}
+
+message Comment {
+  int64 id = 1; // video comment id
+  User user =2; // comment user information
+  string content = 3; // comment
+  string create_date = 4; // comment publication date, format mm-dd
+}
+
+message DouyinCommentListRequest {
+  string token = 1; // user authentication token
+  int64 video_id = 2;
+}
+
+message DouyinCommentListResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"']; // 0-success, other values-failure
+  string status_msg = 2;
+  repeated Comment comment_list = 3; // return comment list
+}
+
+service CommentHandler {
+  rpc CommentAction(DouyinCommentActionRequest) returns(DouyinCommentActionResponse) {
+      option (api.post) = "/douyin/comment/action/";
+      // Logged in users to comment on videos.
+  }
+
+  rpc CommentList(DouyinCommentListRequest) returns(DouyinCommentListResponse) {
+      option (api.get) = "/douyin/comment/list/";
+      // Get all comments on a video in reverse chronological order.
+  }
+}
+

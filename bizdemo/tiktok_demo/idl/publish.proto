@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package publish;
+
+import "api.proto";
+import "common.proto";
+
+option go_package = "basic/publish";
+
+message DouyinPublishActionRequest {
+  string token = 1;
+  bytes data = 2; // video data
+  string title = 3; // video title
+}
+
+message DouyinPublishActionResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+}
+
+message DouyinPublishListRequest {
+  int64 user_id = 1;
+  string token = 2;
+}
+
+message DouyinPublishListResponse {
+  int32 status_code = 1[(api.go_tag)='json:"status_code"'];
+  string status_msg = 2;
+  repeated Video video_list = 3; // list of videos posted by users
+}
+
+service PublishHandler {
+  rpc PublishAction(DouyinPublishActionRequest) returns(DouyinPublishActionResponse) {
+    option (api.post) = "/douyin/publish/action/";
+    // Logged in user selects video to upload.
+  }
+
+  rpc PublishList(DouyinPublishListRequest) returns(DouyinPublishListResponse) {
+    option (api.get) = "/douyin/publish/list/";
+    // Get logged-in to the user's video publishing list, and directly list all the videos that the user has contributed.
+  }
+
+}
+
