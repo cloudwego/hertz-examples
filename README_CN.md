@@ -21,9 +21,11 @@
 - [middleware:](middleware) 使用 hertz 中间件的示例
   - [basicauth:](middleware/basicauth) 使用 BasicAuth 中间件的示例
   - [cors:](middleware/CORS) 使用 CORS 中间件的示例
+  - [csrf:](middleware/csrf) 使用 csrf 中间件示例
   - [custom:](middleware/custom) 自定义 middleware 的示例
   - [pprof:](middleware/pprof) 使用 pprof 中间件的示例
   - [requestid:](middleware/requestid) 使用 RequestID 中间件的示例
+  - [gzip:](middleware/gzip) 使用 Gzip 中间件的示例
 - [binding:](binding) 绑定参数和验证参数的示例
 - [parameters:](parameter) 获取 query, form, cookie 等类型参数的示例
 - [file:](file) 关于如何上传，下载文件和搭建静态文件服务的示例
@@ -38,7 +40,6 @@
 - [adaptor:](adaptor) 使用 adaptor 集成基于`http.Handler`接口开发的工具, 包含使用 [jade](https://github.com/Joker/jade) 作为模版引擎的示例
 - [sentinel:](sentinel) sentinel-golang 结合 hertz 使用的示例
 - [reverseproxy:](reverseproxy) 在 hertz server 中使用反向代理的示例
-- [gzip:](gzip) 在 hertz server 中使用 gzip 中间件的示例
 - [hlog:](hlog) 使用 hlog 以及其日志拓展的示例
 
 ## Client
@@ -51,6 +52,14 @@
 - [client/middleware:](client/middleware) 使用 hertz 客户端中间件的示例
 - [client/streaming_read:](client/streaming_read) 使用 hertz 客户端的流式读取响应示例
 - [client/forward_proxy:](client/forward_proxy) 使用 hertz 客户端配置转发代理的示例
+
+## Hz
+
+- [hz/thrift:](hz/thrift) 使用 hz 与 thrift 生成服务端代码的示例
+- [hz/protobuf:](hz/protobuf) 使用 hz 与 protobuf 生成服务端代码的示例
+- [hz/hz_client:](hz/hz_client) 使用 hz 生成客户端代码的示例
+- [hz/template:](hz/template) 使用 hz 自定义模版生成服务端代码的示例
+- [hz/plugin:](hz/plugin) 使用 hz 接入第三方插件的示例
 
 ## Note
 

@@ -1,5 +1,5 @@
 # hertz client : send request
-You can learn about using hertz cient to send request：
+You can learn about using hertz client to send request：
 * Do():`Do()` sends the request and writes the response to the `resp`. This function does not support redirect jumps, if you want to use it, please use `DoRedirects` or `Get*` methods.
 * DoDeadline(): `DoDeadline()` sends the request and writes the response to the `resp`, and returns an error if there is no response after the given deadline. This method does not support redirect jumps, if you want to use it, please use `DoRedirects` or `Get*` methods.
 * DoRedirects(): `DoRedirects` support redirect, when the number of redirects exceeds maxRedirectsCount will return error.

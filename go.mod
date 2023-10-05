@@ -13,6 +13,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.3 // indirect
 	github.com/hertz-contrib/cors v0.0.0-20220601061225-50f4e582beaf
+	github.com/hertz-contrib/csrf v0.1.1
 	github.com/hertz-contrib/gzip v0.0.1
 	github.com/hertz-contrib/logger/logrus v0.0.0-20221104075115-aecbfb39bbfe
 	github.com/hertz-contrib/logger/zap v0.0.0-20221104075115-aecbfb39bbfe
@@ -26,6 +27,7 @@ require (
 	github.com/hertz-contrib/registry/nacos v0.0.0-20220901103531-b8810bf778fb
 	github.com/hertz-contrib/requestid v1.1.0
 	github.com/hertz-contrib/reverseproxy v0.0.0-20220907134658-6a05798e1cc5
+	github.com/hertz-contrib/sessions v1.0.1
 	github.com/hertz-contrib/tracer v0.0.0-20220601062646-788b1565bdab
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/kitex-contrib/obs-opentelemetry v0.0.0-20220616115444-37518030dbb3
