@@ -4,6 +4,9 @@
 
 This is a example of using graphql in hertz server.
 
+- Generating a graphql service with [gqlgen](https://github.com/99designs/gqlgen)
+- Using `Gorm` and `MySQL`
+  
 ### How to run
 - Start a mysql image
 ```bash
