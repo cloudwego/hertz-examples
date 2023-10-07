@@ -21,7 +21,7 @@ go run server.go
 
 2. Test the server
 
-Access http://localhost:8080 for testing GraphQL
+Access http://localhost:8080 for testing GraphQL in the browser 
 
 3. Create order
 
