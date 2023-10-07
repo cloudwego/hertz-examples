@@ -25,7 +25,6 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/cloudwego/hertz-examples/graphql/graph"
-	"github.com/cloudwego/hertz-examples/graphql/graph/model"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/hertz-contrib/pprof/adaptor"
@@ -51,9 +50,6 @@ func initDB() {
 		fmt.Println(err)
 		panic("failed to connect database")
 	}
-
-	// Migration to create tables for Order and Item schema
-	db.AutoMigrate(&model.Order{}, &model.Item{})
 }
 
 func main() {

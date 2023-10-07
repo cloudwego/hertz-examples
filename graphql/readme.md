@@ -54,7 +54,6 @@ mutation createOrder($input: OrderInput!) {
   }
 }
 ```
-![](assets/create_order.png)
 
 4. Query order
 
