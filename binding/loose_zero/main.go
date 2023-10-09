@@ -29,12 +29,10 @@ import (
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 )
 
-func init() {
-	binding.SetLooseZeroMode(true)
-}
-
 func main() {
-	h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
+	bindConfig := binding.NewBindConfig()
+	bindConfig.LooseZeroMode = true
+	h := server.Default(server.WithHostPorts("127.0.0.1:8080"), server.WithBindConfig(bindConfig))
 
 	h.GET("looseZero", func(ctx context.Context, c *app.RequestContext) {
 		type Loose struct {

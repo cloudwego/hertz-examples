@@ -33,8 +33,9 @@ type ValidateStruct struct {
 	A string `query:"a" vd:"test($)"`
 }
 
-func init() {
-	binding.MustRegValidateFunc("test", func(args ...interface{}) error {
+func main() {
+	validateConfig := binding.NewValidateConfig()
+	validateConfig.MustRegValidateFunc("test", func(args ...interface{}) error {
 		if len(args) != 1 {
 			return fmt.Errorf("the args must be one")
 		}
@@ -44,9 +45,6 @@ func init() {
 		}
 		return nil
 	})
-}
-
-func main() {
 	h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
 
 	h.GET("customValidate", func(ctx context.Context, c *app.RequestContext) {

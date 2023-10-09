@@ -53,17 +53,7 @@ func (e *ValidateError) Error() string {
 	return e.ErrType + ": expr_path=" + e.FailField + ", cause=invalid"
 }
 
-func init() {
-	CustomBindErrFunc := func(failField, msg string) error {
-		err := BindError{
-			ErrType:   "bindErr",
-			FailField: "[bindFailField]: " + failField,
-			Msg:       "[bindErrMsg]: " + msg,
-		}
-
-		return &err
-	}
-
+func main() {
 	CustomValidateErrFunc := func(failField, msg string) error {
 		err := ValidateError{
 			ErrType:   "validateErr",
@@ -73,12 +63,10 @@ func init() {
 
 		return &err
 	}
-
-	binding.SetErrorFactory(CustomBindErrFunc, CustomValidateErrFunc)
-}
-
-func main() {
-	h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
+	validateConfig := binding.NewValidateConfig()
+	validateConfig.SetValidatorErrorFactory(CustomValidateErrFunc)
+	h := server.Default(server.WithHostPorts("127.0.0.1:8080"),
+		server.WithValidateConfig(validateConfig))
 
 	h.GET("bindErr", func(ctx context.Context, c *app.RequestContext) {
 		type TestBind struct {

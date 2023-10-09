@@ -18,7 +18,7 @@ package main
 
 import (
 	"context"
-	"io/ioutil"
+	"io"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -42,6 +42,6 @@ func handler(ctx context.Context, c *app.RequestContext) {
 	if err != nil {
 		panic(err)
 	}
-	left, _ := ioutil.ReadAll(bodyStream)
+	left, _ := io.ReadAll(bodyStream)
 	c.String(consts.StatusOK, "bytes streaming_read: %d\nbytes left: %d\n", r, len(left))
 }
