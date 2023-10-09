@@ -17,13 +17,14 @@ package main
 
 import (
 	"context"
+	"net/http"
+	"time"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/client"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/hertz-contrib/reverseproxy"
 	"github.com/hertz-contrib/sse"
-	"net/http"
-	"time"
 )
 
 var proxy *reverseproxy.ReverseProxy
