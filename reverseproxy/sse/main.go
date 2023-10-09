@@ -35,8 +35,8 @@ func main() {
 	)
 
 	h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
-	h.GET("/proxy", proxyToServer2)
-	h.GET("/proxy/:path", proxyToServer2)
+	h.GET("/proxy", proxyToServer)
+	h.GET("/proxy/:path", proxyToServer)
 
 	h2 := server.Default(server.WithHostPorts("127.0.0.1:8001"))
 	h2.GET("/sse", sseHandler)
@@ -45,7 +45,7 @@ func main() {
 	h2.Spin()
 }
 
-func proxyToServer2(ctx context.Context, c *app.RequestContext) {
+func proxyToServer(ctx context.Context, c *app.RequestContext) {
 	path := c.Param("path")
 	c.Request.Header.Set("Secret", "123456")
 	c.Request.URI().SetPath(path)
