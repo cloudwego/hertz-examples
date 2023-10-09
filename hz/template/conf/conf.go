@@ -1,15 +1,14 @@
 package conf
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"sync"
 
+	"github.com/bytedance/go-tagexpr/v2/validator"
+
 	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"github.com/kr/pretty"
-	"gopkg.in/validator.v2"
-	"gopkg.in/yaml.v2"
 )
 
 var (
@@ -55,7 +54,7 @@ func GetConf() *Config {
 func initConf() {
 	prefix := "conf"
 	confFileRelPath := filepath.Join(prefix, filepath.Join(GetEnv(), "conf.yaml"))
-	content, err := ioutil.ReadFile(confFileRelPath)
+	content, err := io.ReadFile(confFileRelPath)
 	if err != nil {
 		panic(err)
 	}

@@ -19,7 +19,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 
 	"github.com/cloudwego/hertz/pkg/app/client"
 	"github.com/cloudwego/hertz/pkg/protocol"
@@ -42,6 +42,6 @@ func main() {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	left, _ := ioutil.ReadAll(bodyStream)
+	left, _ := io.ReadAll(bodyStream)
 	fmt.Println(string(p), string(left))
 }

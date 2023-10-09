@@ -22,6 +22,8 @@ import (
 	"reflect"
 	"time"
 
+	"github.com/cloudwego/hertz/pkg/route/param"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/client"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -39,20 +41,19 @@ type TestBind struct {
 	A Nested `query:"a"`
 }
 
-func init() {
-	binding.MustRegTypeUnmarshal(reflect.TypeOf(Nested{}), func(v string, emptyAsZero bool) (reflect.Value, error) {
-		if v == "" && emptyAsZero {
+func main() {
+	bindConfig := binding.NewBindConfig()
+	bindConfig.MustRegTypeUnmarshal(reflect.TypeOf(Nested{}), func(req *protocol.Request, params param.Params, text string) (reflect.Value, error) {
+		if text == "" {
 			return reflect.ValueOf(Nested{}), nil
 		}
 		val := Nested{
-			B: v[:5],
-			C: v[5:],
+			B: text[:5],
+			C: text[5:],
 		}
+		// 此外，也可以利用 req, params 来获取其他参数进行参数绑定
 		return reflect.ValueOf(val), nil
 	})
-}
-
-func main() {
 	h := server.Default(server.WithHostPorts("127.0.0.1:8080"))
 
 	h.GET("customType", func(ctx context.Context, c *app.RequestContext) {
