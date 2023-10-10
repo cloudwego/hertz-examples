@@ -7,6 +7,7 @@ require (
 	github.com/apache/thrift v0.16.0
 	github.com/cloudwego/hertz v0.7.0
 	github.com/cloudwego/kitex v0.7.2
+	github.com/graphql-go/graphql v0.8.1
 	github.com/hertz-contrib/cors v0.0.0-20230423034624-2bc83a8400f0
 	github.com/hertz-contrib/csrf v0.1.1
 	github.com/hertz-contrib/gzip v0.0.1
