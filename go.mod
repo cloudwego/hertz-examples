@@ -24,6 +24,7 @@ require (
 	github.com/hertz-contrib/requestid v1.1.0
 	github.com/hertz-contrib/reverseproxy v0.0.0-20220907134658-6a05798e1cc5
 	github.com/hertz-contrib/sessions v1.0.2
+	github.com/hertz-contrib/sse v0.0.1
 	github.com/hertz-contrib/tracer v0.0.0-20220601062646-788b1565bdab
 	github.com/kitex-contrib/obs-opentelemetry v0.2.3
 	github.com/kitex-contrib/obs-opentelemetry/logging/logrus v0.0.0-20230530060140-c76e27f58391
