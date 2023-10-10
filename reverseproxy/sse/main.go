@@ -50,7 +50,6 @@ func proxyToServer(ctx context.Context, c *app.RequestContext) {
 	c.Request.Header.Set("Secret", "123456")
 	c.Request.URI().SetPath(path)
 	proxy.ServeHTTP(ctx, c)
-	c.Abort()
 }
 
 func sseHandler(ctx context.Context, c *app.RequestContext) {
