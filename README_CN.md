@@ -64,6 +64,8 @@
 - [sentinel:](sentinel) sentinel-golang 结合 hertz 使用的示例
 - [reverseproxy:](reverseproxy) 在 hertz server 中使用反向代理的示例
 - [hlog:](hlog) 使用 hlog 以及其日志拓展的示例
+- [graphql-go:](graphql-go) 在 hertz server 中使用 graphql 的示例
+
 
 ## Client
 
