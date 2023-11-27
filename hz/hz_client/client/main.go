@@ -3,9 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"time"
-
 	"hertz-examples/hz/hz_client/client/hertz_gen/toutiao/middleware/hzClient/hertz"
+	"time"
 
 	hzClient "hertz-examples/hz/hz_client/client/hertz_gen/toutiao/middleware/hzClient"
 )
