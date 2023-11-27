@@ -54,7 +54,8 @@ func main() {
 	}
 
 	// For zap detailed settings, please refer to https://github.com/hertz-contrib/logger/tree/main/zerolog and https://github.com/rs/zerolog
-	logger := hertzZerolog.New()
+	// hlog will warp a layer of zerolog, so you need to calculate the depth of the caller file separately.
+	logger := hertzZerolog.New(hertzZerolog.WithCallerSkipFrameCount(5))
 	// Provides compression and deletion
 	lumberjackLogger := &lumberjack.Logger{
 		Filename:   fileName,
