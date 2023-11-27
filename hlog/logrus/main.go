@@ -19,12 +19,13 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/sirupsen/logrus"
 	"log"
 	"os"
 	"path"
 	"runtime"
 	"time"
+
+	"github.com/sirupsen/logrus"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"

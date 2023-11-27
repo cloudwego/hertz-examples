@@ -18,11 +18,12 @@ package main
 
 import (
 	"context"
-	"go.uber.org/zap"
 	"log"
 	"os"
 	"path"
 	"time"
+
+	"go.uber.org/zap"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
