@@ -5,7 +5,7 @@ go 1.21.1
 require (
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/apache/thrift v0.16.0
-	github.com/cloudwego/hertz v0.7.0
+	github.com/cloudwego/hertz v0.7.2
 	github.com/cloudwego/kitex v0.7.2
 	github.com/graphql-go/graphql v0.8.1
 	github.com/hertz-contrib/cors v0.0.0-20230423034624-2bc83a8400f0

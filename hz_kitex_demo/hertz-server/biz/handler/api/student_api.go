@@ -12,7 +12,7 @@ import (
 	client2 "github.com/cloudwego/kitex/client"
 
 	"github.com/cloudwego/hertz/pkg/app"
-	api "hertz-examples/hz_demo/hertz-server/biz/model/api"
+	"hertz-examples/hz_demo/hertz-server/biz/model/api"
 )
 
 // QueryStudent .
