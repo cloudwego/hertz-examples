@@ -5,13 +5,13 @@ package api
 import (
 	"context"
 	"fmt"
+	"hertz-examples/hz_demo/hertz-server/biz/model/api"
 	"hertz-examples/hz_demo/hertz-server/kitex_gen/student/management"
 	"hertz-examples/hz_demo/hertz-server/kitex_gen/student/management/studentmanagement"
 
 	client2 "github.com/cloudwego/kitex/client"
 
 	"github.com/cloudwego/hertz/pkg/app"
-	api "hertz-examples/hz_demo/hertz-server/biz/model/api"
 )
 
 // QueryStudent .

@@ -23,6 +23,8 @@ import (
 	"path"
 	"time"
 
+	"go.uber.org/zap"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
 	"github.com/cloudwego/hertz/pkg/common/hlog"
@@ -54,7 +56,8 @@ func main() {
 	}
 
 	// For zap detailed settings, please refer to https://github.com/hertz-contrib/logger/tree/main/zap and https://github.com/uber-go/zap
-	logger := hertzzap.NewLogger()
+	// hlog will warp a layer of zap, so you need to calculate the depth of the caller file separately.
+	logger := hertzzap.NewLogger(hertzzap.WithZapOptions(zap.AddCaller(), zap.AddCallerSkip(3)))
 	// Provides compression and deletion
 	lumberjackLogger := &lumberjack.Logger{
 		Filename:   fileName,

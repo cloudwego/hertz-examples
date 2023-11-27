@@ -18,10 +18,14 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 	"path"
+	"runtime"
 	"time"
+
+	"github.com/sirupsen/logrus"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -55,6 +59,9 @@ func main() {
 
 	// For logrus detailed settings, please refer to https://github.com/hertz-contrib/logger/tree/main/logrus and https://github.com/sirupsen/logrus
 	logger := hertzlogrus.NewLogger()
+	logger.Logger().SetReportCaller(true)
+	// hlog will warp a layer of logrus, so you need to calculate the depth of the caller file separately.
+	logger.Logger().AddHook(NewCustomHook(10))
 	// Provides compression and deletion
 	lumberjackLogger := &lumberjack.Logger{
 		Filename:   fileName,
@@ -78,4 +85,30 @@ func main() {
 	})
 
 	h.Spin()
+}
+
+// CustomHook Custom Hook for processing logs
+type CustomHook struct {
+	CallerDepth int
+}
+
+func NewCustomHook(depth int) *CustomHook {
+	return &CustomHook{
+		CallerDepth: depth,
+	}
+}
+
+func (hook *CustomHook) Levels() []logrus.Level {
+	return logrus.AllLevels
+}
+
+func (hook *CustomHook) Fire(entry *logrus.Entry) error {
+	// Get caller information and specify depth
+	pc, file, line, ok := runtime.Caller(hook.CallerDepth)
+	if ok {
+		funcName := runtime.FuncForPC(pc).Name()
+		entry.Data["caller"] = fmt.Sprintf("%s:%d %s", file, line, funcName)
+	}
+
+	return nil
 }
