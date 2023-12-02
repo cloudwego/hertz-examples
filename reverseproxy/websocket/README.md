@@ -1,6 +1,6 @@
 # Websocket Reverse Proxy
 
-This is echo server example with websocket reverse proxy.
+This is an echo server example with websocket reverse proxy.
 
 ## Quick Start
 
