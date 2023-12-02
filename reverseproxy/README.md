@@ -9,3 +9,4 @@ You can learn about how to custom reverseproxy for hertz:
 * [tls](./tls): how to config reverseproxy for tls protocol server
 * [use_middleware](./use_middleware): how to use middleware with reverseproxy 
 * [sse](./sse): how to use sse with reverseproxy
+* [websocket](./websocket): how to apply websocket over reverse proxy
