@@ -5,12 +5,12 @@ go 1.21
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
-	github.com/apache/thrift v0.0.0-00010101000000-000000000000
+	github.com/apache/thrift v0.16.0
 	github.com/bytedance/go-tagexpr/v2 v2.9.11
 	github.com/cloudwego/hertz v0.7.2
 	github.com/go-redis/redis/v8 v8.11.5
 	github.com/hertz-contrib/cors v0.1.0
-	github.com/hertz-contrib/gzip v0.0.1
+	github.com/hertz-contrib/gzip v0.0.3
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20231114100706-b7a03fd68876
 	github.com/hertz-contrib/logger/logrus v1.0.0
 	github.com/hertz-contrib/pprof v0.1.1
