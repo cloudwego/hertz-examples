@@ -89,6 +89,7 @@ You can enter the example for information about  "How to run"
 - [hz/hz_client:](hz/hz_client) Example of using hz to generate client code
 - [hz/template:](hz/template) Example of using hz custom templates to generate server code
 - [hz/plugin:](hz/plugin) Example of using hz to access third-party plugins
+- [hz/struct_reuse:](hz/struct_reuse) Example of using hz to use kitex_gen as hertz model
 
 ## Note
 

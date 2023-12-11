@@ -85,6 +85,7 @@
 - [hz/hz_client:](hz/hz_client) 使用 hz 生成客户端代码的示例
 - [hz/template:](hz/template) 使用 hz 自定义模版生成服务端代码的示例
 - [hz/plugin:](hz/plugin) 使用 hz 接入第三方插件的示例
+- [hz/struct_reuse:](hz/struct_reuse) 使用 hz 与 kitex_gen 作为 hertz model 的代码示例
 
 ## Note
 
