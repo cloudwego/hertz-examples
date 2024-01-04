@@ -25,4 +25,6 @@ kitex --module=a/b/c ../thrift/hello.thrift
 ```
 hz model --mod=a/b/c --model_dir=kitex_gen -t=ignore_initialisms -t=gen_setter -t=gen_deep_equal -t=compatible_names -t=frugal_tag --idl=../thrift/hello.thrift
 ```
---model_dir 指定生成路径，-t 指定 thriftgo 的参数，--idl 指定 thrift 文件路径
+hz 需要为生成的结构体添加 tag，所以让 hz 去覆盖公共的 idl 文件(hello.thrift)，从而增加 tag
+
+--model_dir 指定生成路径，-t 指定 thriftgo 参数，--idl 指定 thrift 文件路径
