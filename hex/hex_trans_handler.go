@@ -18,11 +18,12 @@ package main
 
 import (
 	"context"
-	"cwgo/example/hex/biz/router"
 	"errors"
 	"fmt"
 	"net"
 	"regexp"
+
+	"cwgo/example/hex/biz/router"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	hertzServer "github.com/cloudwego/hertz/pkg/app/server"

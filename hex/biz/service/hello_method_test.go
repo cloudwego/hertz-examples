@@ -18,8 +18,9 @@ package service
 
 import (
 	"context"
-	example "cwgo/example/hex/kitex_gen/hello/example"
 	"testing"
+
+	example "cwgo/example/hex/kitex_gen/hello/example"
 )
 
 func TestHelloMethod_Run(t *testing.T) {

@@ -18,9 +18,10 @@ package main
 
 import (
 	"context"
+	"fmt"
+
 	"cwgo/example/hex/kitex_gen/hello/example"
 	"cwgo/example/hex/kitex_gen/hello/example/helloservice"
-	"fmt"
 
 	"github.com/cloudwego/kitex/client"
 )

@@ -17,9 +17,10 @@
 package main
 
 import (
+	"net"
+
 	"cwgo/example/hex/conf"
 	"cwgo/example/hex/kitex_gen/hello/example/helloservice"
-	"net"
 
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
