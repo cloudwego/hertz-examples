@@ -20,6 +20,7 @@ package user_gorm
 
 import (
 	"context"
+
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm/biz/dal/mysql"

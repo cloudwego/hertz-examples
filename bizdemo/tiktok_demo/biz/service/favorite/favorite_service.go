@@ -73,7 +73,6 @@ func (r *FavoriteService) FavoriteAction(req *favorite.DouyinFavoriteActionReque
 func (r *FavoriteService) GetFavoriteList(req *favorite.DouyinFavoriteListRequest) (favoritelist []*common.Video, err error) {
 	query_user_id := req.UserId
 	_, err = db.CheckUserExistById(query_user_id)
-
 	if err != nil {
 		return nil, err
 	}
