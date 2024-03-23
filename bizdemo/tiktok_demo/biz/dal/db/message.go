@@ -65,7 +65,6 @@ func GetMessageByIdPair(user_id1, user_id2 int64, pre_msg_time time.Time) ([]Mes
 
 	var messages []Messages
 	err = DB.Where("to_user_id = ? AND from_user_id = ? AND created_at > ?", user_id1, user_id2, pre_msg_time).Or("to_user_id = ? AND from_user_id = ? AND created_at > ?", user_id2, user_id1, pre_msg_time).Find(&messages).Error
-
 	if err != nil {
 		return nil, err
 	}

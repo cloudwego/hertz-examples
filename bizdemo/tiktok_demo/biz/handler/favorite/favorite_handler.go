@@ -37,7 +37,6 @@ func FavoriteAction(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req favorite.DouyinFavoriteActionRequest
 	err = c.BindAndValidate(&req)
-
 	if err != nil {
 		resp := utils.BuildBaseResp(err)
 		c.JSON(consts.StatusOK, favorite.DouyinFavoriteActionResponse{

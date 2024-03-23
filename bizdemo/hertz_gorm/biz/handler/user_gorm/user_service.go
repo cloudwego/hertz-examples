@@ -21,6 +21,8 @@ package user_gorm
 import (
 	"context"
 
+	"github.com/cloudwego/hertz/pkg/protocol/consts"
+
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm/biz/dal/mysql"
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm/biz/hertz_gen/user_gorm"
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm/biz/model"
@@ -35,7 +37,7 @@ func UpdateUser(ctx context.Context, c *app.RequestContext) {
 	var req user_gorm.UpdateUserRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		c.JSON(200, &user_gorm.UpdateUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
+		c.JSON(consts.StatusBadRequest, &user_gorm.UpdateUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
 		return
 	}
 
@@ -47,11 +49,11 @@ func UpdateUser(ctx context.Context, c *app.RequestContext) {
 	u.Introduce = req.Introduce
 
 	if err = mysql.UpdateUser(u); err != nil {
-		c.JSON(200, &user_gorm.UpdateUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
+		c.JSON(consts.StatusInternalServerError, &user_gorm.UpdateUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
 		return
 	}
 
-	c.JSON(200, &user_gorm.UpdateUserResponse{Code: user_gorm.Code_Success})
+	c.JSON(consts.StatusOK, &user_gorm.UpdateUserResponse{Code: user_gorm.Code_Success})
 }
 
 // DeleteUser .
@@ -61,15 +63,15 @@ func DeleteUser(ctx context.Context, c *app.RequestContext) {
 	var req user_gorm.DeleteUserRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		c.JSON(200, &user_gorm.DeleteUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
+		c.JSON(consts.StatusBadRequest, &user_gorm.DeleteUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
 		return
 	}
 	if err = mysql.DeleteUser(req.UserID); err != nil {
-		c.JSON(200, &user_gorm.DeleteUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
+		c.JSON(consts.StatusInternalServerError, &user_gorm.DeleteUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
 		return
 	}
 
-	c.JSON(200, &user_gorm.DeleteUserResponse{Code: user_gorm.Code_Success})
+	c.JSON(consts.StatusOK, &user_gorm.DeleteUserResponse{Code: user_gorm.Code_Success})
 }
 
 // QueryUser .
@@ -79,16 +81,16 @@ func QueryUser(ctx context.Context, c *app.RequestContext) {
 	var req user_gorm.QueryUserRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		c.JSON(200, &user_gorm.QueryUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
+		c.JSON(consts.StatusBadRequest, &user_gorm.QueryUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
 		return
 	}
 
 	users, total, err := mysql.QueryUser(req.Keyword, req.Page, req.PageSize)
 	if err != nil {
-		c.JSON(200, &user_gorm.QueryUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
+		c.JSON(consts.StatusInternalServerError, &user_gorm.QueryUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
 		return
 	}
-	c.JSON(200, &user_gorm.QueryUserResponse{Code: user_gorm.Code_Success, Users: pack.Users(users), Totoal: total})
+	c.JSON(consts.StatusOK, &user_gorm.QueryUserResponse{Code: user_gorm.Code_Success, Users: pack.Users(users), Totoal: total})
 }
 
 // CreateUser .
@@ -98,7 +100,7 @@ func CreateUser(ctx context.Context, c *app.RequestContext) {
 	var req user_gorm.CreateUserRequest
 	err = c.BindAndValidate(&req)
 	if err != nil {
-		c.JSON(200, &user_gorm.CreateUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
+		c.JSON(consts.StatusBadRequest, &user_gorm.CreateUserResponse{Code: user_gorm.Code_ParamInvalid, Msg: err.Error()})
 		return
 	}
 	if err = mysql.CreateUser([]*model.User{
@@ -109,11 +111,11 @@ func CreateUser(ctx context.Context, c *app.RequestContext) {
 			Introduce: req.Introduce,
 		},
 	}); err != nil {
-		c.JSON(200, &user_gorm.CreateUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
+		c.JSON(consts.StatusInternalServerError, &user_gorm.CreateUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
 		return
 	}
 
 	resp := new(user_gorm.CreateUserResponse)
 	resp.Code = user_gorm.Code_Success
-	c.JSON(200, resp)
+	c.JSON(consts.StatusOK, resp)
 }
