@@ -56,6 +56,7 @@ func main() {
 		h := server.New(
 			server.WithHostPorts(":8004"),
 			server.WithTLS(cfg),
+			// if you want to use tls server. pls use go net
 			server.WithTransport(standard.NewTransporter),
 		)
 
