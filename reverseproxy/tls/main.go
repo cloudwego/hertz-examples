@@ -35,6 +35,11 @@ func main() {
 	wg.Add(2)
 	go func() {
 		defer wg.Done()
+		cert, err := tls.LoadX509KeyPair("tls/server.crt", "tls/server.key")
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
 		cfg := &tls.Config{
 			MinVersion:               tls.VersionTLS12,
 			CurvePreferences:         []tls.CurveID{tls.X25519, tls.CurveP256},
@@ -45,16 +50,15 @@ func main() {
 				tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
 			},
 		}
-		cert, err := tls.LoadX509KeyPair("tls/server.crt", "tls/server.key")
-		if err != nil {
-			fmt.Println(err.Error())
-		}
+
 		cfg.Certificates = append(cfg.Certificates, cert)
 
 		h := server.New(
 			server.WithHostPorts(":8004"),
 			server.WithTLS(cfg),
+			server.WithTransport(standard.NewTransporter),
 		)
+
 		h.GET("/backend", func(cc context.Context, c *app.RequestContext) {
 			c.JSON(200, utils.H{"msg": "pong"})
 		})
@@ -63,11 +67,12 @@ func main() {
 
 	go func() {
 		defer wg.Done()
-		h := server.New(server.WithHostPorts(":8001"))
+
+		h := server.New(
+			server.WithHostPorts(":8005"),
+		)
 		proxy, err := reverseproxy.NewSingleHostReverseProxy("https://127.0.0.1:8004",
-			client.WithTLSConfig(&tls.Config{
-				InsecureSkipVerify: true,
-			}),
+			client.WithTLSConfig(&tls.Config{InsecureSkipVerify: true}),
 			client.WithDialer(standard.NewDialer()),
 		)
 		if err != nil {
