@@ -30,32 +30,36 @@ import (
 	"github.com/hertz-contrib/reverseproxy"
 )
 
+var (
+	wg        sync.WaitGroup
+	tlsConfig *tls.Config
+)
+
 func main() {
-	var wg sync.WaitGroup
 	wg.Add(2)
+	cert, err := tls.LoadX509KeyPair("tls/server.crt", "tls/server.key")
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	tlsConfig = &tls.Config{
+		MinVersion:               tls.VersionTLS12,
+		CurvePreferences:         []tls.CurveID{tls.X25519, tls.CurveP256},
+		PreferServerCipherSuites: true,
+		CipherSuites: []uint16{
+			tls.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,
+			tls.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
+			tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+		},
+	}
+
+	tlsConfig.Certificates = append(tlsConfig.Certificates, cert)
+
 	go func() {
 		defer wg.Done()
-		cert, err := tls.LoadX509KeyPair("tls/server.crt", "tls/server.key")
-		if err != nil {
-			fmt.Println(err.Error())
-			return
-		}
-		cfg := &tls.Config{
-			MinVersion:               tls.VersionTLS12,
-			CurvePreferences:         []tls.CurveID{tls.X25519, tls.CurveP256},
-			PreferServerCipherSuites: true,
-			CipherSuites: []uint16{
-				tls.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,
-				tls.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,
-				tls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-			},
-		}
-
-		cfg.Certificates = append(cfg.Certificates, cert)
-
 		h := server.New(
 			server.WithHostPorts(":8004"),
-			server.WithTLS(cfg),
+			server.WithTLS(tlsConfig),
 			// if you want to use tls server. pls use go net
 			server.WithTransport(standard.NewTransporter),
 		)
@@ -68,9 +72,10 @@ func main() {
 
 	go func() {
 		defer wg.Done()
-
 		h := server.New(
 			server.WithHostPorts(":8005"),
+			server.WithTransport(standard.NewTransporter),
+			server.WithTLS(tlsConfig),
 		)
 		proxy, err := reverseproxy.NewSingleHostReverseProxy("https://127.0.0.1:8004",
 			client.WithTLSConfig(&tls.Config{InsecureSkipVerify: true}),

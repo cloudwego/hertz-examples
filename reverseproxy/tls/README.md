@@ -7,4 +7,4 @@ go run tls/main.go
 
 ### Accessing the tls server through the reverse proxy
 
-Visit http://127.0.0.1:8005/backend by GET method.
+Visit https://127.0.0.1:8005/backend by GET method.
