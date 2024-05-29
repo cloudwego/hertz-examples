@@ -5,6 +5,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"hertz-examples/hz_demo/hertz-server/infra/rpc"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -17,6 +18,7 @@ func main() {
 		server.WithHostPorts("127.0.0.1:8080"),
 		server.WithKeepAlive(true), // 默认就开启长连接
 	)
+	rpc.InitClient()
 
 	// This in can also do some business initialization work and the user decides what this part is
 

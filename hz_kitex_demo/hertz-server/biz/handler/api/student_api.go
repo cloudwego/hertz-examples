@@ -6,13 +6,10 @@ import (
 	"context"
 	"fmt"
 
-	"hertz-examples/hz_demo/hertz-server/biz/model/api"
-	"hertz-examples/hz_demo/hertz-server/kitex_gen/student/management"
-	"hertz-examples/hz_demo/hertz-server/kitex_gen/student/management/studentmanagement"
-
-	client2 "github.com/cloudwego/kitex/client"
-
 	"github.com/cloudwego/hertz/pkg/app"
+	"hertz-examples/hz_demo/hertz-server/biz/model/api"
+	"hertz-examples/hz_demo/hertz-server/infra/rpc"
+	"hertz-examples/hz_demo/hertz-server/kitex_gen/student/management"
 )
 
 // QueryStudent .
@@ -30,16 +27,12 @@ func QueryStudent(ctx context.Context, c *app.RequestContext) {
 	// todo: do some other business processing
 
 	// Use kitex client to make rpc calls and request back-end services
-	client, err := studentmanagement.NewClient("student", client2.WithHostPorts("127.0.0.1:8888"))
-	if err != nil {
-		panic(err)
-	}
 
 	reqRpc := &management.QueryStudentRequest{
 		Num: fmt.Sprintf("%d", req.Num),
 	}
 
-	respRpc, err := client.QueryStudent(ctx, reqRpc)
+	respRpc, err := rpc.Client.QueryStudent(ctx, reqRpc)
 	if err != nil {
 		panic(err)
 	}
@@ -74,18 +67,13 @@ func InsertStudent(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	client, err := studentmanagement.NewClient("student", client2.WithHostPorts("127.0.0.1:8888"))
-	if err != nil {
-		panic(err)
-	}
-
 	reqRpc := &management.InsertStudentRequest{
 		Num:    req.Num,
 		Name:   req.Name,
 		Gender: req.Gender,
 	}
 
-	respRpc, err := client.InsertStudent(ctx, reqRpc)
+	respRpc, err := rpc.Client.InsertStudent(ctx, reqRpc)
 	if err != nil {
 		panic(err)
 	}
