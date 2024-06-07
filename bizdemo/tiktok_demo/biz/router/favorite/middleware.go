@@ -56,7 +56,7 @@ func _favoriteMw() []app.HandlerFunc {
 	return nil
 }
 
-func _favortieMw() []app.HandlerFunc {
+func _favoriteMw() []app.HandlerFunc {
 	// your code...
 	return nil
 }

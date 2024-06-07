@@ -32,7 +32,7 @@ import (
 
 // FavoriteAction like and unlike operations of the logged-in user on the video.
 //
-// @router /douyin/favortie/action/ [POST]
+// @router /douyin/favorite/action/ [POST]
 func FavoriteAction(ctx context.Context, c *app.RequestContext) {
 	var err error
 	var req favorite.DouyinFavoriteActionRequest
