@@ -5,6 +5,7 @@ package main
 import (
 	"context"
 	"fmt"
+
 	"hertz-examples/hz_demo/hertz-server/infra/rpc"
 
 	"github.com/cloudwego/hertz/pkg/app"
