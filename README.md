@@ -68,7 +68,7 @@ You can enter the example for information about  "How to run"
 - [hlog:](hlog) Example of using hlog and its log extension
 - [trailer:](trailer) Example of read/write trailers for hertz server
 - [graphql-go:](graphql-go) Example of using graphql in hertz server
-
+- [embed](embed) Example of embed static web resources.
 
 ## Client
 
