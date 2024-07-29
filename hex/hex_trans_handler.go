@@ -90,7 +90,7 @@ func initHertz() *route.Engine {
 	h := hertzServer.New()
 
 	// add a ping route to test
-	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
+	h.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
 		ctx.JSON(consts.StatusOK, utils.H{"ping": "pong"})
 	})
 

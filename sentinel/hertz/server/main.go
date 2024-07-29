@@ -54,18 +54,18 @@ func main() {
 	h.Use(hertzSentinel.SentinelServerMiddleware(
 		// customize resource extractor if required
 		// method_path by default
-		hertzSentinel.WithServerResourceExtractor(func(c context.Context, ctx *app.RequestContext) string {
+		hertzSentinel.WithServerResourceExtractor(func(ctx context.Context, c *app.RequestContext) string {
 			return "server_test"
 		}),
 		// customize block fallback if required
 		// abort with status 429 by default
-		hertzSentinel.WithServerBlockFallback(func(c context.Context, ctx *app.RequestContext) {
+		hertzSentinel.WithServerBlockFallback(func(ctx context.Context, c *app.RequestContext) {
 			ctx.AbortWithStatusJSON(400, utils.H{
 				"err":  "too many request; the quota used up",
 				"code": 10222,
 			})
 		}),
 	))
-	h.GET("/server_test", func(c context.Context, ctx *app.RequestContext) {})
+	h.GET("/server_test", func(ctx context.Context, c *app.RequestContext) {})
 	h.Spin()
 }

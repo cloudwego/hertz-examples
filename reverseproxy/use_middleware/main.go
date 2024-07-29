@@ -35,7 +35,7 @@ func main() {
 		panic(err)
 	}
 
-	r.Use(func(c context.Context, ctx *app.RequestContext) {
+	r.Use(func(ctx context.Context, c *app.RequestContext) {
 		if ctx.Query("country") == "cn" {
 			proxy.ServeHTTP(c, ctx)
 			ctx.Response.Header.Set("key", "value")
@@ -45,13 +45,13 @@ func main() {
 		}
 	})
 
-	r.GET("/backend", func(c context.Context, ctx *app.RequestContext) {
+	r.GET("/backend", func(ctx context.Context, c *app.RequestContext) {
 		ctx.JSON(200, utils.H{
 			"message": "pong1",
 		})
 	})
 
-	r2.GET("/backend", func(c context.Context, ctx *app.RequestContext) {
+	r2.GET("/backend", func(ctx context.Context, c *app.RequestContext) {
 		ctx.JSON(200, utils.H{
 			"message": "pong2",
 		})

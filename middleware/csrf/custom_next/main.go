@@ -42,7 +42,7 @@ func main() {
 	//  skip csrf middleware when request method is post
 	h.Use(csrf.New(csrf.WithNext(isPostMethod)))
 
-	h.POST("/protected", func(c context.Context, ctx *app.RequestContext) {
+	h.POST("/protected", func(ctx context.Context, c *app.RequestContext) {
 		ctx.String(200, "success even no csrf-token in header")
 	})
 	h.Spin()

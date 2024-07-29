@@ -32,7 +32,7 @@ import (
 )
 
 // Set up /src/*name route forwarding to access minio from external network
-func minioReverseProxy(c context.Context, ctx *app.RequestContext) {
+func minioReverseProxy(ctx context.Context, c *app.RequestContext) {
 	proxy, _ := reverseproxy.NewSingleHostReverseProxy("http://localhost:18001")
 	ctx.URI().SetPath(ctx.Param("name"))
 	hlog.CtxInfof(c, string(ctx.Request.URI().Path()))

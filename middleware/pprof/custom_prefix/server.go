@@ -32,7 +32,7 @@ func main() {
 	// default is "debug/pprof"
 	pprof.Register(h, "dev/pprof")
 
-	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
+	h.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
 		ctx.JSON(consts.StatusOK, utils.H{"ping": "pong"})
 	})
 

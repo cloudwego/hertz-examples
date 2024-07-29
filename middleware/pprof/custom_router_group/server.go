@@ -33,7 +33,7 @@ func main() {
 
 	adminGroup := h.Group("/admin")
 
-	adminGroup.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
+	adminGroup.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
 		ctx.JSON(consts.StatusOK, utils.H{"ping": "pong"})
 	})
 

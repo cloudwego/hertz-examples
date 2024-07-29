@@ -33,7 +33,7 @@ func main() {
 	fs := &app.FS{Root: root, PathRewrite: getPathRewriter(prefix)}
 	h.StaticFS(prefix, fs)
 
-	h.GET("/", func(c context.Context, ctx *app.RequestContext) {
+	h.GET("/", func(ctx context.Context, c *app.RequestContext) {
 		ctx.HTML(200, "index.html", nil)
 	})
 	h.Spin()
