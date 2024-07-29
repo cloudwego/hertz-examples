@@ -96,7 +96,7 @@ func main() {
 		}
 
 		KitexReq := &api.Request{Message: hertzReq.Name}
-		resp, err := client.Echo(c, KitexReq)
+		resp, err := client.Echo(ctx, KitexReq)
 		if err != nil {
 			hlog.Errorf(err.Error())
 		}
