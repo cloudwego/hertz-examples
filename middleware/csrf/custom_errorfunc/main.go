@@ -41,13 +41,16 @@ var (
 // myErrFunc is executed when an error occurs in csrf middleware.
 func myErrFunc(_ context.Context, ctx *app.RequestContext) {
 	err := ctx.Errors.Last()
-	switch err {
-	case errMissingForm, errMissingParam, errMissingHeader, errMissingQuery:
+	if err == nil {
+		return
+	}
+
+	if errors.Is(err, errMissingForm) || errors.Is(err, errMissingParam) || errors.Is(err, errMissingHeader) || errors.Is(err, errMissingQuery) {
 		ctx.String(http.StatusBadRequest, err.Error()) // extract csrf-token failed
-	case errMissingSalt:
+	} else if errors.Is(err, errMissingSalt) {
 		fmt.Println(err.Error())
-		ctx.String(http.StatusInternalServerError, err.Error()) // get salt failed,which is unexpected
-	case errInvalidToken:
+		ctx.String(http.StatusInternalServerError, err.Error()) // get salt failed, which is unexpected
+	} else if errors.Is(err, errInvalidToken) {
 		ctx.String(http.StatusBadRequest, err.Error()) // csrf-token is invalid
 	}
 	ctx.Abort()
