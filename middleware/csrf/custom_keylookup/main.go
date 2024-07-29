@@ -33,10 +33,10 @@ func main() {
 	h.Use(csrf.New(csrf.WithKeyLookUp("form:csrf")))
 
 	h.GET("/protected", func(ctx context.Context, c *app.RequestContext) {
-		ctx.String(200, csrf.GetToken(ctx))
+		c.String(200, csrf.GetToken(c))
 	})
 	h.POST("/protected", func(ctx context.Context, c *app.RequestContext) {
-		ctx.String(200, "CSRF token is valid")
+		c.String(200, "CSRF token is valid")
 	})
 
 	h.Spin()

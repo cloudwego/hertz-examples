@@ -27,8 +27,8 @@ import (
 	"github.com/hertz-contrib/sessions/cookie"
 )
 
-func myExtractor(_ context.Context, ctx *app.RequestContext) (string, error) {
-	token := ctx.FormValue("csrf-token")
+func myExtractor(_ context.Context, c *app.RequestContext) (string, error) {
+	token := c.FormValue("csrf-token")
 	if token == nil {
 		return "", errors.New("missing token in form-data") // get csrf-token from form-data failed
 	}
@@ -43,10 +43,10 @@ func main() {
 	h.Use(csrf.New(csrf.WithExtractor(myExtractor)))
 
 	h.GET("/protected", func(ctx context.Context, c *app.RequestContext) {
-		ctx.String(200, csrf.GetToken(ctx))
+		c.String(200, csrf.GetToken(c))
 	})
 	h.POST("/protected", func(ctx context.Context, c *app.RequestContext) {
-		ctx.String(200, "CSRF token is valid")
+		c.String(200, "CSRF token is valid")
 	})
 
 	h.Spin()

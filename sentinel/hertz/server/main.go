@@ -60,7 +60,7 @@ func main() {
 		// customize block fallback if required
 		// abort with status 429 by default
 		hertzSentinel.WithServerBlockFallback(func(ctx context.Context, c *app.RequestContext) {
-			ctx.AbortWithStatusJSON(400, utils.H{
+			c.AbortWithStatusJSON(400, utils.H{
 				"err":  "too many request; the quota used up",
 				"code": 10222,
 			})

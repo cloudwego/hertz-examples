@@ -89,7 +89,7 @@ func main() {
 			Name string `query:"name"`
 		}
 		var hertzReq PingReq
-		err := ctx.BindAndValidate(&hertzReq)
+		err := c.BindAndValidate(&hertzReq)
 		if err != nil {
 			hlog.Errorf(err.Error())
 			return
@@ -100,7 +100,7 @@ func main() {
 		if err != nil {
 			hlog.Errorf(err.Error())
 		}
-		ctx.JSON(consts.StatusOK, resp)
+		c.JSON(consts.StatusOK, resp)
 	})
 
 	h.Spin()

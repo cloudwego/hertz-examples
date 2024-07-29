@@ -43,13 +43,13 @@ func main() {
 	h.LoadHTMLGlob("render/html/*")
 
 	h.GET("/index", func(ctx context.Context, c *app.RequestContext) {
-		ctx.HTML(http.StatusOK, "index.tmpl", utils.H{
+		c.HTML(http.StatusOK, "index.tmpl", utils.H{
 			"title": "Main website",
 		})
 	})
 
 	h.GET("/raw", func(ctx context.Context, c *app.RequestContext) {
-		ctx.HTML(http.StatusOK, "template1.html", map[string]interface{}{
+		c.HTML(http.StatusOK, "template1.html", map[string]interface{}{
 			"now": time.Date(2017, 0o7, 0o1, 0, 0, 0, 0, time.UTC),
 		})
 	})

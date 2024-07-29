@@ -34,11 +34,11 @@ func main() {
 	h.Use(csrf.New(csrf.WithIgnoredMethods([]string{"GET", "HEAD", "TRACE"})))
 
 	h.GET("/protected", func(ctx context.Context, c *app.RequestContext) {
-		ctx.String(200, csrf.GetToken(ctx))
+		c.String(200, csrf.GetToken(c))
 	})
 
 	h.OPTIONS("/protected", func(ctx context.Context, c *app.RequestContext) {
-		ctx.String(200, "success")
+		c.String(200, "success")
 	})
 	h.Spin()
 }

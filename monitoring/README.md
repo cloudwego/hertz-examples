@@ -19,12 +19,12 @@ func main() {
 	h := server.Default(server.WithHostPorts("127.0.0.1:8080"), server.WithTracer(prometheus.NewServerTracer(":9091", "/hertz")))
 
 	h.GET("/metricGet", func(ctx context.Context, c *app.RequestContext) {
-		ctx.String(200, "hello get")
+		c.String(200, "hello get")
 	})
 
 	h.POST("/metricPost", func(ctx context.Context, c *app.RequestContext) {
 		time.Sleep(100 * time.Millisecond)
-		ctx.String(200, "hello post")
+		c.String(200, "hello post")
 	})
 
 	h.Spin()

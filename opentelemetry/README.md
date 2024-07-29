@@ -115,7 +115,7 @@ h.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
         hlog.Errorf(err.Error())
     }
     hlog.CtxDebugf(c, "message received successfully: %s", req.Message)
-    ctx.JSON(consts.StatusOK, resp)
+    c.JSON(consts.StatusOK, resp)
 })
 ```
 

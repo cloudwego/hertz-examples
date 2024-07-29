@@ -36,23 +36,23 @@ func main() {
 	}
 
 	r.Use(func(ctx context.Context, c *app.RequestContext) {
-		if ctx.Query("country") == "cn" {
-			proxy.ServeHTTP(c, ctx)
-			ctx.Response.Header.Set("key", "value")
-			ctx.Abort()
+		if c.Query("country") == "cn" {
+			proxy.ServeHTTP(ctx, c)
+			c.Response.Header.Set("key", "value")
+			c.Abort()
 		} else {
-			ctx.Next(c)
+			c.Next(ctx)
 		}
 	})
 
 	r.GET("/backend", func(ctx context.Context, c *app.RequestContext) {
-		ctx.JSON(200, utils.H{
+		c.JSON(200, utils.H{
 			"message": "pong1",
 		})
 	})
 
 	r2.GET("/backend", func(ctx context.Context, c *app.RequestContext) {
-		ctx.JSON(200, utils.H{
+		c.JSON(200, utils.H{
 			"message": "pong2",
 		})
 	})

@@ -27,7 +27,7 @@ func main() {
 	// Currently, hertz provides a series of middleware extensions that you can refer to if you need them: https://github.com/hertz-contrib
 	h.Use(func(ctx context.Context, c *app.RequestContext) {
 		fmt.Println("pre-handler")
-		ctx.Next(c)
+		c.Next(c)
 		fmt.Println("post-handler")
 	})
 

@@ -71,8 +71,8 @@ func main() {
 		if err != nil {
 			hlog.Errorf(err.Error())
 		}
-		hlog.CtxDebugf(c, "message received successfully: %s", req.Message)
-		ctx.JSON(consts.StatusOK, resp)
+		hlog.CtxDebugf(ctx, "message received successfully: %s", req.Message)
+		c.JSON(consts.StatusOK, resp)
 	})
 
 	h.Spin()
