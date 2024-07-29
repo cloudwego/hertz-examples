@@ -67,7 +67,7 @@ func main() {
 
 	h.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
 		req := &api.Request{Message: "my request"}
-		resp, err := client.Echo(c, req)
+		resp, err := client.Echo(ctx, req)
 		if err != nil {
 			hlog.Errorf(err.Error())
 		}
