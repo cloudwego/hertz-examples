@@ -1,0 +1,310 @@
+# Generated with thrift-gen-http-swagger
+# https://github.com/hertz-contrib/swagger-generate/thrift-gen-http-swagger
+
+openapi: 3.0.3
+info:
+    title: hertz example swagger doc
+    description: user service description
+    version: 0.0.1
+servers:
+    - url: http://127.0.0.1:8888
+paths:
+    /v1/user/create/:
+        post:
+            tags:
+                - UserService
+            operationId: UserService_CreateUser
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/CreateUserRequestBody'
+                    multipart/form-data:
+                        schema:
+                            $ref: '#/components/schemas/CreateUserRequestForm'
+                    application/x-www-form-urlencoded:
+                        schema:
+                            $ref: '#/components/schemas/CreateUserRequestForm'
+            responses:
+                "200":
+                    description: Successful response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CreateUserResponseBody'
+    /v1/user/delete/{user_id}:
+        post:
+            tags:
+                - UserService
+            operationId: UserService_DeleteUser
+            parameters:
+                - name: user_id
+                  in: path
+                  description: user id
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            responses:
+                "200":
+                    description: Successful response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteUserResponseBody'
+    /v1/user/query/:
+        post:
+            tags:
+                - UserService
+            operationId: UserService_QueryUser
+            parameters:
+                - name: keyword
+                  in: query
+                  schema:
+                    type: string
+                - name: page
+                  in: query
+                  schema:
+                    type: integer
+                    format: int64
+                - name: page_size
+                  in: query
+                  schema:
+                    type: integer
+                    format: int64
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/QueryUserRequestBody'
+                    multipart/form-data:
+                        schema:
+                            $ref: '#/components/schemas/QueryUserRequestForm'
+                    application/x-www-form-urlencoded:
+                        schema:
+                            $ref: '#/components/schemas/QueryUserRequestForm'
+            responses:
+                "200":
+                    description: Successful response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/QueryUserResponseBody'
+    /v1/user/update/{user_id}:
+        post:
+            tags:
+                - UserService
+            operationId: UserService_UpdateUser
+            parameters:
+                - name: user_id
+                  in: path
+                  required: true
+                  schema:
+                    type: integer
+                    format: int64
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateUserRequestBody'
+                    multipart/form-data:
+                        schema:
+                            $ref: '#/components/schemas/UpdateUserRequestForm'
+                    application/x-www-form-urlencoded:
+                        schema:
+                            $ref: '#/components/schemas/UpdateUserRequestForm'
+            responses:
+                "200":
+                    description: Successful response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateUserResponseBody'
+components:
+    schemas:
+        CreateUserRequestBody:
+            type: object
+            properties:
+                name:
+                    title: user name
+                    maxLength: 255
+                    type: string
+                gender:
+                    enum:
+                        - Unknown
+                        - Male
+                        - Female
+                    type: string
+                    format: enum
+                age:
+                    type: integer
+                    format: int64
+                introduce:
+                    type: string
+        CreateUserRequestForm:
+            type: object
+            properties:
+                name:
+                    title: user name
+                    maxLength: 255
+                    type: string
+                gender:
+                    enum:
+                        - Unknown
+                        - Male
+                        - Female
+                    type: string
+                    format: enum
+                age:
+                    type: integer
+                    format: int64
+                introduce:
+                    type: string
+        CreateUserResponseBody:
+            type: object
+            properties:
+                code:
+                    enum:
+                        - Success
+                        - ParamInvalid
+                        - DBErr
+                    type: string
+                    format: enum
+                msg:
+                    type: string
+        DeleteUserResponseBody:
+            type: object
+            properties:
+                code:
+                    enum:
+                        - Success
+                        - ParamInvalid
+                        - DBErr
+                    type: string
+                    format: enum
+                msg:
+                    type: string
+        QueryUserRequestBody:
+            title: Query User request
+            required:
+                - keyword
+                - page
+                - page_size
+            type: object
+            properties:
+                keyword:
+                    type: string
+                page:
+                    type: integer
+                    format: int64
+                page_size:
+                    type: integer
+                    format: int64
+            description: Query User request
+        QueryUserRequestForm:
+            title: Query User request
+            required:
+                - keyword
+                - page
+                - page_size
+            type: object
+            properties:
+                keyword:
+                    type: string
+                page:
+                    type: integer
+                    format: int64
+                page_size:
+                    type: integer
+                    format: int64
+            description: Query User request
+        QueryUserResponseBody:
+            type: object
+            properties:
+                code:
+                    enum:
+                        - Success
+                        - ParamInvalid
+                        - DBErr
+                    type: string
+                    format: enum
+                msg:
+                    type: string
+                users:
+                    title: user name
+                    maxLength: 255
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/User'
+                total:
+                    type: integer
+                    format: int64
+        UpdateUserRequestBody:
+            type: object
+            properties:
+                name:
+                    type: string
+                gender:
+                    enum:
+                        - Unknown
+                        - Male
+                        - Female
+                    type: string
+                    format: enum
+                age:
+                    type: integer
+                    format: int64
+                introduce:
+                    type: string
+        UpdateUserRequestForm:
+            type: object
+            properties:
+                name:
+                    type: string
+                gender:
+                    enum:
+                        - Unknown
+                        - Male
+                        - Female
+                    type: string
+                    format: enum
+                age:
+                    type: integer
+                    format: int64
+                introduce:
+                    type: string
+        UpdateUserResponseBody:
+            type: object
+            properties:
+                code:
+                    enum:
+                        - Success
+                        - ParamInvalid
+                        - DBErr
+                    type: string
+                    format: enum
+                msg:
+                    type: string
+        User:
+            type: object
+            properties:
+                user_id:
+                    type: integer
+                    format: int64
+                name:
+                    type: string
+                gender:
+                    enum:
+                        - Unknown
+                        - Male
+                        - Female
+                    type: string
+                    format: enum
+                age:
+                    type: integer
+                    format: int64
+                introduce:
+                    type: string
+tags:
+    - name: UserService
+      description: user service description
