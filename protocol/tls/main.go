@@ -50,14 +50,14 @@ func main() {
 
 	h := server.Default(server.WithTLS(cfg), server.WithHostPorts(":8443"))
 
-	h.Use(func(c context.Context, ctx *app.RequestContext) {
-		fmt.Fprint(ctx, "Before real handle...\n")
-		ctx.Next(c)
-		fmt.Fprint(ctx, "After real handle...\n")
+	h.Use(func(ctx context.Context, c *app.RequestContext) {
+		fmt.Fprint(c, "Before real handle...\n")
+		c.Next(ctx)
+		fmt.Fprint(c, "After real handle...\n")
 	})
 
-	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(consts.StatusOK, "TLS test\n")
+	h.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "TLS test\n")
 	})
 
 	go func() {

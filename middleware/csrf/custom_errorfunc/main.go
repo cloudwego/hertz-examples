@@ -39,18 +39,18 @@ var (
 )
 
 // myErrFunc is executed when an error occurs in csrf middleware.
-func myErrFunc(_ context.Context, ctx *app.RequestContext) {
-	err := ctx.Errors.Last()
+func myErrFunc(_ context.Context, c *app.RequestContext) {
+	err := c.Errors.Last()
 	switch err {
 	case errMissingForm, errMissingParam, errMissingHeader, errMissingQuery:
-		ctx.String(http.StatusBadRequest, err.Error()) // extract csrf-token failed
+		c.String(http.StatusBadRequest, err.Error()) // extract csrf-token failed
 	case errMissingSalt:
 		fmt.Println(err.Error())
-		ctx.String(http.StatusInternalServerError, err.Error()) // get salt failed,which is unexpected
+		c.String(http.StatusInternalServerError, err.Error()) // get salt failed,which is unexpected
 	case errInvalidToken:
-		ctx.String(http.StatusBadRequest, err.Error()) // csrf-token is invalid
+		c.String(http.StatusBadRequest, err.Error()) // csrf-token is invalid
 	}
-	ctx.Abort()
+	c.Abort()
 }
 
 func main() {
@@ -60,11 +60,11 @@ func main() {
 	h.Use(sessions.New("csrf-session", store))
 	h.Use(csrf.New(csrf.WithErrorFunc(myErrFunc)))
 
-	h.GET("/protected", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(200, csrf.GetToken(ctx))
+	h.GET("/protected", func(ctx context.Context, c *app.RequestContext) {
+		c.String(200, csrf.GetToken(c))
 	})
-	h.POST("/protected", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(200, "CSRF token is valid")
+	h.POST("/protected", func(ctx context.Context, c *app.RequestContext) {
+		c.String(200, "CSRF token is valid")
 	})
 
 	h.Spin()

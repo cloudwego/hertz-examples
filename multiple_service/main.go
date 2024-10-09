@@ -30,16 +30,16 @@ var wg sync.WaitGroup
 
 func hertz1() {
 	h := server.Default(server.WithHostPorts(":8080"))
-	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
-		ctx.JSON(consts.StatusOK, utils.H{"ping": "pong1"})
+	h.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
+		c.JSON(consts.StatusOK, utils.H{"ping": "pong1"})
 	})
 	h.Spin()
 }
 
 func hertz2() {
 	h := server.Default(server.WithHostPorts(":8081"))
-	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
-		ctx.JSON(consts.StatusOK, utils.H{"ping": "pong2"})
+	h.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
+		c.JSON(consts.StatusOK, utils.H{"ping": "pong2"})
 	})
 	h.Spin()
 }

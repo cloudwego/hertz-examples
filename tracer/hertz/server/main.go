@@ -84,23 +84,23 @@ func main() {
 	// You can refer to the example to implement a tracer middleware yourself to get the metrics you want.
 	h.Use(hertztracer.ServerCtx())
 
-	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
+	h.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
 		type PingReq struct {
 			Name string `query:"name"`
 		}
 		var hertzReq PingReq
-		err := ctx.BindAndValidate(&hertzReq)
+		err := c.BindAndValidate(&hertzReq)
 		if err != nil {
 			hlog.Errorf(err.Error())
 			return
 		}
 
 		KitexReq := &api.Request{Message: hertzReq.Name}
-		resp, err := client.Echo(c, KitexReq)
+		resp, err := client.Echo(ctx, KitexReq)
 		if err != nil {
 			hlog.Errorf(err.Error())
 		}
-		ctx.JSON(consts.StatusOK, resp)
+		c.JSON(consts.StatusOK, resp)
 	})
 
 	h.Spin()

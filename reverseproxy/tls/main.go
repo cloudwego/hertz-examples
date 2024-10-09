@@ -64,7 +64,7 @@ func main() {
 			server.WithTransport(standard.NewTransporter),
 		)
 
-		h.GET("/backend", func(cc context.Context, c *app.RequestContext) {
+		h.GET("/backend", func(ctx context.Context, c *app.RequestContext) {
 			c.JSON(200, utils.H{"msg": "pong"})
 		})
 		h.Spin()
