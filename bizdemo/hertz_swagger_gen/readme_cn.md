@@ -10,7 +10,7 @@
 - 使用 `thrift-gen-http-swagger` 插件生成 `swagger` 文件和 `swagger ui` 服务
 
 - `/swagger` 提供 `swagger` 文件和 `swagger ui` 服务器
-- `/hander` 包含更新用户、添加用户、删除用户、查询用户的基础业务逻辑
+- `/handler` 包含更新用户、添加用户、删除用户、查询用户的基础业务逻辑
 
 ## IDL
 
