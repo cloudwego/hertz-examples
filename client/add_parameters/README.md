@@ -1,5 +1,5 @@
 # Hertz client : add request content
-You can learn about using hertz cient to add request content：
+You can learn about using hertz client to add request content：
 * Add Request Query
 * Sending 'www-url-encoded' requests
 * Sending 'multipart/form-data' requests
