@@ -36,7 +36,7 @@ func main() {
 		c.String(404, "fake 404 not found")
 	})
 
-	h.GET("/proxy/backend", func(cc context.Context, c *app.RequestContext) {
+	h.GET("/proxy/backend", func(ctx context.Context, c *app.RequestContext) {
 		c.JSON(200, utils.H{
 			"msg": "proxy success!!",
 		})

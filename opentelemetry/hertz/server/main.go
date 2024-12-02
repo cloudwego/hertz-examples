@@ -65,14 +65,14 @@ func main() {
 		hlog.Fatal(err)
 	}
 
-	h.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
+	h.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
 		req := &api.Request{Message: "my request"}
-		resp, err := client.Echo(c, req)
+		resp, err := client.Echo(ctx, req)
 		if err != nil {
 			hlog.Errorf(err.Error())
 		}
-		hlog.CtxDebugf(c, "message received successfully: %s", req.Message)
-		ctx.JSON(consts.StatusOK, resp)
+		hlog.CtxDebugf(ctx, "message received successfully: %s", req.Message)
+		c.JSON(consts.StatusOK, resp)
 	})
 
 	h.Spin()

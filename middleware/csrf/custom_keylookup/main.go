@@ -32,11 +32,11 @@ func main() {
 	h.Use(sessions.New("csrf-session", store))
 	h.Use(csrf.New(csrf.WithKeyLookUp("form:csrf")))
 
-	h.GET("/protected", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(200, csrf.GetToken(ctx))
+	h.GET("/protected", func(ctx context.Context, c *app.RequestContext) {
+		c.String(200, csrf.GetToken(c))
 	})
-	h.POST("/protected", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(200, "CSRF token is valid")
+	h.POST("/protected", func(ctx context.Context, c *app.RequestContext) {
+		c.String(200, "CSRF token is valid")
 	})
 
 	h.Spin()
