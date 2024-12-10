@@ -118,8 +118,8 @@ func RegisterGroupRouteWithMiddleware(h *server.Hertz) {
 	//
 	// Bind the middleware directly to the routing group
 	example1 := h.Group("/example1", basic_auth.BasicAuth(map[string]string{"test": "test"}))
-	example1.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(consts.StatusOK, "ping")
+	example1.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "ping")
 	})
 
 	// Sample Code 2:
@@ -127,8 +127,8 @@ func RegisterGroupRouteWithMiddleware(h *server.Hertz) {
 	// use `Use` method
 	example2 := h.Group("/example2")
 	example2.Use(basic_auth.BasicAuth(map[string]string{"test": "test"}))
-	example2.GET("/ping", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(consts.StatusOK, "ping")
+	example2.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, "ping")
 	})
 }
 
@@ -157,15 +157,15 @@ func RegisterParaRoute(h *server.Hertz) {
 
 // RegisterAnonFunOrDecRoute Use anonymous function or decorator to register routes
 func RegisterAnonFunOrDecRoute(h *server.Hertz) {
-	h.AnyEX("/ping", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(consts.StatusOK, app.GetHandlerName(ctx.Handler()))
+	h.AnyEX("/ping", func(ctx context.Context, c *app.RequestContext) {
+		c.String(consts.StatusOK, app.GetHandlerName(c.Handler()))
 	}, "ping_handler")
 }
 
 // RegisterGetRoutesInfo Get route info
 func RegisterGetRoutesInfo(h *server.Hertz) {
-	h.GET("/getRoutesInfo", func(c context.Context, ctx *app.RequestContext) {
-		ctx.JSON(consts.StatusOK, utils.H{"ping": "pong"})
+	h.GET("/getRoutesInfo", func(ctx context.Context, c *app.RequestContext) {
+		c.JSON(consts.StatusOK, utils.H{"ping": "pong"})
 	})
 	routeInfo := h.Routes()
 	hlog.Info(routeInfo)

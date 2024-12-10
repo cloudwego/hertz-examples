@@ -25,8 +25,8 @@ import (
 	"github.com/hertz-contrib/sessions/cookie"
 )
 
-func isPostMethod(_ context.Context, ctx *app.RequestContext) bool {
-	if string(ctx.Method()) == "POST" {
+func isPostMethod(_ context.Context, c *app.RequestContext) bool {
+	if string(c.Method()) == "POST" {
 		return true
 	} else {
 		return false
@@ -42,8 +42,8 @@ func main() {
 	//  skip csrf middleware when request method is post
 	h.Use(csrf.New(csrf.WithNext(isPostMethod)))
 
-	h.POST("/protected", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(200, "success even no csrf-token in header")
+	h.POST("/protected", func(ctx context.Context, c *app.RequestContext) {
+		c.String(200, "success even no csrf-token in header")
 	})
 	h.Spin()
 }

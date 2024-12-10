@@ -29,8 +29,8 @@ func main() {
 
 	h.Static("/", "./assets")
 
-	h.GET("/", func(c context.Context, ctx *app.RequestContext) {
-		ctx.HTML(200, "index.html", nil)
+	h.GET("/", func(ctx context.Context, c *app.RequestContext) {
+		c.HTML(200, "index.html", nil)
 	})
 	h.Spin()
 }

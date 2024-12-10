@@ -36,8 +36,8 @@ func main() {
 	h.StaticFS("/static1", &app.FS{
 		Root:        "./",
 		PathRewrite: app.NewPathSlashesStripper(1),
-		PathNotFound: func(_ context.Context, ctx *app.RequestContext) {
-			ctx.JSON(consts.StatusNotFound, "The requested resource does not exist")
+		PathNotFound: func(_ context.Context, c *app.RequestContext) {
+			c.JSON(consts.StatusNotFound, "The requested resource does not exist")
 		},
 		CacheDuration:        time.Second * 5,
 		IndexNames:           indexNames,

@@ -33,12 +33,12 @@ func main() {
 	h.Use(sessions.New("csrf-session", store))
 	h.Use(csrf.New(csrf.WithIgnoredMethods([]string{"GET", "HEAD", "TRACE"})))
 
-	h.GET("/protected", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(200, csrf.GetToken(ctx))
+	h.GET("/protected", func(ctx context.Context, c *app.RequestContext) {
+		c.String(200, csrf.GetToken(c))
 	})
 
-	h.OPTIONS("/protected", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(200, "success")
+	h.OPTIONS("/protected", func(ctx context.Context, c *app.RequestContext) {
+		c.String(200, "success")
 	})
 	h.Spin()
 }

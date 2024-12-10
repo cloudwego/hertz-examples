@@ -38,7 +38,7 @@ func main() {
 			Weight:      10,
 		}),
 	)
-	h.GET("/backend", func(cc context.Context, c *app.RequestContext) {
+	h.GET("/backend", func(ctx context.Context, c *app.RequestContext) {
 		c.JSON(consts.StatusOK, utils.H{"ping": "pong"})
 	})
 	h.Spin()

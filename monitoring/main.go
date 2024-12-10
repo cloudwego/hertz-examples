@@ -35,13 +35,13 @@ func main() {
 		),
 	)
 
-	h.GET("/metricGet", func(c context.Context, ctx *app.RequestContext) {
-		ctx.String(200, "hello get")
+	h.GET("/metricGet", func(ctx context.Context, c *app.RequestContext) {
+		c.String(200, "hello get")
 	})
 
-	h.POST("/metricPost", func(c context.Context, ctx *app.RequestContext) {
+	h.POST("/metricPost", func(ctx context.Context, c *app.RequestContext) {
 		time.Sleep(100 * time.Millisecond)
-		ctx.String(200, "hello post")
+		c.String(200, "hello post")
 	})
 
 	h.Spin()
