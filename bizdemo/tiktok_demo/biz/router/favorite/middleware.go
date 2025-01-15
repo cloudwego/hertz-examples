@@ -56,11 +56,6 @@ func _favoriteMw() []app.HandlerFunc {
 	return nil
 }
 
-func _favoriteMw() []app.HandlerFunc {
-	// your code...
-	return nil
-}
-
 func _listMw() []app.HandlerFunc {
 	// your code...
 	return nil
