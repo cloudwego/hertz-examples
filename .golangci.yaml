@@ -1,0 +1,8 @@
+# Options for analysis running.
+run:
+  timeout: 3m
+
+issues:
+  exclude-use-default: true
+  exclude-dirs:
+    - kitex_gen

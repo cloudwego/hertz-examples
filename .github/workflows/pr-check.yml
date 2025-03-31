@@ -14,7 +14,7 @@ jobs:
       - name: typos-action
         uses: crate-ci/typos@master
 
-  golangci-lint:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,9 +22,9 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: stable
-          # for self-hosted, the cache path is shared across projects
-          # and it works well without the cache of github actions
-          # Enable it if we're going to use Github only
+          # For self-hosted, the cache path is shared across projects
+          # And it works well without the cache of GitHub actions
+          # Enable it if we're going to use GitHub only
           cache: true
 
       - name: Golangci Lint
@@ -32,3 +32,4 @@ jobs:
         uses: golangci/golangci-lint-action@v6
         with:
           version: latest
+          only-new-issues: true
