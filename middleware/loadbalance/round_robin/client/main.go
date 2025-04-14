@@ -44,7 +44,7 @@ func main() {
 	}
 	cli.Use(sd.Discovery(r, sd.WithLoadBalanceOptions(lb, opt)))
 	for i := 0; i < 10; i++ {
-		status, body, err := client.Get(context.Background(), nil, "http://hertz.test.demo/ping")
+		status, body, err := cli.Get(context.Background(), nil, "http://hertz.test.demo/ping")
 		if err != nil {
 			hlog.Fatal(err)
 		}
