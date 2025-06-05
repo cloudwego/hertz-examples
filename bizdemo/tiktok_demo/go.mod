@@ -1,15 +1,17 @@
 module github.com/cloudwego/hertz-examples/bizdemo/tiktok_demo
 
-go 1.18
+go 1.23.0
+
+toolchain go1.23.6
 
 require (
-	github.com/cloudwego/hertz v0.9.6
+	github.com/cloudwego/hertz v0.10.0
 	github.com/go-redis/redis/v7 v7.4.1
 	github.com/hertz-contrib/jwt v1.0.4
 	github.com/hertz-contrib/reverseproxy v1.0.6
 	github.com/minio/minio-go/v7 v7.0.49
 	github.com/u2takey/ffmpeg-go v0.4.1
-	golang.org/x/crypto v0.31.0
+	golang.org/x/crypto v0.35.0
 	google.golang.org/protobuf v1.31.0
 	gorm.io/driver/mysql v1.5.2
 	gorm.io/gorm v1.25.5
@@ -18,11 +20,12 @@ require (
 
 require (
 	github.com/aws/aws-sdk-go v1.38.20 // indirect
-	github.com/bytedance/gopkg v0.1.0 // indirect
-	github.com/bytedance/sonic v1.12.7 // indirect
-	github.com/bytedance/sonic/loader v0.2.2 // indirect
-	github.com/cloudwego/base64x v0.1.4 // indirect
-	github.com/cloudwego/netpoll v0.6.4 // indirect
+	github.com/bytedance/gopkg v0.1.1 // indirect
+	github.com/bytedance/sonic v1.13.2 // indirect
+	github.com/bytedance/sonic/loader v0.2.4 // indirect
+	github.com/cloudwego/base64x v0.1.5 // indirect
+	github.com/cloudwego/gopkg v0.1.4 // indirect
+	github.com/cloudwego/netpoll v0.7.0 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/elastic/pkcs8 v1.0.0 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
@@ -53,8 +56,8 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/u2takey/go-utils v0.3.1 // indirect
 	golang.org/x/arch v0.0.0-20210923205945-b76863e36670 // indirect
-	golang.org/x/net v0.21.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
-	golang.org/x/text v0.21.0 // indirect
+	golang.org/x/net v0.24.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/text v0.22.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 )
