@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 CloudWeGo Authors
+ * Copyright 2025 CloudWeGo Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,13 +50,7 @@ func sseHandler(ctx context.Context, c *app.RequestContext) {
 	w := sse.NewWriter(c)
 
 	// Create a channel to detect client disconnection
-	connClosed := c.Finished()
-
-	// Use goroutine to monitor connection status
-	go func() {
-		<-connClosed
-		fmt.Println("Client connection closed")
-	}()
+	connClosed := ctx.Done()
 
 	// Send 10 events with 1-second interval
 	for i := 0; i < 10; i++ {
