@@ -27,67 +27,67 @@ import (
 )
 
 func main() {
-	// 创建 Hertz 服务器实例
+	// Create a Hertz server instance
 	h := server.Default(
 		server.WithHostPorts(":8080"),
 		server.WithSenseClientDisconnection(true),
 	)
 
-	// 设置路由
+	// Set up routing
 	h.GET("/sse", sseHandler)
 
-	// 启动服务器
+	// Start the server
 	h.Spin()
 }
 
-// sseHandler 处理 SSE 请求
+// sseHandler handles SSE requests
 func sseHandler(ctx context.Context, c *app.RequestContext) {
-	// 获取上次事件 ID（如果有）
+	// Get the last event ID (if any)
 	lastEventID := sse.GetLastEventID(&c.Request)
 	fmt.Printf("Server Got LastEventID: %s\n", lastEventID)
 
-	// 创建 SSE 写入器
+	// Create SSE writer
 	w := sse.NewWriter(c)
 
-	// 创建一个通道用于检测客户端断开连接
+	// Create a channel to detect client disconnection
 	connClosed := c.Finished()
 
-	// 使用 goroutine 监听连接状态
+	// Use goroutine to monitor connection status
 	go func() {
 		<-connClosed
-		fmt.Println("客户端连接已断开")
+		fmt.Println("Client connection closed")
 	}()
 
-	// 发送 10 个事件，每个事件间隔 1 秒
+	// Send 10 events with 1-second interval
 	for i := 0; i < 10; i++ {
-		// 检查连接是否已关闭
+		// Check if connection is closed
 		select {
 		case <-connClosed:
-			fmt.Println("检测到客户端已断开连接，停止发送事件")
+			fmt.Println("Client disconnected, stopping event transmission")
 			return
 		default:
-			// 继续发送事件
+			// Continue sending events
 		}
 
-		// 创建事件 ID
+		// Create event ID
 		id := fmt.Sprintf("id-%d", i)
 
-		// 创建事件数据
+		// Create event data
 		data := fmt.Sprintf("Event data: %d at %s", i, time.Now().Format(time.RFC3339))
 
-		fmt.Println("准备发送事件:", id, data)
-		// 写入事件
+		fmt.Println("Preparing to send event:", id, data)
+		// Write event
 		err := w.WriteEvent(id, "message", []byte(data))
 		if err != nil {
 			fmt.Printf("Error writing event: %v\n", err)
 			break
 		}
 
-		// 等待 1 秒
+		// Wait for 5 second
 		time.Sleep(5 * time.Second)
 	}
 
-	// 关闭 SSE 写入器
+	// Close SSE writer
 	w.Close()
-	fmt.Println("SSE 事件发送完成")
+	fmt.Println("SSE event transmission completed")
 }

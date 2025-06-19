@@ -30,46 +30,46 @@ import (
 )
 
 func main() {
-	// 创建 Hertz 客户端
+	// Create Hertz client
 	c, err := client.NewClient()
 	if err != nil {
 		fmt.Printf("Error creating client: %v\n", err)
 		return
 	}
 
-	// 创建请求和响应对象
+	// Create request and response objects
 	req, resp := protocol.AcquireRequest(), protocol.AcquireResponse()
 	defer protocol.ReleaseRequest(req)
 	defer protocol.ReleaseResponse(resp)
 
-	// 设置请求 URI 和方法
+	// Set request URI and method
 	req.SetRequestURI("http://localhost:8080/sse")
 	req.SetMethod("GET")
 
-	// 设置请求头
+	// Set request headers
 	req.Header.Set("Cache-Control", "no-cache")
 	req.Header.Set("Connection", "keep-alive")
 
-	// 添加 SSE Accept MIME 类型
+	// Add SSE Accept MIME type
 	sse.AddAcceptMIME(req)
 
-	// 可选：设置上次接收到的事件 ID
+	// Optional: Set last received event ID
 	// req.Header.Set(sse.LastEventIDHeader, "id-0")
 
-	// 发送请求
+	// Send request
 	fmt.Println("Connecting to SSE server...")
 	if err := c.Do(context.Background(), req, resp); err != nil {
 		fmt.Printf("Error sending request: %v\n", err)
 		return
 	}
 
-	// 检查响应状态码
+	// Check response status code
 	if resp.StatusCode() != 200 {
 		fmt.Printf("Unexpected status code: %d\n", resp.StatusCode())
 		return
 	}
 
-	// 创建 SSE 读取器
+	// Create SSE reader
 	r, err := sse.NewReader(resp)
 	if err != nil {
 		fmt.Printf("Error creating SSE reader: %v\n", err)
@@ -79,17 +79,17 @@ func main() {
 
 	fmt.Println("Connected to SSE stream. Receiving events...")
 
-	// 设置信号处理，以便可以优雅地退出
+	// Set up signal handling for graceful exit
 	sigCh := make(chan os.Signal, 1)
 	signal.Notify(sigCh, syscall.SIGINT, syscall.SIGTERM)
 
-	// 创建上下文，用于取消 SSE 事件处理
+	// Create context for canceling SSE event processing
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	// 使用 ForEach 方法迭代处理 SSE 事件
+	// Use ForEach method to iterate over SSE events
 	err = r.ForEach(ctx, func(e *sse.Event) error {
-		// 等待信号或错误
+		// Wait for signal or error
 		select {
 		case <-sigCh:
 			fmt.Println("\nReceived interrupt signal. Exiting...")
