@@ -1,3 +1,19 @@
+/*
+ * Copyright 2022 CloudWeGo Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package main
 
 import (
@@ -6,6 +22,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/cloudwego/hertz/pkg/app/client"
 	"github.com/cloudwego/hertz/pkg/protocol"
@@ -32,7 +49,7 @@ func main() {
 	// 设置请求头
 	req.Header.Set("Cache-Control", "no-cache")
 	req.Header.Set("Connection", "keep-alive")
-	
+
 	// 添加 SSE Accept MIME 类型
 	sse.AddAcceptMIME(req)
 
@@ -66,38 +83,32 @@ func main() {
 	sigCh := make(chan os.Signal, 1)
 	signal.Notify(sigCh, syscall.SIGINT, syscall.SIGTERM)
 
-	// 创建一个通道用于从 goroutine 接收错误
-	errCh := make(chan error, 1)
-
 	// 创建上下文，用于取消 SSE 事件处理
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	// 在 goroutine 中处理 SSE 事件
-	go func() {
-		// 使用 ForEach 方法迭代处理 SSE 事件
-		err := r.ForEach(ctx, func(e *sse.Event) error {
-			fmt.Printf("Event received:\n")
-			fmt.Printf("  ID: %s\n", e.ID)
-			fmt.Printf("  Type: %s\n", e.Type)
-			fmt.Printf("  Data: %s\n\n", string(e.Data))
+	// 使用 ForEach 方法迭代处理 SSE 事件
+	err = r.ForEach(ctx, func(e *sse.Event) error {
+		// 等待信号或错误
+		select {
+		case <-sigCh:
+			fmt.Println("\nReceived interrupt signal. Exiting...")
+			cancel()
 			return nil
-		})
-
-		if err != nil {
-			errCh <- fmt.Errorf("error processing events: %v", err)
+		default:
 		}
+		fmt.Printf("Event received:\n")
+		fmt.Printf("  ID: %s\n", e.ID)
+		fmt.Printf("  Type: %s\n", e.Type)
+		fmt.Printf("  Data: %s\n\n", string(e.Data))
+		return nil
+	})
 
-		// 通知主 goroutine 处理已完成
-		sigCh <- os.Interrupt
-	}()
-
-	// 等待信号或错误
-	select {
-	case <-sigCh:
-		fmt.Println("\nReceived interrupt signal. Exiting...")
-		os.Exit(0)
-	case err := <-errCh:
-		fmt.Printf("\nError: %v\n", err)
+	if err != nil {
+		fmt.Printf("error processing events: %v", err)
+	} else {
+		fmt.Println("All events processed successfully.")
 	}
+
+	time.Sleep(5 * time.Second)
 }

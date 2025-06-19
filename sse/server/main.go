@@ -1,3 +1,19 @@
+/*
+ * Copyright 2022 CloudWeGo Authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package main
 
 import (
@@ -59,23 +75,16 @@ func sseHandler(ctx context.Context, c *app.RequestContext) {
 		// 创建事件数据
 		data := fmt.Sprintf("Event data: %d at %s", i, time.Now().Format(time.RFC3339))
 
+		fmt.Println("准备发送事件:", id, data)
 		// 写入事件
 		err := w.WriteEvent(id, "message", []byte(data))
 		if err != nil {
 			fmt.Printf("Error writing event: %v\n", err)
-			fmt.Println("写入事件时发生错误，可能是客户端已断开连接")
-			break
-		}
-
-		// 刷新缓冲区，确保事件立即发送
-		if err := c.Flush(); err != nil {
-			fmt.Printf("Error flushing buffer: %v\n", err)
-			fmt.Println("刷新缓冲区时发生错误，可能是客户端已断开连接")
 			break
 		}
 
 		// 等待 1 秒
-		time.Sleep(1 * time.Second)
+		time.Sleep(5 * time.Second)
 	}
 
 	// 关闭 SSE 写入器
