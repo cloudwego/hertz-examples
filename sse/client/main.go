@@ -46,10 +46,6 @@ func main() {
 	req.SetRequestURI("http://localhost:8080/sse")
 	req.SetMethod("GET")
 
-	// Set request headers
-	req.Header.Set("Cache-Control", "no-cache")
-	req.Header.Set("Connection", "keep-alive")
-
 	// Add SSE Accept MIME type
 	sse.AddAcceptMIME(req)
 
@@ -85,18 +81,15 @@ func main() {
 
 	// Create context for canceling SSE event processing
 	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
+	// Wait for signal or error
+	go func() {
+		<-sigCh
+		fmt.Println("\nReceived interrupt signal. Exiting...")
+		cancel()
+	}()
 
 	// Use ForEach method to iterate over SSE events
 	err = r.ForEach(ctx, func(e *sse.Event) error {
-		// Wait for signal or error
-		select {
-		case <-sigCh:
-			fmt.Println("\nReceived interrupt signal. Exiting...")
-			cancel()
-			return nil
-		default:
-		}
 		fmt.Printf("Event received:\n")
 		fmt.Printf("  ID: %s\n", e.ID)
 		fmt.Printf("  Type: %s\n", e.Type)
@@ -110,5 +103,5 @@ func main() {
 		fmt.Println("All events processed successfully.")
 	}
 
-	time.Sleep(10 * time.Second)
+	time.Sleep(5 * time.Second)
 }
