@@ -1126,10 +1126,10 @@ func (p *QueryUserRequest) String() string {
 }
 
 type QueryUserResponse struct {
-	Code   Code    `thrift:"code,1" json:"code" form:"code" query:"code"`
-	Msg    string  `thrift:"msg,2" json:"msg" form:"msg" query:"msg"`
-	Users  []*User `thrift:"users,3" json:"users" form:"users" query:"users"`
-	Totoal int64   `thrift:"totoal,4" json:"totoal" form:"totoal" query:"totoal"`
+	Code  Code    `thrift:"code,1" json:"code" form:"code" query:"code"`
+	Msg   string  `thrift:"msg,2" json:"msg" form:"msg" query:"msg"`
+	Users []*User `thrift:"users,3" json:"users" form:"users" query:"users"`
+	Total int64   `thrift:"total,4" json:"total" form:"total" query:"total"`
 }
 
 func NewQueryUserResponse() *QueryUserResponse {
@@ -1149,14 +1149,14 @@ func (p *QueryUserResponse) GetUsers() (v []*User) {
 }
 
 func (p *QueryUserResponse) GetTotoal() (v int64) {
-	return p.Totoal
+	return p.Total
 }
 
 var fieldIDToName_QueryUserResponse = map[int16]string{
 	1: "code",
 	2: "msg",
 	3: "users",
-	4: "totoal",
+	4: "total",
 }
 
 func (p *QueryUserResponse) Read(iprot thrift.TProtocol) (err error) {
@@ -1290,7 +1290,7 @@ func (p *QueryUserResponse) ReadField4(iprot thrift.TProtocol) error {
 	if v, err := iprot.ReadI64(); err != nil {
 		return err
 	} else {
-		p.Totoal = v
+		p.Total = v
 	}
 	return nil
 }
@@ -1396,10 +1396,10 @@ WriteFieldEndError:
 }
 
 func (p *QueryUserResponse) writeField4(oprot thrift.TProtocol) (err error) {
-	if err = oprot.WriteFieldBegin("totoal", thrift.I64, 4); err != nil {
+	if err = oprot.WriteFieldBegin("total", thrift.I64, 4); err != nil {
 		goto WriteFieldBeginError
 	}
-	if err := oprot.WriteI64(p.Totoal); err != nil {
+	if err := oprot.WriteI64(p.Total); err != nil {
 		return err
 	}
 	if err = oprot.WriteFieldEnd(); err != nil {

@@ -46,7 +46,7 @@ struct QueryUserResponse{
    1: Code code
    2: string msg
    3: list<User> users
-   4: i64 totoal
+   4: i64 total
 }
 
 struct DeleteUserRequest{
