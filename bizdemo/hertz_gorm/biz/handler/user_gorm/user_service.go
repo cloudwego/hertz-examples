@@ -90,7 +90,7 @@ func QueryUser(ctx context.Context, c *app.RequestContext) {
 		c.JSON(consts.StatusInternalServerError, &user_gorm.QueryUserResponse{Code: user_gorm.Code_DBErr, Msg: err.Error()})
 		return
 	}
-	c.JSON(consts.StatusOK, &user_gorm.QueryUserResponse{Code: user_gorm.Code_Success, Users: pack.Users(users), Totoal: total})
+	c.JSON(consts.StatusOK, &user_gorm.QueryUserResponse{Code: user_gorm.Code_Success, Users: pack.Users(users), Total: total})
 }
 
 // CreateUser .
