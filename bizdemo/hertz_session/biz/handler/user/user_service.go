@@ -73,10 +73,7 @@ func Register(_ context.Context, c *app.RequestContext) {
 		})
 		return
 	}
-	c.HTML(http.StatusOK, "register.html", hutils.H{
-		"message": utils.BuildMsg(consts.Success),
-		"token":   utils.BuildMsg(token),
-	})
+	c.Redirect(http.StatusMovedPermanently, []byte("/login.html"))
 }
 
 // Login .
