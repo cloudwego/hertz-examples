@@ -9,7 +9,6 @@
 ## Bizdemo
 
 - [hertz_gorm:](bizdemo/hertz_gorm) 在 hertz server 中使用 gorm 的示例
-- [hertz_gorm_gen:](bizdemo/hertz_gorm_gen) 在 hertz server 中使用 gorm/gen & proto IDL 的示例
 - [hertz_jwt:](bizdemo/hertz_jwt) 在 hertz server 中使用 jwt 的示例
 - [hertz_session:](bizdemo/hertz_session) 在 hertz server 中使用分布式 session 和 csrf 的示例
 - [hertz_swagger_gen:](bizdemo/hertz_swagger_gen) 在 hertz server 中使用插件生成 swagger 服务的示例
