@@ -18,11 +18,11 @@ package pack
 
 import (
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/hertz/user"
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/model"
 )
 
 // Users Convert model.User list to api.User list
-func Users(models []*orm_gen.User) []*user.User {
+func Users(models []*model.User) []*user.User {
 	users := make([]*user.User, 0, len(models))
 	for _, m := range models {
 		if u := User(m); u != nil {
@@ -33,7 +33,7 @@ func Users(models []*orm_gen.User) []*user.User {
 }
 
 // User Convert model.User to api.User
-func User(model *orm_gen.User) *user.User {
+func User(model *model.User) *user.User {
 	if model == nil {
 		return nil
 	}

@@ -22,10 +22,10 @@ import (
 	"context"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/hertz/user"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/model"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/pack"
 
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/query"
 	"github.com/cloudwego/hertz/pkg/app"
 )
@@ -42,7 +42,7 @@ func CreateUserResponse(ctx context.Context, c *app.RequestContext) {
 	}
 
 	resp := new(user.CreateUserResp)
-	err = query.User.WithContext(ctx).Create(&orm_gen.User{
+	err = query.User.WithContext(ctx).Create(&model.User{
 		Name:      req.Name,
 		Gender:    int32(req.Gender),
 		Age:       int32(req.Age),
@@ -85,7 +85,7 @@ func QueryUserResponse(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	var users []*orm_gen.User
+	var users []*model.User
 	if total > 0 {
 		users, err = m.Limit(int(req.PageSize)).Offset(int(req.PageSize * (req.Page - 1))).Find()
 		if err != nil {
@@ -114,7 +114,7 @@ func UpdateUserResponse(ctx context.Context, c *app.RequestContext) {
 	}
 
 	resp := new(user.UpdateUserResp)
-	u := &orm_gen.User{}
+	u := &model.User{}
 	u.ID = req.UserId
 	u.Name = req.Name
 	u.Gender = int32(req.Gender)

@@ -17,9 +17,9 @@
 package main
 
 import (
-	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/dal/mysql"
-	genModel "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/model/orm_gen"
 	"gorm.io/gen"
+	"gorm.io/gorm"
+	"gorm.io/driver/mysql"
 	// reuse your gorm db
 	// init db
 	_ "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/dal"
@@ -31,15 +31,15 @@ func main() {
 		Mode:    gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
 	})
 
-	// gormdb, _ := gorm.Open(mysql.Open("root:@(127.0.0.1:3306)/demo?charset=utf8mb4&parseTime=True&loc=Local"))
+	gormdb, _ := gorm.Open(mysql.Open("gorm:gorm@(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local"))
 	// reuse your gorm db
-	g.UseDB(mysql.DB)
+	g.UseDB(gormdb)
 
 	// Generate struct `User` based on table `users`
-	g.GenerateModel("users")
+	genModel := g.GenerateModel("users")
 
 	// Generate basic type-safe DAO API for struct `model.User` following conventions
-	g.ApplyBasic(genModel.User{})
+	g.ApplyBasic(genModel)
 
 	// Generate the code
 	g.Execute()
