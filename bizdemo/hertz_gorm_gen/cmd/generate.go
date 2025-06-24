@@ -18,11 +18,10 @@ package main
 
 import (
 	"gorm.io/gen"
-	"gorm.io/gorm"
-	"gorm.io/driver/mysql"
 	// reuse your gorm db
 	// init db
 	_ "github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/dal"
+	"github.com/cloudwego/hertz-examples/bizdemo/hertz_gorm_gen/biz/dal/mysql"
 )
 
 func main() {
@@ -31,9 +30,9 @@ func main() {
 		Mode:    gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
 	})
 
-	gormdb, _ := gorm.Open(mysql.Open("gorm:gorm@(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local"))
+	// gormdb, _ := gorm.Open(mysql.Open("gorm:gorm@(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local"))
 	// reuse your gorm db
-	g.UseDB(gormdb)
+	g.UseDB(mysql.DB)
 
 	// Generate struct `User` based on table `users`
 	genModel := g.GenerateModel("users")
