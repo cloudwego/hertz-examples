@@ -7,8 +7,8 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 require (
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/apache/thrift v0.16.0
-	github.com/cloudwego/hertz v0.10.0
-	github.com/cloudwego/kitex v0.13.1
+	github.com/cloudwego/hertz v0.10.2
+	github.com/cloudwego/kitex v0.14.1
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250604093344-b36d010baf87
 	github.com/graphql-go/graphql v0.8.1
 	github.com/hertz-contrib/cors v0.1.0
@@ -23,12 +23,12 @@ require (
 	github.com/hertz-contrib/obs-opentelemetry/provider v0.2.3
 	github.com/hertz-contrib/obs-opentelemetry/tracing v0.3.1
 	github.com/hertz-contrib/opensergo v0.0.1
-	github.com/hertz-contrib/pprof v0.1.1
+	github.com/hertz-contrib/pprof v0.1.2
 	github.com/hertz-contrib/registry/nacos v0.0.0-20221111034347-1885e5d5c1c9
 	github.com/hertz-contrib/requestid v1.1.0
-	github.com/hertz-contrib/reverseproxy v1.0.5
+	github.com/hertz-contrib/reverseproxy v1.0.6
 	github.com/hertz-contrib/sessions v1.0.3
-	github.com/hertz-contrib/sse v0.0.5
+	github.com/hertz-contrib/sse v0.1.0
 	github.com/hertz-contrib/tracer v0.0.0-20220601062646-788b1565bdab
 	github.com/hertz-contrib/websocket v0.1.0
 	github.com/kitex-contrib/obs-opentelemetry v0.2.3
@@ -40,7 +40,7 @@ require (
 	github.com/uber/jaeger-client-go v2.30.0+incompatible
 	go.opentelemetry.io/otel v1.19.0
 	go.uber.org/zap v1.26.0
-	google.golang.org/protobuf v1.33.0
+	google.golang.org/protobuf v1.34.1
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gopkg.in/yaml.v3 v3.0.1
 )
@@ -52,21 +52,21 @@ require (
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/bytedance/gopkg v0.1.2 // indirect
-	github.com/bytedance/sonic v1.13.2 // indirect
-	github.com/bytedance/sonic/loader v0.2.4 // indirect
+	github.com/bytedance/sonic v1.14.0 // indirect
+	github.com/bytedance/sonic/loader v0.3.0 // indirect
 	github.com/cenkalti/backoff/v4 v4.2.1 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
 	github.com/cloudwego/configmanager v0.2.3 // indirect
-	github.com/cloudwego/dynamicgo v0.6.2 // indirect
+	github.com/cloudwego/dynamicgo v0.6.4 // indirect
 	github.com/cloudwego/fastpb v0.0.5 // indirect
 	github.com/cloudwego/frugal v0.2.5 // indirect
-	github.com/cloudwego/gopkg v0.1.4 // indirect
+	github.com/cloudwego/gopkg v0.1.5 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/localsession v0.1.2 // indirect
-	github.com/cloudwego/netpoll v0.7.0 // indirect
+	github.com/cloudwego/netpoll v0.7.1 // indirect
 	github.com/cloudwego/runtimex v0.1.1 // indirect
-	github.com/cloudwego/thriftgo v0.4.1 // indirect
+	github.com/cloudwego/thriftgo v0.4.2 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
 	github.com/felixge/fgprof v0.9.3 // indirect

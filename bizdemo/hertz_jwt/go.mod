@@ -3,7 +3,7 @@ module github.com/cloudwego/hertz-examples/bizdemo/hertz_jwt
 go 1.19
 
 require (
-	github.com/cloudwego/hertz v0.10.0
+	github.com/cloudwego/hertz v0.10.2
 	github.com/hertz-contrib/jwt v1.0.4
 	gorm.io/driver/mysql v1.5.7
 	gorm.io/gorm v1.26.1
@@ -11,8 +11,8 @@ require (
 
 require (
 	github.com/bytedance/gopkg v0.1.1 // indirect
-	github.com/bytedance/sonic v1.13.2 // indirect
-	github.com/bytedance/sonic/loader v0.2.4 // indirect
+	github.com/bytedance/sonic v1.14.0 // indirect
+	github.com/bytedance/sonic/loader v0.3.0 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
 	github.com/cloudwego/gopkg v0.1.4 // indirect
 	github.com/cloudwego/netpoll v0.7.0 // indirect
@@ -33,5 +33,5 @@ require (
 	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
-	google.golang.org/protobuf v1.28.0 // indirect
+	google.golang.org/protobuf v1.34.1 // indirect
 )
