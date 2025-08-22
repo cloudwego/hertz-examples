@@ -100,7 +100,7 @@ func TestPerformRequest(t *testing.T) {
 	resp = w.Result()
 	assert.Nil(t, err)
 	assert.Equal(t, 404, resp.StatusCode())
-	assert.Equal(t, "404 page not found, faker", string(resp.Body()))
+	assert.Equal(t, "Not Found, faker", string(resp.Body()))
 
 	// json bind
 	json := `{"version":"v0.0.1"}`
