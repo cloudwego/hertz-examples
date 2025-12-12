@@ -1,6 +1,6 @@
 # Using Adaptor
 
-This example demonstrates how to wrap a standard http.Handler so that it can run inside Hertz. This is useful if you want to integrate packages built for `net/http` with Hertz, especially for libraries that expose handlers via the `http.Handler` interface. Be mindful that this compatability comes at a cost of some performance loss.
+This example demonstrates how to wrap a standard http.Handler so that it can run inside Hertz. This is useful if you want to integrate packages built for `net/http` with Hertz, especially for libraries that expose handlers via the `http.Handler` interface. Be mindful that this compatibility comes at a cost of some performance loss.
 
 ```
 package main
