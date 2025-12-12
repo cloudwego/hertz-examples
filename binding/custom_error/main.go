@@ -24,9 +24,9 @@ import (
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/client"
 	"github.com/cloudwego/hertz/pkg/app/server"
-	"github.com/cloudwego/hertz/pkg/app/server/binding"
 	"github.com/cloudwego/hertz/pkg/protocol"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	"github.com/go-playground/validator/v10"
 )
 
 type BindError struct {
@@ -54,19 +54,29 @@ func (e *ValidateError) Error() string {
 }
 
 func main() {
-	CustomValidateErrFunc := func(failField, msg string) error {
-		err := ValidateError{
-			ErrType:   "validateErr",
-			FailField: "[validateFailField]: " + failField,
-			Msg:       "[validateErrMsg]: " + msg,
-		}
+	vd := validator.New(validator.WithRequiredStructEnabled())
 
-		return &err
-	}
-	validateConfig := binding.NewValidateConfig()
-	validateConfig.SetValidatorErrorFactory(CustomValidateErrFunc)
-	h := server.Default(server.WithHostPorts("127.0.0.1:8080"),
-		server.WithValidateConfig(validateConfig))
+	h := server.Default(
+		server.WithHostPorts("127.0.0.1:8080"),
+		server.WithCustomValidatorFunc(func(_ *protocol.Request, req any) error {
+			err := vd.Struct(req)
+			if err == nil {
+				return nil
+			}
+
+			if ve, ok := err.(validator.ValidationErrors); ok {
+				fe := ve[0]
+
+				return &ValidateError{
+					ErrType:   "validateErr",
+					FailField: fe.Field(),
+					Msg:       fe.Tag(),
+				}
+			}
+
+			return err
+		}),
+	)
 
 	h.GET("bindErr", func(ctx context.Context, c *app.RequestContext) {
 		type TestBind struct {
@@ -74,12 +84,12 @@ func main() {
 		}
 		var req TestBind
 		err := c.Bind(&req)
-		fmt.Printf("error: %v\n", err)
+		fmt.Printf("bind error: %v\n", err)
 	})
 
 	h.GET("validateErr", func(ctx context.Context, c *app.RequestContext) {
 		type TestValidate struct {
-			B int `query:"b" vd:"$>100; msg:'C must greater than 100'"`
+			B int `query:"b" validate:"gt=100"`
 		}
 		var req TestValidate
 		err := c.Bind(&req)
@@ -87,7 +97,7 @@ func main() {
 			panic(err)
 		}
 		err = c.Validate(&req)
-		fmt.Printf("error: %v\n", err)
+		fmt.Printf("validate error: %v\n", err)
 	})
 
 	go h.Spin()

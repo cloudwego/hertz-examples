@@ -1,6 +1,6 @@
 module github.com/cloudwego/hertz-examples
 
-go 1.21.1
+go 1.24.0
 
 replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
@@ -10,6 +10,7 @@ require (
 	github.com/cloudwego/hertz v0.10.3
 	github.com/cloudwego/kitex v0.15.2
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250604093344-b36d010baf87
+	github.com/go-playground/validator/v10 v10.28.0
 	github.com/graphql-go/graphql v0.8.1
 	github.com/hertz-contrib/cors v0.1.0
 	github.com/hertz-contrib/csrf v0.1.1
@@ -39,6 +40,14 @@ require (
 	google.golang.org/protobuf v1.34.1
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gopkg.in/yaml.v3 v3.0.1
+)
+
+require (
+	github.com/gabriel-vasile/mimetype v1.4.10 // indirect
+	github.com/go-playground/locales v0.14.1 // indirect
+	github.com/go-playground/universal-translator v0.18.1 // indirect
+	github.com/leodido/go-urn v1.4.0 // indirect
+	golang.org/x/crypto v0.42.0 // indirect
 )
 
 require (
@@ -118,10 +127,10 @@ require (
 	go.opentelemetry.io/proto/otlp v1.0.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.14.0 // indirect
-	golang.org/x/net v0.24.0 // indirect
-	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.30.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/net v0.43.0 // indirect
+	golang.org/x/sync v0.17.0 // indirect
+	golang.org/x/sys v0.36.0 // indirect
+	golang.org/x/text v0.29.0 // indirect
 	google.golang.org/genproto v0.0.0-20231030173426-d783a09b4405 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20231106174013-bbf56f31fb17 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231106174013-bbf56f31fb17 // indirect
