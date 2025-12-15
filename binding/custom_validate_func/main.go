@@ -36,9 +36,11 @@ type ValidateStruct struct {
 func main() {
 	vd := validator.New(validator.WithRequiredStructEnabled())
 
-	vd.RegisterValidation("test", func(fl validator.FieldLevel) bool {
+	if err := vd.RegisterValidation("test", func(fl validator.FieldLevel) bool {
 		return fl.Field().String() != "123"
-	})
+	}); err != nil {
+		panic(err)
+	}
 
 	h := server.Default(
 		server.WithHostPorts("127.0.0.1:8080"),
