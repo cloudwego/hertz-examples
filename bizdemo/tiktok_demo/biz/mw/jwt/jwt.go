@@ -18,6 +18,7 @@ package jwt
 
 import (
 	"context"
+	"os"
 	"time"
 
 	"github.com/cloudwego/hertz/pkg/app"
@@ -37,9 +38,17 @@ var (
 	identity      = "user_id"
 )
 
+func getTikTokJWTKey() []byte {
+	key := os.Getenv("TIKTOK_JWT_SECRET_KEY")
+	if key == "" {
+		panic("TIKTOK_JWT_SECRET_KEY environment variable is required")
+	}
+	return []byte(key)
+}
+
 func Init() {
 	JwtMiddleware, _ = jwt.New(&jwt.HertzJWTMiddleware{
-		Key:         []byte("tiktok secret key"),
+		Key:         getTikTokJWTKey(),
 		TokenLookup: "query:token,form:token",
 		Timeout:     24 * time.Hour,
 		IdentityKey: identity,

@@ -20,6 +20,7 @@ import (
 	"context"
 	"errors"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_jwt/biz/dal/mysql"
@@ -36,11 +37,19 @@ var (
 	IdentityKey   = "identity"
 )
 
+func getJWTKey() []byte {
+	key := os.Getenv("JWT_SECRET_KEY")
+	if key == "" {
+		panic("JWT_SECRET_KEY environment variable is required")
+	}
+	return []byte(key)
+}
+
 func InitJwt() {
 	var err error
 	JwtMiddleware, err = jwt.New(&jwt.HertzJWTMiddleware{
 		Realm:         "test zone",
-		Key:           []byte("secret key"),
+		Key:           getJWTKey(),
 		Timeout:       time.Hour,
 		MaxRefresh:    time.Hour,
 		TokenLookup:   "header: Authorization, query: token, cookie: jwt",
