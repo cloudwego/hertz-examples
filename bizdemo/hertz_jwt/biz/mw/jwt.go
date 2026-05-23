@@ -19,6 +19,7 @@ package mw
 import (
 	"context"
 	"errors"
+	"fmt"
 	"net/http"
 	"os"
 	"time"
@@ -40,7 +41,8 @@ var (
 func getJWTKey() []byte {
 	key := os.Getenv("JWT_SECRET_KEY")
 	if key == "" {
-		panic("JWT_SECRET_KEY environment variable is required")
+		fmt.Fprintf(os.Stderr, "fatal: JWT_SECRET_KEY is not set. Generate one with: openssl rand -base64 32\n")
+		os.Exit(1)
 	}
 	return []byte(key)
 }

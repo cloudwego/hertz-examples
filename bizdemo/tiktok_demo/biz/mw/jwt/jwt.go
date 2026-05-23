@@ -18,6 +18,7 @@ package jwt
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"time"
 
@@ -41,7 +42,8 @@ var (
 func getTikTokJWTKey() []byte {
 	key := os.Getenv("TIKTOK_JWT_SECRET_KEY")
 	if key == "" {
-		panic("TIKTOK_JWT_SECRET_KEY environment variable is required")
+		fmt.Fprintf(os.Stderr, "fatal: TIKTOK_JWT_SECRET_KEY is not set. Generate one with: openssl rand -base64 32\n")
+		os.Exit(1)
 	}
 	return []byte(key)
 }
