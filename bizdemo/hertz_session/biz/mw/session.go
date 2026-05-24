@@ -24,7 +24,7 @@ import (
 )
 
 func InitSession(h *server.Hertz) {
-	store, err := redis.NewStore(consts.MaxIdleNum, consts.TCP, consts.RedisAddr, consts.RedisPasswd, []byte(consts.SessionSecretKey))
+	store, err := redis.NewStore(consts.MaxIdleNum, consts.TCP, consts.RedisAddr, consts.RedisPasswd, consts.GetSessionSecret())
 	if err != nil {
 		panic(err)
 	}

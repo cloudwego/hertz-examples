@@ -19,7 +19,9 @@ package mw
 import (
 	"context"
 	"errors"
+	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/cloudwego/hertz-examples/bizdemo/hertz_jwt/biz/dal/mysql"
@@ -36,11 +38,20 @@ var (
 	IdentityKey   = "identity"
 )
 
+func getJWTKey() []byte {
+	key := os.Getenv("JWT_SECRET_KEY")
+	if key == "" {
+		fmt.Fprintf(os.Stderr, "fatal: JWT_SECRET_KEY is not set. Generate one with: openssl rand -base64 32\n")
+		os.Exit(1)
+	}
+	return []byte(key)
+}
+
 func InitJwt() {
 	var err error
 	JwtMiddleware, err = jwt.New(&jwt.HertzJWTMiddleware{
 		Realm:         "test zone",
-		Key:           []byte("secret key"),
+		Key:           getJWTKey(),
 		Timeout:       time.Hour,
 		MaxRefresh:    time.Hour,
 		TokenLookup:   "header: Authorization, query: token, cookie: jwt",
