@@ -11,7 +11,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: stable
+          go-version: "1.22"
           cache: true # don't use cache for self-hosted runners
 
       - name: Unit Test
