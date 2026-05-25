@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: gomod
+    schedule:
+      interval: weekly
+    allow:
+      - dependency-name: github.com/cloudwego/hertz
+      - dependency-name: github.com/cloudwego/kitex
+    groups:
+      cloudwego-dependencies:
+        patterns:
+          - github.com/cloudwego/hertz
+          - github.com/cloudwego/kitex
+    directories:
+      - /
+      - /bizdemo/tiktok_demo
+      - /bizdemo/hertz_gorm
+      - /bizdemo/hertz_jwt
+      - /bizdemo/hertz_session
+      - /bizdemo/hertz_swagger_gen
+      - /hz_kitex_demo/kitex-server
+      - /hz_kitex_demo/hertz-server
