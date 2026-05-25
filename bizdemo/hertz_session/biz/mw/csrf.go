@@ -30,7 +30,7 @@ import (
 
 func InitCSRF(h *server.Hertz) {
 	h.Use(csrf.New(
-		csrf.WithSecret(consts.CSRFSecretKey),
+		csrf.WithSecret(consts.GetCSRFSecret()),
 		csrf.WithKeyLookUp(consts.CSRFKeyLookUp),
 		csrf.WithNext(utils.IsLogout),
 		csrf.WithErrorFunc(func(ctx context.Context, c *app.RequestContext) {

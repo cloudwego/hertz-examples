@@ -32,13 +32,13 @@ var (
 
 func InitRedis() {
 	rdbFollows = redis.NewClient(&redis.Options{
-		Addr:     constants.RedisAddr,
-		Password: constants.RedisPassword,
+		Addr:     constants.GetRedisAddr(),
+		Password: constants.GetRedisPassword(),
 		DB:       0,
 	})
 	rdbFavorite = redis.NewClient(&redis.Options{
-		Addr:     constants.RedisAddr,
-		Password: constants.RedisPassword,
+		Addr:     constants.GetRedisAddr(),
+		Password: constants.GetRedisPassword(),
 		DB:       1,
 	})
 }

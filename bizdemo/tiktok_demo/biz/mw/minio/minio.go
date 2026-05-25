@@ -83,8 +83,8 @@ func PutToBucketByFilePath(ctx context.Context, bucketName, filename, filepath s
 
 func Init() {
 	ctx := context.Background()
-	Client, err = minio.New(constants.MinioEndPoint, &minio.Options{
-		Creds:  credentials.NewStaticV4(constants.MinioAccessKeyID, constants.MinioSecretAccessKey, ""),
+	Client, err = minio.New(constants.GetMinioEndpoint(), &minio.Options{
+		Creds:  credentials.NewStaticV4(constants.GetMinioAccessKeyID(), constants.GetMinioSecretAccessKey(), ""),
 		Secure: constants.MiniouseSSL,
 	})
 	if err != nil {
