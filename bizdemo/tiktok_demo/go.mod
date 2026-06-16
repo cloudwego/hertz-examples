@@ -5,7 +5,7 @@ go 1.23.0
 toolchain go1.23.6
 
 require (
-	github.com/cloudwego/hertz v0.10.4
+	github.com/cloudwego/hertz v0.10.5
 	github.com/go-redis/redis/v7 v7.4.1
 	github.com/hertz-contrib/jwt v1.0.4
 	github.com/hertz-contrib/reverseproxy v1.0.6
@@ -20,12 +20,12 @@ require (
 
 require (
 	github.com/aws/aws-sdk-go v1.38.20 // indirect
-	github.com/bytedance/gopkg v0.1.3 // indirect
+	github.com/bytedance/gopkg v0.1.4 // indirect
 	github.com/bytedance/sonic v1.15.0 // indirect
 	github.com/bytedance/sonic/loader v0.5.0 // indirect
 	github.com/cloudwego/base64x v0.1.6 // indirect
-	github.com/cloudwego/gopkg v0.1.4 // indirect
-	github.com/cloudwego/netpoll v0.7.2 // indirect
+	github.com/cloudwego/gopkg v0.2.0 // indirect
+	github.com/cloudwego/netpoll v0.7.3 // indirect
 	github.com/dustin/go-humanize v1.0.1 // indirect
 	github.com/elastic/pkcs8 v1.0.0 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect

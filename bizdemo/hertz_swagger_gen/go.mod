@@ -6,7 +6,7 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
 	github.com/apache/thrift v0.16.0
-	github.com/cloudwego/hertz v0.10.4
+	github.com/cloudwego/hertz v0.10.5
 	github.com/hertz-contrib/cors v0.1.0
 	github.com/hertz-contrib/swagger v0.1.1
 	github.com/swaggo/files v1.0.1
@@ -16,12 +16,12 @@ require (
 
 require (
 	github.com/KyleBanks/depth v1.2.1 // indirect
-	github.com/bytedance/gopkg v0.1.3 // indirect
+	github.com/bytedance/gopkg v0.1.4 // indirect
 	github.com/bytedance/sonic v1.15.0 // indirect
 	github.com/bytedance/sonic/loader v0.5.0 // indirect
 	github.com/cloudwego/base64x v0.1.6 // indirect
-	github.com/cloudwego/gopkg v0.1.4 // indirect
-	github.com/cloudwego/netpoll v0.7.2 // indirect
+	github.com/cloudwego/gopkg v0.2.0 // indirect
+	github.com/cloudwego/netpoll v0.7.3 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/go-openapi/jsonpointer v0.20.0 // indirect
 	github.com/go-openapi/jsonreference v0.20.2 // indirect
