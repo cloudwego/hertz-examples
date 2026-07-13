@@ -24,8 +24,8 @@ github.com/cloudwego/frugal v0.3.1/go.mod h1:pMk46fFyAwUbW7q7lfdK7c6HsD6bWtu6/3V
 github.com/cloudwego/gopkg v0.1.4/go.mod h1:FQuXsRWRsSqJLsMVd5SYzp8/Z1y5gXKnVvRrWUOsCMI=
 github.com/cloudwego/gopkg v0.2.0 h1:EU8Ahrj0rCfKZQdah50zKnlrQ1o2AdPYM87UclIqLME=
 github.com/cloudwego/gopkg v0.2.0/go.mod h1:WjQPYI8PesfQalIVcLzVJBb1EAopioZ+D+3UGJ+dNBs=
-github.com/cloudwego/kitex v0.16.2 h1:dI3ha2st1hwexqA+n9xDdGlb3oQZqbhxNDpe+WmIwww=
-github.com/cloudwego/kitex v0.16.2/go.mod h1:d00UXGqwA778piM8nDNVWxOs4XhTX4SHyrQ7YpaojYg=
+github.com/cloudwego/kitex v0.16.3 h1:qU3LvJNcCACjHQPx944kzY6dd8vvP95s3IFB3zk5nH0=
+github.com/cloudwego/kitex v0.16.3/go.mod h1:d00UXGqwA778piM8nDNVWxOs4XhTX4SHyrQ7YpaojYg=
 github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20260521060157-ad63b4c9a51f h1:8D/U5gr2Zcua5pPb4orz2b46Fsu6OZie+wnZhxgOCgI=
 github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20260521060157-ad63b4c9a51f/go.mod h1:OP63V8YwwSlPVFqHZblV3mJXLPIjcIdwkT6ZYjEggcI=
 github.com/cloudwego/localsession v0.2.1 h1:obiuwSP2MQX+fFot3HjOQjvR5o7FlSc8Z4e5EM+NqRY=

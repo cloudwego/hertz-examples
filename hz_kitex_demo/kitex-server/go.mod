@@ -6,7 +6,7 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
 	github.com/apache/thrift v0.16.0
-	github.com/cloudwego/kitex v0.16.2
+	github.com/cloudwego/kitex v0.16.3
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20260521060157-ad63b4c9a51f
 )
 
