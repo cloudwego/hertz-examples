@@ -8,7 +8,7 @@ require (
 	github.com/alibaba/sentinel-golang v1.0.4
 	github.com/apache/thrift v0.16.0
 	github.com/cloudwego/hertz v0.10.5
-	github.com/cloudwego/kitex v0.16.2
+	github.com/cloudwego/kitex v0.16.3
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250604093344-b36d010baf87
 	github.com/go-playground/validator/v10 v10.28.0
 	github.com/graphql-go/graphql v0.8.1
