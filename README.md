@@ -15,6 +15,7 @@ Enter an example directory for its specific run instructions. Unless an example 
 - [bizdemo/tiktok_demo](bizdemo/tiktok_demo): A simple Hertz backend for user, video, social, feed, favorite, comment, and message services.
 - [formulago](https://github.com/chenghonour/formulago): An enterprise administration framework built with Hertz and Ent.
 - [gpress](https://github.com/springrain/gpress): A Web3 content platform built with Hertz and Go templates, with FTS5 full-text search and Hugo compatibility.
+- [hertz-admin](https://github.com/gjing1st/hertz-admin): A production-ready Go backend scaffolding built with Hertz, GORM, Swagger, and SM3/SM4 cryptographic algorithms.
 
 ## Server
 
