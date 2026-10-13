@@ -15,6 +15,7 @@
 - [bizdemo/tiktok_demo](bizdemo/tiktok_demo)：包含用户、视频、社交、Feed、点赞、评论和消息服务的简易 Hertz 后端。
 - [formulago](https://github.com/chenghonour/formulago)：使用 Hertz 和 Ent 构建的企业级后台管理框架。
 - [gpress](https://github.com/springrain/gpress)：使用 Hertz 和 Go 模板构建的 Web3 内容平台，支持 FTS5 全文搜索和 Hugo 生态。
+- [hertz-admin](https://github.com/gjing1st/hertz-admin)：使用 Hertz、GORM 和 Swagger 构建的生产级 Go 后端脚手架，内置国密 SM3/SM4 算法。
 
 ## 服务端
 
