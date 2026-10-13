@@ -6,7 +6,7 @@ replace github.com/apache/thrift => github.com/apache/thrift v0.13.0
 
 require (
 	github.com/apache/thrift v0.16.0
-	github.com/cloudwego/kitex v0.16.3
+	github.com/cloudwego/kitex v0.16.4
 	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20260521060157-ad63b4c9a51f
 )
 
@@ -16,13 +16,13 @@ require (
 	github.com/bytedance/sonic/loader v0.5.0 // indirect
 	github.com/cloudwego/base64x v0.1.6 // indirect
 	github.com/cloudwego/configmanager v0.2.3 // indirect
-	github.com/cloudwego/dynamicgo v0.8.0 // indirect
+	github.com/cloudwego/dynamicgo v0.9.2 // indirect
 	github.com/cloudwego/fastpb v0.0.6 // indirect
 	github.com/cloudwego/frugal v0.3.1 // indirect
-	github.com/cloudwego/gopkg v0.2.0 // indirect
-	github.com/cloudwego/localsession v0.2.1 // indirect
+	github.com/cloudwego/gopkg v0.2.1 // indirect
+	github.com/cloudwego/localsession v0.2.2 // indirect
 	github.com/cloudwego/netpoll v0.7.2 // indirect
-	github.com/cloudwego/runtimex v0.1.1 // indirect
+	github.com/cloudwego/runtimex v0.1.2 // indirect
 	github.com/cloudwego/thriftgo v0.4.5 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
